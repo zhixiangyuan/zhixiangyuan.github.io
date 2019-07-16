@@ -18,14 +18,15 @@ fi
 git commit -m "$comment" >/dev/null 2>&1
 git push github dev:dev2 -v
 
+echo "start push html."
 ### 把生成的网页推上去
-rm -rf public
+# rm -rf public
 hugo  >/dev/null 2>&1
 cd ./public
-git init >/dev/null 2>&1
-git remote add github https://github.com/zhixiangyuan/zhixiangyuan.github.io.git
-echo yuanzx.me > CNAME
+# git init >/dev/null 2>&1
+# git remote add github https://github.com/zhixiangyuan/zhixiangyuan.github.io.git
+# echo yuanzx.me > CNAME
 git add . >/dev/null 2>&1
 git commit -m "生成博客" >/dev/null 2>&1
-git push -f github master
+git push github master -v # -f github master
 echo finish.
