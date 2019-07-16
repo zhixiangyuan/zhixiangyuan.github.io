@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# 
+# 本脚本用于更新博客到 github
+# 
+# @param $1 对于该次提交的评论
+
+cd $(dirname $0)
+
+#### 先把修改的文件推上去
+git add .
+comment=""
+if [[ -n "$1" ]]; then
+    comment=$1
+else
+    comment="更新日志"
+fi
+
+git commit -m "$comment" >/dev/null 2>&1
+git push github dev -v
+
+### 把生成的网页推上去
+rm -rf public
+hugo  >/dev/null 2>&1
+cd ./public
+git init >/dev/null 2>&1
+git remote add github https://github.com/zhixiangyuan/zhixiangyuan.github.io.git
+echo yuanzx.me > CNAME
+git add . >/dev/null 2>&1
+git commit -m "生成博客" >/dev/null 2>&1
+git push -f github master
+echo finish.
