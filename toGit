@@ -16,7 +16,7 @@ else
 fi
 
 git commit -m "$comment" >/dev/null 2>&1
-git push github dev:dev2 -v
+git push github dev:dev -v
 
 echo "start push html."
 ### 把生成的网页推上去
