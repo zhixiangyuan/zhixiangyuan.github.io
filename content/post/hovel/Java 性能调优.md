@@ -34,7 +34,7 @@ String str = "This" + " is a demo."
 String str = "This is a demo."
 ```
 
-如果是拼接动态的字符串，那么使用 StringBuilder 来代替 + 实现字符串的拼接，如果碰到多线程的时候可能需要考虑使用 StringBuffer。
+如果**在循环时**拼接动态的字符串，那么使用 StringBuilder 来代替 + 实现字符串的拼接，如果碰到多线程的时候可能需要考虑使用 StringBuffer。
 
 # 四、尽可能使用基本类型
 
