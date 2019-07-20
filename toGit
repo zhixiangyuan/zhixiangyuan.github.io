@@ -30,7 +30,7 @@ if [[ $2 == true ]]; then
     echo yuanzx.me > CNAME
     git add . >/dev/null 2>&1
     git commit -m "生成博客" >/dev/null 2>&1
-    git push github master -v # -f github master
+    git push github master -v -f # -f github master
 else 
     hugo  >/dev/null 2>&1
     cd ./public
