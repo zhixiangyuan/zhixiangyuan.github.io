@@ -167,9 +167,38 @@ public class Main {
 
 ## 2.3 RUNNABLE 与 TIMED_WAITING 的状态转换
 
+TIMED_WAITING 与 WAITING 的区别，仅仅是 TIMED_WAITING 带有超时参数
+
+有五种场景会触发这种转换：
+
+1. 调用带超时参数的 `Thread.sleep(long millis)` 方法
+2. 获得 synchronized 隐式锁的线程，调用带超时参数的 `Object.wait(long timeout)` 方法
+3. 调用带超时参数的 `Thread.join(long millis) 方法`
+4. 调用带超时参数的 `LockSupport.parkNanos(Object blocker, long deadline)` 方法
+5. 调用带超时参数的 `LockSupport.parkUntil(long deadline)` 方法
+
 ## 2.4 从 NEW 到 RUNNABLE 状态
 
+```java
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        new Thread(() -> {}, "This thread not start.");
+        LockSupport.park();
+    }
+}
+```
+
+执行 `new Thread(() -> {}, "This thread not start.");`  之后，在堆内存中就已经存在一个线程对象，这个时候使用 `jstack` 并不能看到线程，但此时的线程就处于 NEW 的状态，线程执行 `start()` 方法之后，就变成 RUNNABLE 状态。
+
 ## 2.5 从 RUNNABLE 到 TERMINATED 状态
+
+当线程执行完 `run()` 方法之后，或者执行 `stop()` 方法都可以使线程从 RUNNABLE 状态进入到 TERMINATED 状态。
+
+### 2.5.1 stop() 方法与 interrupt()
+
+`stop()` 方法在 1.8 当中已经标注为废弃，这个方法比较危险，它会让被调用的线程直接死亡，并且抢占的锁也不会释放，那么如果一个线程抢占了锁，然后被调用了这个方法，那么后续来抢这个锁的线程就全部都会进入阻塞，并且永远也醒不过来，非常危险。
+
+推荐的方式是使用 `interrupt()`，这个方法仅仅是通知线程，线程依然可以有一些后续的操作。线程接收这个通知有两种方式，一种是监测到 `InterruptedException` 这个异常，另一种是主动检测，也就是通过 `Thread.currentThread().isInterrupted()` 这个方法判断是否被打断，如果被打断，那么可以做一些操作。
 
 # 参考资料
 
