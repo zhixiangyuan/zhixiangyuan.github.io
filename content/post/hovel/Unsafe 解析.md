@@ -69,7 +69,7 @@ public final class Unsafe {
 
 如上图所示，Unsafe 提供的 API 大致可分为内存操作、CAS、Class 相关、对象操作、线程调度、系统信息获取、内存屏障、数组操作，下面进行具体介绍。
 
-## 2.1 内存操作方法
+## 2.1 内存操作
 
 ```java
     /**
@@ -216,7 +216,7 @@ public final class Unsafe {
     public native void putDouble(long address, double value);
 ```
 
-## 2.2 CAS 相关
+## 2.2 CAS 
 
 ```java
 /**
@@ -269,7 +269,7 @@ public final native boolean compareAndSwapLong(Object o, long offset, long expec
     public native boolean tryMonitorEnter(Object o);
 ```
 
-## 2.6 系统信息相关
+## 2.6 系统信息
 
 ```java
     /**
