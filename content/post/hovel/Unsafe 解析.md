@@ -219,24 +219,64 @@ public final class Unsafe {
 ## 2.2 CAS 
 
 ```java
-/**
-	*  CAS
-  * @param o         包含要修改field的对象
-  * @param offset    对象中某field的偏移量
-  * @param expected  期望值
-  * @param update    更新值
-  * @return          true | false
-  */
-public final native boolean compareAndSwapObject(Object o, long offset,  Object expected, Object update);
+    /**
+    * 首先通过对象引用和 offset 找到需要更新的值的地址，在更新的时候，首先检查
+    * 内存中的值是否等于 expected 如果相等，则修改为 update，修改成功，返回 true；
+    * 如果不等，则修改失败，返回 false。
+    * 
+    * @param o         包含要修改 field 的对象
+    * @param offset    对象中某 field 的偏移量
+    * @param expected  期望值
+    * @param update    更新值
+    * @return          true 更新成功 | false 更新失败
+    */
+    public final native boolean compareAndSwapObject(Object o, long offset,  Object expected, Object update);
 
-public final native boolean compareAndSwapInt(Object o, long offset, int expected,int update);
-  
-public final native boolean compareAndSwapLong(Object o, long offset, long expected, long update);
+    /**
+    * {@link Unsafe#compareAndSwapObject(Object, long, Object, Object)}
+    * 
+    * @param o         包含要修改 field 的对象
+    * @param offset    对象中某 field 的偏移量
+    * @param expected  期望值
+    * @param update    更新值
+    * @return          true 更新成功 | false 更新失败
+    */
+    public final native boolean compareAndSwapInt(Object o, long offset, int expected,int update);
+    
+    /**
+    * {@link Unsafe#compareAndSwapObject(Object, long, Object, Object)}
+    * 
+    * @param o         包含要修改 field 的对象
+    * @param offset    对象中某 field 的偏移量
+    * @param expected  期望值
+    * @param update    更新值
+    * @return          true 更新成功 | false 更新失败
+    */
+    public final native boolean compareAndSwapLong(Object o, long offset, long expected, long update);
 ```
 
 ## 2.3 Class 相关
 
 ## 2.4 对象操作
+
+```java
+/**
+ * 返回对象成员属性在内存地址相对于此对象的内存地址的偏移量
+ */
+public native long objectFieldOffset(Field f);
+//获得给定对象的指定地址偏移量的值，与此类似操作还有：getInt，getDouble，getLong，getChar等
+public native Object getObject(Object o, long offset);
+//给定对象的指定地址偏移量设值，与此类似操作还有：putInt，putDouble，putLong，putChar等
+public native void putObject(Object o, long offset, Object x);
+//从对象的指定偏移量处获取变量的引用，使用volatile的加载语义
+public native Object getObjectVolatile(Object o, long offset);
+//存储变量的引用到对象的指定的偏移量处，使用volatile的存储语义
+public native void putObjectVolatile(Object o, long offset, Object x);
+//有序、延迟版本的putObjectVolatile方法，不保证值的改变被其他线程立即看到。只有在field被volatile修饰符修饰时有效
+public native void putOrderedObject(Object o, long offset, Object x);
+//绕过构造方法、初始化代码来创建对象
+public native Object allocateInstance(Class<?> cls) throws InstantiationException;
+```
 
 ## 2.5 线程调度
 
