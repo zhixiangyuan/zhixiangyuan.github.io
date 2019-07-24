@@ -12,7 +12,7 @@ categories: [
 author: "yuanzx"
 ---
 
-# 一、前言
+# 1 前言
 
 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。
 
@@ -23,7 +23,7 @@ author: "yuanzx"
 3. sipush: `[-32768, -129]∪[128, 32767]`
 4. ldc: `[-2147483648, -32769]∪[32768, 2147483647]`
 
-# 二、iconst
+# 2 iconst
 
 当 int 取值 `[-1, 5]` 时，JVM 采用 iconst 指令将常量压入栈中。
 
@@ -73,7 +73,7 @@ public static void main(java.lang.String[]);
 6. iconst_4: 4
 7. iconst_5: 5
 
-# 二、bipush
+# 3 bipush
 
 当 int 取值 `[-128, -2]∪[[6, 127]` 时，JVM 采用 bipush 指令将常量压入栈中。
 
@@ -105,7 +105,7 @@ public static void main(java.lang.String[]);
       13: return
 ```
 
-# 三、sipush
+# 4 sipush
 
 当 int 取值 `[-32768, -129]∪[128, 32767]` 时，JVM 采用 sipush 指令将常量压入栈中。
 
@@ -136,7 +136,7 @@ public static void main(java.lang.String[]);
       17: return
 ```
 
-# 四、ldc
+# 5 ldc
 
 当 int 取值 `[-2147483648, -32769]∪[32768, 2147483647]` 时，JVM 采用 ldc 指令将常量压入栈中。
 
