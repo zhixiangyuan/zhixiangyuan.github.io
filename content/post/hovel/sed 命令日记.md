@@ -1,6 +1,6 @@
 ---
 title: "sed 学习日记"
-date: 2019-07-04T16:21:59+08:00
+date: 2019-10-04T16:21:59+08:00
 keywords: []
 description: ""
 tags: [
@@ -12,7 +12,7 @@ categories: [
 author: "yuanzx"
 ---
 
-# 一、sed 的工作流程
+# 1 sed 的工作流程
 
 sed 逐行处理文件或输入，默认不会修改文件，除非使用 shell 重定向保存结果。
 
@@ -24,7 +24,7 @@ sed 逐行处理文件或输入，默认不会修改文件，除非使用 shell 
 4. 读取下一行
 5. 如此循环到最后一行然后结束
 
-# 二、命令参数
+# 2 命令参数
 
 ```shell
 sed [-e] 'command' [-f] scriptfile files
@@ -34,9 +34,9 @@ sed [-e] 'command' [-f] scriptfile files
 files 是需要处理的文件，或者以管道的方式输入数据
 ```
 
-# 三、实际示例
+# 3 实际示例
 
-## 使用 sed 达到的 cat 的效果
+## 3.1 使用 sed 达到的 cat 的效果
 
 ```shell
 $>cat testfile
@@ -50,7 +50,7 @@ There is only one thing that makes a dream impossible to achieve: the fear of fa
  - Paulo Coelho, The Alchemist
 ```
 
-## 删除第一行第三行的文本
+## 3.2 删除第一行第三行的文本
 
 ```shell
 $>cat testfile
@@ -70,7 +70,7 @@ $>sed -e '1d' -e '2d' testfile
 6) A Game of Thrones, George R. R. Martin, 864
 ```
 
-## 将命令写在文本文件中
+## 3.3 将命令写在文本文件中
 
 ```shell
 $>cat testfile
@@ -90,8 +90,6 @@ $>sed -f scriptfile testfile
 2) The Two Towers, J. R. R. Tolkien, 352 
 4) The Fellowship of the Ring, J. R. R. Tolkien, 432
 ```
-
-## 
 
 ## 参考资料
 
