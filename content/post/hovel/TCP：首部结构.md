@@ -15,11 +15,11 @@ markup: mmark
 mathjax: true  
 ---
 
-# 一、TCP 数据在 IP 数据报中的封装
+# 1 TCP 数据在 IP 数据报中的封装
 
 ![TCP 数据在 IP 数据报中的封装](/media/hovel/9.png)
 
-# 二、TCP 首部的数据格式
+# 2 TCP 首部的数据格式
 
 ![TCP 首部的数据格式](/media/hovel/10.png)
 

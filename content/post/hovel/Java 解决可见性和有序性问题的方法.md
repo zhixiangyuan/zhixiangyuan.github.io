@@ -13,7 +13,7 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-# 1. Happens-Before 规则
+# 1 Happens-Before 规则
 
 Java 通过提出 Happens-Before 规则来解决可见性和有序性的问题，Happens-Before 的意思是前面一个操作的结果对后续操作是可见的。
 

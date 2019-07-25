@@ -14,17 +14,17 @@ categories: [
 author: "yuanzx"
 ---
 
-# 一、明确是否需要优化以及要优化到什么程度
+# 1 明确是否需要优化以及要优化到什么程度
 
 首先需要在实践中检测代码是否需要优化，如果不需要优化，那么优化可能占用大量时间，而且优化完了也不会有任何体现。
 
 其次，如果需要优化，也需要明确代码需要优化到什么程度，需要同一时间承受多少的并发量。最后才是在程序中找出需要优化的部分，并将其进行优化。
 
-# 二、如何找出代码中的性能瓶颈
+# 2 如何找出代码中的性能瓶颈
 
 通过分析器分析代码中的每一部分的性能的信息，分析那些你所关心的信息。
 
-# 三、拼接字符串时使用 StringBuilder
+# 3 拼接字符串时使用 StringBuilder
 
 如果是拼接静态的字符串，那么直接使用 +，因为编译器会对其做优化，例子如下：
 
@@ -36,7 +36,7 @@ String str = "This is a demo."
 
 如果**在循环时**拼接动态的字符串，那么使用 StringBuilder 来代替 + 实现字符串的拼接，如果碰到多线程的时候可能需要考虑使用 StringBuffer。
 
-# 四、尽可能使用基本类型
+# 4 尽可能使用基本类型
 
 基本类型被存储在栈中，能够起到节省内存的作用，同时需要注意减少拆箱装箱的情况。
 
@@ -57,15 +57,15 @@ Integer num = Integer.valueOf(10);
 6. Character: `[0,127]`（0 到 127 数字所表示的字符都缓存了）
 7. Double 和 Float 没有缓存
 
-# 五、使用 Apache Commons StringUtils.Replace 代替 String.replace
+# 5 使用 Apache Commons StringUtils.Replace 代替 String.replace
 
 如果使用的 Java 版本低于 Java 9，那么最好使用 Apache Commons StringUtils.Replace 代替 String.replace，因为它的性能比 String.replace 好很多。
 
-# 六、对于频繁使用的东西可以添加缓存
+# 6 对于频繁使用的东西可以添加缓存
 
 例如 Java 包装类型中的方式，对于常用的一些数据，添加缓存来提高性能。
 
-# 七、创建 String 的方式
+# 7 创建 String 的方式
 
 ```java
 // 尽量使用这种方式创建字符串
