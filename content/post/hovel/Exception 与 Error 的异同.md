@@ -1,6 +1,6 @@
 ---
 title: "Exception 与 Error 的异同"
-date: 2018-10-26T11:26:50+08:00
+date: 2018-10-16T11:26:50+08:00
 keywords: []
 description: ""
 tags: [
