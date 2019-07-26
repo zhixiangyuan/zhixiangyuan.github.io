@@ -83,6 +83,10 @@ TCP 首部的数据结构，如果不计选项字段，首部是 20 个字节。
 
 当 URG = 1 时，紧急指针才有效，指出本报文段中的紧急数据的字节数。当窗口大小为 0 时，依然可以发送紧急数据。
 
+# 3 TCP 状态转换图
+
+![TCP 状态转换图](/media/hovel/27.jpg)
+
 # 参考资料
 
 1. [TCP-IP 详解：第17 章TCP ：传输控制协议](https://gitee.com/zhixiangyuan/bookStorage/raw/master/%E7%BC%96%E7%A8%8B/TCP-IP%E8%AF%A6%E8%A7%A3(%E5%8D%B7%E4%B8%80%E3%80%81%E4%BA%8C%E3%80%81%E4%B8%89).pdf)
