@@ -1,5 +1,5 @@
 ---
-title: "Final、finally、finalize 的异同"
+title: "final、finally、finalize 的异同"
 date: 2018-10-17T16:40:23+08:00
 keywords: []
 description: ""
