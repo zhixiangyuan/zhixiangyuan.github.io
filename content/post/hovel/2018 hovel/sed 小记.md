@@ -1,6 +1,6 @@
 ---
-title: "sed 学习日记"
-date: 2019-10-04T16:21:59+08:00
+title: "sed 小记"
+date: 2018-10-04T16:21:59+08:00
 keywords: []
 description: ""
 tags: [
