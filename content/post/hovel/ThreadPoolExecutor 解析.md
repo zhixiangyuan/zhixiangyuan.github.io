@@ -395,3 +395,4 @@ execute 方法便是将需要执行的任务加入到线程池当中，但是这
 
 1. [重走 JAVA 之路（五）：面试又被问线程池原理？教你如何反击](https://juejin.im/post/5c99c29ee51d4559bb5c6541)
 2. [线程池详解（ThreadPoolExecutor）](https://zhuanlan.zhihu.com/p/34405230)
+3. 非常推荐：[深度解读 java 线程池设计思想及源码实现](https://javadoop.com/2017/09/05/java-thread-pool/)
