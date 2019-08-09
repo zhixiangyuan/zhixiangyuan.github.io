@@ -108,3 +108,5 @@ So then I chose another profession, and learned to pilot airplanes. I have flown
     其中 a little 修饰前面的 flown，表示飞过一点，all parts of the world 表示世界各
     地，也就是在世界各地都飞过一点。
 ```
+
+I have lived a great deal among grown-ups. I have seen them intimately, close at hand. And that hasn't much improved my opinion of them. Whenever I met one of them who seemed to me at all clear-sighted, I tried the experiment of showing him my Drawing Number One, which I have always kept. I would try to find out, so, if this was a person of true understanding. But, whoever it was, he, or she, would always say:" That is a hat."
