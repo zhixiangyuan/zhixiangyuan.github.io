@@ -1,5 +1,5 @@
 ---
-title: "leetcode: 两数之和"
+title: "leetcode: 1 两数之和"
 date: 2019-07-02T20:23:42+08:00
 keywords: []
 description: ""
