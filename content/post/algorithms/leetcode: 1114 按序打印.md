@@ -1,5 +1,5 @@
 ---
-title: "Leetcode: 1114 按序打印"
+title: "leetcode: 1114 按序打印"
 date: 2019-08-13T11:05:30+08:00
 keywords: []
 description: ""
