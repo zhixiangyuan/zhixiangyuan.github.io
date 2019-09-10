@@ -1,5 +1,5 @@
 ---
-title: "Mybatis Plugs 使用案例"
+title: "Mybatis Plugin 使用案例"
 date: 2019-09-10T07:34:23+08:00
 keywords: []
 description: ""
