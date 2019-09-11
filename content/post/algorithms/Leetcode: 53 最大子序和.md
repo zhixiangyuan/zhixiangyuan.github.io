@@ -68,7 +68,7 @@ class Solution {
 ```java
 class Solution {
     public int maxSubArray(int[] nums) {
-        int maxSum = nums[0];
+        int ans = nums[0];
         int sum = 0;
         for(int num: nums) {
             if(sum > 0) {
@@ -78,7 +78,7 @@ class Solution {
             }
             ans = Math.max(ans, sum);
         }
-        return maxSum;
+        return ans;
     }
 }
 ```
