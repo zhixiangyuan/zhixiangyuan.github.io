@@ -65,3 +65,41 @@ class Solution {
     }
 }
 ```
+
+## 2.2 递归解法
+
+在递归的时候传递层数，所以根据层数能拿到 list，递归遍历一遍就搞定了
+
+- 时间复杂度: O(n)
+- 空间复杂度: O(n)
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) return result;
+        recursive(result, root, 1);
+        return result;
+    }
+    
+    private void recursive(List<List<Integer>> result, TreeNode root, int layer) {
+        if (root == null) return;
+        if (layer > result.size()) {
+            result.add(new ArrayList<Integer>());
+        }
+        List<Integer> currentLayerList = result.get(layer - 1);
+        currentLayerList.add(root.val);
+        recursive(result, root.left, layer + 1);
+        recursive(result, root.right, layer + 1);
+    }
+}
+```
