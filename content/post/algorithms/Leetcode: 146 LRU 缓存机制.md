@@ -27,9 +27,7 @@ author: "yuanzx"
 
 厉害了，对 LinkedhashMap 稍加改造就完成了这个效果，强
 
-不过这种写法似乎有问题，首先这种写法是线程不安全的，那么只可能在单线程的情况下用，在单线程的情况下同一时刻只会有一个节点被 get，那么在删除的时候对于 LRU（最近最少使用） 算法来说，似乎只能算是最近被使用的节点，对于最少使用这点体现不出来。
-
-这里举个例子证明上述观点，比如说现在缓存容量为 2，我调用了 node1 100 次，然后调用了 node2 1 次，在 put 节点三的时候，node1 会被删除，但是 node1 的调用次数远大于 node2。
+LRU = Last recent used，最近被使用的缓存不要被覆盖掉。
 
 ```java
 class LRUCache extends LinkedHashMap<Integer, Integer> {
