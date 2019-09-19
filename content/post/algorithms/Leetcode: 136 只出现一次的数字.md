@@ -63,6 +63,8 @@ $$a \oplus b \oplus a = (a \oplus a) \oplus b = 0 \oplus b = b$$
 
 所以我们只需要将所有的数进行 XOR 操作，得到那个唯一的数字
 
+- 时间复杂度: O(n)
+- 空间复杂度: O(1)
 
 ```java
 class Solution {
