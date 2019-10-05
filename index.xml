@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 04 Oct 2019 20:29:08 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2019 21:46:53 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>谈论行业的文章汇总</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E8%B0%88%E8%AE%BA%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Sat, 05 Oct 2019 21:46:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E8%B0%88%E8%AE%BA%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</guid>
+      <description>1 浅谈程序员的行业选择 &amp;mdash; 程序人生 该文章中将行业分为了互联网、甲方、乙方和游戏，同时，互联网又被分成传统互联网和移动互联网。对于互联网企业，文</description>
     </item>
     
     <item>
