@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Equals 方法的重写规则 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="equals 方法有一些固定的规则，一些类（例如集合类）会按照规则使用 equals 方法，如果重写的时候不按照这些规则进行重写，那么在使用的时候就可能出现莫名其妙的" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/2019-hovel/equals-%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Equals 方法的重写规则" />
+<meta property="og:description" content="equals 方法有一些固定的规则，一些类（例如集合类）会按照规则使用 equals 方法，如果重写的时候不按照这些规则进行重写，那么在使用的时候就可能出现莫名其妙的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/2019-hovel/equals-%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99%E8%A7%84%E5%88%99/" />
+<meta property="article:published_time" content="2019-08-09T09:24:19+08:00" />
+<meta property="article:modified_time" content="2019-08-09T09:24:19+08:00" />
+<meta itemprop="name" content="Equals 方法的重写规则">
+<meta itemprop="description" content="equals 方法有一些固定的规则，一些类（例如集合类）会按照规则使用 equals 方法，如果重写的时候不按照这些规则进行重写，那么在使用的时候就可能出现莫名其妙的">
+
+
+<meta itemprop="datePublished" content="2019-08-09T09:24:19&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-09T09:24:19&#43;08:00" />
+<meta itemprop="wordCount" content="937">
+
+
+
+<meta itemprop="keywords" content="Java 基础," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Equals 方法的重写规则"/>
+<meta name="twitter:description" content="equals 方法有一些固定的规则，一些类（例如集合类）会按照规则使用 equals 方法，如果重写的时候不按照这些规则进行重写，那么在使用的时候就可能出现莫名其妙的"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Equals 方法的重写规则</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-08-09 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-重写-equals-需要满足的规则">1 重写 equals 需要满足的规则</a>
+<ul>
+<li><a href="#1-1-违反自反性的后果">1.1 违反自反性的后果</a></li>
+<li><a href="#1-2-违反对称性的后果">1.2 违反对称性的后果</a></li>
+<li><a href="#1-3-违反传递性的后果">1.3 违反传递性的后果</a></li>
+</ul></li>
+<li><a href="#2-怎样写一个正确的-equals">2 怎样写一个正确的 equals</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-08-09T09:24:19" title="August 9, 2019">August 9, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      
+
+<p>equals 方法有一些固定的规则，一些类（例如集合类）会按照规则使用 equals 方法，如果重写的时候不按照这些规则进行重写，那么在使用的时候就可能出现莫名其妙的 bug。对于 equals 方法，如果不需要重写就别重写，下面是四种不需要重写的情况：</p>
+
+<ol>
+<li>每一个类的实例都是与众不同的，那么就直接使用 Object 中的 equals 方法就好了。</li>
+<li>对于功能性的相等判断不要放到 equals 中
+
+<ul>
+<li>比如对于 <code>java.util.regex.Pattern</code> 这个类，如果使用 equals 时对于两个不通的正则表达式，还去判断是否能起一样的效果的话，并不一定是一件好事。</li>
+</ul></li>
+<li>如果父类已经重写了，那么子类可以直接使用，不需要重写</li>
+<li>如果你确定这个类的 equals 方法永远不会被调用，也无需重写
+
+<ul>
+<li>不过最好还是一下，在其中抛出异常，防止错误调用</li>
+</ul></li>
+</ol>
+
+<h1 id="1-重写-equals-需要满足的规则">1 重写 equals 需要满足的规则</h1>
+
+<ol>
+<li>自反性：当 x != null 时，x.equals(x) must return true</li>
+<li>对称性：当 x != null &amp; y != null 时，x.equals(y) return true，则 y.equals(x) 也必须 return true</li>
+<li>传递性：当 x, y, z != null 时，x.equals(y) return true and  y.equals(z) return true, then x.equals(z) must return true.</li>
+<li>一致性：对于一个没有被修改的类，多次 equals 方法调用的返回结果应该一致</li>
+<li>x.equals(null) must return false</li>
+</ol>
+
+<h2 id="1-1-违反自反性的后果">1.1 违反自反性的后果</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 假设 BreakLow 违反了自反性，breakLow.equsls(breakLow) return false
+</span><span class="c1"></span>        <span class="c1">// 1 创建集合类并将其放进去
+</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">BreakLow</span><span class="o">&gt;</span> <span class="nf">breakLowList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">BreakLow</span> <span class="nf">breakLow</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BreakLow</span><span class="p">();</span>
+        <span class="n">breakLowList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">breakLow</span><span class="p">);</span>
+        <span class="c1">// 2 判断其是否在集合类当中
+</span><span class="c1"></span>        <span class="c1">// 这里就会 return false，这就很可怕，集合类直接就用不了了
+</span><span class="c1"></span>        <span class="n">breakLowList</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">breakLow</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-2-违反对称性的后果">1.2 违反对称性的后果</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 这里以实现一个大小写不敏感的 String 为例
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">CaseInsensitiveString</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="n">String</span> <span class="nf">s</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">CaseInsensitiveString</span><span class="p">(</span><span class="n">String</span> <span class="nf">s</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">s</span> <span class="o">=</span> <span class="n">Objects</span><span class="p">.</span><span class="na">requireNonNull</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 这个 equals 方法便违反了对称性原则
+</span><span class="c1"></span>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">boolean</span> <span class="n">equals</span><span class="p">(</span><span class="n">Object</span> <span class="nf">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">o</span> <span class="nf">instanceof</span> <span class="n">CaseInsensitiveString</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(((</span><span class="n">CaseInsensitiveString</span><span class="p">)</span> <span class="n">o</span><span class="p">).</span><span class="na">s</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">o</span> <span class="nf">instanceof</span> <span class="n">String</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">((</span><span class="n">String</span><span class="p">)</span> <span class="n">o</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">CaseInsensitiveString</span> <span class="nf">cis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CaseInsensitiveString</span><span class="p">(</span><span class="s">&#34;Polish&#34;</span><span class="p">);</span>
+        <span class="n">String</span> <span class="nf">s</span> <span class="o">=</span> <span class="s">&#34;polish&#34;</span><span class="p">;</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">CaseInsensitiveString</span><span class="o">&gt;</span> <span class="nf">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">list</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">cis</span><span class="p">);</span>
+        <span class="c1">// 这里就出现了问题，虽然这是一个大小写不敏感的 String，但是将 string 
+</span><span class="c1"></span>        <span class="c1">// 直接传进去还是会返回 false
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-3-违反传递性的后果">1.3 违反传递性的后果</h2>
+
+<p>违反传递性的情况会出现在子类继承一个可以实例化的父类，并在子类中增加字段的时候会出现这种情况，情况比较复杂，详细案例见 EffectiveJava</p>
+
+<p>java 类库中的 <code>java.sql.TimeStamp</code> 与 <code>java.util.Date</code> 就不满足这个条件，所以不要将他们在集合类中混用，否则可能出现未知的 bug。</p>
+
+<h1 id="2-怎样写一个正确的-equals">2 怎样写一个正确的 equals</h1>
+
+<p>要么就别重写 equals，要么就让代码生成代码，毕竟人可能犯错，但是代码不会犯错。在 IDE 中使用自动生成 equsls 的功能，然后选择合适的参数去生成 equals。</p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li>EffectiveJava</li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java-%E5%9F%BA%E7%A1%80/">Java 基础</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/algorithms/leetcode-1114-%E6%8C%89%E5%BA%8F%E6%89%93%E5%8D%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Leetcode: 1114 按序打印</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hovel/2019-hovel/threadpoolexecutor-%E8%A7%A3%E6%9E%90/">
+            <span class="next-text nav-default">ThreadPoolExecutor 解析</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JVM 字节码 on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/jvm-%E5%AD%97%E8%8A%82%E7%A0%81/</link>
+    <description>Recent content in JVM 字节码 on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Sat, 11 Aug 2018 18:47:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/jvm-%E5%AD%97%E8%8A%82%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>int 入栈指令 iconst、bipush、sipush、ldc</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</link>
+      <pubDate>Sat, 11 Aug 2018 18:47:43 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</guid>
+      <description>1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:</description>
+    </item>
+    
+  </channel>
+</rss>

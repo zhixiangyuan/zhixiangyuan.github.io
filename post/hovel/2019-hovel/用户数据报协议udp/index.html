@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>用户数据报协议：UDP - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 UDP 协议简介 UDP 是一种面向数据包协议，应用层向下传递的每一次操作都会产生一个 UDP 数据包，这一个 UDP 数据包会组装成一份 IP 数据包，这里是一一对应的关系" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AEudp/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="用户数据报协议：UDP" />
+<meta property="og:description" content="1 UDP 协议简介 UDP 是一种面向数据包协议，应用层向下传递的每一次操作都会产生一个 UDP 数据包，这一个 UDP 数据包会组装成一份 IP 数据包，这里是一一对应的关系" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AEudp/" />
+<meta property="article:published_time" content="2019-07-09T16:12:09+08:00" />
+<meta property="article:modified_time" content="2019-07-09T16:12:09+08:00" />
+<meta itemprop="name" content="用户数据报协议：UDP">
+<meta itemprop="description" content="1 UDP 协议简介 UDP 是一种面向数据包协议，应用层向下传递的每一次操作都会产生一个 UDP 数据包，这一个 UDP 数据包会组装成一份 IP 数据包，这里是一一对应的关系">
+
+
+<meta itemprop="datePublished" content="2019-07-09T16:12:09&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-09T16:12:09&#43;08:00" />
+<meta itemprop="wordCount" content="918">
+
+
+
+<meta itemprop="keywords" content="网络协议," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用户数据报协议：UDP"/>
+<meta name="twitter:description" content="1 UDP 协议简介 UDP 是一种面向数据包协议，应用层向下传递的每一次操作都会产生一个 UDP 数据包，这一个 UDP 数据包会组装成一份 IP 数据包，这里是一一对应的关系"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">用户数据报协议：UDP</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-09 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-udp-协议简介">1 UDP 协议简介</a></li>
+<li><a href="#2-udp-协议中的校验和">2 UDP 协议中的校验和</a></li>
+<li><a href="#3-关于-udp-包在-ip-层分片的情况">3 关于 UDP 包在 IP 层分片的情况</a></li>
+<li><a href="#4-udp-协议的应用">4 UDP 协议的应用</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-07-09T16:12:09" title="July 9, 2019">July 9, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      
+
+<h1 id="1-udp-协议简介">1 UDP 协议简介</h1>
+
+<p>UDP 是一种面向数据包协议，应用层向下传递的每一次操作都会产生一个 UDP 数据包，这一个 UDP 数据包会组装成一份 IP 数据包，这里是一一对应的关系。当 IP 数据包向下传的时候，如果 IP 数据包的长度超过了网络的 MTU，那么就会对 IP 数据包进行分片，并且每个网络之间都会进行分片。因此应用程序必须关注 IP 数据包的长度，不然可能会对数据包的传输造成很大的影响。</p>
+
+<p>下图是 UDP 数据包封装为 IP 数据包的样子：</p>
+
+<p><img src="/media/hovel/5.png" alt="UDP 数据包封装为 IP 数据包" /></p>
+
+<p>下图是 UDP 数据包的内部结构：</p>
+
+<p><img src="/media/hovel/6.png" alt="UDP 数据包的结构" /></p>
+
+<p>UDP 的数据结构，1、2 两个字节表示源端口号，3、4 字节表示目标端口号，5、6 字节表示 UDP 数据包长度长度，7、8 字节表示 udp 校验和。这里的数据包长度包含包头，所以其最小值为 8。</p>
+
+<h1 id="2-udp-协议中的校验和">2 UDP 协议中的校验和</h1>
+
+<p>UDP 的校验和计算方式和 IP 数据包首部的校验和计算方式是相同的。不过 IP 数据包的校验和只校验 IP 数据包的首部，不校验数据，而 UDP 的检验和会校验数据。二者均采用 16 位二进制反码求和的方式计算校验和。</p>
+
+<p>UDP 中的校验和是可选的 TCP 中的校验和是必须的</p>
+
+<ul>
+<li>当 UDP 中的校验和全为 0 的时候表示发送端没有计算校验和</li>
+<li>当 UDP 计算校验为 0 的时候，将校验和全部置为 1 进行传输</li>
+</ul>
+
+<p>由于 UDP 数据包可能出现奇数字节，那么 16 位二进制反码求和的运算就行不通，所以当出现奇数字节的时候通过在尾巴上补 0 来补成偶数，但是在实际传输的时候，补的 0 是不参与的。</p>
+
+<p>并且，UDP 在计算校验和时候会在头上补上 12 个字节的内容，其中包含源 IP 地址和目标 IP 地址。</p>
+
+<p>下图展示在校验的时候校验的字节：</p>
+
+<p><img src="/media/hovel/7.png" alt="UDP 校验时候校验的字节" /></p>
+
+<p>接收端接收到数据会对数据进行校验，分为两种情况，一，发现校验和不全为 0，那么接收端进行计算，对不上，说明传的有差错，二、接收端接收到数据，发现校验和全为 0，说明发送端没计算，直接上传给应用层。</p>
+
+<p>这里有两种特殊的情况，一，如果发送的时候是计算了的，但是传到接收端的时候出现了差错，接收端拿到的校验和全是 0，虽然是错的，但是它会以为这是发送端没有计算，同样会上传给应用层。二，因为校验采用的是 16 位反码和的方式，那么如果两个 16 位交换，同样检测不出来。</p>
+
+<h1 id="3-关于-udp-包在-ip-层分片的情况">3 关于 UDP 包在 IP 层分片的情况</h1>
+
+<p>IP 层在发送数据报的时候，会查看该接口的 MTU，然后对数据报进行分片，在数据报传输到下一跳之后，在下一跳的 IP 层会对数据报重新组装。</p>
+
+<h1 id="4-udp-协议的应用">4 UDP 协议的应用</h1>
+
+<p>// todo 待完成</p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li><a href="https://gitee.com/zhixiangyuan/bookStorage/raw/master/%E7%BC%96%E7%A8%8B/TCP-IP%E8%AF%A6%E8%A7%A3(%E5%8D%B7%E4%B8%80%E3%80%81%E4%BA%8C%E3%80%81%E4%B8%89).pdf">TCP-IP 详解：用户数据报协议</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/hovel/2019-hovel/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEip/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">网际协议：IP</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hovel/2019-hovel/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">
+            <span class="next-text nav-default">学习路径</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

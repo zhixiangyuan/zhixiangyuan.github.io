@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://zhixiangyuan.github.io/sitemap.xml

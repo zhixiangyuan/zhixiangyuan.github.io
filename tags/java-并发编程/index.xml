@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java 并发编程 on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
+    <description>Recent content in Java 并发编程 on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Wed, 24 Jul 2019 21:31:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ReentrantLock 详解</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/reentrantlock-%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Wed, 24 Jul 2019 21:31:26 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/reentrantlock-%E8%AF%A6%E8%A7%A3/</guid>
+      <description>本文基于 JDK 1.8 1 ReentrantLock 的作用 Java 中已经有了 synchronized 的来进行隐式的加锁和解锁，那还为什么还要引入 ReentrantLock 这把锁呢。这主要是 synchronized 的加锁和解锁操作并不灵活，Reentr</description>
+    </item>
+    
+    <item>
+      <title>Unsafe 解析</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/unsafe-%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Tue, 23 Jul 2019 20:29:17 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/unsafe-%E8%A7%A3%E6%9E%90/</guid>
+      <description>本文基于 jdk1.8 Unsafe 位于 sun.misc 包下，提供能直接访问系统内存资源的方法，使得用户能够自主管理内存，使用得当能够提升程序的运行效率。 1 如何获取 Unsafe 实例 下面代码</description>
+    </item>
+    
+    <item>
+      <title>Java 线程的生命周期</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+      <pubDate>Sun, 21 Jul 2019 20:09:56 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+      <description>Java 语言中的线程本质上就是操作系统的线程，Java 创建线程同样是调用操作系统的 API 来创建线程。所以，了解 Java 线程的生命周期的第一步是了解操作系统线</description>
+    </item>
+    
+    <item>
+      <title>如何解决银行转账时的并发问题</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%93%B6%E8%A1%8C%E8%BD%AC%E8%B4%A6%E6%97%B6%E7%9A%84%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 17 Jul 2019 09:26:08 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%93%B6%E8%A1%8C%E8%BD%AC%E8%B4%A6%E6%97%B6%E7%9A%84%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</guid>
+      <description>1 如何解决银行转账时的并发问题 当出现 A 将钱转给 B 的时候，什么样的方案可以避免在转账时没有并发问题。先看以下代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</description>
+    </item>
+    
+    <item>
+      <title>Java 解决可见性和有序性问题的方法</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/java-%E8%A7%A3%E5%86%B3%E5%8F%AF%E8%A7%81%E6%80%A7%E5%92%8C%E6%9C%89%E5%BA%8F%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Tue, 16 Jul 2019 17:24:13 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/java-%E8%A7%A3%E5%86%B3%E5%8F%AF%E8%A7%81%E6%80%A7%E5%92%8C%E6%9C%89%E5%BA%8F%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+      <description>1 Happens-Before 规则 Java 通过提出 Happens-Before 规则来解决可见性和有序性的问题，Happens-Before 的意思是前面一个操作的结果对后续操作是可见的。 1.1 程序的顺序性</description>
+    </item>
+    
+    <item>
+      <title>并发编程需要解决的问题</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Tue, 16 Jul 2019 10:08:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>1 并发编程需要解决的问题 由于 CPU 从单核变成了多核引发了并发问题，其问题有三。一，每个 CPU 都有自己的缓存，当多个线程运行在不同核的 CPU 上并且修改同一</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java 内存泄漏 on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
+    <description>Recent content in java 内存泄漏 on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Tue, 30 Jul 2019 20:36:52 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>由无效缓存引起的内存泄漏</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E7%94%B1%E6%97%A0%E6%95%88%E7%BC%93%E5%AD%98%E5%BC%95%E8%B5%B7%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
+      <pubDate>Tue, 30 Jul 2019 20:36:52 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E7%94%B1%E6%97%A0%E6%95%88%E7%BC%93%E5%AD%98%E5%BC%95%E8%B5%B7%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</guid>
+      <description>在下面这段代码中存在一个内存泄漏的问题，在使用中表现为性能下降，在极端情况下甚至可能出现 OutOfMemoryError。先看代码，看你是否</description>
+    </item>
+    
+    <item>
+      <title>一次内存泄漏排查的经历</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/</link>
+      <pubDate>Mon, 01 Jul 2019 13:14:38 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/</guid>
+      <description>开发环境: JDK: 1.8 Netty: 4.1.21.Final 1 起因 由于我之前写过一个接收医疗设备数据的项目，于是为了压力测试，就又按照该协议实现了一个发送设备数据的项目。这个项目在使</description>
+    </item>
+    
+  </channel>
+</rss>

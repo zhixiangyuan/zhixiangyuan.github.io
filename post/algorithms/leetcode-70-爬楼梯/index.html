@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Leetcode: 70 爬楼梯 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 题目 爬楼梯 2 解 2.1 我的解 没解出来 2.2 官方题解 2.2.1 暴力法 通过递归的方式模拟爬楼梯，不过这个方法在 leetcode 上面跑会超时 时间复杂度: O(\(2^n\)) 空间复杂度: O(1) 1 2 3 4" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/algorithms/leetcode-70-%E7%88%AC%E6%A5%BC%E6%A2%AF/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Leetcode: 70 爬楼梯" />
+<meta property="og:description" content="1 题目 爬楼梯 2 解 2.1 我的解 没解出来 2.2 官方题解 2.2.1 暴力法 通过递归的方式模拟爬楼梯，不过这个方法在 leetcode 上面跑会超时 时间复杂度: O(\(2^n\)) 空间复杂度: O(1) 1 2 3 4" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/algorithms/leetcode-70-%E7%88%AC%E6%A5%BC%E6%A2%AF/" />
+<meta property="article:published_time" content="2019-09-10T09:43:30+08:00" />
+<meta property="article:modified_time" content="2019-09-10T09:43:30+08:00" />
+<meta itemprop="name" content="Leetcode: 70 爬楼梯">
+<meta itemprop="description" content="1 题目 爬楼梯 2 解 2.1 我的解 没解出来 2.2 官方题解 2.2.1 暴力法 通过递归的方式模拟爬楼梯，不过这个方法在 leetcode 上面跑会超时 时间复杂度: O(\(2^n\)) 空间复杂度: O(1) 1 2 3 4">
+
+
+<meta itemprop="datePublished" content="2019-09-10T09:43:30&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-10T09:43:30&#43;08:00" />
+<meta itemprop="wordCount" content="818">
+
+
+
+<meta itemprop="keywords" content="leetcode," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Leetcode: 70 爬楼梯"/>
+<meta name="twitter:description" content="1 题目 爬楼梯 2 解 2.1 我的解 没解出来 2.2 官方题解 2.2.1 暴力法 通过递归的方式模拟爬楼梯，不过这个方法在 leetcode 上面跑会超时 时间复杂度: O(\(2^n\)) 空间复杂度: O(1) 1 2 3 4"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Leetcode: 70 爬楼梯</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-10 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="1-题目">1 题目</h1>
+
+<p><a href="https://leetcode-cn.com/problems/climbing-stairs/submissions/">爬楼梯</a></p>
+
+<h1 id="2-解">2 解</h1>
+
+<h2 id="21-我的解">2.1 我的解</h2>
+
+<p>没解出来</p>
+
+<h2 id="22-官方题解">2.2 官方题解</h2>
+
+<h3 id="221-暴力法">2.2.1 暴力法</h3>
+
+<p>通过递归的方式模拟爬楼梯，不过这个方法在 leetcode 上面跑会超时</p>
+
+<ul>
+<li>时间复杂度: O(<span  class="math">\(2^n\)</span>)</li>
+<li>空间复杂度: O(1)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nf">Solution</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">int</span> <span class="n">climbStairs</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">climbStairs</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kd">public</span> <span class="nf">int</span> <span class="n">climbStairs</span><span class="p">(</span><span class="kt">int</span> <span class="nf">current</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">current</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">climbStairs</span><span class="p">(</span><span class="n">current</span> <span class="o">+</span> <span class="n">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">climbStairs</span><span class="p">(</span><span class="n">current</span> <span class="o">+</span> <span class="n">2</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这种解法关于时间复杂度的运算可以这样来算，算法在运行的时候的执行路径如下</p>
+
+<p><figure><img src="/media/algorithms/9.jpeg" alt="算法奔跑路径"></figure></p>
+
+<p>如上如所知，运行路径是一个二叉树的效果，树深为 n，所以时间复杂度为 <span  class="math">\(2^n\)</span>，如果为三叉树，那么时间复杂度为 <span  class="math">\(3^n\)</span>，不过 <span  class="math">\(2^n\)</span> 和 <span  class="math">\(3^n\)</span> 在 n 为无穷大的时候是同一个级别的无穷大，所以如果是三叉树，时间复杂度还是为 <span  class="math">\(2^n\)</span>。</p>
+
+<h3 id="222-动态规划法">2.2.2 动态规划法</h3>
+
+<p>第 i 阶可以由一下两种方法得到：</p>
+
+<ol>
+<li>在第（i - 1）阶后向上爬一阶</li>
+<li>在第（i - 2）阶后向上爬二阶</li>
+</ol>
+
+<p>所以达到第 i 阶的方法总是就是第（i - 1）阶和第（i - 2）阶方法数的和。</p>
+
+<p>令 dp[i] 表示能到达第 i 阶的方法总数：</p>
+
+<p><span  class="math">\[
+dp[i] = dp[i - 1] + dp[i - 2]
+\]</span></p>
+
+<p>写成代码就是：</p>
+
+<ul>
+<li>时间复杂度 O(n)</li>
+<li>空间复杂度 O(n)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">Solution</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">int</span> <span class="n">climbStairs</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span><span class="p">[]</span> <span class="nf">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="n">1</span><span class="p">];</span>
+        <span class="c1">// 这里为了帮助理解从数组的 1 位置开始，放弃使用 0 位置
+</span><span class="c1"></span>        <span class="c1">// 不过这里的数组可以优化掉，这样空间复杂度就变成了 1
+</span><span class="c1"></span>        <span class="n">dp</span><span class="p">[</span><span class="n">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+        <span class="n">dp</span><span class="p">[</span><span class="n">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">2</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">2</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>不过这种思路真的是挺厉害的，要是想不到到达 第 i 阶 的所有方法 = 第 i - 1 阶的所有方法 + 第 i - 2 阶的所有方法，然后递推下来，真的是想不到这个解。</p>
+
+<h3 id="223-斐波那契数">2.2.3 斐波那契数</h3>
+
+<p>在上述方法中，我们使用了 dp 数组，其中 <span  class="math">\(dp[i] = dp[i - 1] + dp[i - 2]\)</span> 可以很容易通过分析得出 dp[i] 其实就是第 i 个斐波那契数</p>
+
+<p><span  class="math">\[
+Fib(n) = Fib(n - 1) + Fib(n - 2)
+\]</span></p>
+
+<p>现在我们必须找出以 1 和 2 作为第一项和第二项的斐波那契数列中的第 n 个数，也就是说 <span  class="math">\(Fib(1) = 1\)</span> 且 <span  class="math">\(Fib(2) = 2\)</span>。</p>
+
+<p>写成代码：</p>
+
+<ul>
+<li>时间复杂度: O(n)</li>
+<li>空间复杂度: O(1)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">Solution</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">int</span> <span class="n">climbStairs</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="nf">first</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="nf">second</span> <span class="o">=</span> <span class="n">2</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="nf">third</span> <span class="o">=</span> <span class="n">first</span> <span class="o">+</span> <span class="n">second</span><span class="p">;</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">second</span><span class="p">;</span>
+            <span class="n">second</span> <span class="o">=</span> <span class="n">third</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">second</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这样子写空间复杂度就变成 O(1) 了</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/leetcode/">leetcode</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/algorithms/leetcode-121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Leetcode: 121 买卖股票的最佳时机</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hovel/2019-hovel/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">
+            <span class="next-text nav-default">Mybatis Plugin 使用案例</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

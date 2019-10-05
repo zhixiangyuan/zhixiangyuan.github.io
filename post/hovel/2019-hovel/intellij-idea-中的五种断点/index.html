@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>IntelliJ IDEA 中的五种断点 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="IntelliJ IDEA 中存在四种断点，分别是行断点、条件断点、方法断点、异常断点、字段观察断点，下面来一一介绍。 1 行断点 行断点，顾名思义，当代码走到断点行的时" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/2019-hovel/intellij-idea-%E4%B8%AD%E7%9A%84%E4%BA%94%E7%A7%8D%E6%96%AD%E7%82%B9/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="IntelliJ IDEA 中的五种断点" />
+<meta property="og:description" content="IntelliJ IDEA 中存在四种断点，分别是行断点、条件断点、方法断点、异常断点、字段观察断点，下面来一一介绍。 1 行断点 行断点，顾名思义，当代码走到断点行的时" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/2019-hovel/intellij-idea-%E4%B8%AD%E7%9A%84%E4%BA%94%E7%A7%8D%E6%96%AD%E7%82%B9/" />
+<meta property="article:published_time" content="2019-08-05T16:18:58+08:00" />
+<meta property="article:modified_time" content="2019-08-05T16:18:58+08:00" />
+<meta itemprop="name" content="IntelliJ IDEA 中的五种断点">
+<meta itemprop="description" content="IntelliJ IDEA 中存在四种断点，分别是行断点、条件断点、方法断点、异常断点、字段观察断点，下面来一一介绍。 1 行断点 行断点，顾名思义，当代码走到断点行的时">
+
+
+<meta itemprop="datePublished" content="2019-08-05T16:18:58&#43;08:00" />
+<meta itemprop="dateModified" content="2019-08-05T16:18:58&#43;08:00" />
+<meta itemprop="wordCount" content="411">
+
+
+
+<meta itemprop="keywords" content="IntelliJ IDEA," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IntelliJ IDEA 中的五种断点"/>
+<meta name="twitter:description" content="IntelliJ IDEA 中存在四种断点，分别是行断点、条件断点、方法断点、异常断点、字段观察断点，下面来一一介绍。 1 行断点 行断点，顾名思义，当代码走到断点行的时"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">IntelliJ IDEA 中的五种断点</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-08-05 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-行断点">1 行断点</a></li>
+<li><a href="#2-条件断点">2 条件断点</a></li>
+<li><a href="#3-方法断点">3 方法断点</a></li>
+<li><a href="#4-异常断点">4 异常断点</a></li>
+<li><a href="#5-字段观察断点">5 字段观察断点</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-08-05T16:18:58" title="August 5, 2019">August 5, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      
+
+<p>IntelliJ IDEA 中存在四种断点，分别是行断点、条件断点、方法断点、异常断点、字段观察断点，下面来一一介绍。</p>
+
+<h1 id="1-行断点">1 行断点</h1>
+
+<p>行断点，顾名思义，当代码走到断点行的时候，就会进入断点。断点的如下图，一个小红圆圈。</p>
+
+<p><img src="/media/hovel/28.png" alt="行断点" /></p>
+
+<h1 id="2-条件断点">2 条件断点</h1>
+
+<p>条件断点就是在行断点的基础上，当代码走到该行的时候，还要判断一下是否满足条件，满足条件才停下来。</p>
+
+<p>设置的方式也很简单，只需要在小红圆圈上面右击就会出现输入条件的输入框，然后在框中输入条件即可。</p>
+
+<p><img src="/media/hovel/29.png" alt="条件断点" /></p>
+
+<h1 id="3-方法断点">3 方法断点</h1>
+
+<p>方法断点就是在方法的声明行上打断点即可，在代码运行到该方法时，会停在方法的第一句代码上，如下图所示。</p>
+
+<p><img src="/media/hovel/30.png" alt="方法断点" /></p>
+
+<h1 id="4-异常断点">4 异常断点</h1>
+
+<p>异常断点就是当代码抛出指定异常时，代码便会停在抛出异常的那一行代码上。设置异常断点的方式如下所示。</p>
+
+<p><img src="/media/hovel/31.jpg" alt="异常断点" /></p>
+
+<p><img src="/media/hovel/32.jpg" alt="异常断点" /></p>
+
+<p><img src="/media/hovel/33.jpg" alt="异常断点" /></p>
+
+<p>添加完异常断点之后运行代码，就能发现代码停在异常上面了</p>
+
+<p><img src="/media/hovel/34.jpg" alt="异常断点" /></p>
+
+<h1 id="5-字段观察断点">5 字段观察断点</h1>
+
+<p>在类中的成员字段上打断点就是字段观察断点，它的样式是一只小眼睛，在运行的过程中，如果说观察的字段发生了赋值的操作，那么代码就会停在那一行，如下图所示。</p>
+
+<p><img src="/media/hovel/35.png" alt="字段观察断点" /></p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/intellij-idea/">IntelliJ IDEA</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/hovel/2019-hovel/threadpoolexecutor-%E8%A7%A3%E6%9E%90/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ThreadPoolExecutor 解析</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hovel/2019-hovel/%E6%95%B0%E7%BB%84%E7%9A%84%E5%8D%8F%E5%8F%98%E4%B8%8E%E8%8C%83%E5%9E%8B%E7%9A%84%E5%8D%8F%E5%8F%98/">
+            <span class="next-text nav-default">数组的协变与范型的协变</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

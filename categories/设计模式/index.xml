@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Fri, 04 Oct 2019 17:49:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>设计模式的分类</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%86%E7%B1%BB/</link>
+      <pubDate>Fri, 04 Oct 2019 17:49:27 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%86%E7%B1%BB/</guid>
+      <description>设计模式主要分为三类创建型模式、结构型模式和行为型模式。 1 创建型模式 创建型模式主要关注于对象实例化的过程，创建型模式有： 单例模式 原型模式 建造</description>
+    </item>
+    
+    <item>
+      <title>桥接模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 04 Oct 2019 17:14:17 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</guid>
+      <description>桥接模式的核心是将事物和其具体实现分开，这句话乍看上去和策略模式很像，但其立意包含策略模式，同时又高于策略模式。其实桥接模式，通过定义规范的</description>
+    </item>
+    
+    <item>
+      <title>门面模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 23 Sep 2019 07:46:25 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F/</guid>
+      <description>门面模式通过统一的抽象接口访问具体实现，让使用者可以无痛更换具体实现，在目前的日志系统中广泛使用。 1 演示代码 创建统一抽象接口 1 2 3 4 5 6 7 8</description>
+    </item>
+    
+    <item>
+      <title>适配器模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 20 Sep 2019 12:35:03 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>适配器模式还是很好理解的，简单来讲就是我有一个 pencil，我还有一个 apple，然后通过一个适配器，嗯 pencil and apple。我还有一个 carro</description>
+    </item>
+    
+    <item>
+      <title>装饰器模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 20 Sep 2019 11:14:07 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>装饰器模式其实就是静态代理模式，与目标对象实现相同的接口然后对其进行一次包装，上代码。 1 代码实现 代码来自菜鸟教程 创建 Shape 接口 1 2 3 public interface Shape { void draw();</description>
+    </item>
+    
+    <item>
+      <title>观察者模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 20 Sep 2019 09:20:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>观察者模式中有三个角色，分别是 Subject、Observer and Event，Subject 中会存储订阅了该主题的 Observer，在 Observer 状态发</description>
+    </item>
+    
+    <item>
+      <title>策略模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 17 Sep 2019 10:16:16 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</guid>
+      <description>策略模式非常的简单，对于 Java 来说，就是一个接口多种实现，使用不同的实现就是更换策略。 1 策略模式案例 先定义好策略接口 1 2 3 public interface Strategy { public int doOperation(int num1, int num2); }</description>
+    </item>
+    
+    <item>
+      <title>访问者模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 17 Sep 2019 09:57:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>访问者模式，通过实现访问者的接口来访问实体当中相应的部分，下面先看代码。 1 搭建架子 我们先搭建一辆车，然后通过访问者模式去访问车的各个部分。 1</description>
+    </item>
+    
+  </channel>
+</rss>
