@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 04 Oct 2019 17:49:27 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2019 14:43:23 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>工厂模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 07 Oct 2019 14:43:23 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+      <description>工厂模式提供另外一种创建对象的方式，这种方式屏蔽了创建对象的细节，所以可以实现很多骚操作。下面的代码就是一个简单的工厂，通过传入全类名来创建</description>
+    </item>
     
     <item>
       <title>设计模式的分类</title>
