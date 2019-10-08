@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 08 Oct 2019 08:05:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 08 Oct 2019 09:25:53 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>享元模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 08 Oct 2019 09:25:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
+      <description>享元模式就是单例模式的扩展，目的同样是避免重复创建对象，不过享元模式并不像单例模式一样，一个类只创建一个单例，享元模式避免重复创建的对象是指</description>
     </item>
     
     <item>
