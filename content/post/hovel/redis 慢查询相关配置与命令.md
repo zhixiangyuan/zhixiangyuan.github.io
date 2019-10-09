@@ -21,22 +21,22 @@ author: "yuanzx"
 - `slowlog-max-len`: 保存的慢查询的条数
 
 设置该配置的命令
-```redis
+```shell
 # 设置慢查询的时间为大于 20000 微秒，也就是 20 毫秒
-$redis> config set slowlog-log-slower-than 20000
+$redis-cli> config set slowlog-log-slower-than 20000
 # 设置保存慢查询的条数为 1024 条
-$redis> config set slowlog-max-len 1024
+$redis-cli> config set slowlog-max-len 1024
 # 将配置写入配置文件，否则下次重启配置就不生效了
-$redis> config rewrite
+$redis-cli> config rewrite
 ```
 
 # 2 相关命令
 
 ## 2.1 获取慢查询日志
 
-```redis
+```shell
 # n 为获取的慢查询的条数
-$redis> slowlog get [n]
+$redis-cli> slowlog get [n]
 
 # 下面是获取到的部分数据
 
@@ -61,14 +61,14 @@ $redis> slowlog get [n]
 
 ## 2.2 获取慢查询日志列表当前长度
 
-```redis
-$redis> slowlog len
+```shell
+$redis-cli> slowlog len
 ```
 
 ## 2.3 清除所有慢查询日志
 
-```redis
-$redis> slowlog reset
+```shell
+$redis-cli> slowlog reset
 ```
 
 # 3 最佳实践
@@ -91,4 +91,4 @@ $redis> slowlog reset
 
 # 参考资料
 
-1. [《Redis 开发与运维》]()
+1. [《Redis 开发与运维》](#)
