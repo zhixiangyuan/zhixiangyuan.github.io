@@ -23,11 +23,11 @@ author: "yuanzx"
 设置该配置的命令
 ```redis
 # 设置慢查询的时间为大于 20000 微秒，也就是 20 毫秒
-$> config set slowlog-log-slower-than 20000
+$redis> config set slowlog-log-slower-than 20000
 # 设置保存慢查询的条数为 1024 条
-$> config set slowlog-max-len 1024
+$redis> config set slowlog-max-len 1024
 # 将配置写入配置文件，否则下次重启配置就不生效了
-$> config rewrite
+$redis> config rewrite
 ```
 
 # 2 相关命令
@@ -36,7 +36,7 @@ $> config rewrite
 
 ```redis
 # n 为获取的慢查询的条数
-$> slowlog get [n]
+$redis> slowlog get [n]
 
 # 下面是获取到的部分数据
 
@@ -62,13 +62,13 @@ $> slowlog get [n]
 ## 2.2 获取慢查询日志列表当前长度
 
 ```redis
-$> slowlog len
+$redis> slowlog len
 ```
 
 ## 2.3 清除所有慢查询日志
 
 ```redis
-$> slowlog reset
+$redis> slowlog reset
 ```
 
 # 3 最佳实践
