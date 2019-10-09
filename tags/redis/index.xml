@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>redis on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/redis/</link>
+    <description>Recent content in redis on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Wed, 09 Oct 2019 17:54:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Redis 慢查询相关配置与命令</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Wed, 09 Oct 2019 17:54:45 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</guid>
+      <description>1 相关配置 配置有两个，分别是 slowlog-log-slower-than 和 slowlog-max-len，两个配置的含义如下 slowlog-log-slower-than: 超过这个时间的查询为慢查询，时间单位为微秒 slowlog-max-len: 保存的慢查询</description>
+    </item>
+    
+  </channel>
+</rss>
