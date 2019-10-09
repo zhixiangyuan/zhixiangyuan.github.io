@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-09T17:54:45&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-09T17:54:45&#43;08:00" />
-<meta itemprop="wordCount" content="812">
+<meta itemprop="wordCount" content="808">
 
 
 
@@ -173,7 +173,7 @@
 <p>设置该配置的命令</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis"><span class="lnt">1
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -181,12 +181,12 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis"># 设置慢查询的时间为大于 20000 微秒，也就是 20 毫秒
-$redis&gt; config set slowlog-log-slower-than 20000
-# 设置保存慢查询的条数为 1024 条
-$redis&gt; config set slowlog-max-len 1024
-# 将配置写入配置文件，否则下次重启配置就不生效了
-$redis&gt; config rewrite</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 设置慢查询的时间为大于 20000 微秒，也就是 20 毫秒</span>
+<span class="nv">$redis</span>-cli&gt; config <span class="nb">set</span> slowlog-log-slower-than <span class="m">20000</span>
+<span class="c1"># 设置保存慢查询的条数为 1024 条</span>
+<span class="nv">$redis</span>-cli&gt; config <span class="nb">set</span> slowlog-max-len <span class="m">1024</span>
+<span class="c1"># 将配置写入配置文件，否则下次重启配置就不生效了</span>
+<span class="nv">$redis</span>-cli&gt; config rewrite</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="2-相关命令">2 相关命令</h1>
@@ -194,7 +194,7 @@ $redis&gt; config rewrite</code></pre></td></tr></table>
 <h2 id="2-1-获取慢查询日志">2.1 获取慢查询日志</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis"><span class="lnt"> 1
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -218,46 +218,46 @@ $redis&gt; config rewrite</code></pre></td></tr></table>
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis"># n 为获取的慢查询的条数
-$redis&gt; slowlog get [n]
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># n 为获取的慢查询的条数</span>
+<span class="nv">$redis</span>-cli&gt; slowlog get <span class="o">[</span>n<span class="o">]</span>
 
-# 下面是获取到的部分数据
+<span class="c1"># 下面是获取到的部分数据</span>
 
 ...
-# 35 是第三十五条数据
- 35)    
-  # 1) 2) 3) 4) 表示四个属性
-  # 标识 id
-  1)   &#34;105305&#34; 
-  # 发生时的时间戳 
-  2)   &#34;1568181878&#34;
-  # 命令耗时
-  3)   &#34;17056&#34;
-  # 执行命令和参数
-  4)      
-        # 执行的命令
-        1)    &#34;DEL&#34;
-        # 参数
-        2)    &#34;monitor:mindray_n_series:miss_ots_data:&#34;
+<span class="c1"># 35 是第三十五条数据</span>
+ <span class="m">35</span><span class="o">)</span>    
+  <span class="c1"># 1) 2) 3) 4) 表示四个属性</span>
+  <span class="c1"># 标识 id</span>
+  <span class="m">1</span><span class="o">)</span>   <span class="s2">&#34;105305&#34;</span> 
+  <span class="c1"># 发生时的时间戳</span> 
+  <span class="m">2</span><span class="o">)</span>   <span class="s2">&#34;1568181878&#34;</span>
+  <span class="c1"># 命令耗时</span>
+  <span class="m">3</span><span class="o">)</span>   <span class="s2">&#34;17056&#34;</span>
+  <span class="c1"># 执行命令和参数</span>
+  <span class="m">4</span><span class="o">)</span>      
+        <span class="c1"># 执行的命令</span>
+        <span class="m">1</span><span class="o">)</span>    <span class="s2">&#34;DEL&#34;</span>
+        <span class="c1"># 参数</span>
+        <span class="m">2</span><span class="o">)</span>    <span class="s2">&#34;monitor:mindray_n_series:miss_ots_data:&#34;</span>
 ...</code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="2-2-获取慢查询日志列表当前长度">2.2 获取慢查询日志列表当前长度</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis"><span class="lnt">1
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis">$redis&gt; slowlog len</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$redis</span>-cli&gt; slowlog len</code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="2-3-清除所有慢查询日志">2.3 清除所有慢查询日志</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis"><span class="lnt">1
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-redis" data-lang="redis">$redis&gt; slowlog reset</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$redis</span>-cli&gt; slowlog reset</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="3-最佳实践">3 最佳实践</h1>
@@ -281,7 +281,7 @@ $redis&gt; slowlog get [n]
 <h1 id="参考资料">参考资料</h1>
 
 <ol>
-<li>[《Redis 开发与运维》]()</li>
+<li><a href="#">《Redis 开发与运维》</a></li>
 </ol>
 
     </div>
@@ -292,7 +292,11 @@ $redis&gt; slowlog get [n]
           <a href="/tags/redis/">redis</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/hovel/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Redis 提供的命令行工具</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/hovel/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/">
             <span class="next-text nav-default">享元模式</span>
             <span class="next-text nav-mobile">下一篇</span>
