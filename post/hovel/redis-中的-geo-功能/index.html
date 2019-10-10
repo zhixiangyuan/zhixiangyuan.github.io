@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Redis 中的发布订阅模式 - Yuanzx Blog</title>
+  <title>Redis 中的 GEO 功能 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &amp;lt;channel&amp;gt; &amp;lt;message&amp;gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &amp;#34;Tim won the" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。 1 命令 1.1 添加地理位置信息 geoadd &amp;lt;key&amp;gt;" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="Redis 中的发布订阅模式" />
-<meta property="og:description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &lt;channel&gt; &lt;message&gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the" />
+<meta property="og:title" content="Redis 中的 GEO 功能" />
+<meta property="og:description" content="通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。 1 命令 1.1 添加地理位置信息 geoadd &lt;key&gt;" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" />
-<meta property="article:published_time" content="2019-10-10T15:04:46+08:00" />
-<meta property="article:modified_time" content="2019-10-10T15:04:46+08:00" />
-<meta itemprop="name" content="Redis 中的发布订阅模式">
-<meta itemprop="description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &lt;channel&gt; &lt;message&gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the">
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/" />
+<meta property="article:published_time" content="2019-10-10T15:38:27+08:00" />
+<meta property="article:modified_time" content="2019-10-10T15:38:27+08:00" />
+<meta itemprop="name" content="Redis 中的 GEO 功能">
+<meta itemprop="description" content="通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。 1 命令 1.1 添加地理位置信息 geoadd &lt;key&gt;">
 
 
-<meta itemprop="datePublished" content="2019-10-10T15:04:46&#43;08:00" />
-<meta itemprop="dateModified" content="2019-10-10T15:04:46&#43;08:00" />
-<meta itemprop="wordCount" content="424">
+<meta itemprop="datePublished" content="2019-10-10T15:38:27&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-10T15:38:27&#43;08:00" />
+<meta itemprop="wordCount" content="815">
 
 
 
 <meta itemprop="keywords" content="redis," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Redis 中的发布订阅模式"/>
-<meta name="twitter:description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &lt;channel&gt; &lt;message&gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the"/>
+<meta name="twitter:title" content="Redis 中的 GEO 功能"/>
+<meta name="twitter:description" content="通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。 1 命令 1.1 添加地理位置信息 geoadd &lt;key&gt;"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Redis 中的发布订阅模式</h1>
+      <h1 class="post-title">Redis 中的 GEO 功能</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-10-10 </span>
@@ -142,16 +142,12 @@
 <ul>
 <li><a href="#1-命令">1 命令</a>
 <ul>
-<li><a href="#1-1-发布消息">1.1 发布消息</a></li>
-<li><a href="#1-2-订阅消息">1.2 订阅消息</a></li>
-<li><a href="#1-3-取消订阅">1.3 取消订阅</a></li>
-<li><a href="#1-4-按照模式订阅和取消订阅">1.4 按照模式订阅和取消订阅</a></li>
-<li><a href="#1-5-查阅订阅">1.5 查阅订阅</a>
-<ul>
-<li><a href="#1-5-1-查看活跃的频道">1.5.1 查看活跃的频道</a></li>
-<li><a href="#1-5-2-查看频道订阅数">1.5.2 查看频道订阅数</a></li>
-<li><a href="#1-5-3-查看模式订阅数">1.5.3 查看模式订阅数</a></li>
-</ul></li>
+<li><a href="#1-1-添加地理位置信息">1.1 添加地理位置信息</a></li>
+<li><a href="#1-2-获取地理位置信息">1.2 获取地理位置信息</a></li>
+<li><a href="#1-3-获取两个地理位置的距离">1.3 获取两个地理位置的距离</a></li>
+<li><a href="#1-4-获取指定范围内的地理位置信息集合">1.4 获取指定范围内的地理位置信息集合</a></li>
+<li><a href="#1-5-geohash">1.5 geohash</a></li>
+<li><a href="#1-6-删除地理位置信息">1.6 删除地理位置信息</a></li>
 </ul></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
@@ -161,30 +157,65 @@
     <div class="post-content">
       
 
-<p>redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能</p>
+<p>通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。</p>
 
 <h1 id="1-命令">1 命令</h1>
 
-<h2 id="1-1-发布消息">1.1 发布消息</h2>
+<h2 id="1-1-添加地理位置信息">1.1 添加地理位置信息</h2>
 
-<p><code>publish &lt;channel&gt; &lt;message&gt;</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the championship&#34;</span>
-<span class="c1"># 返回的结果为订阅者的个数</span>
-<span class="nv">$redis</span>-cli&gt; publish channel:sports <span class="s2">&#34;Tim won the championship&#34;</span></code></pre></td></tr></table>
-</div>
-</div>
-<h2 id="1-2-订阅消息">1.2 订阅消息</h2>
+<p><code>geoadd &lt;key&gt; &lt;longitude&gt; &lt;member&gt; [key longitude member...]</code></p>
 
-<p><code>subscribe &lt;channel&gt; [channel...]</code></p>
+<p>longitude、latitude、member 分别是该地理位置的经度、纬度、成员</p>
 
-<p>订阅者可以订阅一个或多个频道</p>
+<p>下表展示了五个城市的经纬度</p>
+
+<table>
+<thead>
+<tr>
+<th>城市</th>
+<th>经度</th>
+<th>纬度</th>
+<th>成员</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>北京</td>
+<td>116.28</td>
+<td>39.55</td>
+<td>beijin</td>
+</tr>
+
+<tr>
+<td>天津</td>
+<td>117.12</td>
+<td>39.08</td>
+<td>tianjin</td>
+</tr>
+
+<tr>
+<td>石家庄</td>
+<td>114.29</td>
+<td>38.02</td>
+<td>shijiazhuang</td>
+</tr>
+
+<tr>
+<td>唐山</td>
+<td>118.01</td>
+<td>39.38</td>
+<td>tangshan</td>
+</tr>
+
+<tr>
+<td>保定</td>
+<td>115.29</td>
+<td>38.51</td>
+<td>baoding</td>
+</tr>
+</tbody>
+</table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
@@ -200,63 +231,52 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$redis</span>-cli&gt; subscribe channel:sports
-Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">)</span>
-<span class="m">1</span><span class="o">)</span> <span class="s2">&#34;subscribe&#34;</span>
-<span class="m">2</span><span class="o">)</span> <span class="s2">&#34;channel:sports&#34;</span>
-<span class="m">3</span><span class="o">)</span> <span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$redis</span>-cli&gt; geoadd cities:locations <span class="m">116</span>.28 <span class="m">39</span>.55 beijin
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+<span class="nv">$redis</span>-cli&gt; geoadd cities:locations <span class="m">117</span>.12 <span class="m">39</span>.08 tianjin
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+<span class="nv">$redis</span>-cli&gt; geoadd cities:locations <span class="m">114</span>.29 <span class="m">38</span>.02 shijiazhuang
+<span class="o">(</span>ingeger<span class="o">)</span> <span class="m">1</span>
+<span class="nv">$redis</span>-cli&gt; geoadd cities:locations <span class="m">118</span>.01 <span class="m">39</span>.38 tangshan
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+<span class="nv">$redis</span>-cli&gt; geoadd cities:locations <span class="m">115</span>.29 <span class="m">38</span>.51 baoding
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
 
-<span class="c1"># 如果此时别的客户端发送一条消息</span>
-<span class="nv">$redis</span>-cli-other&gt; publish channel:sports hello
-
-<span class="c1"># 那么现在订阅的客户端就会收到以下消息</span>
-...
-<span class="m">1</span><span class="o">)</span> <span class="s2">&#34;message&#34;</span>
-<span class="m">2</span><span class="o">)</span> <span class="s2">&#34;channel:sports&#34;</span>
-<span class="m">3</span><span class="o">)</span> <span class="s2">&#34;hello&#34;</span></code></pre></td></tr></table>
+<span class="c1"># 也可以用一条命令一次性添加进去</span>
+<span class="nv">$redis</span>-cli&gt; geoadd cities:locations <span class="m">116</span>.28 <span class="m">39</span>.55 beijin <span class="m">117</span>.12 <span class="m">39</span>.08 tianjin <span class="m">114</span>.29 <span class="m">38</span>.02 shijiazhuang <span class="m">118</span>.01 <span class="m">39</span>.38 tangshan <span class="m">115</span>.29 <span class="m">38</span>.51 baoding</code></pre></td></tr></table>
 </div>
 </div>
-<p>需要注意的是，redis 和专业的消息队列不同，它不会对消息进行缓存，所以如果在消息发送之后订阅的客户端是没法收到之前的消息的。</p>
+<h2 id="1-2-获取地理位置信息">1.2 获取地理位置信息</h2>
 
-<h2 id="1-3-取消订阅">1.3 取消订阅</h2>
-
-<p><code>unsubscribe &lt;channel&gt; [channel...]</code></p>
-
-<p>客户端可以通过 unsubscribe 命令取消对指定频道的订阅</p>
-
-<h2 id="1-4-按照模式订阅和取消订阅">1.4 按照模式订阅和取消订阅</h2>
-
-<p><code>psubscribe &lt;pattern&gt; [pattern...]</code></p>
-
-<p><code>punsubscribe &lt;pattern&gt; [pattern...]</code></p>
+<p><code>geopos &lt;key&gt; &lt;member&gt; [member...]</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 订阅以 it 开头的所有频道</span>
-<span class="nv">$redis</span>-cli&gt; psubscribe it*</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 获取天津的经纬度</span>
+<span class="nv">$redis</span>-cli&gt; geopos cities:locations tianjin
+<span class="m">1</span><span class="o">)</span> <span class="m">1</span><span class="o">)</span> <span class="s2">&#34;117.12000042200088501&#34;</span>
+   <span class="m">1</span><span class="o">)</span> <span class="s2">&#34;39.0800000535766543&#34;</span></code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="1-5-查阅订阅">1.5 查阅订阅</h2>
+<h2 id="1-3-获取两个地理位置的距离">1.3 获取两个地理位置的距离</h2>
 
-<h3 id="1-5-1-查看活跃的频道">1.5.1 查看活跃的频道</h3>
+<p><code>geodist &lt;key&gt; &lt;member1&gt; &lt;member2&gt; &lt;unit&gt;</code></p>
 
-<p><code>pubsub channels &lt;pattern&gt;</code></p>
+<p>计算 member1 与 member2 之间的距离，unit 有四种可选：</p>
 
-<p>所谓活跃的频道是指当前频道至少有一个订阅者，其中 [pattern] 可以是指定的具体的模式</p>
+<ol>
+<li>m（meters）米</li>
+<li>km（kilometers）公里</li>
+<li>mi（miles）英里</li>
 
-<h3 id="1-5-2-查看频道订阅数">1.5.2 查看频道订阅数</h3>
-
-<p><code>pubsub numsub &lt;channel&gt; [channel...]</code></p>
-
-<h3 id="1-5-3-查看模式订阅数">1.5.3 查看模式订阅数</h3>
-
-<p><code>pubsub numpat</code></p>
+<li><p>ft（feet）尺</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
@@ -264,11 +284,54 @@ Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$redis</span>-cli&gt; pubsub numpat
-<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
-<span class="c1"># 当前只有一个客户端通过模式来订阅</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 计算天津到北京的距离，以公里为单位</span>
+<span class="nv">$redis</span>-cli&gt; geodist cities:locations tianjin beijing km
+<span class="s2">&#34;91.3106&#34;</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h2 id="1-4-获取指定范围内的地理位置信息集合">1.4 获取指定范围内的地理位置信息集合</h2>
+
+<p><code>georadius &lt;key&gt; &lt;longitude&gt; &lt;latitude&gt; &lt;radiusm|km|ft|mi&gt; [withcoord] [withdist] [withhash] [COUNT count] [asc|desc] [store key] [storedist key]</code></p>
+
+<p><code>georadiusbymember &lt;key&gt; &lt;member&gt; &lt;radiusm|km|ft|mi&gt; [withcoord] [withdist] [withhash] [COUNT count] [asc|desc] [store key] [storedist key]</code></p>
+
+<p>georadius 和 georadiusbymember 两个命令的作用是一样的，都是以一个地理位置为中心算出指定半径内的其他地理位置信息，不同的是 georadius 命令的中心位置给出了具体的经纬度，georadiusbymember 只给出成员即可。</p>
+
+<p>可选参数：</p>
+
+<ul>
+<li>withcoord： 返回结果中包含经纬度</li>
+<li>withdist：返回结果中包含离中心节点位置的距离</li>
+<li>withhash：返回结果中包含 geohash，有关 geohash 后面介绍</li>
+<li>COUNT count：指定返回结果的数量</li>
+<li>asc|desc：返回结果按照离中心节点的距离做升许或者降序</li>
+<li>store key： 将返回结果的地理位置信息保存到指定键</li>
+<li>storedist key：将返回结果离中心节点的距离保存到指定键</li>
+</ul>
+
+<h2 id="1-5-geohash">1.5 geohash</h2>
+
+<p><code>geohash &lt;key&gt; &lt;member&gt; [member...]</code></p>
+
+<p>老实说，不明白生成的这个字符串有什么用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$redis</span>-cli&gt; geohash cities:locations tianjin
+<span class="s2">&#34;wwgq34k1tb0&#34;</span></code></pre></td></tr></table>
 </div>
 </div>
+<h2 id="1-6-删除地理位置信息">1.6 删除地理位置信息</h2>
+
+<p><code>zrem &lt;key&gt; &lt;member&gt;</code></p>
+
+<p>GEO 没有提供删除成员的命令，但是因为 GEO 的底层实现是 zset，所以可以借用 zrem 命令实现对地理位置信息的删除。</p>
+
 <h1 id="参考资料">参考资料</h1>
 
 <p>1.<a href="https://gitee.com/zhixiangyuan/bookStorage/raw/master/%E7%BC%96%E7%A8%8B/Redis%20%E5%BC%80%E5%8F%91%E4%B8%8E%E8%BF%90%E7%BB%B4.pdf">Redis 开发与运维</a></p>
@@ -281,13 +344,13 @@ Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">
           <a href="/tags/redis/">redis</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/">
+        <a class="prev" href="/post/hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Redis 中的 GEO 功能</span>
+            <span class="prev-text nav-default">命令行语法字符</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/post/hovel/redis-%E4%B8%AD%E7%9A%84-hyperloglog/">
-            <span class="next-text nav-default">Redis 中的 HyperLogLog</span>
+        <a class="next" href="/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/">
+            <span class="next-text nav-default">Redis 中的发布订阅模式</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

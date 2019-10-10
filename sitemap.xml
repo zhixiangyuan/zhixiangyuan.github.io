@@ -59,7 +59,14 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/redis/</loc>
-    <lastmod>2019-10-10T15:04:46+08:00</lastmod>
+    <lastmod>2019-10-10T15:38:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</loc>
+    <lastmod>2019-10-10T15:38:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
