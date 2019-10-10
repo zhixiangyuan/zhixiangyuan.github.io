@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Redis 中的 Bitmaps - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&amp;gt;set" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-bitmaps/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Redis 中的 Bitmaps" />
+<meta property="og:description" content="1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&gt;set" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-bitmaps/" />
+<meta property="article:published_time" content="2019-10-10T12:47:37+08:00" />
+<meta property="article:modified_time" content="2019-10-10T12:47:37+08:00" />
+<meta itemprop="name" content="Redis 中的 Bitmaps">
+<meta itemprop="description" content="1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&gt;set">
+
+
+<meta itemprop="datePublished" content="2019-10-10T12:47:37&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-10T12:47:37&#43;08:00" />
+<meta itemprop="wordCount" content="1029">
+
+
+
+<meta itemprop="keywords" content="redis," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Redis 中的 Bitmaps"/>
+<meta name="twitter:description" content="1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&gt;set"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Redis 中的 Bitmaps</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-10 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-存储-bitmap-的数据结构">1 存储 bitmap 的数据结构</a></li>
+<li><a href="#2-相关命令">2 相关命令</a>
+<ul>
+<li><a href="#2-1-设置值">2.1 设置值</a></li>
+<li><a href="#2-2-获取值">2.2 获取值</a></li>
+<li><a href="#2-3-获取-bitmaps-指定范围值为-1-的个数">2.3 获取 bitmaps 指定范围值为 1 的个数</a></li>
+<li><a href="#2-4-bitmap-间的运算">2.4 bitmap 间的运算</a></li>
+<li><a href="#2-5-计算-bitmaps-中第一个值位-target-bit-的偏移量">2.5 计算 bitmaps 中第一个值位 target bit 的偏移量</a></li>
+</ul></li>
+<li><a href="#3-bitmaps-实践">3 bitmaps 实践</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-存储-bitmap-的数据结构">1 存储 bitmap 的数据结构</h1>
+
+<p>其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 先设置一个键值对</span>
+<span class="nv">$redis</span>-cli&gt;set hello world
+<span class="c1"># 然后修改 world 的二进制位</span>
+<span class="c1"># setbit [key name] [offset] [0|1]</span>
+<span class="nv">$redis</span>-cli&gt;setbit hello <span class="m">1</span> <span class="m">0</span>
+<span class="nv">$redis</span>-cli&gt;get hello
+7orld
+<span class="c1"># 可以看到由于修改了 w 的二进制位，从而让其变成了 7</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="2-相关命令">2 相关命令</h1>
+
+<h2 id="2-1-设置值">2.1 设置值</h2>
+
+<p><code>$redis-cli&gt; setbit [key] [offset] [value]</code></p>
+
+<p>我们将 string 看成一个以 bit 为单位的二进制数组，那么上面的命令就很好理解了，key 就是 string 的 key，offset 是偏移量，比如说 0，那么就表示数组下标为 0 的那个位，value 可能是 0|1，表示该位需要设置的值。</p>
+
+<p>通过这个功能，我们可以实现一个小功能，记录每天用户是否登陆，命令如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 下面这个命令这就表示 user id = 0 的用户今天登陆了应用</span>
+<span class="nv">$redis</span>-cli&gt; setbit unique:users:2016-04-05 <span class="m">0</span> <span class="m">1</span>
+<span class="nv">$redis</span>-cli&gt; setbit unique:users:2016-04-05 <span class="m">10</span> <span class="m">1</span>
+<span class="nv">$redis</span>-cli&gt; setbit unique:users:2016-04-05 <span class="m">11</span> <span class="m">1</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-2-获取值">2.2 获取值</h2>
+
+<p><code>getbit [key] [offset]</code></p>
+
+<p>如果查询的 offset 不存在，同样返回 0</p>
+
+<h2 id="2-3-获取-bitmaps-指定范围值为-1-的个数">2.3 获取 bitmaps 指定范围值为 1 的个数</h2>
+
+<p><code>bitcount [start] [end]</code></p>
+
+<p>这里统计时候的区间 [start, end] 它两头都是闭区间，并且这表示的是字节数，比如说 [0, 1] 指的是从第 0 个字节开始到第一个字节，换算成位也就是 [0, 15]。</p>
+
+<p>测试一下效果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">$redis</span>-cli&gt; <span class="nb">set</span> unique:users:2016-04-05 <span class="m">7</span> <span class="m">1</span>
+<span class="c1"># 内存中位的样子 0b00000001</span>
+<span class="nv">$redis</span>-cli&gt; <span class="nb">set</span> unique:users:2016-04-05 <span class="m">8</span> <span class="m">1</span>
+<span class="c1"># 内存中位的样子 0b00000001_10000000</span>
+<span class="c1"># 使用 bitcount 统计一下看看</span>
+<span class="nv">$redis</span>-cli&gt; bitcount unique:users:2016-04-05 <span class="m">0</span> <span class="m">0</span>
+<span class="m">1</span>
+<span class="nv">$redis</span>-cli&gt; bitcount unique:users:2016-04-05 <span class="m">0</span> <span class="m">1</span>
+<span class="m">2</span>
+<span class="nv">$redis</span>-cli&gt; bitcount unique:users:2016-04-05
+<span class="m">2</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-4-bitmap-间的运算">2.4 bitmap 间的运算</h2>
+
+<p><code>bitop [op] [destkey] [key...]</code></p>
+
+<p>op 是操作符可选：and（交集）、or（并集）、not（非）、xor（异或）
+destkey 是计算完的结果保存在这个 key
+key&hellip; 是需要进行运算的 key</p>
+
+<p>通过这个计算的功能我们实现一些功能</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 计算 2016-04-04 和 2016-04-03 两天都访问过网站的用户</span>
+<span class="nv">$redis</span>-cli&gt; bitop and unique:users:and:2016-04-03_04 unique:users:2016-04-03 unique:users:2016-04-04
+<span class="c1"># 计算 2016-04-04 和 2016-04-03 任意一天访问过网站的用户</span>
+<span class="nv">$redis</span>-cli&gt; bitop or unique:users:or:2016-04-03_04 unique:users:2016-04-03 unique:users:2016-04-04</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-5-计算-bitmaps-中第一个值位-target-bit-的偏移量">2.5 计算 bitmaps 中第一个值位 target bit 的偏移量</h2>
+
+<p><code>bitpos [key] [target bit] [start] [end]</code></p>
+
+<p>start 和 end 代表开始字节和结束字节，同样单位是字节</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 计算 2016-04-03 访问过网站的最小用户 id</span>
+<span class="nv">$redis</span>-cli&gt; bitpos unique:users:2016-04-03 <span class="m">1</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="3-bitmaps-实践">3 bitmaps 实践</h1>
+
+<p>假设网站用户有 1 亿，每天独立访问的用户只有 5 千万，如果每天用集合类型和 bitmaps 分别存储活跃用户可以得到如下表个</p>
+
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>每个用户 id 所占空间</th>
+<th>需要存储的用户量</th>
+<th>全部内存量</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>集合类型</td>
+<td>64位</td>
+<td>50 000 000</td>
+<td>64 bit * 50 000 000 = 400 MB</td>
+</tr>
+
+<tr>
+<td>bitmaps</td>
+<td>1 位</td>
+<td>100 000 000</td>
+<td>1 bit * 100 000 000 =  12.5 MB</td>
+</tr>
+</tbody>
+</table>
+
+<p>很显然这种情况使用 bitmap 可以节省很多的内存空间，尤其是随着时间的推移节省的内存是非常可观的。下表是随着时间推移存储空间的对比</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>一天</th>
+<th>一个月</th>
+<th>一年</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>set</td>
+<td>400 MB</td>
+<td>12 GB</td>
+<td>144 G</td>
+</tr>
+
+<tr>
+<td>bitmaps</td>
+<td>12.5 MB</td>
+<td>375 MB</td>
+<td>4.5 GB</td>
+</tr>
+</tbody>
+</table>
+
+<p>但是 bitmaps 并不是银弹，加入该网站每天的独立访问用户很少，比如说只有 10 万，那么两者的对比如下表所示，这个时候使用 bitmaps 就不是很合适，因为大部分的位都是 0</p>
+
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>每个用户 id 所占空间</th>
+<th>需要存储的用户量</th>
+<th>全部内存量</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>集合类型</td>
+<td>64位</td>
+<td>100 000</td>
+<td>64 bit * 100 000 = 800 KB</td>
+</tr>
+
+<tr>
+<td>bitmaps</td>
+<td>1 位</td>
+<td>100 000 000</td>
+<td>1 bit * 100 000 000 =  12.5 MB</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="参考资料">参考资料</h1>
+
+<p>1.<a href="https://gitee.com/zhixiangyuan/bookStorage/raw/master/%E7%BC%96%E7%A8%8B/Redis%20%E5%BC%80%E5%8F%91%E4%B8%8E%E8%BF%90%E7%BB%B4.pdf">Redis 开发与运维</a></p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/hovel/redis-%E4%B8%AD%E7%9A%84-pipeline/">
+            <span class="next-text nav-default">Redis 中的 Pipeline</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
