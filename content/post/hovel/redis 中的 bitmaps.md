@@ -21,7 +21,7 @@ author: "yuanzx"
 # 先设置一个键值对
 $redis-cli>set hello world
 # 然后修改 world 的二进制位
-# setbit [key name] [offset] [0|1]
+# setbit <key name> <offset> <0|1>
 $redis-cli>setbit hello 1 0
 $redis-cli>get hello
 7orld
@@ -32,7 +32,7 @@ $redis-cli>get hello
 
 ## 2.1 设置值
 
-`$redis-cli> setbit [key] [offset] [value]`
+`$redis-cli> setbit <key> <offset> <value>`
 
 我们将 string 看成一个以 bit 为单位的二进制数组，那么上面的命令就很好理解了，key 就是 string 的 key，offset 是偏移量，比如说 0，那么就表示数组下标为 0 的那个位，value 可能是 0|1，表示该位需要设置的值。
 
@@ -47,13 +47,13 @@ $redis-cli> setbit unique:users:2016-04-05 11 1
 
 ## 2.2 获取值
 
-`getbit [key] [offset]`
+`getbit <key> <offset>`
 
 如果查询的 offset 不存在，同样返回 0
 
 ## 2.3 获取 bitmaps 指定范围值为 1 的个数
 
-`bitcount [start] [end]`
+`bitcount <start> <end>`
 
 这里统计时候的区间 [start, end] 它两头都是闭区间，并且这表示的是字节数，比如说 [0, 1] 指的是从第 0 个字节开始到第一个字节，换算成位也就是 [0, 15]。
 
@@ -75,7 +75,7 @@ $redis-cli> bitcount unique:users:2016-04-05
 
 ## 2.4 bitmap 间的运算
 
-`bitop [op] [destkey] [key...]`
+`bitop <op> <destkey> [key...]`
 
 op 是操作符可选：and（交集）、or（并集）、not（非）、xor（异或）
 destkey 是计算完的结果保存在这个 key
@@ -93,7 +93,7 @@ $redis-cli> bitop or unique:users:or:2016-04-03_04 unique:users:2016-04-03 uniqu
 
 ## 2.5 计算 bitmaps 中第一个值位 target bit 的偏移量
 
-`bitpos [key] [target bit] [start] [end]`
+`bitpos <key> <0|1> <start> <end>`
 
 start 和 end 代表开始字节和结束字节，同样单位是字节
 

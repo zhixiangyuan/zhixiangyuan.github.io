@@ -19,7 +19,7 @@ HyperLogLog 并不是数据结构而是一种基数算法，通过 HyperLogLog �
 
 ## 1.1 pfadd 添加
 
-`pfadd [key] [element...]`
+`pfadd <key> <element> [element...]`
 
 该命令用于想 HyperLogLog 中添加元素，如果添加成功则返回 1
 
@@ -29,7 +29,7 @@ $redis-cli> pfadd 2016_03_06:unique:ids "uuid-1" "uuid-2" "uuid-3" "uuid-4"
 
 ## 1.2 pfcount 用于 key 中存储的 value 的数量
 
-`pfcount [key...]`
+`pfcount <key> [key...]`
 
 ```shell
 # 向 HyperLogLog 中添加数据
@@ -43,7 +43,7 @@ $redis-cli> pfcount test
 
 ## 1.3 pfmerge 合并
 
-`pfmerge [destkey] [sourcekey...]`
+`pfmerge <destkey> <sourcekey> [sourcekey...]`
 
 将 sourcekey 合并，并将结果放入 destkey
 

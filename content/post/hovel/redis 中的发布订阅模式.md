@@ -19,7 +19,7 @@ redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和�
 
 ## 1.1 发布消息
 
-`publish [channel] [message]`
+`publish <channel> <message>`
 
 ```shell
 # 下面的命令向 channel:sports 频道发布一条消息 "Tim won the championship"
@@ -29,7 +29,7 @@ $redis-cli> publish channel:sports "Tim won the championship"
 
 ## 1.2 订阅消息
 
-`subscribe [channel...]`
+`subscribe <channel> [channel...]`
 
 订阅者可以订阅一个或多个频道
 
@@ -54,15 +54,15 @@ $redis-cli-other> publish channel:sports hello
 
 ## 1.3 取消订阅
 
-`unsubscribe [channel...]
+`unsubscribe <channel> [channel...]`
 
 客户端可以通过 unsubscribe 命令取消对指定频道的订阅
 
 ## 1.4 按照模式订阅和取消订阅
 
-`psubscribe [pattern...]`
+`psubscribe <pattern> [pattern...]`
 
-`punsubscribe [pattern...]`
+`punsubscribe <pattern> [pattern...]`
 
 ```shell
 # 订阅以 it 开头的所有频道
@@ -73,13 +73,13 @@ $redis-cli> psubscribe it*
 
 ### 1.5.1 查看活跃的频道
 
-`pubsub channels [pattern]`
+`pubsub channels <pattern>`
 
 所谓活跃的频道是指当前频道至少有一个订阅者，其中 [pattern] 可以是指定的具体的模式
 
 ### 1.5.2 查看频道订阅数
 
-`pubsub numsub [channel...]`
+`pubsub numsub <channel> [channel...]`
 
 ### 1.5.3 查看模式订阅数
 

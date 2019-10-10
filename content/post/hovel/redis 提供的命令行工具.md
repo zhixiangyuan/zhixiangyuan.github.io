@@ -29,7 +29,7 @@ $> redis-server --port 4500
 $> redis-server /etc/redis.conf
 
 # 以守护进程的方式启动 redis
-$> redis-server --daemonize [yea|no]
+$> redis-server --daemonize <yea|no>
 
 # 测试是否操作系统是否能稳定的分配指定的内存给 redis
 $> redis-server --test-memory 1024

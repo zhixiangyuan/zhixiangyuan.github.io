@@ -36,7 +36,7 @@ $redis-cli> config rewrite
 
 ```shell
 # n 为获取的慢查询的条数
-$redis-cli> slowlog get [n]
+$redis-cli> slowlog get <n>
 
 # 下面是获取到的部分数据
 
