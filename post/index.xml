@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 09 Oct 2019 18:33:21 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Oct 2019 10:45:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redis 中的 Pipeline</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-pipeline/</link>
+      <pubDate>Thu, 10 Oct 2019 10:45:25 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-pipeline/</guid>
+      <description>1 为什么要有 pipeline 要了解这个问题首先需要了解 redis 性能瓶颈在哪里，其实，redis 性能问题很多时候在网络传输上，我来计算一下为什么会这样。首先 redis 客户</description>
+    </item>
     
     <item>
       <title>Redis 提供的命令行工具</title>

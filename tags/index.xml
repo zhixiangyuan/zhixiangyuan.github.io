@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 09 Oct 2019 18:33:21 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Oct 2019 10:45:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>redis</title>
       <link>https://zhixiangyuan.github.io/tags/redis/</link>
-      <pubDate>Wed, 09 Oct 2019 18:33:21 +0800</pubDate>
+      <pubDate>Thu, 10 Oct 2019 10:45:25 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/redis/</guid>
       <description></description>
@@ -67,7 +67,7 @@
     </item>
     
     <item>
-      <title>Java 内存泄漏</title>
+      <title>java 内存泄漏</title>
       <link>https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
       <pubDate>Tue, 30 Jul 2019 20:36:52 +0800</pubDate>
       
