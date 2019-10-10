@@ -14,91 +14,91 @@
     
     <item>
       <title>备忘录模式</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Thu, 10 Oct 2019 18:33:20 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/</guid>
       <description>备忘录模式指的是一个对象内部有一些状态需要发生改变，希望在改变过后能回到原来的状态，这个时候就需要有个备忘录，以及保存的备忘的内容。整个结构</description>
     </item>
     
     <item>
       <title>命令行语法字符</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</link>
       <pubDate>Thu, 10 Oct 2019 16:33:08 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</guid>
       <description>1 方括号 [ ] 方括号表示里面的内容是可选的，不要将方括号本身也输入到命令行 2 尖括号 &amp;lt; &amp;gt; 尖括号表示里面的内容是必须的，不要将尖括号本身也输入到命</description>
     </item>
     
     <item>
       <title>Redis 中的 GEO 功能</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Thu, 10 Oct 2019 15:38:27 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</guid>
       <description>通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。 1 命令 1.1 添加地理位置信息 geoadd &amp;lt;key&amp;gt;</description>
     </item>
     
     <item>
       <title>Redis 中的发布订阅模式</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Thu, 10 Oct 2019 15:04:46 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</guid>
       <description>redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &amp;lt;channel&amp;gt; &amp;lt;message&amp;gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &amp;#34;Tim won the</description>
     </item>
     
     <item>
       <title>Redis 中的 HyperLogLog</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</link>
       <pubDate>Thu, 10 Oct 2019 14:22:00 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</guid>
       <description>HyperLogLog 并不是数据结构而是一种基数算法，通过 HyperLogLog 可以利用极小的内存空间完成独立总数的统计，数据集可以是 IP、Email、ID 等。HyperLogLo</description>
     </item>
     
     <item>
       <title>Redis 中的 Bitmaps</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-bitmaps/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-bitmaps/</link>
       <pubDate>Thu, 10 Oct 2019 12:47:37 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-bitmaps/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-bitmaps/</guid>
       <description>1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&amp;gt;set</description>
     </item>
     
     <item>
       <title>Redis 中的 Pipeline</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-pipeline/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-pipeline/</link>
       <pubDate>Thu, 10 Oct 2019 10:45:25 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84-pipeline/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E4%B8%AD%E7%9A%84-pipeline/</guid>
       <description>1 为什么要有 pipeline 要了解这个问题首先需要了解 redis 性能瓶颈在哪里，其实，redis 性能问题很多时候在网络传输上，我来计算一下为什么会这样。首先 redis 客户</description>
     </item>
     
     <item>
       <title>Redis 提供的命令行工具</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Wed, 09 Oct 2019 18:33:21 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</guid>
       <description>1 redis-server 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 直接运行 $&amp;gt; redis-server # 可以在后面指定配置然后运行 $&amp;gt; redis-server --configKey1 configValue1 --configKey2 configValue2 # 比如说修改端口号 $&amp;gt; redis-server --port 4500 # 指定配置文件启动 $&amp;gt; redis-server</description>
     </item>
     
     <item>
       <title>Redis 慢查询相关配置与命令</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Wed, 09 Oct 2019 17:54:45 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</guid>
       <description>1 相关配置 配置有两个，分别是 slowlog-log-slower-than 和 slowlog-max-len，两个配置的含义如下 slowlog-log-slower-than: 超过这个时间的查询为慢查询，时间单位为微秒 slowlog-max-len: 保存的慢查询</description>
     </item>
     
     <item>
       <title>享元模式</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Tue, 08 Oct 2019 09:25:53 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/</guid>
       <description>享元模式就是单例模式的扩展，目的同样是避免重复创建对象，不过享元模式并不像单例模式一样，一个类只创建一个单例，享元模式避免重复创建的对象是指</description>
     </item>
     
@@ -113,55 +113,55 @@
     
     <item>
       <title>责任链模式</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Mon, 07 Oct 2019 21:43:26 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/</guid>
       <description>当接收到一个请求时，可能存在多种解析方式，但是只有一种解析方式能够满足，这个时候我们可以将这些解析方式组织成责任链的模式，让请求在责任链中传</description>
     </item>
     
     <item>
       <title>布偶猫的颜色花纹分类</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E5%B8%83%E5%81%B6%E7%8C%AB%E7%9A%84%E9%A2%9C%E8%89%B2%E8%8A%B1%E7%BA%B9%E5%88%86%E7%B1%BB/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%B8%83%E5%81%B6%E7%8C%AB%E7%9A%84%E9%A2%9C%E8%89%B2%E8%8A%B1%E7%BA%B9%E5%88%86%E7%B1%BB/</link>
       <pubDate>Mon, 07 Oct 2019 17:23:57 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E5%B8%83%E5%81%B6%E7%8C%AB%E7%9A%84%E9%A2%9C%E8%89%B2%E8%8A%B1%E7%BA%B9%E5%88%86%E7%B1%BB/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%B8%83%E5%81%B6%E7%8C%AB%E7%9A%84%E9%A2%9C%E8%89%B2%E8%8A%B1%E7%BA%B9%E5%88%86%E7%B1%BB/</guid>
       <description>影响布偶猫的外形主要有三个因素，分别是颜色、色块位置、是否有山猫纹，下面一一举例 1 颜色分类 颜色大的方向分为黑色系、巧克力色系、红色系、玳瑁色</description>
     </item>
     
     <item>
       <title>工厂模式</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Mon, 07 Oct 2019 14:43:23 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
       <description>工厂模式提供另外一种创建对象的方式，这种方式屏蔽了创建对象的细节，所以可以实现很多骚操作。下面的代码就是一个简单的工厂，通过传入全类名来创建</description>
     </item>
     
     <item>
       <title>路西法效应</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E8%B7%AF%E8%A5%BF%E6%B3%95%E6%95%88%E5%BA%94/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%B7%AF%E8%A5%BF%E6%B3%95%E6%95%88%E5%BA%94/</link>
       <pubDate>Sun, 06 Oct 2019 12:51:54 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E8%B7%AF%E8%A5%BF%E6%B3%95%E6%95%88%E5%BA%94/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%B7%AF%E8%A5%BF%E6%B3%95%E6%95%88%E5%BA%94/</guid>
       <description>1 环境使人走向邪恶的七步 无意中迈出的第一步 对他人去人性化 对自己去个体化 推卸个人责任 盲目服从权威 不加批判的遵从群体规范 对恶行为袖手旁观，消极容</description>
     </item>
     
     <item>
       <title>谈论行业的文章汇总</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E8%B0%88%E8%AE%BA%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%B0%88%E8%AE%BA%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</link>
       <pubDate>Sat, 05 Oct 2019 21:46:53 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E8%B0%88%E8%AE%BA%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/%E8%B0%88%E8%AE%BA%E8%A1%8C%E4%B8%9A%E7%9A%84%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</guid>
       <description>1 浅谈程序员的行业选择 &amp;mdash; 程序人生 该文章中将行业分为了互联网、甲方、乙方和游戏，同时，互联网又被分成传统互联网和移动互联网。对于互联网企业，文</description>
     </item>
     
     <item>
       <title>Class 方法之 forName(String className) 小记</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/class-%E6%96%B9%E6%B3%95%E4%B9%8B-fornamestring-classname-%E5%B0%8F%E8%AE%B0/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/class-%E6%96%B9%E6%B3%95%E4%B9%8B-fornamestring-classname-%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Fri, 04 Oct 2019 20:29:08 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/class-%E6%96%B9%E6%B3%95%E4%B9%8B-fornamestring-classname-%E5%B0%8F%E8%AE%B0/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/class-%E6%96%B9%E6%B3%95%E4%B9%8B-fornamestring-classname-%E5%B0%8F%E8%AE%B0/</guid>
       <description>Class.forName(String className) 这个方法的作用就是触发类的初始化动作 1 2 public static Class&amp;lt;?&amp;gt; forName(String className) throws ClassNotFoundException 这个方法目前就仅在 JDBC 的初始化的时候见过，他的目的就是触发 JDBC 驱动注册到代码中，代码如</description>
     </item>
     
