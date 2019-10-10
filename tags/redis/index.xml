@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 10 Oct 2019 14:22:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Oct 2019 15:04:46 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redis 中的发布订阅模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 10 Oct 2019 15:04:46 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish [channel] [message] 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &amp;#34;Tim won the</description>
+    </item>
     
     <item>
       <title>Redis 中的 HyperLogLog</title>
