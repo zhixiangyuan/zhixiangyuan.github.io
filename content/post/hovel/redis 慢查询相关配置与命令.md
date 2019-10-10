@@ -91,4 +91,4 @@ $redis-cli> slowlog reset
 
 # 参考资料
 
-1. [《Redis 开发与运维》](#)
+1.[Redis 开发与运维](https://gitee.com/zhixiangyuan/bookStorage/raw/master/%E7%BC%96%E7%A8%8B/Redis%20%E5%BC%80%E5%8F%91%E4%B8%8E%E8%BF%90%E7%BB%B4.pdf)
