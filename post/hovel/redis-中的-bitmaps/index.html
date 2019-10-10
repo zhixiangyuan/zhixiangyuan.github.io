@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-10T12:47:37&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-10T12:47:37&#43;08:00" />
-<meta itemprop="wordCount" content="1029">
+<meta itemprop="wordCount" content="1028">
 
 
 
@@ -176,7 +176,7 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 先设置一个键值对</span>
 <span class="nv">$redis</span>-cli&gt;set hello world
 <span class="c1"># 然后修改 world 的二进制位</span>
-<span class="c1"># setbit [key name] [offset] [0|1]</span>
+<span class="c1"># setbit &lt;key name&gt; &lt;offset&gt; &lt;0|1&gt;</span>
 <span class="nv">$redis</span>-cli&gt;setbit hello <span class="m">1</span> <span class="m">0</span>
 <span class="nv">$redis</span>-cli&gt;get hello
 7orld
@@ -187,7 +187,7 @@
 
 <h2 id="2-1-设置值">2.1 设置值</h2>
 
-<p><code>$redis-cli&gt; setbit [key] [offset] [value]</code></p>
+<p><code>$redis-cli&gt; setbit &lt;key&gt; &lt;offset&gt; &lt;value&gt;</code></p>
 
 <p>我们将 string 看成一个以 bit 为单位的二进制数组，那么上面的命令就很好理解了，key 就是 string 的 key，offset 是偏移量，比如说 0，那么就表示数组下标为 0 的那个位，value 可能是 0|1，表示该位需要设置的值。</p>
 
@@ -208,13 +208,13 @@
 </div>
 <h2 id="2-2-获取值">2.2 获取值</h2>
 
-<p><code>getbit [key] [offset]</code></p>
+<p><code>getbit &lt;key&gt; &lt;offset&gt;</code></p>
 
 <p>如果查询的 offset 不存在，同样返回 0</p>
 
 <h2 id="2-3-获取-bitmaps-指定范围值为-1-的个数">2.3 获取 bitmaps 指定范围值为 1 的个数</h2>
 
-<p><code>bitcount [start] [end]</code></p>
+<p><code>bitcount &lt;start&gt; &lt;end&gt;</code></p>
 
 <p>这里统计时候的区间 [start, end] 它两头都是闭区间，并且这表示的是字节数，比如说 [0, 1] 指的是从第 0 个字节开始到第一个字节，换算成位也就是 [0, 15]。</p>
 
@@ -249,7 +249,7 @@
 </div>
 <h2 id="2-4-bitmap-间的运算">2.4 bitmap 间的运算</h2>
 
-<p><code>bitop [op] [destkey] [key...]</code></p>
+<p><code>bitop &lt;op&gt; &lt;destkey&gt; [key...]</code></p>
 
 <p>op 是操作符可选：and（交集）、or（并集）、not（非）、xor（异或）
 destkey 是计算完的结果保存在这个 key
@@ -272,7 +272,7 @@ key&hellip; 是需要进行运算的 key</p>
 </div>
 <h2 id="2-5-计算-bitmaps-中第一个值位-target-bit-的偏移量">2.5 计算 bitmaps 中第一个值位 target bit 的偏移量</h2>
 
-<p><code>bitpos [key] [target bit] [start] [end]</code></p>
+<p><code>bitpos &lt;key&gt; &lt;0|1&gt; &lt;start&gt; &lt;end&gt;</code></p>
 
 <p>start 和 end 代表开始字节和结束字节，同样单位是字节</p>
 <div class="highlight"><div class="chroma">

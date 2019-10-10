@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish [channel] [message] 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &amp;#34;Tim won the" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &amp;lt;channel&amp;gt; &amp;lt;message&amp;gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &amp;#34;Tim won the" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="Redis 中的发布订阅模式" />
-<meta property="og:description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish [channel] [message] 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the" />
+<meta property="og:description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &lt;channel&gt; &lt;message&gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" />
 <meta property="article:published_time" content="2019-10-10T15:04:46+08:00" />
 <meta property="article:modified_time" content="2019-10-10T15:04:46+08:00" />
 <meta itemprop="name" content="Redis 中的发布订阅模式">
-<meta itemprop="description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish [channel] [message] 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the">
+<meta itemprop="description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &lt;channel&gt; &lt;message&gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the">
 
 
 <meta itemprop="datePublished" content="2019-10-10T15:04:46&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-10T15:04:46&#43;08:00" />
-<meta itemprop="wordCount" content="419">
+<meta itemprop="wordCount" content="424">
 
 
 
 <meta itemprop="keywords" content="redis," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Redis 中的发布订阅模式"/>
-<meta name="twitter:description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish [channel] [message] 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the"/>
+<meta name="twitter:description" content="redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &lt;channel&gt; &lt;message&gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &#34;Tim won the"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -167,7 +167,7 @@
 
 <h2 id="1-1-发布消息">1.1 发布消息</h2>
 
-<p><code>publish [channel] [message]</code></p>
+<p><code>publish &lt;channel&gt; &lt;message&gt;</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
@@ -182,7 +182,7 @@
 </div>
 <h2 id="1-2-订阅消息">1.2 订阅消息</h2>
 
-<p><code>subscribe [channel...]</code></p>
+<p><code>subscribe &lt;channel&gt; [channel...]</code></p>
 
 <p>订阅者可以订阅一个或多个频道</p>
 <div class="highlight"><div class="chroma">
@@ -223,15 +223,15 @@ Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">
 
 <h2 id="1-3-取消订阅">1.3 取消订阅</h2>
 
-<p>`unsubscribe [channel&hellip;]</p>
+<p><code>unsubscribe &lt;channel&gt; [channel...]</code></p>
 
 <p>客户端可以通过 unsubscribe 命令取消对指定频道的订阅</p>
 
 <h2 id="1-4-按照模式订阅和取消订阅">1.4 按照模式订阅和取消订阅</h2>
 
-<p><code>psubscribe [pattern...]</code></p>
+<p><code>psubscribe &lt;pattern&gt; [pattern...]</code></p>
 
-<p><code>punsubscribe [pattern...]</code></p>
+<p><code>punsubscribe &lt;pattern&gt; [pattern...]</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
@@ -246,13 +246,13 @@ Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">
 
 <h3 id="1-5-1-查看活跃的频道">1.5.1 查看活跃的频道</h3>
 
-<p><code>pubsub channels [pattern]</code></p>
+<p><code>pubsub channels &lt;pattern&gt;</code></p>
 
 <p>所谓活跃的频道是指当前频道至少有一个订阅者，其中 [pattern] 可以是指定的具体的模式</p>
 
 <h3 id="1-5-2-查看频道订阅数">1.5.2 查看频道订阅数</h3>
 
-<p><code>pubsub numsub [channel...]</code></p>
+<p><code>pubsub numsub &lt;channel&gt; [channel...]</code></p>
 
 <h3 id="1-5-3-查看模式订阅数">1.5.3 查看模式订阅数</h3>
 
@@ -281,7 +281,11 @@ Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">
           <a href="/tags/redis/">redis</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">命令行语法字符</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/hovel/redis-%E4%B8%AD%E7%9A%84-hyperloglog/">
             <span class="next-text nav-default">Redis 中的 HyperLogLog</span>
             <span class="next-text nav-mobile">下一篇</span>

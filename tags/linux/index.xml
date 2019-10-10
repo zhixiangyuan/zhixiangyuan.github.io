@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on Yuanzx Blog</title>
+    <title>linux on Yuanzx Blog</title>
     <link>https://zhixiangyuan.github.io/tags/linux/</link>
-    <description>Recent content in Linux on Yuanzx Blog</description>
+    <description>Recent content in linux on Yuanzx Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 04 Oct 2018 16:21:59 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Oct 2019 16:33:08 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>命令行语法字符</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</link>
+      <pubDate>Thu, 10 Oct 2019 16:33:08 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</guid>
+      <description>1 方括号 [ ] 方括号表示里面的内容是可选的，不要将方括号本身也输入到命令行 2 尖括号 &amp;lt; &amp;gt; 尖括号表示里面的内容是必须的，不要将尖括号本身也输入到命</description>
+    </item>
     
     <item>
       <title>sed 小记</title>
