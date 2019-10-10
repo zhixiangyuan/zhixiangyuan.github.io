@@ -33,7 +33,7 @@ $redis-cli> pfadd 2016_03_06:unique:ids "uuid-1" "uuid-2" "uuid-3" "uuid-4"
 
 ```shell
 # 向 HyperLogLog 中添加数据
-$redis-cli>pfadd test 1 2 3
+$redis-cli> pfadd test 1 2 3
 # 统计数量
 $redis-cli> pfcount test
 3
