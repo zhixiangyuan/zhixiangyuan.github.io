@@ -14,10 +14,10 @@
     
     <item>
       <title>int 入栈指令 iconst、bipush、sipush、ldc</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</link>
+      <link>https://zhixiangyuan.github.io/post/hovel/2018-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</link>
       <pubDate>Sat, 11 Aug 2018 18:47:43 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</guid>
+      <guid>https://zhixiangyuan.github.io/post/hovel/2018-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</guid>
       <description>1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:</description>
     </item>
     
