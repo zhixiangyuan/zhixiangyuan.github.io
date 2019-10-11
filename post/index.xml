@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 10 Oct 2019 21:43:24 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Oct 2019 09:51:42 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>二叉树基础</title>
+      <link>https://zhixiangyuan.github.io/post/algorithms/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 11 Oct 2019 09:51:42 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/algorithms/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E7%A1%80/</guid>
+      <description>1 树的基础知识 节点的高度：节点到叶子结点的边数 节点的深度：跟节点到这个节点经历的边数 节点的层数：节点的深度 + 1 树的高度：根节点的高度 2 二叉树</description>
+    </item>
     
     <item>
       <title>命令模式</title>
