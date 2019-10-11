@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 15:06:55 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Oct 2019 21:37:48 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>迭代器模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 11 Oct 2019 21:37:48 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>迭代器模式常见于 Java 的集合类，使用该模式顺序访问集合对象的元素，不需要知道集合对象的底层表示。 1 上代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</description>
+    </item>
     
     <item>
       <title>Redis 客户端的管理</title>
