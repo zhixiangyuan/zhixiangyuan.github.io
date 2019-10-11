@@ -4,7 +4,7 @@ date: 2019-10-11T13:30:14+08:00
 keywords: []
 description: ""
 tags: [
-
+    "redis"
 ]
 categories: [
     "杂货铺"
