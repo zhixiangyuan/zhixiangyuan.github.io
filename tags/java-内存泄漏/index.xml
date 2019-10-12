@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>java 内存泄漏 on Yuanzx Blog</title>
+    <title>Java 内存泄漏 on Yuanzx Blog</title>
     <link>https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
-    <description>Recent content in java 内存泄漏 on Yuanzx Blog</description>
+    <description>Recent content in Java 内存泄漏 on Yuanzx Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>

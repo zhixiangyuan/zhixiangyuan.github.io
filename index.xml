@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 12 Oct 2019 13:04:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 14:49:43 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>状态模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sat, 12 Oct 2019 14:49:43 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/</guid>
+      <description>状态模式就是将状态抽象成一个接口，这样就可以通过实现不同的状态来对类做不同的操作，而不这样写则会依赖 if else，对于状态很多的情况扩展能力没</description>
     </item>
     
     <item>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>状态模式 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="状态模式就是将状态抽象成一个接口，这样就可以通过实现不同的状态来对类做不同的操作，而不这样写则会依赖 if else，对于状态很多的情况扩展能力没" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="状态模式" />
+<meta property="og:description" content="状态模式就是将状态抽象成一个接口，这样就可以通过实现不同的状态来对类做不同的操作，而不这样写则会依赖 if else，对于状态很多的情况扩展能力没" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/" />
+<meta property="article:published_time" content="2019-10-12T14:49:43+08:00" />
+<meta property="article:modified_time" content="2019-10-12T14:49:43+08:00" />
+<meta itemprop="name" content="状态模式">
+<meta itemprop="description" content="状态模式就是将状态抽象成一个接口，这样就可以通过实现不同的状态来对类做不同的操作，而不这样写则会依赖 if else，对于状态很多的情况扩展能力没">
+
+
+<meta itemprop="datePublished" content="2019-10-12T14:49:43&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-12T14:49:43&#43;08:00" />
+<meta itemprop="wordCount" content="651">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="状态模式"/>
+<meta name="twitter:description" content="状态模式就是将状态抽象成一个接口，这样就可以通过实现不同的状态来对类做不同的操作，而不这样写则会依赖 if else，对于状态很多的情况扩展能力没"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">状态模式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-12 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-实现代码">1 实现代码</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>状态模式就是将状态抽象成一个接口，这样就可以通过实现不同的状态来对类做不同的操作，而不这样写则会依赖 if else，对于状态很多的情况扩展能力没有这种好。</p>
+
+<h1 id="1-实现代码">1 实现代码</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 抽象出状态接口
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">interface</span> <span class="n">ConnectState</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="nf">handleRequest</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 实现需要根据状态改变的类
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">ConnectMachine</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">ConnectState</span> <span class="n">initState</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">ConnectState</span> <span class="n">connectingState</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">ConnectState</span> <span class="n">reconnectState</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">ConnectState</span> <span class="n">disConnectState</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">ConnectState</span> <span class="n">connectSuccessState</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">ConnectState</span> <span class="n">connectFailureState</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ConnectMachine</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">initState</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitState</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">connectingState</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConnectingState</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">reconnectState</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReConnectingState</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">disConnectState</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DisconnectState</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">connectSuccessState</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConnectSuccessState</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">connectFailureState</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConnectFailureState</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">doConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">initState</span><span class="p">.</span><span class="na">handleRequest</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">waitingConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">connectingState</span><span class="p">.</span><span class="na">handleRequest</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">reConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">reconnectState</span><span class="p">.</span><span class="na">handleRequest</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">disConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">disConnectState</span><span class="p">.</span><span class="na">handleRequest</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">connectSuccess</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">connectSuccessState</span><span class="p">.</span><span class="na">handleRequest</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">connectFailure</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">connectFailureState</span><span class="p">.</span><span class="na">handleRequest</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 实现各种状态
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">InitState</span> <span class="nf">implements</span> <span class="n">ConnectState</span><span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">ConnectMachine</span> <span class="n">connectMachine</span><span class="p">;</span>
+
+    <span class="kd">private</span> <span class="nf">boolean</span> <span class="n">connectResult</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">InitState</span><span class="p">(</span><span class="n">ConnectMachine</span> <span class="nf">connectMachine</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">connectMachine</span> <span class="o">=</span> <span class="n">connectMachine</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handleRequest</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">doConnect</span><span class="p">();</span>
+        <span class="n">connectMachine</span><span class="p">.</span><span class="na">waitingConnect</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">doConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//connect server
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">connectResult</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">connectSuccess</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">connectFailure</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">connectSuccess</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">connectMachine</span><span class="p">.</span><span class="na">connectSuccess</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">connectFailure</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">connectMachine</span><span class="p">.</span><span class="na">connectFailure</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">ReConnectingState</span> <span class="nf">implements</span> <span class="n">ConnectState</span><span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">ConnectMachine</span> <span class="n">connectMachine</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ReConnectingState</span><span class="p">(</span><span class="n">ConnectMachine</span> <span class="nf">connectMachine</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">connectMachine</span> <span class="o">=</span> <span class="n">connectMachine</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handleRequest</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">reConnect</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">reConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//disconnect old connect and connect again
+</span><span class="c1"></span>        <span class="n">connectMachine</span><span class="p">.</span><span class="na">disConnect</span><span class="p">();</span>
+        <span class="n">connectMachine</span><span class="p">.</span><span class="na">doConnect</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">DisconnectState</span> <span class="nf">implements</span> <span class="n">ConnectState</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">ConnectMachine</span> <span class="n">connectMachine</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">DisconnectState</span><span class="p">(</span><span class="n">ConnectMachine</span> <span class="nf">connectMachine</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">connectMachine</span> <span class="o">=</span> <span class="n">connectMachine</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handleRequest</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">disConnect</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">disConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//do something
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">ConnectingState</span> <span class="nf">implements</span> <span class="n">ConnectState</span><span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">ConnectMachine</span> <span class="n">connectMachine</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ConnectingState</span><span class="p">(</span><span class="n">ConnectMachine</span> <span class="nf">connectMachine</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">connectMachine</span> <span class="o">=</span> <span class="n">connectMachine</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handleRequest</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">waitingConnect</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">waitingConnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//loading and do something
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">ConnectSuccessState</span> <span class="nf">implements</span> <span class="n">ConnectState</span><span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">ConnectMachine</span> <span class="n">connectMachine</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ConnectSuccessState</span><span class="p">(</span><span class="n">ConnectMachine</span> <span class="nf">connectMachine</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">connectMachine</span> <span class="o">=</span> <span class="n">connectMachine</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handleRequest</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">connectSuccess</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">connectSuccess</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//do something
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;connect success.&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">ConnectFailureState</span> <span class="nf">implements</span> <span class="n">ConnectState</span><span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">ConnectMachine</span> <span class="n">connectMachine</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ConnectFailureState</span><span class="p">(</span><span class="n">ConnectMachine</span> <span class="nf">connectMachine</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">connectMachine</span> <span class="o">=</span> <span class="n">connectMachine</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handleRequest</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">connectFailure</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">connectFailure</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//do something
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;connect fail.&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 测试类试一下效果
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ConnectMachine</span> <span class="nf">connectMachine</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConnectMachine</span><span class="p">();</span>
+        <span class="n">connectMachine</span><span class="p">.</span><span class="na">doConnect</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li><a href="https://www.jianshu.com/p/09f4d555e8b4">java 状态模式实例解析</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/hovel/linux-%E5%9F%BA%E7%A1%80-1/">
+            <span class="next-text nav-default">Linux 基础 1</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
