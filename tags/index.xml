@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 15:06:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 13:04:55 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>linux</title>
+      <link>https://zhixiangyuan.github.io/tags/linux/</link>
+      <pubDate>Sat, 12 Oct 2019 13:04:55 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>redis</title>
@@ -18,15 +27,6 @@
       <pubDate>Fri, 11 Oct 2019 15:06:55 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/redis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://zhixiangyuan.github.io/tags/linux/</link>
-      <pubDate>Thu, 10 Oct 2019 16:33:08 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -76,7 +76,7 @@
     </item>
     
     <item>
-      <title>Java 内存泄漏</title>
+      <title>java 内存泄漏</title>
       <link>https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
       <pubDate>Tue, 30 Jul 2019 20:36:52 +0800</pubDate>
       

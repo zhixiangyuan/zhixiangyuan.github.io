@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 21:37:48 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 13:04:55 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Linux 基础 1</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/linux-%E5%9F%BA%E7%A1%80-1/</link>
+      <pubDate>Sat, 12 Oct 2019 13:04:55 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/linux-%E5%9F%BA%E7%A1%80-1/</guid>
+      <description>useradd 1 2 3 4 5 # 新建用户 $&amp;gt; useradd &amp;lt;usrename&amp;gt; # 新建用户，并将用户加入指定的组 # 组名必须存在，否则会提示不存在 $&amp;gt; useradd &amp;lt;username&amp;gt; -g &amp;lt;groupname&amp;gt; passwd 1 2 3 4 # 更改当前用户的密码 $&amp;gt; passwd # 更</description>
     </item>
     
     <item>
