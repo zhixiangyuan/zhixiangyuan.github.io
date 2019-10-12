@@ -118,9 +118,9 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/hovel/2019-hovel/july/%E7%94%B1%E6%97%A0%E6%95%88%E7%BC%93%E5%AD%98%E5%BC%95%E8%B5%B7%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">由无效缓存引起的内存泄漏</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/hovel/2018-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/">int 入栈指令 iconst、bipush、sipush、ldc</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-07-30 </span>
+      <span class="post-time"> 2018-08-11 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -129,115 +129,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      在下面这段代码中存在一个内存泄漏的问题，在使用中表现为性能下降，在极端情况下甚至可能出现 OutOfMemoryError。先看代码，看你是否
+      1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:
     </div>
     <div class="read-more">
-      <a href="/post/hovel/2019-hovel/july/%E7%94%B1%E6%97%A0%E6%95%88%E7%BC%93%E5%AD%98%E5%BC%95%E8%B5%B7%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/hovel/2019-hovel/july/reentrantlock-%E8%AF%A6%E8%A7%A3/">ReentrantLock 详解</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-24 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      本文基于 JDK 1.8 1 ReentrantLock 的作用 Java 中已经有了 synchronized 的来进行隐式的加锁和解锁，那还为什么还要引入 ReentrantLock 这把锁呢。这主要是 synchronized 的加锁和解锁操作并不灵活，Reentr
-    </div>
-    <div class="read-more">
-      <a href="/post/hovel/2019-hovel/july/reentrantlock-%E8%AF%A6%E8%A7%A3/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/hovel/2019-hovel/july/unsafe-%E8%A7%A3%E6%9E%90/">Unsafe 解析</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-23 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      本文基于 jdk1.8 Unsafe 位于 sun.misc 包下，提供能直接访问系统内存资源的方法，使得用户能够自主管理内存，使用得当能够提升程序的运行效率。 1 如何获取 Unsafe 实例 下面代码
-    </div>
-    <div class="read-more">
-      <a href="/post/hovel/2019-hovel/july/unsafe-%E8%A7%A3%E6%9E%90/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/hovel/2019-hovel/july/java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">Java 线程的生命周期</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-21 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Java 语言中的线程本质上就是操作系统的线程，Java 创建线程同样是调用操作系统的 API 来创建线程。所以，了解 Java 线程的生命周期的第一步是了解操作系统线
-    </div>
-    <div class="read-more">
-      <a href="/post/hovel/2019-hovel/july/java-%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/algorithms/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">冒泡排序、插入排序、选择排序</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-17 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1. 冒泡排序 1.1 原理 通过遍历所有元素，判断相邻的两个元素是否满足大小关系，如果不满足则进行交换，重复 n 次，就完成 n 个数据的排序工作。 1.2 代码实现 1
-    </div>
-    <div class="read-more">
-      <a href="/post/algorithms/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/hovel/2019-hovel/july/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/">关于学习</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-17 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      学一个东西，一般从三个角度思考，what、how、why 1 比如说计算机协议 从 what 的角度，所学的是一个什么样的协议，这种协议有怎样的特性，能够解
-    </div>
-    <div class="read-more">
-      <a href="/post/hovel/2019-hovel/july/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/" class="read-more-link">阅读更多</a>
+      <a href="/post/hovel/2018-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -245,14 +140,11 @@
     </section>
   
   <nav class="pagination">
-    <a class="prev" href="/page/13/">
+    <a class="prev" href="/page/18/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text">上一页</span>
       </a>
-    <a class="next" href="/page/15/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
+    
   </nav>
         </div>
         

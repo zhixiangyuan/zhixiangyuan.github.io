@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 15:06:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 16:18:42 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redis 的持久化</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</link>
+      <pubDate>Sat, 12 Oct 2019 16:18:42 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</guid>
+      <description>Redis 的持久化机制分为两种，RDB 和 AOF 1 RDB RDB 是将当前进程数据生成快照保存到硬盘的过程，触发 RDB 持久化过程分为手动触发和自动触发。 1.1 触发机制 1.1.1 手动触</description>
+    </item>
     
     <item>
       <title>Redis 客户端的管理</title>
