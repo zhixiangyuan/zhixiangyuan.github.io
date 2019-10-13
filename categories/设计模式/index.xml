@@ -45,7 +45,7 @@
       <pubDate>Thu, 10 Oct 2019 21:43:24 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/post/hovel/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/</guid>
-      <description>命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 1 上代码 1</description>
+      <description>命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 中介者模式</description>
     </item>
     
     <item>

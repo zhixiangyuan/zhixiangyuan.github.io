@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 1 上代码 1" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 中介者模式" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="命令模式" />
-<meta property="og:description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 1 上代码 1" />
+<meta property="og:description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 中介者模式" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/" />
 <meta property="article:published_time" content="2019-10-10T21:43:24+08:00" />
 <meta property="article:modified_time" content="2019-10-10T21:43:24+08:00" />
 <meta itemprop="name" content="命令模式">
-<meta itemprop="description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 1 上代码 1">
+<meta itemprop="description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 中介者模式">
 
 
 <meta itemprop="datePublished" content="2019-10-10T21:43:24&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-10T21:43:24&#43;08:00" />
-<meta itemprop="wordCount" content="1040">
+<meta itemprop="wordCount" content="1109">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="命令模式"/>
-<meta name="twitter:description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 1 上代码 1"/>
+<meta name="twitter:description" content="命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。 中介者模式"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -150,6 +150,8 @@
       
 
 <p>命令模式是为了将调用者和执行进行解藕，所以引入了中间层命令，下面举一个例子，我们实现一个可以播放磁带的磁带机，然后用它来播放磁带。</p>
+
+<p>中介者模式是用来降低多个对象和类之间的通信复杂性，这种模式提供了一个中介类，同过该类来处理不同类之间的通信，并支持松耦合，使代码便于维护。</p>
 
 <h1 id="1-上代码">1 上代码</h1>
 <div class="highlight"><div class="chroma">
