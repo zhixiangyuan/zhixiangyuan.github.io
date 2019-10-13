@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 12 Oct 2019 14:49:43 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 17:01:18 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>中介者模式</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sun, 13 Oct 2019 17:01:18 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+      <description>在现实生活中，有很多中介者模式的身影，比如说 QQ 聊天平台，微信聊天平台。这行平台就像是一个中介，用户通过这些平台来和别的用户交流，如果没有这些</description>
+    </item>
     
     <item>
       <title>状态模式</title>
