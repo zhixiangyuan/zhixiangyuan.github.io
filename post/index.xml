@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 13 Oct 2019 19:01:27 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 19:27:09 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Shell 中的字符串处理</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/shell-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+      <pubDate>Sun, 13 Oct 2019 19:27:09 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/shell-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+      <description>1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，</description>
+    </item>
     
     <item>
       <title>Shell 中的三目运算符</title>
