@@ -4,7 +4,7 @@ date: 2018-10-16T11:26:50+08:00
 keywords: []
 description: ""
 tags: [
-    "Java 基础"
+    "Java"
 ]
 categories: [
     "杂货铺"

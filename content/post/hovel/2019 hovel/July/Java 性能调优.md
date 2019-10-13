@@ -6,7 +6,7 @@ keywords: [
 ]
 description: ""
 tags: [
-    "Java 基础"
+    "Java"
 ]
 categories: [
     "杂货铺"
