@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mybatis on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/mybatis/</link>
+    <description>Recent content in Mybatis on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Tue, 10 Sep 2019 07:34:23 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/mybatis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mybatis Plugin 使用案例</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</link>
+      <pubDate>Tue, 10 Sep 2019 07:34:23 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</guid>
+      <description>Mybatis 插件，实现功能的插件又可称之为拦截器，主要提供对 org.apache.ibatis.executor.Executor、org.apach</description>
+    </item>
+    
+    <item>
+      <title>Mybatis ObjectFactory 使用案例</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/mybatis-objectfactory-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</link>
+      <pubDate>Tue, 10 Sep 2019 07:02:15 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/mybatis-objectfactory-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</guid>
+      <description>Mybatis 每次创建结果对象的新实例时，它都会使用一个对象工厂来完成。默认的对象工厂仅仅是实例化目标类，要么通过默认构造方法，要么在构造方法上参数映射</description>
+    </item>
+    
+    <item>
+      <title>Mybatis TypeHandler 使用案例</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/mybatis-typehandler-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</link>
+      <pubDate>Mon, 09 Sep 2019 07:20:41 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/mybatis-typehandler-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</guid>
+      <description>数据库的数据类型与 Java 中的数据类型存在差异，当需要对两者做特定的转换时，Mybatis 提供了 TypeHandler 来实现转换操作，以下是一个实际案例，通过将 Java 中的</description>
+    </item>
+    
+  </channel>
+</rss>

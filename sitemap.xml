@@ -597,6 +597,13 @@
   </url>
   
   <url>
+    <loc>https://zhixiangyuan.github.io/tags/mybatis/</loc>
+    <lastmod>2019-09-10T07:34:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</loc>
     <lastmod>2019-09-10T07:34:23+08:00</lastmod>
     <changefreq>weekly</changefreq>

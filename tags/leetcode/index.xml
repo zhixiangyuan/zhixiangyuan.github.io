@@ -112,6 +112,15 @@
     </item>
     
     <item>
+      <title>如何在 Leetcode 上调试代码</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/%E5%A6%82%E4%BD%95%E5%9C%A8-leetcode-%E4%B8%8A%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Thu, 19 Sep 2019 09:39:08 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/september/%E5%A6%82%E4%BD%95%E5%9C%A8-leetcode-%E4%B8%8A%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81/</guid>
+      <description>最近经常在 leetcode 上面刷题，不过发现在上面写的代码如果遇到一些 bug 只能肉眼 debug，如果 不能肉眼 debug 出来就比较难受了，还要打开 ide 真实模拟一下。不过今</description>
+    </item>
+    
+    <item>
       <title>Leetcode: 21 合并两个有序链表</title>
       <link>https://zhixiangyuan.github.io/post/algorithms/leetcode-21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/</link>
       <pubDate>Thu, 19 Sep 2019 07:54:04 +0800</pubDate>
