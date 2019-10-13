@@ -58,11 +58,11 @@
     </item>
     
     <item>
-      <title>Java 基础</title>
-      <link>https://zhixiangyuan.github.io/tags/java-%E5%9F%BA%E7%A1%80/</link>
+      <title>Java</title>
+      <link>https://zhixiangyuan.github.io/tags/java/</link>
       <pubDate>Tue, 17 Sep 2019 17:14:02 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/tags/java-%E5%9F%BA%E7%A1%80/</guid>
+      <guid>https://zhixiangyuan.github.io/tags/java/</guid>
       <description></description>
     </item>
     
@@ -76,38 +76,11 @@
     </item>
     
     <item>
-      <title>Java 内存泄漏</title>
-      <link>https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</link>
-      <pubDate>Tue, 30 Jul 2019 20:36:52 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java 并发编程</title>
-      <link>https://zhixiangyuan.github.io/tags/java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Wed, 24 Jul 2019 21:31:26 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/tags/java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>网络协议</title>
       <link>https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</link>
       <pubDate>Fri, 12 Jul 2019 21:22:03 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JVM 字节码</title>
-      <link>https://zhixiangyuan.github.io/tags/jvm-%E5%AD%97%E8%8A%82%E7%A0%81/</link>
-      <pubDate>Sat, 11 Aug 2018 18:47:43 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/tags/jvm-%E5%AD%97%E8%8A%82%E7%A0%81/</guid>
       <description></description>
     </item>
     

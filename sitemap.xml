@@ -457,7 +457,7 @@
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/java-%E5%9F%BA%E7%A1%80/</loc>
+    <loc>https://zhixiangyuan.github.io/tags/java/</loc>
     <lastmod>2019-09-17T17:14:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -660,22 +660,8 @@
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/java-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
-    <lastmod>2019-07-30T20:36:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://zhixiangyuan.github.io/post/hovel/2019-hovel/july/%E7%94%B1%E6%97%A0%E6%95%88%E7%BC%93%E5%AD%98%E5%BC%95%E8%B5%B7%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/</loc>
     <lastmod>2019-07-30T20:36:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2019-07-24T21:31:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -892,13 +878,6 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/hovel/2018-hovel/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</loc>
-    <lastmod>2018-08-11T18:47:43+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/jvm-%E5%AD%97%E8%8A%82%E7%A0%81/</loc>
     <lastmod>2018-08-11T18:47:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
