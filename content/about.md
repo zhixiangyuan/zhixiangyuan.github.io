@@ -9,5 +9,7 @@ comment: false
 mathjax: false
 ---
 
+学习是件很快乐的事，因为这是除了银行卡中数字增长之外目前能明确让我感觉到成长的另一件事。
+
 <!-- [学习资料](https://zhixiangyuan.gitee.io/bookstorage/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/reference.html) -->
 
