@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 11 Oct 2019 09:51:42 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 15:24:13 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>平衡二叉查找树</title>
+      <link>https://zhixiangyuan.github.io/post/algorithms/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/</link>
+      <pubDate>Sun, 13 Oct 2019 15:24:13 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/algorithms/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/</guid>
+      <description>二叉树的时间复杂度在理想状况下是 O(logn) 但是在频繁的动态更新下可能就退化成 O(n) 或者接近 O(n) 了，这个问题不解决，二叉树的性能就太差了，由此便引出了平衡二</description>
+    </item>
     
     <item>
       <title>二叉树基础</title>
