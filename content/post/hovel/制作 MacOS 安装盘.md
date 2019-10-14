@@ -14,7 +14,7 @@ author: "yuanzx"
 ---
 
 1. 第一步，在网上或者 app store 中找到 macos 镜像，然后下载
-2. 第二步，通过命令进行制作安装盘，命令如下，输完命令等待十几分钟即可。
+2. 第二步，通过命令进行制作安装盘，命令如下，输完命令等待几十分钟即可。
 
 ```shell
 $> <安装包位置>/Contents/Resources/createinstallmedia --volume /Volumes/<U 盘名称> --applicationpath <安装包位置> --nointeraction
