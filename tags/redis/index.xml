@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 12 Oct 2019 16:18:42 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Oct 2019 11:19:41 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Redis 中的数据复制</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6/</link>
+      <pubDate>Mon, 14 Oct 2019 11:19:41 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6/</guid>
+      <description>1 数据复制 1.1 建立复制 在从节点的配置文件中加入以下配置，然后启动即可 slaveof &amp;lt;masterip&amp;gt; &amp;lt;masterport&amp;gt; 启动过后通过 info replication 查看节点信息 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</description>
+    </item>
     
     <item>
       <title>Redis 的持久化</title>

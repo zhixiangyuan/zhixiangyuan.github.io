@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 13 Oct 2019 19:27:09 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Oct 2019 11:19:41 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>redis</title>
+      <link>https://zhixiangyuan.github.io/tags/redis/</link>
+      <pubDate>Mon, 14 Oct 2019 11:19:41 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/redis/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>linux</title>
@@ -18,15 +27,6 @@
       <pubDate>Sun, 13 Oct 2019 19:27:09 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>redis</title>
-      <link>https://zhixiangyuan.github.io/tags/redis/</link>
-      <pubDate>Sat, 12 Oct 2019 16:18:42 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/tags/redis/</guid>
       <description></description>
     </item>
     
