@@ -74,3 +74,5 @@ Glibc 一个单独的 API 可能调用多个系统调用，比如说，Glibc 提
 # 6 系统调用源文件位置
 
 上述系统调用都定义在 **unistd_64.h** 这个文件中，我所下载的 Linux 版本这个文件在 **arch/sh/include/uapi/asm/unistd_64.h** 位置
+
+Linux 内核下载地址: https://www.kernel.org/
