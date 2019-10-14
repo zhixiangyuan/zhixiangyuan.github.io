@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 13 Oct 2019 19:27:09 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Oct 2019 10:05:02 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>学习是件很快乐的事，因为这是除了银行卡中数字增长之外目前能明确让我感觉到成长的事。</description>
+    </item>
+    
+    <item>
+      <title>Linux 中的系统调用</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/linux-%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</link>
+      <pubDate>Mon, 14 Oct 2019 10:05:02 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/linux-%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/</guid>
+      <description>1 系统调用 fork: 创建进程 execve: 执行任务 waitpid: 通过将子进程的进程号传给它来了解子进程运行是否完成，是否成功 brk: 分配一块与原来堆数据连在一起的内存空间 mmap: 分配一</description>
     </item>
     
     <item>
