@@ -70,3 +70,7 @@ Glibc 一个单独的 API 可能调用多个系统调用，比如说，Glibc 提
 
 多个 API 也可能只对应同一个系统调用，如 Glibc 下实现的 malloc、calloc、free 等
 函数用来分配和释放内存，都利用了内核的 sys_brk 的系统调用。
+
+# 6 系统调用源文件位置
+
+上述系统调用都定义在 **unistd_64.h** 这个文件中，我所下载的 Linux 版本这个文件在 **arch/sh/include/uapi/asm/unistd_64.h** 位置
