@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 14 Oct 2019 15:19:45 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Oct 2019 11:10:06 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>缓存设计</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Tue, 15 Oct 2019 11:10:06 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/</guid>
+      <description>1 缓存的收益和成本分析 缓存架构流程图 1.1 缓存的收益 加速读写：因为缓存通常是全内存的，而存储层通常性能不够强悍，通过缓存的使用可以有效的加速读写</description>
+    </item>
     
     <item>
       <title>制作 MacOS 安装盘</title>

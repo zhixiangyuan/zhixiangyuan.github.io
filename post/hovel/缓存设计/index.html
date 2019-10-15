@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>缓存设计 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 缓存的收益和成本分析 缓存架构流程图 1.1 缓存的收益 加速读写：因为缓存通常是全内存的，而存储层通常性能不够强悍，通过缓存的使用可以有效的加速读写" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/hovel/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="缓存设计" />
+<meta property="og:description" content="1 缓存的收益和成本分析 缓存架构流程图 1.1 缓存的收益 加速读写：因为缓存通常是全内存的，而存储层通常性能不够强悍，通过缓存的使用可以有效的加速读写" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/hovel/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/" />
+<meta property="article:published_time" content="2019-10-15T11:10:06+08:00" />
+<meta property="article:modified_time" content="2019-10-15T11:10:06+08:00" />
+<meta itemprop="name" content="缓存设计">
+<meta itemprop="description" content="1 缓存的收益和成本分析 缓存架构流程图 1.1 缓存的收益 加速读写：因为缓存通常是全内存的，而存储层通常性能不够强悍，通过缓存的使用可以有效的加速读写">
+
+
+<meta itemprop="datePublished" content="2019-10-15T11:10:06&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-15T11:10:06&#43;08:00" />
+<meta itemprop="wordCount" content="2836">
+
+
+
+<meta itemprop="keywords" content="redis," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="缓存设计"/>
+<meta name="twitter:description" content="1 缓存的收益和成本分析 缓存架构流程图 1.1 缓存的收益 加速读写：因为缓存通常是全内存的，而存储层通常性能不够强悍，通过缓存的使用可以有效的加速读写"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">缓存设计</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-15 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-缓存的收益和成本分析">1 缓存的收益和成本分析</a>
+<ul>
+<li><a href="#1-1-缓存的收益">1.1 缓存的收益</a></li>
+<li><a href="#1-2-缓存的成本">1.2 缓存的成本</a></li>
+<li><a href="#1-3-缓存的使用场景">1.3 缓存的使用场景</a></li>
+</ul></li>
+<li><a href="#2-缓存更新策略的选择和使用场景">2 缓存更新策略的选择和使用场景</a>
+<ul>
+<li><a href="#2-1-lru-lfu-fifo-算法剔除">2.1 LRU / LFU / FIFO 算法剔除</a></li>
+<li><a href="#2-2-超时剔除">2.2 超时剔除</a></li>
+<li><a href="#2-3-主动更新">2.3 主动更新</a></li>
+<li><a href="#2-4-最佳实践">2.4 最佳实践</a></li>
+</ul></li>
+<li><a href="#3-缓存粒度控制方法">3 缓存粒度控制方法</a></li>
+<li><a href="#4-穿透问题优化">4 穿透问题优化</a>
+<ul>
+<li><a href="#4-1-解决方案">4.1 解决方案</a>
+<ul>
+<li><a href="#4-1-1-缓存空对象">4.1.1 缓存空对象</a></li>
+<li><a href="#4-1-2-布隆过滤器">4.1.2 布隆过滤器</a></li>
+<li><a href="#4-1-3-两种方案的对比">4.1.3 两种方案的对比</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#5-无底洞问题优化">5 无底洞问题优化</a></li>
+<li><a href="#6-雪崩问题优化">6 雪崩问题优化</a></li>
+<li><a href="#7-热点-key-重建优化">7 热点 key 重建优化</a>
+<ul>
+<li><a href="#7-1-分布式锁">7.1 分布式锁</a></li>
+<li><a href="#7-2-永远不过期">7.2 永远不过期</a></li>
+<li><a href="#7-3-两者对比">7.3 两者对比</a></li>
+</ul></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-缓存的收益和成本分析">1 缓存的收益和成本分析</h1>
+
+<p>缓存架构流程图</p>
+
+<p><img src="/media/hovel/46.png" alt="缓存架构流程图" /></p>
+
+<h2 id="1-1-缓存的收益">1.1 缓存的收益</h2>
+
+<ol>
+<li>加速读写：因为缓存通常是全内存的，而存储层通常性能不够强悍，通过缓存的使用可以有效的加速读写，优化用户体验。</li>
+<li>降低后端负载：帮助后端减少访问量和复杂计算（例如很复杂的 SQL），在很大程度上降低了后端的负载。</li>
+</ol>
+
+<h2 id="1-2-缓存的成本">1.2 缓存的成本</h2>
+
+<ol>
+<li>数据不一致性：缓存层和存储层的数据存在着一定时间窗口的不一致性，时间窗口和跟新策略有关。</li>
+<li>代码维护成本：加入缓存后，需要同时处理缓存层和存储层的逻辑，增大了开发者维护代码的成本。</li>
+<li>运维成本：加入后无形中增加了运维成本</li>
+</ol>
+
+<h2 id="1-3-缓存的使用场景">1.3 缓存的使用场景</h2>
+
+<ol>
+<li>开销大的复杂计算：对于像 MySQL 中大量联表操作和分组计算（不是很理解这里联表操作怎么在缓存中优化），如果不加入缓存，不但无法满足高并发量，同时也会给 MySQL 带来巨大的负担。</li>
+<li>加速请求响应：即使查询单条后端数据足够快，但如果使用缓存，比如说使用 Redis，那么可以提供每秒数万次读写，并且提供的批量操作可以优化整个 IO 链的响应时间。</li>
+</ol>
+
+<h1 id="2-缓存更新策略的选择和使用场景">2 缓存更新策略的选择和使用场景</h1>
+
+<p>缓存中的数据通常都是有生命周期的，需要在指定时间后被删除或更新，这样可以保证缓存空间在一个可控的范围。但是缓存中的数据会和数据源中的真实数据有一段时间的窗口不一致，需要利用某些策略进行更新。</p>
+
+<h2 id="2-1-lru-lfu-fifo-算法剔除">2.1 LRU / LFU / FIFO 算法剔除</h2>
+
+<ol>
+<li>使用场景：剔除算法常用于缓存使用量超过了预设的最大值的时候，如何对现有的数据进行剔除。例如 redis 使用 maxmemory-policy 这个配置作为内存最大值后对数据的剔除策略。</li>
+<li>一致性：要清理哪些数据是由具体算法决定，开发人员只能决定使用哪种算法，所以数据的一致性是最差的。</li>
+<li>维护成本：算法不需要开发人员自己来实现，通常只需要配置最大 maxmemory 和对应的策略即可。开发人员只需要知道每种算法的含义，选择适合自己的算法即可。</li>
+</ol>
+
+<h2 id="2-2-超时剔除">2.2 超时剔除</h2>
+
+<ol>
+<li>使用场景：超时剔除通过给缓存数据设置过期时间，让其在过期时间后自动删除，例如 redis 提供的 expire 命令。如果业务可以容忍一段时间内，缓存层数据和存储层数据不一致，那么可以为其设置过期时间。在数据过期后，再从真实数据源获取数据，重新放到缓存并设置过期时间。例如一个视频的描述信息，可以容忍几分钟内数据不一致，但是涉及交易方面的业务，后果可想而知。</li>
+<li>一致性：一段时间窗口内（取决于过期时间长短）存在一致性问题，即缓存数据和真实数据源的数据不一致。</li>
+<li>维护成本：维护成本不是很高，只需要设置 expire 过期时间即可，当然前提是应用方允许这段时间可能发生的数据不一致。</li>
+</ol>
+
+<h2 id="2-3-主动更新">2.3 主动更新</h2>
+
+<ol>
+<li>使用场景：应用方对于数据的一致性要求高，需要在真实数据更新后立刻更新缓存数据。例如可以利用消息系统或者其它方式通知缓存更新。</li>
+<li>一致性：一致性最高，但如果主动更新发生了问题，那么这条数据很可能很长时间不会更新，所以建议结合超时剔除一起使用效果比较好。</li>
+<li>维护成本：维护成本比较高，开发者需要自己来完成更新，并保证更新操作的正确性。</li>
+</ol>
+
+<p>下图是三种更新策略的对比</p>
+
+<p><img src="/media/hovel/47.png" alt="三种更新策略的对比" /></p>
+
+<h2 id="2-4-最佳实践">2.4 最佳实践</h2>
+
+<p>两个建立：</p>
+
+<ol>
+<li>低一致性业务建议使用最大内存和淘汰策略的方式</li>
+<li>高一致性业务可以结合使用超时剔除和主动更新，这样即使主动更新除了问题，也能保证数据达到过期时间后删除脏数据。</li>
+</ol>
+
+<h1 id="3-缓存粒度控制方法">3 缓存粒度控制方法</h1>
+
+<p>下面通过一种常见的架构来讨论控制的粒度</p>
+
+<p><img src="/media/hovel/48.png" alt="MySQL + Redis 架构s" /></p>
+
+<p>对于这种架构，我们到底是缓存 MysSQL 中全部数据还是部分重要数据，这个问题就是缓存粒度问题，究竟是缓存全部属性还是只缓存部分重要属性。下面从通用性、空间占用和代码维护三个角度说明。</p>
+
+<ol>
+<li>通用性：缓存全部数据比部分数据更加通用，但从实际经验看，很长时间内应用只需要几个重要的属性。</li>
+<li>空间占用：缓存全部数据要比部分数据占用更多空间，可能存在以下问题
+
+<ol>
+<li>全部数据会造成内存浪费</li>
+<li>全部数据可能每次传输每次产生的网络流量会比较大，耗时相对较大，在极端情况下会阻塞网络。</li>
+<li>全部数据的序列化和反序列化的 CPU 开销更大</li>
+</ol></li>
+<li>代码维护：全部数据的优势更加明显，而部分数据一旦要加新字段需要修改业务代码，而且修改后通常还需要刷新缓存数据</li>
+</ol>
+
+<p>下图是两者的比较</p>
+
+<p><img src="/media/hovel/49.png" alt="缓存全部数据和部分数据的对比" /></p>
+
+<h1 id="4-穿透问题优化">4 穿透问题优化</h1>
+
+<p>缓存穿透是指查询一个根本不存在的数据，缓存层和存储层都不会命中，通常处于容错的考虑，如果存储层查不到数据则不写入缓存层。</p>
+
+<p>因为查不到所以不写入缓存层，这里就存在一个问题了，如果业务代码或数据存在问题，那么会发生非常高的并发穿透，那么缓存层就失去了意义，其次就算一切正常，但是遇到恶意攻击或者是爬虫爬取数据的情况，那么同样可能产生很多空命中，依然使缓存层失去了意义，从而可能导致数据库奔溃。</p>
+
+<h2 id="4-1-解决方案">4.1 解决方案</h2>
+
+<h3 id="4-1-1-缓存空对象">4.1.1 缓存空对象</h3>
+
+<p>当存储层查询不到数据时，将空对象写入缓存。这个解决方案也有问题，第一空值做了缓存，意味着缓存层中存了更多的键，需要更多的内存空间（如果是攻击，问题更严重），比较有效的方法是针对这类数据设置一个较短的过期时间，让其自动剔除。第二，缓存层和存储层的数据会有一段时间窗口的不一致，可能会对业务有一定影响。例如过期时间设置为 5 分钟，如果此时存储层添加了这个数据，那此段时间就会出现缓存层和存储层数据的不一致，此时可以利用消息系统或者其他方式清除掉缓存层中的空对象。</p>
+
+<h3 id="4-1-2-布隆过滤器">4.1.2 布隆过滤器</h3>
+
+<p>在访问缓存层和存储层之前，将存储的 key 用布隆过滤器提前保存起来，做一层拦截。例如：一个推荐系统有 4 亿个用户 id，每个小时算法工程师会根据每个用户之前历史行为计算出推荐数据放到存储层中，但是最新的用户由于没有历史行为，就会发生缓存穿透行为，为此可以将所有推荐数据的用户做成布隆过滤器。如果布隆过滤器认为该用户 id 不存在，那么就不会访问存储层，在一定程度保护了存储层。</p>
+
+<h3 id="4-1-3-两种方案的对比">4.1.3 两种方案的对比</h3>
+
+<p><img src="/media/hovel/50.png" alt="两种方案的对比" /></p>
+
+<h1 id="5-无底洞问题优化">5 无底洞问题优化</h1>
+
+<h1 id="6-雪崩问题优化">6 雪崩问题优化</h1>
+
+<p>缓存雪崩：由于缓存层承担了大量的请求，有效的保护了存储层，但是如果缓存层突然挂了，那么所有的请求就会全部打到存储层，会造成存储层的级联宕机。预防和解决缓存雪崩问题，可以从下面三个方面着手：</p>
+
+<ol>
+<li>保证缓存层服务高可用：缓存层设计成高可用，做集群。</li>
+<li>依赖隔离组建为后端限流并降级：比如说对于个性化推荐服务不可用，可以降级补充热点数据</li>
+<li>提前演练：及时发现可能出现的问题，做好预案。</li>
+</ol>
+
+<h1 id="7-热点-key-重建优化">7 热点 key 重建优化</h1>
+
+<p>如果某一个 key 是一个热门 key，并发量非常大，当这个 key 到期时，重建缓存不能再短时间内完成，重建缓存可能涉及复杂计算。在缓存失效的瞬间，可能触发非常多的线程去重建缓存，形式参考下图</p>
+
+<p><img src="/media/hovel/51.png" alt="触发多次重建缓存" /></p>
+
+<p>当出现这种情况的时候，可能瞬间将系统中的资源消耗干净了，非常危险，下面讨论解决方案</p>
+
+<h2 id="7-1-分布式锁">7.1 分布式锁</h2>
+
+<p>此方法只允许一个线程重建缓存，其他线程等待重建缓存的线程执行完，重新从缓存获取数据即可，过程参考下图</p>
+
+<p><img src="/media/hovel/52.png" alt="等待重建缓存完成" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 代码实现
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">String</span> <span class="n">get</span><span class="p">(</span><span class="n">String</span> <span class="nf">key</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">InterruptedException</span> <span class="p">{</span>
+        <span class="c1">// 从 Redis 中获取数据
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">value</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="c1">// 如果 value 为空，则开始重构缓存
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 只允许一个线程重构缓存，使用 nx，并设置过期时间 ex
+</span><span class="c1"></span>            <span class="n">String</span> <span class="nf">mutexKey</span> <span class="o">=</span> <span class="s">&#34;mutex🔑&#34;</span> <span class="o">+</span> <span class="n">key</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">redis</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">mutexKey</span><span class="p">,</span> <span class="s">&#34;1&#34;</span><span class="p">,</span> <span class="s">&#34;ex 180&#34;</span><span class="p">,</span> <span class="s">&#34;nx&#34;</span><span class="p">))</span> <span class="p">{</span>
+                <span class="c1">// 从数据源获取数据
+</span><span class="c1"></span>                <span class="n">value</span> <span class="o">=</span> <span class="n">db</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+                <span class="c1">// 回写 Redis，并设置过期时间
+</span><span class="c1"></span>                <span class="n">redis</span><span class="p">.</span><span class="na">setex</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+                <span class="c1">// 删除 key_mutex
+</span><span class="c1"></span>                <span class="n">redis</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">mutexKey</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="c1">// 其他线程休息50毫秒后重试
+</span><span class="c1"></span>            <span class="k">else</span> <span class="p">{</span>
+                <span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">50</span><span class="p">);</span>
+                <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="7-2-永远不过期">7.2 永远不过期</h2>
+
+<p>从缓存层面看，不设置过期时间确实不会过期。从功能层面设置定时任务去刷新这个缓存。</p>
+
+<h2 id="7-3-两者对比">7.3 两者对比</h2>
+
+<p><img src="/media/hovel/53.png" alt="两种策略的对比" /></p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<p>1.<a href="https://gitee.com/zhixiangyuan/bookStorage/raw/master/%E7%BC%96%E7%A8%8B/Redis%20%E5%BC%80%E5%8F%91%E4%B8%8E%E8%BF%90%E7%BB%B4.pdf">Redis 开发与运维</a></p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/algorithms/%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F/">
+            <span class="next-text nav-default">堆和堆排序</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
