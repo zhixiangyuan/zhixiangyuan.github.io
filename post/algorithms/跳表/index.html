@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>堆的应用 - Yuanzx Blog</title>
+  <title>跳表 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 优先级队列 优先级队列，我的理解就是一个有排序顺序的队列，对于一般的队列，都是 FIFO，但是对于优先级队列，队列内部的顺序并不是 FIFO 的，在入队" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 跳表的数据结构 跳表是在链表上做的改善，解决了链表查找时间复杂度为 O(n) 的问题，改善之后的跳表可以像二分查找一样，实现时间复杂度为 O(logn) 的效果。 对于" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/post/algorithms/%E5%A0%86%E7%9A%84%E5%BA%94%E7%94%A8/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/algorithms/%E8%B7%B3%E8%A1%A8/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="堆的应用" />
-<meta property="og:description" content="1 优先级队列 优先级队列，我的理解就是一个有排序顺序的队列，对于一般的队列，都是 FIFO，但是对于优先级队列，队列内部的顺序并不是 FIFO 的，在入队" />
+<meta property="og:title" content="跳表" />
+<meta property="og:description" content="1 跳表的数据结构 跳表是在链表上做的改善，解决了链表查找时间复杂度为 O(n) 的问题，改善之后的跳表可以像二分查找一样，实现时间复杂度为 O(logn) 的效果。 对于" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/post/algorithms/%E5%A0%86%E7%9A%84%E5%BA%94%E7%94%A8/" />
-<meta property="article:published_time" content="2019-10-15T14:52:36+08:00" />
-<meta property="article:modified_time" content="2019-10-15T14:52:36+08:00" />
-<meta itemprop="name" content="堆的应用">
-<meta itemprop="description" content="1 优先级队列 优先级队列，我的理解就是一个有排序顺序的队列，对于一般的队列，都是 FIFO，但是对于优先级队列，队列内部的顺序并不是 FIFO 的，在入队">
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/algorithms/%E8%B7%B3%E8%A1%A8/" />
+<meta property="article:published_time" content="2019-10-16T10:51:09+08:00" />
+<meta property="article:modified_time" content="2019-10-16T10:51:09+08:00" />
+<meta itemprop="name" content="跳表">
+<meta itemprop="description" content="1 跳表的数据结构 跳表是在链表上做的改善，解决了链表查找时间复杂度为 O(n) 的问题，改善之后的跳表可以像二分查找一样，实现时间复杂度为 O(logn) 的效果。 对于">
 
 
-<meta itemprop="datePublished" content="2019-10-15T14:52:36&#43;08:00" />
-<meta itemprop="dateModified" content="2019-10-15T14:52:36&#43;08:00" />
-<meta itemprop="wordCount" content="349">
+<meta itemprop="datePublished" content="2019-10-16T10:51:09&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-16T10:51:09&#43;08:00" />
+<meta itemprop="wordCount" content="710">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="堆的应用"/>
-<meta name="twitter:description" content="1 优先级队列 优先级队列，我的理解就是一个有排序顺序的队列，对于一般的队列，都是 FIFO，但是对于优先级队列，队列内部的顺序并不是 FIFO 的，在入队"/>
+<meta name="twitter:title" content="跳表"/>
+<meta name="twitter:description" content="1 跳表的数据结构 跳表是在链表上做的改善，解决了链表查找时间复杂度为 O(n) 的问题，改善之后的跳表可以像二分查找一样，实现时间复杂度为 O(logn) 的效果。 对于"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,10 +124,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">堆的应用</h1>
+      <h1 class="post-title">跳表</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-10-15 </span>
+        <span class="post-time"> 2019-10-16 </span>
         <div class="post-category">
             <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
             </div>
@@ -138,28 +138,64 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#1-优先级队列">1 优先级队列</a></li>
-<li><a href="#2-利用堆求-top-k">2 利用堆求 Top K</a></li>
-</ul>
-</nav>
+    
   </div>
 </div>
     <div class="post-content">
-      
+      <h1 id="1-跳表的数据结构">1 跳表的数据结构</h1>
 
-<h1 id="1-优先级队列">1 优先级队列</h1>
+<p>跳表是在链表上做的改善，解决了链表查找时间复杂度为 O(n) 的问题，改善之后的跳表可以像二分查找一样，实现时间复杂度为 O(logn) 的效果。</p>
 
-<p>优先级队列，我的理解就是一个有排序顺序的队列，对于一般的队列，都是 FIFO，但是对于优先级队列，队列内部的顺序并不是 FIFO 的，在入队的时候需要进行一次排序，确定其在队列中的问题，然后根据顺序出队。</p>
+<p><figure><img src="/media/algorithms/19.png" alt="单链表"></figure></p>
 
-<p>堆完全可以用来实现优先级队列，甚至可以说，堆本身就是一个优先级队列</p>
+<p>对于单链表，查找的时间复杂度为 O(n)，怎么才能改善这个问题，我们可以通过每两个节点提取一个索引的形式对链表做改善，下图是改善后的形式</p>
 
-<h1 id="2-利用堆求-top-k">2 利用堆求 Top K</h1>
+<p><figure><img src="/media/algorithms/20.png" alt="增加第一级索引"></figure></p>
 
-<p>对于静态数据集，我们只需要维护一个容量大小为 K 的小顶堆，在开始的时候遍历一遍数据，如果遍历到的数据比小顶堆堆顶的数据大，那么就删掉小顶堆的堆顶数据，将该数据插入到堆中，然后完成一次堆化，这样遍历数组需要的时间是 O(n)，每次堆化的时间是O(logK)，所以需要的时间复杂度是 O(nlogn)。</p>
+<p>使用改善后的链表，我们可以现在第一级索引里面找，比如说找 16，当我们找到 13，发现下一个是 17，比 16 大，那么我们就从 13 号索引下降到原始链表，然后向后查找就能迅速找到 16。</p>
 
-<p>对于动态数据集，我们只一直维持这个小顶堆，在新进来数据的时候，将数据和小顶堆的堆顶数据做比较即可。这样子哪怕数据上亿也不怕</p>
+<p>在此基础上，我们能再提一级索引，形成下面这种样子</p>
+
+<p><figure><img src="/media/algorithms/21.png" alt="增加二级索引"></figure></p>
+
+<p>对于一个有 64 个节点的链表，我们能够构造出下图的索引结构，用黄色线标出了查询数据的路径，非常高效，链表长度越大，提升越明显</p>
+
+<p><figure><img src="/media/algorithms/22.png" alt="64 节点的跳表"></figure></p>
+
+<p>这种结构的数据结构便是在链表的基础上实现了二分查找，时间复杂度为 O(logn)</p>
+
+<h1 id="2-跳表会不会很浪费内存">2 跳表会不会很浪费内存</h1>
+
+<p>跳表相比于普通链表需要创建很多索引，我们先来算一算跳表索引的空间复杂度</p>
+
+<p><figure><img src="/media/algorithms/23.png" alt="跳表索引的空间复杂度"></figure></p>
+
+<p><span  class="math">\[ n/2  + n/4 + ··· + 4 + 2 = n - 2 \]</span></p>
+
+<p>也就是说跳表的空间复杂度是 O(n)</p>
+
+<p>同时通过多个点提取一个索引的方式可以降低索引所需空间，但其实开发时无需过多关心这一点，因为存储的索引相较于存储的数据其实很小。</p>
+
+<p>以下是每三个点提取一个索引</p>
+
+<p><figure><img src="/media/algorithms/24.png" alt="每三个点提取一个索引"></figure>
+<figure><img src="/media/algorithms/25.png" alt="每三个点提取一个索引"></figure></p>
+
+<p><span  class="math">\[ n/3  + n/9 + ··· + 3 + 1 = n / 2 \]</span></p>
+
+<p>所需空间减小了一半，不过空间复杂度还是 O(n)</p>
+
+<h1 id="3-插入和删除操作">3 插入和删除操作</h1>
+
+<p>插入数据只需要在查找到数据之后将数据插入到该数据的后面即可</p>
+
+<p>删除数据同理，在查找到数据之后将该数据删除即可，不过如果该数据存在索引也需要将索引删除。</p>
+
+<p>这里面有一个问题，在多次插入和删除之后，可能出现某一段数据中间没有索引，那么查询的效率就会退化，如下图所示。</p>
+
+<p><figure><img src="/media/algorithms/26.png" alt="查询效率退化"></figure></p>
+
+<p>这个问题可以通过在插入数据的时候通过随机函数来判断是否为该节点建索引，以及索引放到哪一级来解决。</p>
 
     </div>
 
@@ -167,13 +203,9 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/algorithms/%E8%B7%B3%E8%A1%A8/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">跳表</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/post/hovel/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/">
-            <span class="next-text nav-default">缓存设计</span>
+        
+        <a class="next" href="/post/algorithms/%E5%A0%86%E7%9A%84%E5%BA%94%E7%94%A8/">
+            <span class="next-text nav-default">堆的应用</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -241,6 +273,13 @@
   </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
 <script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 
 
 
