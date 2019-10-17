@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2018-12-17T23:18:57&#43;08:00" />
 <meta itemprop="dateModified" content="2018-12-17T23:18:57&#43;08:00" />
-<meta itemprop="wordCount" content="170">
+<meta itemprop="wordCount" content="297">
 
 
 
@@ -148,10 +148,16 @@
 </ul></li>
 <li><a href="#2-求范围内的数字个数">2 求范围内的数字个数</a>
 <ul>
-<li><a href="#1-1-既不包含-num1-也不包含-num2-即-num1-num2">1.1 既不包含 num1，也不包含 num2，即 (num1,num2)</a></li>
-<li><a href="#1-2-包含-num1-或-num2-即-num1-num2-或是-num1-num2">1.2 包含 num1 或 num2，即 (num1,num2] 或是 [num1,num2)</a></li>
-<li><a href="#1-3-既包含-num1-又包含-num2-即-num1-num2">1.3 既包含 num1 又包含 num2，即 [num1,num2]</a></li>
+<li><a href="#1-1-既不包含-low-也不包含-high-即-low-high">1.1 既不包含 low，也不包含 high，即 (low,high)</a></li>
+<li><a href="#1-2-包含-low-或-high-即-low-high-或是-low-high">1.2 包含 low 或 high，即 (low,high] 或是 [low,high)</a></li>
+<li><a href="#1-3-既包含-high-又包含-low-即-low-high">1.3 既包含 high 又包含 low，即 [low,high]</a></li>
 </ul></li>
+<li><a href="#3-数组遍历模版">3 数组遍历模版</a>
+<ul>
+<li><a href="#3-1-从小到大遍历">3.1 从小到大遍历</a></li>
+<li><a href="#3-2-从大到小遍历">3.2 从大到小遍历</a></li>
+</ul></li>
+<li><a href="#4-数组中的-length">4 数组中的 length</a></li>
 </ul>
 </nav>
   </div>
@@ -182,19 +188,93 @@
 
 <h1 id="2-求范围内的数字个数">2 求范围内的数字个数</h1>
 
-<p>求 num1 和 num2 中间的数字个数</p>
+<p>求 low 和 high 中间的数字个数</p>
 
-<h2 id="1-1-既不包含-num1-也不包含-num2-即-num1-num2">1.1 既不包含 num1，也不包含 num2，即 (num1,num2)</h2>
+<h2 id="1-1-既不包含-low-也不包含-high-即-low-high">1.1 既不包含 low，也不包含 high，即 (low,high)</h2>
 
-<p><code>num1 - num2 - 1 = ...</code></p>
+<p><code>high - low - 1 = ...</code></p>
 
-<h2 id="1-2-包含-num1-或-num2-即-num1-num2-或是-num1-num2">1.2 包含 num1 或 num2，即 (num1,num2] 或是 [num1,num2)</h2>
+<h2 id="1-2-包含-low-或-high-即-low-high-或是-low-high">1.2 包含 low 或 high，即 (low,high] 或是 [low,high)</h2>
 
-<p><code>num1 - num2 = ...</code></p>
+<p><code>high - low = ...</code></p>
 
-<h2 id="1-3-既包含-num1-又包含-num2-即-num1-num2">1.3 既包含 num1 又包含 num2，即 [num1,num2]</h2>
+<h2 id="1-3-既包含-high-又包含-low-即-low-high">1.3 既包含 high 又包含 low，即 [low,high]</h2>
 
-<p><code>num1 - num2 + 1 = ...</code></p>
+<p><code>high - low + 1 = ...</code></p>
+
+<h1 id="3-数组遍历模版">3 数组遍历模版</h1>
+
+<h2 id="3-1-从小到大遍历">3.1 从小到大遍历</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">遍历数组 [low,high]
+
+index = low; index &lt;= high; index++
+
+比如说：
+
+[0,2]
+
+index = 0; index &lt;= 2 - 0; index++
+
+[9,12]
+
+index = 9; index &lt;= 12; index++</pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-2-从大到小遍历">3.2 从大到小遍历</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">遍历数组 [low,high]
+
+index = high; index &gt;= low; index--
+
+比如说：
+
+[0,2]
+
+index = 2; index &gt;= 0; index--
+
+[9,12]
+
+index = 12; index &gt;= 9; index--</pre></td></tr></table>
+</div>
+</div>
+<h1 id="4-数组中的-length">4 数组中的 length</h1>
+
+<p>length = high - low + 1</p>
+
+<p>即 [low, high]</p>
 
     </div>
 
