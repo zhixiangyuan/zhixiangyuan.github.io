@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 16 Oct 2019 10:51:09 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 17 Oct 2019 00:36:50 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>归并排序</title>
+      <link>https://zhixiangyuan.github.io/post/algorithms/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Thu, 17 Oct 2019 00:36:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/algorithms/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</guid>
+      <description>归并排序通过对数组进行二叉树式的拆分最后再合并，完成了其排序过程，并将时间复杂度下降到了 O(nlogn) 的程度，下面是一个数组索引 0 - 9 的数组的拆分的过程</description>
+    </item>
     
     <item>
       <title>跳表</title>
