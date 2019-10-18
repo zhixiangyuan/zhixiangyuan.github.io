@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>快速排序 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="快速排序使用分治思想，实际实现过程和二叉树的前序遍历很像，在第一次碰到节点时进行遍历分区，然后再对子分区进行遍历分区，直到分区中只有一个节点" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/post/algorithms/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="快速排序" />
+<meta property="og:description" content="快速排序使用分治思想，实际实现过程和二叉树的前序遍历很像，在第一次碰到节点时进行遍历分区，然后再对子分区进行遍历分区，直到分区中只有一个节点" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/post/algorithms/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" />
+<meta property="article:published_time" content="2019-10-18T13:56:39+08:00" />
+<meta property="article:modified_time" content="2019-10-18T13:56:39+08:00" />
+<meta itemprop="name" content="快速排序">
+<meta itemprop="description" content="快速排序使用分治思想，实际实现过程和二叉树的前序遍历很像，在第一次碰到节点时进行遍历分区，然后再对子分区进行遍历分区，直到分区中只有一个节点">
+
+
+<meta itemprop="datePublished" content="2019-10-18T13:56:39&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-18T13:56:39&#43;08:00" />
+<meta itemprop="wordCount" content="784">
+
+
+
+<meta itemprop="keywords" content="排序算法," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="快速排序"/>
+<meta name="twitter:description" content="快速排序使用分治思想，实际实现过程和二叉树的前序遍历很像，在第一次碰到节点时进行遍历分区，然后再对子分区进行遍历分区，直到分区中只有一个节点"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">快速排序</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-18 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>快速排序使用分治思想，实际实现过程和二叉树的前序遍历很像，在第一次碰到节点时进行遍历分区，然后再对子分区进行遍历分区，直到分区中只有一个节点或是没有节点为止。</p>
+
+<p>以下是代码实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">QuickSort</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="p">[]</span> <span class="nf">arr</span> <span class="o">=</span> <span class="p">{</span><span class="n">6</span><span class="p">,</span> <span class="n">4</span><span class="p">,</span> <span class="n">3</span><span class="p">,</span> <span class="n">2</span><span class="p">,</span> <span class="n">7</span><span class="p">,</span> <span class="n">9</span><span class="p">,</span> <span class="n">1</span><span class="p">,</span> <span class="n">8</span><span class="p">,</span> <span class="n">5</span><span class="p">};</span>
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">arr</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">arr</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">quickSort</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">internalQuickSort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">0</span><span class="p">,</span> <span class="n">array</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">internalQuickSort</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">array</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">left</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">right</span><span class="p">)</span>
+            <span class="c1">// 当 left == right 时，表示需要排序的数组只有一个数字 right - left + 1 = 1
+</span><span class="c1"></span>            <span class="c1">// 这种情况说明 mid 排序后在倒数第二个元素
+</span><span class="c1"></span>            <span class="c1">// 当 left &gt; right 时，其实 left = right + 1，那么表示没有需要要排序的数字
+</span><span class="c1"></span>            <span class="c1">// right - left + 1 = 0，这种情况说明 mid 排序后在最后一个元素
+</span><span class="c1"></span>            <span class="k">return</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="nf">pivot</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+        <span class="c1">// pivot - 1 区间范围缩小到中心点的左边，不包含中心点
+</span><span class="c1"></span>        <span class="n">internalQuickSort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">pivot</span> <span class="o">-</span> <span class="n">1</span><span class="p">);</span>
+        <span class="c1">// pivot + 1 区间范围缩小到中心点的右边，不包含中心点
+</span><span class="c1"></span>        <span class="n">internalQuickSort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">pivot</span> <span class="o">+</span> <span class="n">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 从小到大遍历
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">int</span> <span class="nf">partition</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">array</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">left</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">right</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 这里选定最右边的点作为中心点
+</span><span class="c1"></span>        <span class="c1">// 这里由于将最右边的点作为了分区点，并用 pivot 保存了起来
+</span><span class="c1"></span>        <span class="c1">// 所以这个 pivot 数组上的位置便可以被替换掉了
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="nf">pivot</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">right</span><span class="p">];</span>
+        <span class="c1">// 我们使用左右指针，先从左边开始遍历
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="nf">leftIndex</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="nf">rightIndex</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+        <span class="c1">// 当左指针跑到右指针的右边时停止循环
+</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">leftIndex</span> <span class="o">&lt;</span> <span class="n">rightIndex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">leftIndex</span> <span class="o">&lt;</span> <span class="n">rightIndex</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 先遍历左边，只要左边的数字比 pivot 小，就不动，指将指针加一就进行
+</span><span class="c1"></span>                <span class="c1">// 下一次循环，如果出现左边的数字比 pivot 大，则停止循环
+</span><span class="c1"></span>                <span class="n">leftIndex</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 左边的数字比 pivot 大，将左边的数字移动到右边
+</span><span class="c1"></span>                <span class="c1">// 空位跑到 leftIndex 所指的位置
+</span><span class="c1"></span>                <span class="c1">// 接下来从右边开始遍历
+</span><span class="c1"></span>                <span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">leftIndex</span> <span class="o">&lt;</span> <span class="n">rightIndex</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 然后遍历右边，只要右边的数字比 pivot 大，就不动，将指针减一就进行下一次循环
+</span><span class="c1"></span>                <span class="c1">// 如果出现右边的数字比 pivot 小，则停止循环
+</span><span class="c1"></span>                <span class="n">rightIndex</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 右边的数字比 pivot 小，那么就将该数字移动到左边
+</span><span class="c1"></span>                <span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 遍历结束后到这里 rightIndex 是等于 leftIndex 的
+</span><span class="c1"></span>        <span class="c1">// 这个位置便是存放 pivot 的
+</span><span class="c1"></span>        <span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">]</span> <span class="o">=</span> <span class="n">pivot</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">leftIndex</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>下图是上述代码遍历时 left 和 right 的变化过程</p>
+
+<p><figure><img src="/media/algorithms/28.png" alt="分区路径"></figure></p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li><a href="https://juejin.im/post/5b55660ee51d4519202e2003">面试 12：玩转 Java 快速排序</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">排序算法</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/algorithms/leetcode-912-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84/">
+            <span class="next-text nav-default">Leetcode: 912 排序数组</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
