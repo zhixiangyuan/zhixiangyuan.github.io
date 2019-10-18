@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 18 Oct 2019 13:56:39 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 18 Oct 2019 16:36:38 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录</description>
+    </item>
+    
+    <item>
+      <title>ThreadLocal 源码浅析</title>
+      <link>https://zhixiangyuan.github.io/post/hovel/threadlocal-%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</link>
+      <pubDate>Fri, 18 Oct 2019 16:36:38 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/post/hovel/threadlocal-%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/</guid>
+      <description>ThreadLocal 用于不同线程存储不同的线程全局变量，在该线程下用 ThreadLocal 取出的值是一致的。这里先简述一下原理，然后再看代码。ThreadLocal 其实是一个 Ke</description>
     </item>
     
     <item>
