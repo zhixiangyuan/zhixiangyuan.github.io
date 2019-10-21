@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RabbitMQ on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/rabbitmq/</link>
+    <description>Recent content in RabbitMQ on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Mon, 21 Oct 2019 11:12:48 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RabbitMQ 客户端开发向导</title>
+      <link>https://zhixiangyuan.github.io/2019/10/21/rabbitmq-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91%E5%90%91%E5%AF%BC/</link>
+      <pubDate>Mon, 21 Oct 2019 11:12:48 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/21/rabbitmq-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91%E5%90%91%E5%AF%BC/</guid>
+      <description>1 引入依赖 1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.rabbitmq&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;amqp-client&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;5.4.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2 连接 RabbitMQ 2.1 通过给定参数来连接 1 2 3 4 5 6 7 ConnectionFactory factory = new ConnectionFactory(); factory.setUsername(&amp;#34;&amp;lt;username&amp;gt;&amp;#34;); factory.setPassword(&amp;#34;&amp;lt;password&amp;gt;&amp;#34;); factory.setVirtualHost(&amp;#34;&amp;lt;virtual_host&amp;#34;); factory.setHost(&amp;#34;&amp;lt;host&amp;gt;&amp;#34;); factory.setPort(5672); Connection connection = factory.newConnection(); 2.2 通过给定 URI 的方式来连接 1 2 3 4 5 ConnectionFactory factory =</description>
+    </item>
+    
+  </channel>
+</rss>
