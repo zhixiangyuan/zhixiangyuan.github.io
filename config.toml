@@ -49,6 +49,10 @@ copyright = "yuanzx"            # default: author.name ↓        # 默认为下
   identifier = "categories"
   url = "/categories/"
 
+[permalinks]
+  # 修改 url 格式
+  post = "/:year/:month/:day/:title/"
+
 [params]
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
