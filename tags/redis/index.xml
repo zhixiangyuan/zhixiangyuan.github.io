@@ -14,109 +14,109 @@
     
     <item>
       <title>缓存设计</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/15/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/</link>
       <pubDate>Tue, 15 Oct 2019 11:10:06 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/15/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/</guid>
       <description>1 缓存的收益和成本分析 缓存架构流程图 1.1 缓存的收益 加速读写：因为缓存通常是全内存的，而存储层通常性能不够强悍，通过缓存的使用可以有效的加速读写</description>
     </item>
     
     <item>
       <title>Redis 中的数据复制</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/14/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6/</link>
       <pubDate>Mon, 14 Oct 2019 11:19:41 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/14/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6/</guid>
       <description>1 数据复制 1.1 建立复制 在从节点的配置文件中加入以下配置，然后启动即可 slaveof &amp;lt;masterip&amp;gt; &amp;lt;masterport&amp;gt; 启动过后通过 info replication 查看节点信息 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20</description>
     </item>
     
     <item>
       <title>Redis 的持久化</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/12/redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</link>
       <pubDate>Sat, 12 Oct 2019 16:18:42 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/12/redis-%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96/</guid>
       <description>Redis 的持久化机制分为两种，RDB 和 AOF 1 RDB RDB 是将当前进程数据生成快照保存到硬盘的过程，触发 RDB 持久化过程分为手动触发和自动触发。 1.1 触发机制 1.1.1 手动触</description>
     </item>
     
     <item>
       <title>Redis 客户端的管理</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%AE%A1%E7%90%86/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%AE%A1%E7%90%86/</link>
       <pubDate>Fri, 11 Oct 2019 15:06:55 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%AE%A1%E7%90%86/</guid>
       <description>1 Jedis 的基本使用 首先引入包 1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;redis.clients&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;jedis&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 基本使用 1 2 3 4 5 6 7 8 public static void main(String[] args) { Jedis jedis = new Jedis(IP, PORT); // 后面通过 jedis 中提供的各种方法就可以直接操作 redis 了 String</description>
     </item>
     
     <item>
       <title>Redis 客户端通信协议</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/</link>
       <pubDate>Fri, 11 Oct 2019 13:30:14 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/</guid>
       <description>redis 的协议客户端通信协议称为 RESP（Redis Serialization Protocol），这种协议简单高效即能被机器解析，又能被人类识别。 1 发送命令的格式 CRLF 指的是</description>
     </item>
     
     <item>
       <title>Redis 中的 GEO 功能</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</link>
       <pubDate>Thu, 10 Oct 2019 15:38:27 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/</guid>
       <description>通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。 1 命令 1.1 添加地理位置信息 geoadd &amp;lt;key&amp;gt;</description>
     </item>
     
     <item>
       <title>Redis 中的发布订阅模式</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Thu, 10 Oct 2019 15:04:46 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/</guid>
       <description>redis 提供发布消息、订阅消息、取消订阅、按照模式订阅和取消订阅和查阅订阅的功能 1 命令 1.1 发布消息 publish &amp;lt;channel&amp;gt; &amp;lt;message&amp;gt; 1 2 3 # 下面的命令向 channel:sports 频道发布一条消息 &amp;#34;Tim won the</description>
     </item>
     
     <item>
       <title>Redis 中的 HyperLogLog</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</link>
       <pubDate>Thu, 10 Oct 2019 14:22:00 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-hyperloglog/</guid>
       <description>HyperLogLog 并不是数据结构而是一种基数算法，通过 HyperLogLog 可以利用极小的内存空间完成独立总数的统计，数据集可以是 IP、Email、ID 等。HyperLogLo</description>
     </item>
     
     <item>
       <title>Redis 中的 Bitmaps</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-bitmaps/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-bitmaps/</link>
       <pubDate>Thu, 10 Oct 2019 12:47:37 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-bitmaps/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-bitmaps/</guid>
       <description>1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&amp;gt;set</description>
     </item>
     
     <item>
       <title>Redis 中的 Pipeline</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-pipeline/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-pipeline/</link>
       <pubDate>Thu, 10 Oct 2019 10:45:25 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E4%B8%AD%E7%9A%84-pipeline/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/10/redis-%E4%B8%AD%E7%9A%84-pipeline/</guid>
       <description>1 为什么要有 pipeline 要了解这个问题首先需要了解 redis 性能瓶颈在哪里，其实，redis 性能问题很多时候在网络传输上，我来计算一下为什么会这样。首先 redis 客户</description>
     </item>
     
     <item>
       <title>Redis 提供的命令行工具</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/09/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Wed, 09 Oct 2019 18:33:21 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/09/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/</guid>
       <description>1 redis-server 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 直接运行 $&amp;gt; redis-server # 可以在后面指定配置然后运行 $&amp;gt; redis-server --configKey1 configValue1 --configKey2 configValue2 # 比如说修改端口号 $&amp;gt; redis-server --port 4500 # 指定配置文件启动 $&amp;gt; redis-server</description>
     </item>
     
     <item>
       <title>Redis 慢查询相关配置与命令</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/09/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Wed, 09 Oct 2019 17:54:45 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/09/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/</guid>
       <description>1 相关配置 配置有两个，分别是 slowlog-log-slower-than 和 slowlog-max-len，两个配置的含义如下 slowlog-log-slower-than: 超过这个时间的查询为慢查询，时间单位为微秒 slowlog-max-len: 保存的慢查询</description>
     </item>
     

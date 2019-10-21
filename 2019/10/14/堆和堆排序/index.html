@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>堆和堆排序 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 堆 堆是一种特殊的树，它需要满足两个要求： 堆是一棵完全二叉树 堆中每一个节点的值必须大于等于（或小于等于）其子树中每个节点的值 根据第二个特性可" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/14/%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="堆和堆排序" />
+<meta property="og:description" content="1 堆 堆是一种特殊的树，它需要满足两个要求： 堆是一棵完全二叉树 堆中每一个节点的值必须大于等于（或小于等于）其子树中每个节点的值 根据第二个特性可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/14/%E5%A0%86%E5%92%8C%E5%A0%86%E6%8E%92%E5%BA%8F/" />
+<meta property="article:published_time" content="2019-10-14T16:36:36+08:00" />
+<meta property="article:modified_time" content="2019-10-14T16:36:36+08:00" />
+<meta itemprop="name" content="堆和堆排序">
+<meta itemprop="description" content="1 堆 堆是一种特殊的树，它需要满足两个要求： 堆是一棵完全二叉树 堆中每一个节点的值必须大于等于（或小于等于）其子树中每个节点的值 根据第二个特性可">
+
+
+<meta itemprop="datePublished" content="2019-10-14T16:36:36&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-14T16:36:36&#43;08:00" />
+<meta itemprop="wordCount" content="2152">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="堆和堆排序"/>
+<meta name="twitter:description" content="1 堆 堆是一种特殊的树，它需要满足两个要求： 堆是一棵完全二叉树 堆中每一个节点的值必须大于等于（或小于等于）其子树中每个节点的值 根据第二个特性可"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">堆和堆排序</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-14 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-堆">1 堆</a>
+<ul>
+<li><a href="#1-1-如何存储堆中节点">1.1 如何存储堆中节点</a></li>
+<li><a href="#1-2-往堆中插入一个元素">1.2 往堆中插入一个元素</a></li>
+<li><a href="#1-3-删除堆顶元素">1.3 删除堆顶元素</a></li>
+<li><a href="#1-4-如何创建一个堆">1.4 如何创建一个堆</a></li>
+</ul></li>
+<li><a href="#2-堆排序">2 堆排序</a></li>
+<li><a href="#3-为什么快速排序比堆排序快">3 为什么快速排序比堆排序快</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-堆">1 堆</h1>
+
+<p>堆是一种特殊的树，它需要满足两个要求：</p>
+
+<ol>
+<li>堆是一棵完全二叉树</li>
+<li>堆中每一个节点的值必须大于等于（或小于等于）其子树中每个节点的值</li>
+</ol>
+
+<p>根据第二个特性可以细分出大顶堆和小顶堆</p>
+
+<h2 id="1-1-如何存储堆中节点">1.1 如何存储堆中节点</h2>
+
+<p>直接使用数组存储即可，数组下标为 0 的位置空着，从数组下标为 1 的位置开始存储，假设某个节点的数组下标为 i，它的左子树节点下标为 i * 2，右子树下标为 i * 2 + 1。</p>
+
+<p><img src="/media/algorithms/14.png" alt="使用数组存储堆" /></p>
+
+<h2 id="1-2-往堆中插入一个元素">1.2 往堆中插入一个元素</h2>
+
+<p>插入元素分为两部，第一步，将元素插入到数组的最后，第二部，由于新插入的元素大小可能会不满足堆的要求，所以要进行堆化。</p>
+
+<p><img src="/media/algorithms/15.png" alt="往堆中插入一个元素" />
+<img src="/media/algorithms/16.png" alt="往堆中插入一个元素" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 往堆中插入一个元素的代码实现
+</span><span class="c1">// 这里的实现考虑的是大顶堆的情况
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">Heap</span> <span class="p">{</span>
+    <span class="c1">// 数组，从下标1开始存储数据
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">int</span><span class="p">[]</span> <span class="n">heapData</span><span class="p">;</span>
+    <span class="c1">// 堆可以存储的最大数据个数
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">int</span> <span class="n">capacity</span><span class="p">;</span>
+    <span class="c1">// 堆中已经存储的数据个数
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">int</span> <span class="n">size</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Heap</span><span class="p">(</span><span class="kt">int</span> <span class="nf">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">heapData</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">capacity</span> <span class="o">+</span> <span class="n">1</span><span class="p">];</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">capacity</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="nf">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="n">capacity</span><span class="p">)</span>
+            <span class="c1">// 堆满了
+</span><span class="c1"></span>            <span class="k">return</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">size</span><span class="p">;</span>
+        <span class="n">heapData</span><span class="p">[</span><span class="n">size</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+        <span class="c1">// 自下往上堆化
+</span><span class="c1"></span>        <span class="c1">// 循环直到 i/2 == 0 为止
+</span><span class="c1"></span>        <span class="c1">// 当 i/2 == 0 表示没有父节点了
+</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span>
+            <span class="c1">// 父节点存在
+</span><span class="c1"></span>                <span class="n">i</span> <span class="o">/</span> <span class="n">2</span> <span class="o">&gt;</span> <span class="n">0</span>
+                        <span class="c1">// 且子节点比父节点大
+</span><span class="c1"></span>                        <span class="o">&amp;&amp;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">i</span> <span class="o">/</span> <span class="n">2</span><span class="p">]</span>
+        <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 交换自节点和父节点的值
+</span><span class="c1"></span>            <span class="n">swap</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">/</span> <span class="n">2</span><span class="p">);</span>
+            <span class="c1">// 将父节点的下标赋值给子节点
+</span><span class="c1"></span>            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">a</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i1</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-3-删除堆顶元素">1.3 删除堆顶元素</h2>
+
+<p>根据堆定义的第二条，任何检点的值都大于等于（或小于等于）子树节点的值，我们就可以发现，堆顶元素存储的就是堆中数据的最大值或者最小值。</p>
+
+<p>删除堆顶元素之后，我们将数组中最后一个元素放到堆顶，然后再次完成堆化就完成了删除堆顶元素的过程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 大顶堆删除堆顶元素的代码实现
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">Heap</span> <span class="p">{</span>
+    <span class="c1">// 数组，从下标1开始存储数据
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">int</span><span class="p">[]</span> <span class="n">heapData</span><span class="p">;</span>
+    <span class="c1">// 堆可以存储的最大数据个数
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">int</span> <span class="n">capacity</span><span class="p">;</span>
+    <span class="c1">// 堆中已经存储的数据个数
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">int</span> <span class="n">size</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">Heap</span><span class="p">(</span><span class="kt">int</span> <span class="nf">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">heapData</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">capacity</span> <span class="o">+</span> <span class="n">1</span><span class="p">];</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">capacity</span> <span class="o">=</span> <span class="n">capacity</span><span class="p">;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">removeMax</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="n">0</span><span class="p">)</span>
+            <span class="c1">// 堆中没有数据
+</span><span class="c1"></span>            <span class="k">return</span><span class="p">;</span>
+        <span class="c1">// 将堆的最后一个数据赋值给堆顶数据
+</span><span class="c1"></span>        <span class="n">heapData</span><span class="p">[</span><span class="n">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">heapData</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>
+        <span class="o">--</span><span class="n">size</span><span class="p">;</span>
+        <span class="n">heapify</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 自上往下堆化
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">void</span> <span class="n">heapify</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">a</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">currIndex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="nf">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span>
+                    <span class="c1">// 存在左节点
+</span><span class="c1"></span>                    <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">&lt;=</span> <span class="n">size</span>
+                            <span class="c1">// 且父节点小于左节点
+</span><span class="c1"></span>                            <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">currIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span><span class="p">]</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 更新最大 index 为左节点
+</span><span class="c1"></span>                <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span>
+                    <span class="c1">// 存在右节点
+</span><span class="c1"></span>                    <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span> <span class="o">&lt;=</span> <span class="n">size</span>
+                            <span class="c1">// 且父节点大于右节点
+</span><span class="c1"></span>                            <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">maxIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span><span class="p">]</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 更新最大 index 为右节点
+</span><span class="c1"></span>                <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// 当最大 index 等于当前 index 时，堆化完成
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">maxIndex</span> <span class="o">==</span> <span class="n">currIndex</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="c1">// 交换 currIndex 和 maxIndex 的数组值
+</span><span class="c1"></span>            <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">currIndex</span><span class="p">,</span> <span class="n">maxIndex</span><span class="p">);</span>
+            <span class="c1">// 将最大 index 赋值给当前 index
+</span><span class="c1"></span>            <span class="c1">// 在交换过后，最大 index 存储的其实就是之前的 index
+</span><span class="c1"></span>            <span class="n">currIndex</span> <span class="o">=</span> <span class="n">maxIndex</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">a</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i1</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-4-如何创建一个堆">1.4 如何创建一个堆</h2>
+
+<p>两个思路：</p>
+
+<p>第一种是建一个空堆，然后向堆里面依次插入数据</p>
+
+<p>第二种是自下往上对数组进行堆化</p>
+
+<p>下面是第二种方式的代码实现和示例图片</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">buildHeap</span><span class="p">(</span>
+            <span class="kt">int</span><span class="p">[]</span> <span class="nf">heapData</span><span class="p">,</span>
+            <span class="c1">// 这里的 size 需要去掉 index = 0 的元素
+</span><span class="c1"></span>            <span class="c1">// 所以 size = length - 1
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="nf">size</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span>
+                <span class="c1">// 初始化的第一个节点是最后一个节点的父节点
+</span><span class="c1"></span>                <span class="kt">int</span> <span class="nf">currIndex</span> <span class="o">=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">2</span><span class="p">;</span>
+                <span class="n">currIndex</span> <span class="o">&gt;=</span> <span class="n">1</span><span class="p">;</span> <span class="o">--</span><span class="n">currIndex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 对整个子树进行堆化
+</span><span class="c1"></span>            <span class="n">heapify</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">currIndex</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">heapify</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">heapData</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">currIndex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="nf">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span>
+                    <span class="c1">// 如果当前节点的右节点存在
+</span><span class="c1"></span>                    <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">&lt;=</span> <span class="n">size</span>
+                            <span class="c1">// 且当前节点的数值小于右节点
+</span><span class="c1"></span>                            <span class="o">&amp;&amp;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">currIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span><span class="p">]</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 将最大 index 设为右节点
+</span><span class="c1"></span>                <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span>
+                    <span class="c1">// 如果当前节点的左节点存在
+</span><span class="c1"></span>                    <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span> <span class="o">&lt;=</span> <span class="n">size</span>
+                            <span class="c1">// 且当前节点的数值小于左节点
+</span><span class="c1"></span>                            <span class="o">&amp;&amp;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">maxIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span><span class="p">]</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 将最大 index 设为左节点
+</span><span class="c1"></span>                <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// 如果最大 index 等于当前 index 则完成堆化
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">maxIndex</span> <span class="o">==</span> <span class="n">currIndex</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="c1">// 交换 maxIndex 存的数值与 currIndex 存的数值
+</span><span class="c1"></span>            <span class="n">swap</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">currIndex</span><span class="p">,</span> <span class="n">maxIndex</span><span class="p">);</span>
+            <span class="c1">// 由于上一步数值交换了，随意这里需要将 index 也进行交换
+</span><span class="c1"></span>            <span class="n">currIndex</span> <span class="o">=</span> <span class="n">maxIndex</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">a</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i1</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="p">[]</span> <span class="nf">arrHeap</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[]{</span><span class="n">0</span><span class="p">,</span> <span class="n">7</span><span class="p">,</span> <span class="n">16</span><span class="p">,</span> <span class="n">20</span><span class="p">,</span> <span class="n">13</span><span class="p">,</span> <span class="n">4</span><span class="p">,</span> <span class="n">1</span><span class="p">,</span> <span class="n">19</span><span class="p">,</span> <span class="n">5</span><span class="p">,</span> <span class="n">8</span><span class="p">,</span> <span class="n">2</span><span class="p">,</span> <span class="n">3</span><span class="p">};</span>
+        <span class="n">buildHeap</span><span class="p">(</span><span class="n">arrHeap</span><span class="p">,</span> <span class="n">arrHeap</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/media/algorithms/17.png" alt="示例图片" /></p>
+
+<h1 id="2-堆排序">2 堆排序</h1>
+
+<p>比如说大顶堆，排序过程就是将堆顶这个最大元素拿到数组末尾元素交换位置，然后去掉数组末尾元素进行堆化，然后再将堆顶元素和次末尾元素交换这样循环结束就完成了数组从小到大的排序。下面是代码实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">sort</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">heapData</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 构建堆
+</span><span class="c1"></span>        <span class="n">buildHeap</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="nf">currSize</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+        <span class="c1">// 当 currIndex == 1 的时候说明已经排序完毕了
+</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">currSize</span> <span class="o">&gt;</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">swap</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">1</span><span class="p">,</span> <span class="n">currSize</span><span class="p">);</span>
+            <span class="o">--</span><span class="n">currSize</span><span class="p">;</span>
+            <span class="c1">// 堆化
+</span><span class="c1"></span>            <span class="n">heapify</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">currSize</span><span class="p">,</span> <span class="n">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">buildHeap</span><span class="p">(</span>
+            <span class="kt">int</span><span class="p">[]</span> <span class="nf">heapData</span><span class="p">,</span>
+            <span class="c1">// 这里的 size 需要去掉 index = 0 的元素
+</span><span class="c1"></span>            <span class="c1">// 所以 size = length - 1
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="nf">size</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span>
+                <span class="c1">// 初始化的第一个节点是最后一个节点的父节点
+</span><span class="c1"></span>                <span class="kt">int</span> <span class="nf">currIndex</span> <span class="o">=</span> <span class="n">size</span> <span class="o">/</span> <span class="n">2</span><span class="p">;</span>
+                <span class="n">currIndex</span> <span class="o">&gt;=</span> <span class="n">1</span><span class="p">;</span> <span class="o">--</span><span class="n">currIndex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 对整个子树进行堆化
+</span><span class="c1"></span>            <span class="n">heapify</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">currIndex</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">heapify</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">heapData</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">currIndex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="nf">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span>
+                    <span class="c1">// 如果当前节点的右节点存在
+</span><span class="c1"></span>                    <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">&lt;=</span> <span class="n">size</span>
+                            <span class="c1">// 且当前节点的数值小于右节点
+</span><span class="c1"></span>                            <span class="o">&amp;&amp;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">currIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span><span class="p">]</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 将最大 index 设为右节点
+</span><span class="c1"></span>                <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span>
+                    <span class="c1">// 如果当前节点的左节点存在
+</span><span class="c1"></span>                    <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span> <span class="o">&lt;=</span> <span class="n">size</span>
+                            <span class="c1">// 且当前节点的数值小于左节点
+</span><span class="c1"></span>                            <span class="o">&amp;&amp;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">maxIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">heapData</span><span class="p">[</span><span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span><span class="p">]</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 将最大 index 设为左节点
+</span><span class="c1"></span>                <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">currIndex</span> <span class="o">*</span> <span class="n">2</span> <span class="o">+</span> <span class="n">1</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// 如果最大 index 等于当前 index 则完成堆化
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">maxIndex</span> <span class="o">==</span> <span class="n">currIndex</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="c1">// 交换 maxIndex 存的数值与 currIndex 存的数值
+</span><span class="c1"></span>            <span class="n">swap</span><span class="p">(</span><span class="n">heapData</span><span class="p">,</span> <span class="n">currIndex</span><span class="p">,</span> <span class="n">maxIndex</span><span class="p">);</span>
+            <span class="c1">// 由于上一步数值交换了，随意这里需要将 index 也进行交换
+</span><span class="c1"></span>            <span class="n">currIndex</span> <span class="o">=</span> <span class="n">maxIndex</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">a</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i1</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">];</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="p">[]</span> <span class="nf">arrHeap</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[]{</span><span class="n">0</span><span class="p">,</span> <span class="n">7</span><span class="p">,</span> <span class="n">16</span><span class="p">,</span> <span class="n">20</span><span class="p">,</span> <span class="n">13</span><span class="p">,</span> <span class="n">4</span><span class="p">,</span> <span class="n">1</span><span class="p">,</span> <span class="n">19</span><span class="p">,</span> <span class="n">5</span><span class="p">,</span> <span class="n">8</span><span class="p">,</span> <span class="n">2</span><span class="p">,</span> <span class="n">3</span><span class="p">};</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">arrHeap</span><span class="p">,</span> <span class="n">arrHeap</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">arrHeap</span><span class="p">));</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="3-为什么快速排序比堆排序快">3 为什么快速排序比堆排序快</h1>
+
+<ol>
+<li>堆排序由于它访问数组下标老是跳着访问，比如说 1，2，4，8，这样访问对 CPU 的缓存不友好</li>
+<li>堆排序由于每次交换之后需要重新堆化，所以实际交换次数比快速排序多</li>
+</ol>
+
+<p><img src="/media/algorithms/18.png" alt="堆化图例" /></p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/2019/10/15/%E7%BC%93%E5%AD%98%E8%AE%BE%E8%AE%A1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">缓存设计</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/10/14/%E5%88%B6%E4%BD%9C-macos-%E5%AE%89%E8%A3%85%E7%9B%98/">
+            <span class="next-text nav-default">制作 MacOS 安装盘</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

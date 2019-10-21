@@ -14,64 +14,64 @@
     
     <item>
       <title>Shell 中的字符串处理</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/shell-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/13/shell-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/</link>
       <pubDate>Sun, 13 Oct 2019 19:27:09 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/shell-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/13/shell-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/</guid>
       <description>1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，</description>
     </item>
     
     <item>
       <title>Shell 中的三目运算符</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/shell-%E4%B8%AD%E7%9A%84%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/13/shell-%E4%B8%AD%E7%9A%84%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
       <pubDate>Sun, 13 Oct 2019 19:01:27 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/shell-%E4%B8%AD%E7%9A%84%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/13/shell-%E4%B8%AD%E7%9A%84%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
       <description>shell 中的三目运算符有四种，分别是 :-、:+、:=、:?，下面分别举例 1 :- ${var:-string} 对于这种表达式表示若 $var 为空则使用 string 替换 ${var:-string}，</description>
     </item>
     
     <item>
       <title>Linux 基础 1</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/linux-%E5%9F%BA%E7%A1%80-1/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80-1/</link>
       <pubDate>Sat, 12 Oct 2019 13:04:55 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/linux-%E5%9F%BA%E7%A1%80-1/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80-1/</guid>
       <description>useradd 1 2 3 4 5 # 新建用户 $&amp;gt; useradd &amp;lt;usrename&amp;gt; # 新建用户，并将用户加入指定的组 # 组名必须存在，否则会提示不存在 $&amp;gt; useradd &amp;lt;username&amp;gt; -g &amp;lt;groupname&amp;gt; passwd 1 2 3 4 # 更改当前用户的密码 $&amp;gt; passwd # 更</description>
     </item>
     
     <item>
       <title>命令行语法字符</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</link>
+      <link>https://zhixiangyuan.github.io/2019/10/10/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</link>
       <pubDate>Thu, 10 Oct 2019 16:33:08 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2019-hovel/october/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/10/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%AD%E6%B3%95%E5%AD%97%E7%AC%A6/</guid>
       <description>1 方括号 [ ] 方括号表示里面的内容是可选的，不要将方括号本身也输入到命令行 2 尖括号 &amp;lt; &amp;gt; 尖括号表示里面的内容是必须的，不要将尖括号本身也输入到命</description>
     </item>
     
     <item>
       <title>sed 小记</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2018-hovel/sed-%E5%B0%8F%E8%AE%B0/</link>
+      <link>https://zhixiangyuan.github.io/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Thu, 04 Oct 2018 16:21:59 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2018-hovel/sed-%E5%B0%8F%E8%AE%B0/</guid>
+      <guid>https://zhixiangyuan.github.io/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/</guid>
       <description>1 sed 的工作流程 sed 逐行处理文件或输入，默认不会修改文件，除非使用 shell 重定向保存结果。 工作流程： 将正在处理的行保存在一个临时缓存区中（也称为模式空</description>
     </item>
     
     <item>
       <title>grep 小记</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2018-hovel/grep-%E5%B0%8F%E8%AE%B0/</link>
+      <link>https://zhixiangyuan.github.io/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Tue, 25 Sep 2018 15:02:04 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2018-hovel/grep-%E5%B0%8F%E8%AE%B0/</guid>
+      <guid>https://zhixiangyuan.github.io/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/</guid>
       <description>grep -A [line num]，向下显示多少行，after-context 缩写 -B [line num]，向上显示多少行，before-context 缩写 -C [line num]，上</description>
     </item>
     
     <item>
       <title>tar &amp; scp 小记</title>
-      <link>https://zhixiangyuan.github.io/post/hovel/2018-hovel/tar-scp-%E5%B0%8F%E8%AE%B0/</link>
+      <link>https://zhixiangyuan.github.io/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Mon, 24 Sep 2018 17:35:38 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/post/hovel/2018-hovel/tar-scp-%E5%B0%8F%E8%AE%B0/</guid>
+      <guid>https://zhixiangyuan.github.io/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/</guid>
       <description>1 scp 命令 上传：scp [文件路径] [用户名]@[IP 地址]:[服务器路径] 下载：scp [用户名]@[IP 地址]:[文件路径] [本地路径] 2 tar 命</description>
     </item>
     

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>二叉树基础 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 树的基础知识 节点的高度：节点到叶子结点的边数 节点的深度：跟节点到这个节点经历的边数 节点的层数：节点的深度 &#43; 1 树的高度：根节点的高度 2 二叉树" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/11/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E7%A1%80/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="二叉树基础" />
+<meta property="og:description" content="1 树的基础知识 节点的高度：节点到叶子结点的边数 节点的深度：跟节点到这个节点经历的边数 节点的层数：节点的深度 &#43; 1 树的高度：根节点的高度 2 二叉树" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/11/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E7%A1%80/" />
+<meta property="article:published_time" content="2019-10-11T09:51:42+08:00" />
+<meta property="article:modified_time" content="2019-10-11T09:51:42+08:00" />
+<meta itemprop="name" content="二叉树基础">
+<meta itemprop="description" content="1 树的基础知识 节点的高度：节点到叶子结点的边数 节点的深度：跟节点到这个节点经历的边数 节点的层数：节点的深度 &#43; 1 树的高度：根节点的高度 2 二叉树">
+
+
+<meta itemprop="datePublished" content="2019-10-11T09:51:42&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-11T09:51:42&#43;08:00" />
+<meta itemprop="wordCount" content="1399">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="二叉树基础"/>
+<meta name="twitter:description" content="1 树的基础知识 节点的高度：节点到叶子结点的边数 节点的深度：跟节点到这个节点经历的边数 节点的层数：节点的深度 &#43; 1 树的高度：根节点的高度 2 二叉树"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">二叉树基础</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-11 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="1-树的基础知识">1 树的基础知识</h1>
+
+<ul>
+<li>节点的高度：节点到叶子结点的边数</li>
+<li>节点的深度：跟节点到这个节点经历的边数</li>
+<li>节点的层数：节点的深度 + 1</li>
+<li>树的高度：根节点的高度</li>
+</ul>
+
+<h1 id="2-二叉树的分类">2 二叉树的分类</h1>
+
+<p>一般比较常用的就是二叉树，二叉树可以粗略的分为满二叉树和完全二叉树</p>
+
+<h2 id="21-完全二叉树的特性">2.1 完全二叉树的特性</h2>
+
+<p>一般存储一棵二叉树有两种方式，一是基于指针的二叉链式存储法，另外一种是基于数组的顺序存储法，链式存储比较好理解，这里只记录基于数组的顺序存储法。下图展示的就是如果用数组来保存。</p>
+
+<p><figure><img src="/media/algorithms/10.png" alt="基于数组的顺序存储法"></figure></p>
+
+<p>可以发现，当使用数组保存的时候，如果数组的第一位为 1 开始保存的话，那么下标为 2 * i 的位置存储的就是左子节点，下标为 2 * i + 1 的地方就是右子节点。</p>
+
+<p>堆其实就是一种完全二叉树，最常用的存储方式就是数组</p>
+
+<h2 id="3-二叉树的遍历">3 二叉树的遍历</h2>
+
+<p>遍历方式分为前序、中序、后序和层序四种方式</p>
+
+<h1 id="4-二叉查找树">4 二叉查找树</h1>
+
+<p>二叉查找树在二叉树的基础上补充了一条定义，即选取树中任意一个节点，其左子树中的每个节点的值，都要小于这个节点的值，而右子树中每个节点的值都要大于这个节点</p>
+
+<h2 id="41-二叉查找树的查找操作和插入操作">4.1 二叉查找树的查找操作和插入操作</h2>
+
+<p>这两个操作比较简单，纯粹的比较，当比较满足条件的时候执行返回结果或是新建节点的操作</p>
+
+<h2 id="42-二叉查找树的删除操作">4.2 二叉查找树的删除操作</h2>
+
+<p>二叉树的删除操作需要分为三种情况来处理</p>
+
+<ol>
+<li>第一种情况，如果要删除的节点没有子节点，我们只需要直接将父节点的指针置为 null</li>
+<li>第二种情况，如果要删除的节点只有一个子节点，我们只需要将父节点原来指向要删除节点的指针指向这个子节点即可</li>
+<li>第三种情况，如果要删除的节点有两个子节点，这个时候我们需要找到这个节点的右子树中的最小节点，然后把它替换到要删除的节点上，然后再把这个最小节点删除，因为这个最小节点肯定没有左节点（如果有，那他就不是最小节点了）。</li>
+</ol>
+
+<h2 id="43-二叉查找树的特性">4.3 二叉查找树的特性</h2>
+
+<ol>
+<li>中序遍历能够输出有序数列，并且时间复杂度只有 O(n)</li>
+</ol>
+
+<h2 id="44-二叉查找树如何支持重复数据">4.4 二叉查找树如何支持重复数据</h2>
+
+<p>当需要存储重复的数据的时候，有两种方式存储</p>
+
+<ol>
+<li>第一个方法，将节点内部存储数据的数据结构改成链表或者数组，这样就可以存储多个重复数据了</li>
+<li>第二个方法，每个节点仍然只存储一个数据，插入时碰到节点的值相同，就将这个要插入的数据放到这个节点的右子树，也就是说，将这个新插入的数据当作大于这个节点的值来处理。
+
+<ul>
+<li>这样改造之后对于查找和删除都要做相应的修改，查找的时候在找到这个值之后还要继续在右子树中寻找，删除同理</li>
+</ul></li>
+</ol>
+
+<h2 id="45-二叉树的时间复杂度分析">4.5 二叉树的时间复杂度分析</h2>
+
+<p>先看以下三棵树</p>
+
+<p><figure><img src="/media/algorithms/11.png" alt="三棵树"></figure></p>
+
+<p>对于树的增删查操作都和树的高度有关，对于完全二叉树的高度小于等于 <span  class="math">\(log_2n\)</span>，所以树的各种操作是 O(logn)，但是当树退化成链表结构的时候，时间复杂度就变成 O(n) 了。</p>
+
+<h2 id="46-为什么不使用散列表而使用二叉树">4.6 为什么不使用散列表而使用二叉树</h2>
+
+<ol>
+<li>第一，散列表中的数据是无需存储的，如果要输出有序的数据，需要先进行排序，对于二叉查找树来树，只需要中序遍历，就可以在 O(n) 的时间复杂度内输出有序的数据序列。</li>
+<li>第二，散列表扩容耗时很多，而且当遇到散列冲突时，性能不稳定，尽管二叉查找树的性能不稳定，但是在工程中，我们最常用的平衡二叉查找树的性能非常稳定，时间复杂度稳定在 O(logn)</li>
+<li>第三，笼统的说，尽管散列表的查找等操作的时间复杂度是常数级的，但因为哈希冲突的存在，这个常量不一定比 logn 小，所以实际的查找速度可能不一定比 O(logn) 块。加上哈希函数的耗时，也不一定就比平衡二叉树的效率高。</li>
+<li>散列表的构造比二叉查找树要复杂，因为考虑的东西很多，比如散列函数的设计、冲突解决办法、扩容、缩容等。平衡二叉查找树只需要考虑平衡型这一个问题，而且增额问题的解决方案比较成熟、固定。</li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Redis 客户端通信协议</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/10/10/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/">
+            <span class="next-text nav-default">命令模式</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

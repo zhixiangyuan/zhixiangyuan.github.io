@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux 基础 1 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="useradd 1 2 3 4 5 # 新建用户 $&amp;gt; useradd &amp;lt;usrename&amp;gt; # 新建用户，并将用户加入指定的组 # 组名必须存在，否则会提示不存在 $&amp;gt; useradd &amp;lt;username&amp;gt; -g &amp;lt;groupname&amp;gt; passwd 1 2 3 4 # 更改当前用户的密码 $&amp;gt; passwd # 更" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Linux 基础 1" />
+<meta property="og:description" content="useradd 1 2 3 4 5 # 新建用户 $&gt; useradd &lt;usrename&gt; # 新建用户，并将用户加入指定的组 # 组名必须存在，否则会提示不存在 $&gt; useradd &lt;username&gt; -g &lt;groupname&gt; passwd 1 2 3 4 # 更改当前用户的密码 $&gt; passwd # 更" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80-1/" />
+<meta property="article:published_time" content="2019-10-12T13:04:55+08:00" />
+<meta property="article:modified_time" content="2019-10-12T13:04:55+08:00" />
+<meta itemprop="name" content="Linux 基础 1">
+<meta itemprop="description" content="useradd 1 2 3 4 5 # 新建用户 $&gt; useradd &lt;usrename&gt; # 新建用户，并将用户加入指定的组 # 组名必须存在，否则会提示不存在 $&gt; useradd &lt;username&gt; -g &lt;groupname&gt; passwd 1 2 3 4 # 更改当前用户的密码 $&gt; passwd # 更">
+
+
+<meta itemprop="datePublished" content="2019-10-12T13:04:55&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-12T13:04:55&#43;08:00" />
+<meta itemprop="wordCount" content="906">
+
+
+
+<meta itemprop="keywords" content="linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux 基础 1"/>
+<meta name="twitter:description" content="useradd 1 2 3 4 5 # 新建用户 $&gt; useradd &lt;usrename&gt; # 新建用户，并将用户加入指定的组 # 组名必须存在，否则会提示不存在 $&gt; useradd &lt;username&gt; -g &lt;groupname&gt; passwd 1 2 3 4 # 更改当前用户的密码 $&gt; passwd # 更"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux 基础 1</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-12 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#useradd">useradd</a></li>
+<li><a href="#passwd">passwd</a></li>
+<li><a href="#用户信息存放的位置及存储的内容">用户信息存放的位置及存储的内容</a></li>
+<li><a href="#文件信息">文件信息</a></li>
+<li><a href="#管理软件">管理软件</a></li>
+<li><a href="#后台运行程序">后台运行程序</a></li>
+<li><a href="#通过命令关闭程序">通过命令关闭程序</a></li>
+<li><a href="#程序跟随系统启动">程序跟随系统启动</a></li>
+<li><a href="#关机与重启">关机与重启</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="useradd">useradd</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 新建用户</span>
+$&gt; useradd &lt;usrename&gt;
+<span class="c1"># 新建用户，并将用户加入指定的组</span>
+<span class="c1"># 组名必须存在，否则会提示不存在</span>
+$&gt; useradd &lt;username&gt; -g &lt;groupname&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="passwd">passwd</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 更改当前用户的密码</span>
+$&gt; passwd 
+<span class="c1"># 更改指定用户的密码</span>
+$&gt; passwd &lt;username&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="用户信息存放的位置及存储的内容">用户信息存放的位置及存储的内容</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 这里存放的是用户的信息</span>
+$&gt; cat /etc/passwd
+<span class="c1"># &lt;用户名&gt;:&lt;密码（这里存放的不是真正的密码）&gt;:&lt;用户 ID&gt;:</span>
+<span class="c1"># &lt;组 ID&gt;:&lt;用户主目录，用户登录后默认进入该目录&gt;:&lt;用户登陆后默认使用的交互命令行&gt;</span>
+root: x :0:0:root:/root:/bin/bash
+......
+newUser: x :1000:1000::/home/cliu8:/bin/bash</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="文件信息">文件信息</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># d 表示文件夹，- 表示文件</span>
+<span class="c1"># 接下来的 rwx 分为三组，分别表示用户权限，用户所在组权限和其他用户权限</span>
+<span class="c1"># r 是 read，w 是 write，x 是执行</span>
+<span class="c1"># 第二个字段表示硬连接树木</span>
+<span class="c1"># 第三个字段表示所属用户</span>
+<span class="c1"># 第四个字段表示所属组</span>
+<span class="c1"># 第五个字段表示文件大小</span>
+<span class="c1"># 第六个字段是文件被修改的日期</span>
+<span class="c1"># 最后一个是文件名</span>
+drwxr-xr-x <span class="m">3</span> root root   <span class="m">4096</span> Jun  <span class="m">7</span> <span class="m">21</span>:26 jdk
+-rwxr-xr-x <span class="m">2</span> root root  <span class="m">20480</span> Oct <span class="m">12</span> <span class="m">13</span>:08 logs</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="管理软件">管理软件</h1>
+
+<p>Linux 现在常用的有两大体系，分别是 CentOS 和 Ubuntu 体系，对应的安装包分为 .rpm 和 .deb 结尾。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 安装命令，-i 表示 install</span>
+$&gt; rpm -i &lt;software&gt;.rpm
+$&gt; dpkg -i &lt;software&gt;.rpm
+
+<span class="c1"># 查看已安装的软件列表</span>
+<span class="c1"># -q 表示 query，-a 表示 all</span>
+$&gt; rpm -qa
+<span class="c1"># -l 表示 list</span>
+$&gt; dpkg -l
+
+<span class="c1"># 可以使用 more 或 less 来分页展示</span>
+$&gt; rpm -qa <span class="p">|</span> more
+$&gt; rpm -qa <span class="p">|</span> less
+
+<span class="c1"># 使用软件管家帮忙安装</span>
+$&gt; yum install &lt;software&gt;
+$&gt; apt-get install &lt;software&gt;
+
+<span class="c1"># 卸载软件</span>
+$&gt; yum erase &lt;software&gt;
+$&gt; apt-get purge &lt;software&gt;
+
+<span class="c1"># 修改下载源</span>
+<span class="c1"># CentOS 在这个位置</span>
+$&gt; vim /etc/yum.repos.d/CentOS-Base.repo
+<span class="c1"># Ubuntu 在这个位置</span>
+$&gt; vim /etc/apt/sources.list</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="后台运行程序">后台运行程序</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># nohup 命令 no hang up 不挂起，表示命令行退出的时候程序还在</span>
+<span class="c1"># &amp; 后台运行</span>
+<span class="c1"># 1”表示文件描述符 1，表示标准输出，“2”表示文件描述符 2，意思</span>
+<span class="c1"># 是标准错误输出，“2&gt;&amp;1”表示标准输出和 错误输出合并了。合并到</span>
+<span class="c1"># 哪里去呢? 到 out.file 里。</span>
+$&gt; nohup &lt;command&gt; &gt;outfile <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="通过命令关闭程序">通过命令关闭程序</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># awk &#39;{print $2}&#39;是指第二列的内容，是运行的程序 ID</span>
+<span class="c1"># xargs 将传输传递给 kill -9</span>
+$&gt; ps -ef <span class="p">|</span>grep 关键字 <span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span><span class="p">|</span>xargs <span class="nb">kill</span> -9</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="程序跟随系统启动">程序跟随系统启动</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 启动 mysql</span>
+$&gt; systemctl start mysql
+<span class="c1"># 开启启动</span>
+<span class="c1"># 程序会在 /lib/systemd/system 目录下创建一个 &lt;程序名&gt;.service 的配置文件</span>
+<span class="c1"># 里面定义了如何启动，如何关闭</span>
+$&gt; systemctl <span class="nb">enable</span> mysql</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="关机与重启">关机与重启</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 现在关机</span>
+$&gt; shutdown -h now 
+<span class="c1"># 重启</span>
+$&gt; reboot</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/10/12/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">状态模式</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/10/11/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+            <span class="next-text nav-default">迭代器模式</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>时间复杂度与空间复杂度 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 时间复杂度 分析程序时间复杂度的时候只需要关注循环中的代码即可 1.1 常见的时间复杂度 常见的时间复杂度有 O(1), O(n), O(logn), O(nlogn), O(\(n^2\)).. O(\(n^k\)), O(\(2^n\)), O(n!) 其中 O(\(2^n\)) 和 O(n!) 在数据规模增大时" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/07/10/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="时间复杂度与空间复杂度" />
+<meta property="og:description" content="1 时间复杂度 分析程序时间复杂度的时候只需要关注循环中的代码即可 1.1 常见的时间复杂度 常见的时间复杂度有 O(1), O(n), O(logn), O(nlogn), O(\(n^2\)).. O(\(n^k\)), O(\(2^n\)), O(n!) 其中 O(\(2^n\)) 和 O(n!) 在数据规模增大时" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/07/10/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" />
+<meta property="article:published_time" content="2019-07-10T18:36:23+08:00" />
+<meta property="article:modified_time" content="2019-07-10T18:36:23+08:00" />
+<meta itemprop="name" content="时间复杂度与空间复杂度">
+<meta itemprop="description" content="1 时间复杂度 分析程序时间复杂度的时候只需要关注循环中的代码即可 1.1 常见的时间复杂度 常见的时间复杂度有 O(1), O(n), O(logn), O(nlogn), O(\(n^2\)).. O(\(n^k\)), O(\(2^n\)), O(n!) 其中 O(\(2^n\)) 和 O(n!) 在数据规模增大时">
+
+
+<meta itemprop="datePublished" content="2019-07-10T18:36:23&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-10T18:36:23&#43;08:00" />
+<meta itemprop="wordCount" content="718">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="时间复杂度与空间复杂度"/>
+<meta name="twitter:description" content="1 时间复杂度 分析程序时间复杂度的时候只需要关注循环中的代码即可 1.1 常见的时间复杂度 常见的时间复杂度有 O(1), O(n), O(logn), O(nlogn), O(\(n^2\)).. O(\(n^k\)), O(\(2^n\)), O(n!) 其中 O(\(2^n\)) 和 O(n!) 在数据规模增大时"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">时间复杂度与空间复杂度</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-10 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-07-10T18:36:23" title="July 10, 2019">July 10, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      <h1 id="1-时间复杂度">1 时间复杂度</h1>
+
+<p>分析程序时间复杂度的时候只需要关注循环中的代码即可</p>
+
+<h2 id="11-常见的时间复杂度">1.1 常见的时间复杂度</h2>
+
+<p><figure><img src="/media/algorithms/1.png" alt="时间复杂度分类"></figure></p>
+
+<p>常见的时间复杂度有 O(1), O(n), O(logn), O(nlogn), O(<span  class="math">\(n^2\)</span>).. O(<span  class="math">\(n^k\)</span>), O(<span  class="math">\(2^n\)</span>), O(n!)</p>
+
+<p>其中 O(<span  class="math">\(2^n\)</span>) 和 O(n!) 在数据规模增大时呈现指数级增长，属于很糟糕的表现</p>
+
+<p><figure><img src="/media/algorithms/2.png" alt="时间复杂度坐标图"></figure></p>
+
+<h2 id="12-o1">1.2 O(1)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>时间复杂度: O(1)</p>
+
+<h2 id="13-on">1.3 O(n)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">int</span> <span class="n">n</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">sum</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>时间复杂度：O(n)</p>
+
+<h2 id="14-ologn">1.4 O(logn)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">int</span> <span class="n">logn</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>时间复杂度：O(logn)</p>
+
+<p>如果把运行时 i 的值一个一个的列出来，如下图所示</p>
+
+<p><figure><img src="/media/algorithms/3.png" alt="i 的数值"></figure></p>
+
+<p>x 便是最终代码运行次数，由 <span  class="math">\(2^x = n\)</span> 可得 <span  class="math">\(x = log_2 n\)</span> 所以时间复杂度即为 O(logn)</p>
+
+<p>这里如果将代码改成下述的样子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">int</span> <span class="n">logn</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">3</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>时间复杂度是否变成了 O(<span  class="math">\(log_3n\)</span>) 呢？其实并没有还是 O(logn)，这是由于 O(<span  class="math">\(log_3n\)</span>) = O(<span  class="math">\(log_32 * log_2n\)</span>)，由于 <span  class="math">\(log_32\)</span> 是一个常数，故而可以忽略，O(<span  class="math">\(log_3n\)</span>) = O(<span  class="math">\(log_2n\)</span>) 故而我们在对数阶的时间复杂度里面忽略底，统一写成 O(logn)。</p>
+
+<h2 id="15-onlogn">1.5 O(nlogn)</h2>
+
+<p>知道 O(n) 和 O(logn)，那么这一种就好理解了，直接看代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">int</span> <span class="n">sum</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">3</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+     <span class="kd">public</span> <span class="nf">void</span> <span class="n">n</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">sum</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>时间复杂度：O(nlogn)</p>
+
+<h2 id="16-om--n">1.6 O(m + n)</h2>
+
+<p>这种时间复杂度取决于两个数据规模，因为无法知道这两个数据规模谁大谁小</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kt">int</span> <span class="nf">cal</span><span class="p">(</span><span class="kt">int</span> <span class="nf">m</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="kt">int</span> <span class="nf">sum_1</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span> 
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span> 
+            <span class="n">sum_1</span> <span class="o">=</span> <span class="n">sum_1</span> <span class="o">+</span> <span class="n">i</span><span class="p">;</span> 
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="nf">sum_2</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>  
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">j</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span> 
+            <span class="n">sum_2</span> <span class="o">=</span> <span class="n">sum_2</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span> 
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">sum_1</span> <span class="o">+</span> <span class="n">sum_2</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>时间复杂度：O(m + n)</p>
+
+<h1 id="2-空间复杂度">2 空间复杂度</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kt">void</span> <span class="nf">print</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="p">[]</span> <span class="nf">a</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>空间复杂度：O(n)</p>
+
+<p>上述代码只有 <code>int[] a = new int[n]</code> 申请了一个大小为 n 的 int 类型数组，剩下的没有占用更多的空间，所以整段代码的空间复杂度就是 O(n)。</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/2019/07/11/%E6%9C%80%E5%A5%BD%E6%9C%80%E5%9D%8F%E5%B9%B3%E5%9D%87%E5%9D%87%E6%91%8A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">最好、最坏、平均、均摊时间复杂度</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/07/10/double-%E8%BD%AC-bigdecimal-%E9%80%A0%E6%88%90%E7%9A%84%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/">
+            <span class="next-text nav-default">double 转 BigDecimal 造成的精度丢失</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
