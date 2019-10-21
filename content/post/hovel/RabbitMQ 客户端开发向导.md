@@ -415,6 +415,41 @@ RabbitMQ 提供了消息确认机制，当 autoAck 为 false 时，在消息发�
 
 ![web 页面看到的 Ready 和 Unacknowledged](/media/hovel/54.png)
 
+```java
+    // 消息确认可以调用 channel 中的这个方法
+    // deliveryTag 可以看作消息的编号，它是一个 64 位的长整型值
+    // multiple 批量确认，如果为 true ，则执行批量确认，此 deliveryTag 
+    // 与此前收到的消息全部确认；如果为 false，则只对当前收到的消息进行
+    // 确认
+    void basicAck(long deliveryTag, boolean multiple) throws IOException;
+```
 
+## 6.2 消息的拒绝
+
+```java
+    // 只能拒绝一条
+    // requeue 拒绝后是否重新放回队列
+    void basicReject(long deliveryTag, boolean requeue) throws IOException;
+
+    // 下面命令可以实现批量拒绝
+    // multiple 批量拒绝，如果为 true，则执行批量拒绝，此 deliveryTag 与
+    // 此前收到的消息全部拒绝；如果为 false 则只对当前收到的消息进行拒绝
+    // requeue 拒绝后是否重新放回队列
+    void basicNack(long deliveryTag, boolean multiple, boolean requeue) throws IOException; 
+```
 
 # 7 关闭连接
+
+```java
+    channel.close();
+    // connection 关闭的时候，注册在其上的 channel 也会关闭
+    connection.close();
+
+    // 在 Connection 和 Channel 中有个很有用的方法
+    // 这个方法可以让我们直到关闭的原因
+    void addShutdownListener(ShutdownListener listener);
+```
+
+# 参考资料
+
+1. [RabbitMQ 实战指南](https://gitee.com/zhixiangyuan/bookStorage/blob/master/%E7%BC%96%E7%A8%8B/RabbitMQ%20%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97.pdf)
