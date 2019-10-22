@@ -1,10 +1,10 @@
 ---
-title: "Mybatis Plugin 使用案例"
+title: "MyBatis Plugin 使用案例"
 date: 2019-09-10T07:34:23+08:00
 keywords: []
 description: ""
 tags: [
-    "Mybatis"
+    "MyBatis"
 ]
 categories: [
     "杂货铺"
@@ -13,7 +13,7 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-Mybatis 插件，实现功能的插件又可称之为拦截器，主要提供对 org.apache.ibatis.executor.Executor、org.apache.ibatis.executor.statement.StatementHandler、org.apache.ibatis.executor.parameter.ParameterHandler、org.apache.ibatis.executor.resultset.ResultSetHandler 中定义的方法做拦截扩展，首先写一个拦截起，看看他是怎么定位到拦截到哪个类的哪个方法的
+MyBatis 插件，实现功能的插件又可称之为拦截器，主要提供对 org.apache.ibatis.executor.Executor、org.apache.ibatis.executor.statement.StatementHandler、org.apache.ibatis.executor.parameter.ParameterHandler、org.apache.ibatis.executor.resultset.ResultSetHandler 中定义的方法做拦截扩展，首先写一个拦截起，看看他是怎么定位到拦截到哪个类的哪个方法的
 
 # 1 实现一个拦截器
 
@@ -37,7 +37,7 @@ Mybatis 插件，实现功能的插件又可称之为拦截器，主要提供对
 public class SimpleInterceptor implements Interceptor {
 
     /**
-     * Invocation 对象是 Mybatis 中封装的类，这个类当中封装了代理对象、需要拦截的方法和
+     * Invocation 对象是 MyBatis 中封装的类，这个类当中封装了代理对象、需要拦截的方法和
      * 该方法的参数列表
      */
     @Override
@@ -97,7 +97,7 @@ public class Invocation {
 }
 ```
 
-# 2 在 Mybatis 中注册该拦截器
+# 2 在 MyBatis 中注册该拦截器
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -167,7 +167,7 @@ public class Plugin implements InvocationHandler {
     this.signatureMap = signatureMap;
   }
   // 我们在对 对象 进行包装时使用了这个方法，进来看一下
-  // 这里的 target 是 Mybatis 传给我们的对象
+  // 这里的 target 是 MyBatis 传给我们的对象
   // interceptor 是我们自己实现的拦截器
   public static Object wrap(Object target, Interceptor interceptor) {
     // getSignatureMap 这个方法就是将我们拦截器上面的方法签名摘下来

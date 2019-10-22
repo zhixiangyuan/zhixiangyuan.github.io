@@ -1,10 +1,10 @@
 ---
-title: "Mybatis TypeHandler 使用案例"
+title: "MyBatis TypeHandler 使用案例"
 date: 2019-09-09T07:20:41+08:00
 keywords: []
 description: ""
 tags: [
-    "Mybatis"
+    "MyBatis"
 ]
 categories: [
     "杂货铺"
@@ -13,7 +13,7 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-数据库的数据类型与 Java 中的数据类型存在差异，当需要对两者做特定的转换时，Mybatis 提供了 TypeHandler 来实现转换操作，以下是一个实际案例，通过将 Java 中的 List 转换成 String 进行存储，在取出来的时候将 String 还原成 List。
+数据库的数据类型与 Java 中的数据类型存在差异，当需要对两者做特定的转换时，MyBatis 提供了 TypeHandler 来实现转换操作，以下是一个实际案例，通过将 Java 中的 List 转换成 String 进行存储，在取出来的时候将 String 还原成 List。
 
 # 1 实现一个 TypeHandler 处理器
 
@@ -141,7 +141,7 @@ public class TestMain {
 
 # 3 JdbcType 的选择
 
-在 Mybatis 中已经定义好了枚举类，直接调用即可
+在 MyBatis 中已经定义好了枚举类，直接调用即可
 
 ```java
 public enum JdbcType {

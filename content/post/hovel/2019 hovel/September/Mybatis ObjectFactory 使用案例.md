@@ -1,10 +1,10 @@
 ---
-title: "Mybatis ObjectFactory 使用案例"
+title: "MyBatis ObjectFactory 使用案例"
 date: 2019-09-10T07:02:15+08:00
 keywords: []
 description: ""
 tags: [
-    "Mybatis"
+    "MyBatis"
 ]
 categories: [
     "杂货铺"
@@ -13,11 +13,11 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-Mybatis 每次创建结果对象的新实例时，它都会使用一个对象工厂来完成。默认的对象工厂仅仅是实例化目标类，要么通过默认构造方法，要么在构造方法上参数映射存在的时候通过参数构造方法来实例化。所以，如果我们希望在查询结果对象转换为 Java model 的时候做一些自己的操作，就可以通过自定义对象工厂的方式来完成。
+MyBatis 每次创建结果对象的新实例时，它都会使用一个对象工厂来完成。默认的对象工厂仅仅是实例化目标类，要么通过默认构造方法，要么在构造方法上参数映射存在的时候通过参数构造方法来实例化。所以，如果我们希望在查询结果对象转换为 Java model 的时候做一些自己的操作，就可以通过自定义对象工厂的方式来完成。
 
 # 1 编写自定义 ObjectFactory 对象
 
-Mybatis 中有默认的对象工厂，我们只需要继承并重写需要重写的方法即可。下面的代码目的是为了在创建 Dept 对象的时候为其中的 country 字段赋值 China。
+MyBatis 中有默认的对象工厂，我们只需要继承并重写需要重写的方法即可。下面的代码目的是为了在创建 Dept 对象的时候为其中的 country 字段赋值 China。
 
 ```java
 public class MyObjectFactory extends DefaultObjectFactory {
