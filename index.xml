@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 21 Oct 2019 11:12:48 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 10:34:21 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录</description>
+    </item>
+    
+    <item>
+      <title>MyBatis 源码结构</title>
+      <link>https://zhixiangyuan.github.io/2019/10/22/mybatis-%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Tue, 22 Oct 2019 10:34:21 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/22/mybatis-%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84/</guid>
+      <description>1 MyBatis 整体架构 MyBatis 的整体架构分为三层： 基础支持层 核心处理层 接口层 三层结构如下图所示： MyBatis 源码包结构： 1.1 基础支持层 基础支持层，包含整个 MyBatis 的基础模块，</description>
     </item>
     
     <item>
@@ -787,21 +796,21 @@
     </item>
     
     <item>
-      <title>Mybatis Plugin 使用案例</title>
+      <title>MyBatis Plugin 使用案例</title>
       <link>https://zhixiangyuan.github.io/2019/09/10/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</link>
       <pubDate>Tue, 10 Sep 2019 07:34:23 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/09/10/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</guid>
-      <description>Mybatis 插件，实现功能的插件又可称之为拦截器，主要提供对 org.apache.ibatis.executor.Executor、org.apach</description>
+      <description>MyBatis 插件，实现功能的插件又可称之为拦截器，主要提供对 org.apache.ibatis.executor.Executor、org.apach</description>
     </item>
     
     <item>
-      <title>Mybatis ObjectFactory 使用案例</title>
+      <title>MyBatis ObjectFactory 使用案例</title>
       <link>https://zhixiangyuan.github.io/2019/09/10/mybatis-objectfactory-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</link>
       <pubDate>Tue, 10 Sep 2019 07:02:15 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/09/10/mybatis-objectfactory-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</guid>
-      <description>Mybatis 每次创建结果对象的新实例时，它都会使用一个对象工厂来完成。默认的对象工厂仅仅是实例化目标类，要么通过默认构造方法，要么在构造方法上参数映射</description>
+      <description>MyBatis 每次创建结果对象的新实例时，它都会使用一个对象工厂来完成。默认的对象工厂仅仅是实例化目标类，要么通过默认构造方法，要么在构造方法上参数映射</description>
     </item>
     
     <item>
@@ -814,12 +823,12 @@
     </item>
     
     <item>
-      <title>Mybatis TypeHandler 使用案例</title>
+      <title>MyBatis TypeHandler 使用案例</title>
       <link>https://zhixiangyuan.github.io/2019/09/09/mybatis-typehandler-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</link>
       <pubDate>Mon, 09 Sep 2019 07:20:41 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/09/09/mybatis-typehandler-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/</guid>
-      <description>数据库的数据类型与 Java 中的数据类型存在差异，当需要对两者做特定的转换时，Mybatis 提供了 TypeHandler 来实现转换操作，以下是一个实际案例，通过将 Java 中的</description>
+      <description>数据库的数据类型与 Java 中的数据类型存在差异，当需要对两者做特定的转换时，MyBatis 提供了 TypeHandler 来实现转换操作，以下是一个实际案例，通过将 Java 中的</description>
     </item>
     
     <item>
