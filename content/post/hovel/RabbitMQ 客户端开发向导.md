@@ -31,7 +31,7 @@ author: "yuanzx"
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUsername("<username>");
         factory.setPassword("<password>");
-        factory.setVirtualHost("<virtual_host");
+        factory.setVirtualHost("<virtual_host>");
         factory.setHost("<host>");
         factory.setPort(5672);
         Connection connection = factory.newConnection();
