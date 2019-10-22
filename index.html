@@ -129,7 +129,7 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 引入依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.rabbitmq&lt;/groupId&gt; &lt;artifactId&gt;amqp-client&lt;/artifactId&gt; &lt;version&gt;5.4.3&lt;/version&gt; &lt;/dependency&gt; 2 连接 RabbitMQ 2.1 通过给定参数来连接 1 2 3 4 5 6 7 ConnectionFactory factory = new ConnectionFactory(); factory.setUsername(&#34;&lt;username&gt;&#34;); factory.setPassword(&#34;&lt;password&gt;&#34;); factory.setVirtualHost(&#34;&lt;virtual_host&#34;); factory.setHost(&#34;&lt;host&gt;&#34;); factory.setPort(5672); Connection connection = factory.newConnection(); 2.2 通过给定 URI 的方式来连接 1 2 3 4 5 ConnectionFactory factory =
+      1 引入依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.rabbitmq&lt;/groupId&gt; &lt;artifactId&gt;amqp-client&lt;/artifactId&gt; &lt;version&gt;5.4.3&lt;/version&gt; &lt;/dependency&gt; 2 连接 RabbitMQ 2.1 通过给定参数来连接 1 2 3 4 5 6 7 ConnectionFactory factory = new ConnectionFactory(); factory.setUsername(&#34;&lt;username&gt;&#34;); factory.setPassword(&#34;&lt;password&gt;&#34;); factory.setVirtualHost(&#34;&lt;virtual_host&gt;&#34;); factory.setHost(&#34;&lt;host&gt;&#34;); factory.setPort(5672); Connection connection = factory.newConnection(); 2.2 通过给定 URI 的方式来连接 1 2 3 4 5 ConnectionFactory factory =
     </div>
     <div class="read-more">
       <a href="/2019/10/21/rabbitmq-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91%E5%90%91%E5%AF%BC/" class="read-more-link">阅读更多</a>
