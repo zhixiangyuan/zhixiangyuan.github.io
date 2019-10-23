@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 22 Oct 2019 16:25:33 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 23 Oct 2019 10:40:51 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java 中的桥接方法</title>
+      <link>https://zhixiangyuan.github.io/2019/10/23/java-%E4%B8%AD%E7%9A%84%E6%A1%A5%E6%8E%A5%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Wed, 23 Oct 2019 10:40:51 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/23/java-%E4%B8%AD%E7%9A%84%E6%A1%A5%E6%8E%A5%E6%96%B9%E6%B3%95/</guid>
+      <description>先看下面的接口与接口实现 1 2 3 4 5 6 7 8 9 10 public interface AInterface&amp;lt;T&amp;gt; { void func(T t); } public class AClass implements AInterface&amp;lt;String&amp;gt; { @Override public void func(String s) { System.out.println(s); } } 由于 Java 的泛型是要擦除的，所以当虚拟机看到的时候其实</description>
+    </item>
     
     <item>
       <title>XPath 解析器示例</title>
