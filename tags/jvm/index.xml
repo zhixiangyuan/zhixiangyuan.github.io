@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 26 Oct 2019 21:42:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 21:54:10 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>类的加载过程</title>
+      <link>https://zhixiangyuan.github.io/2019/10/26/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Sat, 26 Oct 2019 21:54:10 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/26/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/</guid>
+      <description>类的加载分为以下五个步骤： 加载 连接 初始化 使用 卸载 1 加载 加载操作会去加载类的二进制数据到内存中，然后在堆中开辟出一个 java.lang.Class 对象 2 连接 连接又包含三个</description>
+    </item>
     
     <item>
       <title>JVM 内存模型</title>
