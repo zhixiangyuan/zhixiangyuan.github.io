@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 26 Oct 2019 20:34:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 20:43:53 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JVM 堆内存中的结构</title>
+      <link>https://zhixiangyuan.github.io/2019/10/26/jvm-%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Sat, 26 Oct 2019 20:43:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/26/jvm-%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84/</guid>
+      <description>1 堆内存结构 堆内存中分为三块，分别是年轻代、老年代和方法区，Java 堆不需要连续的内存，可以动态增加内存，增加失败则抛出 OutOfMemoryError 异常 1.1 方法区 方法区</description>
+    </item>
     
     <item>
       <title>常见的垃圾回收算法</title>
