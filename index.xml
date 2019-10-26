@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 26 Oct 2019 21:54:10 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 21:55:24 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录</description>
+    </item>
+    
+    <item>
+      <title>Java 中的类加载器</title>
+      <link>https://zhixiangyuan.github.io/2019/10/26/java-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</link>
+      <pubDate>Sat, 26 Oct 2019 21:55:24 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/26/java-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/</guid>
+      <description>Java 中的类加载器分为三种： 启动类加载器 扩展类加载器 应用程序类加载器 1 启动类加载器 Bootstrap ClassLoader，C 语言实现，用于加载 JDK\jre\lib\rt.jar 2 扩展类加载器</description>
     </item>
     
     <item>
