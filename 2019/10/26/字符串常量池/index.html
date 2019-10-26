@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>JVM 堆内存中的结构 - Yuanzx Blog</title>
+  <title>字符串常量池 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 堆内存结构 堆内存中分为三块，分别是年轻代、老年代和方法区，Java 堆不需要连续的内存，可以动态增加内存，增加失败则抛出 OutOfMemoryError 异常 1.1 年轻代与老年" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="JVM 为了提高性能和减少内存开销，实现数据共享，所以引入了字符串常量池。字符串常量池存在于方法区当中，创建字符串常量时，首先判断字符串是否存在于" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/26/jvm-%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="JVM 堆内存中的结构" />
-<meta property="og:description" content="1 堆内存结构 堆内存中分为三块，分别是年轻代、老年代和方法区，Java 堆不需要连续的内存，可以动态增加内存，增加失败则抛出 OutOfMemoryError 异常 1.1 年轻代与老年" />
+<meta property="og:title" content="字符串常量池" />
+<meta property="og:description" content="JVM 为了提高性能和减少内存开销，实现数据共享，所以引入了字符串常量池。字符串常量池存在于方法区当中，创建字符串常量时，首先判断字符串是否存在于" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/26/jvm-%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84/" />
-<meta property="article:published_time" content="2019-10-26T20:43:53+08:00" />
-<meta property="article:modified_time" content="2019-10-26T20:43:53+08:00" />
-<meta itemprop="name" content="JVM 堆内存中的结构">
-<meta itemprop="description" content="1 堆内存结构 堆内存中分为三块，分别是年轻代、老年代和方法区，Java 堆不需要连续的内存，可以动态增加内存，增加失败则抛出 OutOfMemoryError 异常 1.1 年轻代与老年">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/" />
+<meta property="article:published_time" content="2019-10-26T21:23:31+08:00" />
+<meta property="article:modified_time" content="2019-10-26T21:23:31+08:00" />
+<meta itemprop="name" content="字符串常量池">
+<meta itemprop="description" content="JVM 为了提高性能和减少内存开销，实现数据共享，所以引入了字符串常量池。字符串常量池存在于方法区当中，创建字符串常量时，首先判断字符串是否存在于">
 
 
-<meta itemprop="datePublished" content="2019-10-26T20:43:53&#43;08:00" />
-<meta itemprop="dateModified" content="2019-10-26T20:43:53&#43;08:00" />
-<meta itemprop="wordCount" content="397">
+<meta itemprop="datePublished" content="2019-10-26T21:23:31&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-26T21:23:31&#43;08:00" />
+<meta itemprop="wordCount" content="219">
 
 
 
 <meta itemprop="keywords" content="JVM," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="JVM 堆内存中的结构"/>
-<meta name="twitter:description" content="1 堆内存结构 堆内存中分为三块，分别是年轻代、老年代和方法区，Java 堆不需要连续的内存，可以动态增加内存，增加失败则抛出 OutOfMemoryError 异常 1.1 年轻代与老年"/>
+<meta name="twitter:title" content="字符串常量池"/>
+<meta name="twitter:description" content="JVM 为了提高性能和减少内存开销，实现数据共享，所以引入了字符串常量池。字符串常量池存在于方法区当中，创建字符串常量时，首先判断字符串是否存在于"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">JVM 堆内存中的结构</h1>
+      <h1 class="post-title">字符串常量池</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-10-26 </span>
@@ -138,40 +138,47 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#1-堆内存结构">1 堆内存结构</a></li>
-<li><a href="#1-1-年轻代与老年代">1.1 年轻代与老年代</a></li>
-<li><a href="#2-方法区">2 方法区</a></li>
-</ul>
-</nav>
+    
   </div>
 </div>
     <div class="post-content">
-      
-
-<h1 id="1-堆内存结构">1 堆内存结构</h1>
-
-<p>堆内存中分为三块，分别是年轻代、老年代和方法区，Java 堆不需要连续的内存，可以动态增加内存，增加失败则抛出 OutOfMemoryError 异常</p>
-
-<p><img src="/hub/2019/october/3.png" alt="堆内存中的结构" /></p>
-
-<h1 id="1-1-年轻代与老年代">1.1 年轻代与老年代</h1>
-
-<p>年轻代中又分为三块 edan、survivor0、survivor1，这里面使用了标记整理算法，每次只使用 edan 与一块 survivor，当 edan 中满了之后便触发一次 GC 将 edan 与 survivor0 中存活的对象整理到 survivor1 中，然后将 edan 和 survivor0 清理干净，之后便使用 edan 和 survivor1，同时在整理的时候，这些被整理的对象年龄加一，当年龄达到一定岁数时便转移到老年代。</p>
-
-<p><img src="/hub/2019/october/4.png" alt="1" />
-<img src="/hub/2019/october/5.png" alt="2" />
-<img src="/hub/2019/october/6.png" alt="3" /></p>
-
-<p>在年轻代中发生的 GC 称为 Minor GC，在老年代中发生的 GC 称为 Major GC</p>
-
-<p><img src="/hub/2019/october/7.png" alt="4" /></p>
-
-<h1 id="2-方法区">2 方法区</h1>
-
-<p>方法区用于存放已经被加载的类的信息、常量、静态变量、即时编译器编译后的代码等数据。堆这块区域进行垃圾回收的主要目标是对常量池的回收和对类的卸载，HotSpot 虚拟机将它当作永久代来进行垃圾回收。方法区逻辑上属于堆的一部分，但是为了与堆进行区分，通常由叫做“非堆”。</p>
-
+      <p>JVM 为了提高性能和减少内存开销，实现数据共享，所以引入了字符串常量池。字符串常量池存在于方法区当中，创建字符串常量时，首先判断字符串是否存在于常量池当中，如果存在则直接返回该实例的引用，如果不存在则实例化该字符串放入池中再返回引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="nf">args</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="n">String</span> <span class="nf">s1</span> <span class="o">=</span> <span class="s">&#34;Cat&#34;</span><span class="p">;</span>
+        <span class="n">String</span> <span class="nf">s2</span> <span class="o">=</span> <span class="s">&#34;Cat&#34;</span><span class="p">;</span>
+        <span class="c1">// 在堆内存中创建一个 &#34;Cat&#34; 对象
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">s3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="s">&#34;Cat&#34;</span><span class="p">);</span>
+        <span class="c1">// intern() 会将创建的 String 放入常量池
+</span><span class="c1"></span>        <span class="c1">// 如果该常量已经存在则返回常量池中已存在的常量
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">s4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">(</span><span class="s">&#34;Cat&#34;</span><span class="p">).</span><span class="na">intern</span><span class="p">();</span>
+        <span class="c1">// true
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s1</span> <span class="o">==</span> <span class="n">s2</span><span class="p">);</span>
+        <span class="c1">// false
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s1</span> <span class="o">==</span> <span class="n">s3</span><span class="p">);</span>
+        <span class="c1">// true
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">s1</span> <span class="o">==</span> <span class="n">s4</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
@@ -180,13 +187,9 @@
           <a href="/tags/jvm/">JVM</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/10/26/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">字符串常量池</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/10/26/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95/">
-            <span class="next-text nav-default">常见的垃圾回收算法</span>
+        
+        <a class="next" href="/2019/10/26/jvm-%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84/">
+            <span class="next-text nav-default">JVM 堆内存中的结构</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
