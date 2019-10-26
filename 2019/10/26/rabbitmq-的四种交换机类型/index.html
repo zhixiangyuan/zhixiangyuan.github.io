@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Vim 命令小记 - Yuanzx Blog</title>
+  <title>RabbitMQ 的四种交换机类型 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 移动命令 1.1 行间搜索移动 f${char} 移动到 char 字符的第一个字母上 t${char} 移动到 char 字符的第一个字母前面 &amp;rsquo;;&amp;rsquo; 配合 f 和 t 搜索该行的下一个 &amp;rsquo;,&amp;rsquo; 配合 f 和 t 搜索该行的上一个 1.2" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="消息在 RabbitMQ 中的运动流程是先从生产者推送消息到交换机，交换机再将消息路由到队列，最后消费者消费队列中的消息。 RabbitMQ 的交换机类型分为四种： 扇形交换机：" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/09/25/vim-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/26/rabbitmq-%E7%9A%84%E5%9B%9B%E7%A7%8D%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%B1%BB%E5%9E%8B/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="Vim 命令小记" />
-<meta property="og:description" content="1 移动命令 1.1 行间搜索移动 f${char} 移动到 char 字符的第一个字母上 t${char} 移动到 char 字符的第一个字母前面 &rsquo;;&rsquo; 配合 f 和 t 搜索该行的下一个 &rsquo;,&rsquo; 配合 f 和 t 搜索该行的上一个 1.2" />
+<meta property="og:title" content="RabbitMQ 的四种交换机类型" />
+<meta property="og:description" content="消息在 RabbitMQ 中的运动流程是先从生产者推送消息到交换机，交换机再将消息路由到队列，最后消费者消费队列中的消息。 RabbitMQ 的交换机类型分为四种： 扇形交换机：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/09/25/vim-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" />
-<meta property="article:published_time" content="2019-09-25T09:54:44+08:00" />
-<meta property="article:modified_time" content="2019-09-25T09:54:44+08:00" />
-<meta itemprop="name" content="Vim 命令小记">
-<meta itemprop="description" content="1 移动命令 1.1 行间搜索移动 f${char} 移动到 char 字符的第一个字母上 t${char} 移动到 char 字符的第一个字母前面 &rsquo;;&rsquo; 配合 f 和 t 搜索该行的下一个 &rsquo;,&rsquo; 配合 f 和 t 搜索该行的上一个 1.2">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/26/rabbitmq-%E7%9A%84%E5%9B%9B%E7%A7%8D%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%B1%BB%E5%9E%8B/" />
+<meta property="article:published_time" content="2019-10-26T11:09:38+08:00" />
+<meta property="article:modified_time" content="2019-10-26T11:09:38+08:00" />
+<meta itemprop="name" content="RabbitMQ 的四种交换机类型">
+<meta itemprop="description" content="消息在 RabbitMQ 中的运动流程是先从生产者推送消息到交换机，交换机再将消息路由到队列，最后消费者消费队列中的消息。 RabbitMQ 的交换机类型分为四种： 扇形交换机：">
 
 
-<meta itemprop="datePublished" content="2019-09-25T09:54:44&#43;08:00" />
-<meta itemprop="dateModified" content="2019-09-25T09:54:44&#43;08:00" />
-<meta itemprop="wordCount" content="632">
+<meta itemprop="datePublished" content="2019-10-26T11:09:38&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-26T11:09:38&#43;08:00" />
+<meta itemprop="wordCount" content="838">
 
 
 
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="RabbitMQ," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Vim 命令小记"/>
-<meta name="twitter:description" content="1 移动命令 1.1 行间搜索移动 f${char} 移动到 char 字符的第一个字母上 t${char} 移动到 char 字符的第一个字母前面 &rsquo;;&rsquo; 配合 f 和 t 搜索该行的下一个 &rsquo;,&rsquo; 配合 f 和 t 搜索该行的上一个 1.2"/>
+<meta name="twitter:title" content="RabbitMQ 的四种交换机类型"/>
+<meta name="twitter:description" content="消息在 RabbitMQ 中的运动流程是先从生产者推送消息到交换机，交换机再将消息路由到队列，最后消费者消费队列中的消息。 RabbitMQ 的交换机类型分为四种： 扇形交换机："/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,10 +124,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Vim 命令小记</h1>
+      <h1 class="post-title">RabbitMQ 的四种交换机类型</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-09-25 </span>
+        <span class="post-time"> 2019-10-26 </span>
         <div class="post-category">
             <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
             </div>
@@ -140,147 +140,77 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-移动命令">1 移动命令</a>
-<ul>
-<li><a href="#1-1-行间搜索移动">1.1 行间搜索移动</a></li>
-<li><a href="#1-2-单词间的移动命令">1.2 单词间的移动命令</a></li>
-<li><a href="#1-3-水平移动">1.3 水平移动</a></li>
-<li><a href="#1-4-垂直移动">1.4 垂直移动</a></li>
-<li><a href="#1-5-页面移动">1.5 页面移动</a></li>
-</ul></li>
-<li><a href="#2-编辑命令">2 编辑命令</a>
-<ul>
-<li><a href="#2-1-进入-insert-模式">2.1 进入 insert 模式</a></li>
-</ul></li>
-<li><a href="#3-设置行号">3 设置行号</a></li>
-<li><a href="#4-搜索">4 搜索</a></li>
+<li><a href="#1-扇形交换机">1 扇形交换机</a></li>
+<li><a href="#2-直连交换机">2 直连交换机</a></li>
+<li><a href="#3-主题交换机">3 主题交换机</a></li>
+<li><a href="#4-首部交换机">4 首部交换机</a></li>
+<li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
   </div>
 </div>
-  <div class="post-outdated">
-    <div class="hint">
-      <p>【注意】最后更新于 <span class="timeago" datetime="2019-09-25T09:54:44" title="September 25, 2019">September 25, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
-    </div>
-  </div>
     <div class="post-content">
       
 
-<h1 id="1-移动命令">1 移动命令</h1>
+<p>消息在 RabbitMQ 中的运动流程是先从生产者推送消息到交换机，交换机再将消息路由到队列，最后消费者消费队列中的消息。</p>
 
-<h2 id="1-1-行间搜索移动">1.1 行间搜索移动</h2>
+<p>RabbitMQ 的交换机类型分为四种：</p>
 
-<ul>
-<li>f${char} 移动到 char 字符的第一个字母上</li>
+<ol>
+<li>扇形交换机：fanout</li>
+<li>直连交换机：direct</li>
+<li>主题交换机：topic</li>
+<li>首部交换机：headers</li>
+</ol>
 
-<li><p>t${char} 移动到 char 字符的第一个字母前面</p></li>
+<h1 id="1-扇形交换机">1 扇形交换机</h1>
 
-<li><p>&rsquo;;&rsquo; 配合 f 和 t 搜索该行的下一个</p></li>
+<p>扇形交换机会将收到的消息广播到绑定在自身的队列上，不做任何处理，所以扇形交换机的处理速度很快</p>
 
-<li><p>&rsquo;,&rsquo; 配合 f 和 t 搜索该行的上一个</p></li>
-</ul>
+<p><img src="/media/hovel/59.png" alt="扇形交换机" /></p>
 
-<h2 id="1-2-单词间的移动命令">1.2 单词间的移动命令</h2>
+<h1 id="2-直连交换机">2 直连交换机</h1>
 
-<ul>
-<li>w 移动到下一个单词的开头，特殊符号也视为单词</li>
-<li>W 移动到下一个单词的开头，特殊符号不视为单词</li>
-<li>e 移动到下一个单词的结尾，特殊符号也视为单词</li>
-<li>E 移动到下一个单词的结尾，特殊符号不视为单词</li>
-<li>b 移动到上一个单词的开头，特殊符号也视为单词</li>
-<li>B 移动到上一个单词的开头，特殊符号不视为单词</li>
-</ul>
+<p>直连交换机与扇形交换机不同，扇形交换机接收到消息就直接转发到与自身绑定的队列，直接交换机接收到之后还需要判断一下。当队列与直连交换机绑定的时候还会绑定一个 routing_key，在消息发送过来的时候会带一个 binding_key，直接交换机收到消息后会将消息发送到 binding_key 与 rooting_key 完全相同的队列。</p>
 
-<h2 id="1-3-水平移动">1.3 水平移动</h2>
+<p>适用场景：有优先级的任务，根据任务的优先级把消息发送到对应的队列，这样可以指派更多的资源去处理高优先级的队列。</p>
 
-<ul>
-<li>0 移动到本行的第一个字符</li>
-<li>^ 移动到本行的第一个非空白字符</li>
-<li>$ 移动到行尾</li>
-<li><code>g_</code> 移动到行尾的非空白字符</li>
-</ul>
+<p><img src="/media/hovel/61.png" alt="直连交换机" /></p>
 
-<h2 id="1-4-垂直移动">1.4 垂直移动</h2>
+<h1 id="3-主题交换机">3 主题交换机</h1>
+
+<p>主题交换机比直连交换机更加强大，如果我们需要多种形式的 routing_key，比如说 <code>test.key.dog</code>、<code>test.key.cat</code> 等，那么我们需要写很多的 routing_key 才行。主题交换机提供了一个功能，通过类似于正则表达式的方式来实现 routing_key 与 binding_key 的匹配，比如说 <code>test.key.#</code>，那么  <code>test.key.dog</code> 和 <code>test.key.cat</code> 发送过来都会被识别成 <code>test.key.#</code>，然后发送到 相应的队列</p>
 
 <ul>
-<li>( 上一个句子</li>
-<li>) 下一个句子</li>
-<li>{ 上一个段落</li>
-<li>} 下一个段落</li>
+<li><code>*</code> 表示一个单词</li>
+<li><code>#</code> 表示任意数量（零个或多个）单词</li>
 </ul>
 
-<h2 id="1-5-页面移动">1.5 页面移动</h2>
+<p><img src="/media/hovel/62.png" alt="主题交换机" /></p>
 
-<ul>
-<li>gg 移动到文件的开头</li>
-<li>G 移动到文件的结尾</li>
+<h1 id="4-首部交换机">4 首部交换机</h1>
 
-<li><p>ctrl + o 可快速返回</p></li>
+<p>首部交换机是忽略 routing_key 的一种路由方式，路由规则是通过 Headers 信息来交换的，这个有点像 HTTP 的 Headers。将一个交换机声明成首部交换机，绑定一个队列的时候，定义一个 Hash 的数据结构，消息发送的时候，会携带一组 hash 数据结构的信息，当 Hash 的内容匹配上的时候，消息就会被写入队列。</p>
 
-<li><p>H 跳转到屏幕的开头</p></li>
+<p>绑定交换机和队列的时候，Hash 结构中要求携带一个键 <code>x-match</code>，这个键的 value 可以是 any 或者 all，这代表消息携带的 Hash 是需要全部匹配（all），还是仅匹配一个键（any）就可以。相比于直连交换机，首部交换机的优势是匹配的规则不被限定为字符串（String）。</p>
 
-<li><p>M 跳转到屏幕的中间</p></li>
+<h1 id="参考资料">参考资料</h1>
 
-<li><p>L 跳转到屏幕的结尾</p></li>
-
-<li><p>zz 将光标处置为屏幕中间</p></li>
-
-<li><p>ctrl + u 翻到上一页 (upword)</p></li>
-
-<li><p>ctrl + f 翻到下一页 (forword)</p></li>
-</ul>
-
-<h1 id="2-编辑命令">2 编辑命令</h1>
-
-<ul>
-<li>x 删除光标所在位置的字符</li>
-<li>daw 删除光标所在位置的单词 (delete a word)</li>
-<li>dt + ${char} 删除从光标到该行的 ${char} 字符处</li>
-<li>r 替换光标所在位置的字符</li>
-<li>s 替换光标所在位置的字符，然后进入 insert 模式</li>
-<li>R 一直替换光标所在位置的字符，直到退出替换模式</li>
-<li>S 替换光标所在位置的单词，然后进入 insert 模式</li>
-<li>ctrl + h 删除当前光标左边的字符，linux 系统通用</li>
-</ul>
-
-<h2 id="2-1-进入-insert-模式">2.1 进入 insert 模式</h2>
-
-<ul>
-<li>a 在当前光标右边添加文本</li>
-<li>A 在当前行末尾添加文本</li>
-<li>i 在当前光标左边添加文本</li>
-<li>I 在当前行首添加文本</li>
-<li>o 在当前行的下一行添加文本</li>
-<li>O 在当前行的上一行添加文本</li>
-</ul>
-
-<h1 id="3-设置行号">3 设置行号</h1>
-
-<ul>
-<li>:set nu 显示行号</li>
-<li>:set nonu 取消显示行号</li>
-</ul>
-
-<h1 id="4-搜索">4 搜索</h1>
-
-<ul>
-<li>n 向下搜索</li>
-<li>N 向上搜索</li>
-</ul>
+<ol>
+<li><a href="https://www.jianshu.com/p/469f4608ce5d">RabbitMQ 的四种交换机</a></li>
+</ol>
 
     </div>
 
     
 <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="/tags/rabbitmq/">RabbitMQ</a>
+          </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/09/26/leetcode-3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Leetcode: 3 无重复字符的最长子串</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/09/25/leetcode-173-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BF%AD%E4%BB%A3%E5%99%A8/">
-            <span class="next-text nav-default">Leetcode: 173 二叉搜索树迭代器</span>
+        
+        <a class="next" href="/2019/10/25/%E4%B8%80%E6%9D%A1%E5%A5%BD%E7%94%A8%E7%9A%84-git-%E5%88%AB%E5%90%8D%E5%91%BD%E4%BB%A4/">
+            <span class="next-text nav-default">一条好用的 Git 别名命令</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
