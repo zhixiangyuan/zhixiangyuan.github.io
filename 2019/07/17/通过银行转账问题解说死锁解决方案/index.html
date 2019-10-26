@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>通过银行转账问题解说死锁解决方案 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 如何解决银行转账时的并发问题 当出现 A 将钱转给 B 的时候，什么样的方案可以避免在转账时没有并发问题。先看以下代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/07/17/%E9%80%9A%E8%BF%87%E9%93%B6%E8%A1%8C%E8%BD%AC%E8%B4%A6%E9%97%AE%E9%A2%98%E8%A7%A3%E8%AF%B4%E6%AD%BB%E9%94%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="通过银行转账问题解说死锁解决方案" />
+<meta property="og:description" content="1 如何解决银行转账时的并发问题 当出现 A 将钱转给 B 的时候，什么样的方案可以避免在转账时没有并发问题。先看以下代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/07/17/%E9%80%9A%E8%BF%87%E9%93%B6%E8%A1%8C%E8%BD%AC%E8%B4%A6%E9%97%AE%E9%A2%98%E8%A7%A3%E8%AF%B4%E6%AD%BB%E9%94%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
+<meta property="article:published_time" content="2019-07-17T09:26:08+08:00" />
+<meta property="article:modified_time" content="2019-07-17T09:26:08+08:00" />
+<meta itemprop="name" content="通过银行转账问题解说死锁解决方案">
+<meta itemprop="description" content="1 如何解决银行转账时的并发问题 当出现 A 将钱转给 B 的时候，什么样的方案可以避免在转账时没有并发问题。先看以下代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15">
+
+
+<meta itemprop="datePublished" content="2019-07-17T09:26:08&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-17T09:26:08&#43;08:00" />
+<meta itemprop="wordCount" content="1113">
+
+
+
+<meta itemprop="keywords" content="Java," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="通过银行转账问题解说死锁解决方案"/>
+<meta name="twitter:description" content="1 如何解决银行转账时的并发问题 当出现 A 将钱转给 B 的时候，什么样的方案可以避免在转账时没有并发问题。先看以下代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">通过银行转账问题解说死锁解决方案</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-17 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-如何解决银行转账时的并发问题">1 如何解决银行转账时的并发问题</a></li>
+<li><a href="#2-如何避免死锁">2 如何避免死锁</a>
+<ul>
+<li><a href="#2-1-破坏占有且等待">2.1 破坏占有且等待</a></li>
+<li><a href="#2-2-破坏不可抢占条件">2.2 破坏不可抢占条件</a></li>
+<li><a href="#2-3-破坏循环等待条件">2.3 破坏循环等待条件</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-07-17T09:26:08" title="July 17, 2019">July 17, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      
+
+<h1 id="1-如何解决银行转账时的并发问题">1 如何解决银行转账时的并发问题</h1>
+
+<p>当出现 A 将钱转给 B 的时候，什么样的方案可以避免在转账时没有并发问题。先看以下代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nf">Account</span> <span class="p">{</span>
+    <span class="cm">/*
+</span><span class="cm">     * 账户余额
+</span><span class="cm">     */</span>
+    <span class="kd">private</span> <span class="nf">int</span> <span class="n">balance</span><span class="p">;</span>
+
+    <span class="cm">/*
+</span><span class="cm">     * 转账
+</span><span class="cm">     * 
+</span><span class="cm">     * @param target 转入账户
+</span><span class="cm">     * @param amt    转入数额
+</span><span class="cm">     */</span>
+    <span class="kt">void</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">Account</span> <span class="nf">target</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">amt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 锁定转出账户
+</span><span class="c1"></span>        <span class="kd">synchronized</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 锁定转入账户
+</span><span class="c1"></span>            <span class="kd">synchronized</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">balance</span> <span class="o">&gt;</span> <span class="n">amt</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="na">balance</span> <span class="o">-=</span> <span class="n">amt</span><span class="p">;</span>
+                    <span class="n">target</span><span class="p">.</span><span class="na">balance</span> <span class="o">+=</span> <span class="n">amt</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如上代码虽然能够实现转入转出，但是却存在并发问题，如果出现 A 给 B 转账，同时 B 给 A 转账，则可能出现双方均卡在了 <code>synchronized(this)</code> 这一步操作上，因为双方均将自己加锁，但获取对方的锁的时候，发现已经加锁，于是一直等待，就出现了死锁。</p>
+
+<h1 id="2-如何避免死锁">2 如何避免死锁</h1>
+
+<p>有个叫 Coffman 的牛人总结过一条经验，只有当以下四个条件同时发生，才会出现死锁，所以只要打破其中一个条件，就可以避免死锁：</p>
+
+<ol>
+<li>互斥，共享资源 X 和 Y 只能被一个线程占用</li>
+<li>占有且等待，线程 A 获取到资源 X，在等待资源 Y 的时候，不释放资源 X</li>
+<li>不可抢占，其他线程不能强行抢占线程 A 占有的资源</li>
+<li>循环等待，线程 A 等待线程 B 占有的资源，线程 B 等待线程 A 的资源</li>
+</ol>
+
+<p>首先，互斥这个条件是没法破坏的，因为锁存在的目的就是互斥，对于剩下的三个条件都可破坏</p>
+
+<h2 id="2-1-破坏占有且等待">2.1 破坏占有且等待</h2>
+
+<p>对于上述案例，这两个账户，我们可以采用同时占用，同时释放的方式，这样就不会出现抢占一个资源等待另一个资源的情况。代码实现时，我们通过增加一个 Allocator 账号管理员对象，并且将其设置为单例，每次进行转账的时候，我们都先通过 Allocator 分配账号，如果分配账号成功，则进行转账，如果失败则重新获取，可以设置一个失败次数或是超时时间，达到失败次数或超时时间则转账失败。如下是代码实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm"> * 单例模式实现的账号管理员
+</span><span class="cm"> */</span>
+<span class="kd">class</span> <span class="nf">Allocator</span> <span class="p">{</span>
+    <span class="cm">/**
+</span><span class="cm">     * 上锁的账户列表
+</span><span class="cm">     */</span>
+    <span class="kd">private</span> <span class="nf">List</span><span class="o">&lt;</span><span class="n">Account</span><span class="o">&gt;</span> <span class="nf">lockAccountList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 申请分配账户
+</span><span class="cm">     *
+</span><span class="cm">     * @param from 从这个账户转钱
+</span><span class="cm">     * @param to   转钱到这个账户
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">synchronized</span> <span class="kt">void</span> <span class="nf">apply</span><span class="p">(</span><span class="n">Account</span> <span class="nf">from</span><span class="p">,</span> <span class="n">Account</span> <span class="nf">to</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">lockAccountList</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">from</span><span class="p">)</span> <span class="o">||</span>
+         <span class="n">lockAccountList</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">to</span><span class="p">))</span> <span class="p">{</span>
+             <span class="c1">// 如果两个账户中，只要有一个账户上锁了，则申请失败，进入循环
+</span><span class="c1"></span>             <span class="k">try</span> <span class="p">{</span>
+                  <span class="c1">// 阻塞当前线程，等待通知
+</span><span class="c1"></span>                  <span class="k">this</span><span class="p">.</span><span class="na">wait</span><span class="p">();</span>
+              <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">InterruptedException</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+              <span class="p">}</span>
+         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+             <span class="n">lockAccountList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">from</span><span class="p">);</span>
+             <span class="n">lockAccountList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">to</span><span class="p">);</span>
+         <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 释放账户锁
+</span><span class="cm">     * 
+</span><span class="cm">     * @param from 从这个账户转钱
+</span><span class="cm">     * @param to   转钱到这个账户
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">synchronized</span> <span class="kt">void</span> <span class="nf">free</span><span class="p">(</span><span class="n">Account</span> <span class="nf">from</span><span class="p">,</span> <span class="n">Account</span> <span class="nf">to</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">lockAccountList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">from</span><span class="p">);</span>
+        <span class="n">lockAccountList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">to</span><span class="p">);</span>
+        <span class="c1">// 通知所有线程，让其再次获取锁
+</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="na">notifyAll</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-2-破坏不可抢占条件">2.2 破坏不可抢占条件</h2>
+
+<p>java.util.concurrent 这个包下面提供的 Lock 是可以轻松解决这个问题的
+// todo 待完成</p>
+
+<h2 id="2-3-破坏循环等待条件">2.3 破坏循环等待条件</h2>
+
+<p>通过对锁进行排序，按照特定顺序获取的方式避免循环等待。比如通过如下 1～6 代码，根据账号的主键 id 进行排序，从小到大的获取锁，这样就可以避免循环等待。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nf">Account</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="nf">int</span> <span class="n">id</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="nf">int</span> <span class="n">balance</span><span class="p">;</span>
+  <span class="c1">// 转账
+</span><span class="c1"></span>  <span class="kt">void</span> <span class="nf">transfer</span><span class="p">(</span><span class="n">Account</span> <span class="nf">target</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">amt</span><span class="p">){</span>
+    <span class="n">Account</span> <span class="nf">left</span> <span class="o">=</span> <span class="k">this</span>        <span class="c1">// 1
+</span><span class="c1"></span>    <span class="n">Account</span> <span class="nf">right</span> <span class="o">=</span> <span class="n">target</span><span class="p">;</span>    <span class="c1">// 2
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">id</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">.</span><span class="na">id</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 3
+</span><span class="c1"></span>      <span class="n">left</span> <span class="o">=</span> <span class="n">target</span><span class="p">;</span>           <span class="c1">// 4
+</span><span class="c1"></span>      <span class="n">right</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>            <span class="c1">// 5
+</span><span class="c1"></span>    <span class="p">}</span>                          <span class="c1">// 6
+</span><span class="c1"></span>    <span class="c1">// 锁定序号小的账户
+</span><span class="c1"></span>    <span class="kd">synchronized</span><span class="p">(</span><span class="n">left</span><span class="p">){</span>
+      <span class="c1">// 锁定序号大的账户
+</span><span class="c1"></span>      <span class="kd">synchronized</span><span class="p">(</span><span class="n">right</span><span class="p">){</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">balance</span> <span class="o">&gt;</span> <span class="n">amt</span><span class="p">){</span>
+          <span class="k">this</span><span class="p">.</span><span class="na">balance</span> <span class="o">-=</span> <span class="n">amt</span><span class="p">;</span>
+          <span class="n">target</span><span class="p">.</span><span class="na">balance</span> <span class="o">+=</span> <span class="n">amt</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span> 
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">Java</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/07/17/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">关于学习</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/07/16/java-%E8%A7%A3%E5%86%B3%E5%8F%AF%E8%A7%81%E6%80%A7%E5%92%8C%E6%9C%89%E5%BA%8F%E6%80%A7%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95/">
+            <span class="next-text nav-default">Java 解决可见性和有序性问题的方法</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
