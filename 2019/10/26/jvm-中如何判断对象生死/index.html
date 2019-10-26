@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Yuanzx Blog</title>
+  <title>JVM 中如何判断对象生死 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 引用器计数法 如果某个引用被别的引用引用一次，那么引用计数器就加一，引用计数器为 0 时便回收对象。 这种方法有缺陷，如果出现循环引用，那么 GC 便无" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Yuanzx Blog" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="Yuanzx Blog" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/26/jvm-%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E7%94%9F%E6%AD%BB/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="Yuanzx Blog" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="JVM 中如何判断对象生死" />
+<meta property="og:description" content="1 引用器计数法 如果某个引用被别的引用引用一次，那么引用计数器就加一，引用计数器为 0 时便回收对象。 这种方法有缺陷，如果出现循环引用，那么 GC 便无" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/26/jvm-%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E7%94%9F%E6%AD%BB/" />
+<meta property="article:published_time" content="2019-10-26T20:06:39+08:00" />
+<meta property="article:modified_time" content="2019-10-26T20:06:39+08:00" />
+<meta itemprop="name" content="JVM 中如何判断对象生死">
+<meta itemprop="description" content="1 引用器计数法 如果某个引用被别的引用引用一次，那么引用计数器就加一，引用计数器为 0 时便回收对象。 这种方法有缺陷，如果出现循环引用，那么 GC 便无">
 
-<meta property="og:updated_time" content="2019-10-26T20:06:39+08:00" />
-<meta itemprop="name" content="Yuanzx Blog">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2019-10-26T20:06:39&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-26T20:06:39&#43;08:00" />
+<meta itemprop="wordCount" content="178">
+
+
+
+<meta itemprop="keywords" content="JVM," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Yuanzx Blog"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="JVM 中如何判断对象生死"/>
+<meta name="twitter:description" content="1 引用器计数法 如果某个引用被别的引用引用一次，那么引用计数器就加一，引用计数器为 0 时便回收对象。 这种方法有缺陷，如果出现循环引用，那么 GC 便无"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,60 +121,76 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/03/hashmap-%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">HashMap 不得不说的故事</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-03 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      本文基于 Jdk 1.8 1 什么是 HashMap 要理解这个问题，首先需要理解什么是 Hash 以及什么是 Map 1.1 什么是 Hash Hash 是一种散列算法，用于确定关键字到指定位置的对应关系 1.2 什么是
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/03/hashmap-%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/">int 入栈指令 iconst、bipush、sipush、ldc</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-08-11 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:
-    </div>
-    <div class="read-more">
-      <a href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/22/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
+          <article class="post">
     
-  </nav>
+    <header class="post-header">
+      <h1 class="post-title">JVM 中如何判断对象生死</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-26 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-引用器计数法">1 引用器计数法</a></li>
+<li><a href="#2-可达性分析法">2 可达性分析法</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-引用器计数法">1 引用器计数法</h1>
+
+<p>如果某个引用被别的引用引用一次，那么引用计数器就加一，引用计数器为 0 时便回收对象。</p>
+
+<p>这种方法有缺陷，如果出现循环引用，那么 GC 便无法回收。</p>
+
+<h1 id="2-可达性分析法">2 可达性分析法</h1>
+
+<p>从根引用触发，找得到的对象便是获得，找不到的对象便已经死亡</p>
+
+<p>根引用有四种：</p>
+
+<ol>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中的类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+<li>本地方法栈中 JNI（Native 方法）引用的方法</li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/jvm/">JVM</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/10/26/rabbitmq-%E7%9A%84%E5%9B%9B%E7%A7%8D%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%B1%BB%E5%9E%8B/">
+            <span class="next-text nav-default">RabbitMQ 的四种交换机类型</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
