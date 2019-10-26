@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 26 Oct 2019 21:23:31 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 26 Oct 2019 21:42:18 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JVM 内存模型</title>
+      <link>https://zhixiangyuan.github.io/2019/10/26/jvm-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Sat, 26 Oct 2019 21:42:18 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/26/jvm-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</guid>
+      <description>JVM 的内存模型分为主内存和线程的工作内存两大块，这属于一个抽象的内存模型，用于解决并发问题，与 JVM 中的内存结构如堆、栈没什么关系，不要弄混。</description>
+    </item>
     
     <item>
       <title>字符串常量池</title>
