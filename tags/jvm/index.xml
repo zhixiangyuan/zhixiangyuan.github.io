@@ -18,7 +18,7 @@
       <pubDate>Sat, 26 Oct 2019 21:42:18 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/10/26/jvm-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</guid>
-      <description>JVM 的内存模型分为主内存和线程的工作内存两大块，这属于一个抽象的内存模型，用于解决并发问题，与 JVM 中的内存结构如堆、栈没什么关系，不要弄混。</description>
+      <description>JVM 的内存模型分为主内存和线程的工作内存两大块，这属于一个抽象的内存模型，用于解决并发问题，与 JVM 中的内存结构如堆、栈没什么关系，不要弄混。 参考</description>
     </item>
     
     <item>
