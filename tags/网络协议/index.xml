@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 12 Jul 2019 21:22:03 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 27 Oct 2019 10:51:23 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SSL 加密流程简述</title>
+      <link>https://zhixiangyuan.github.io/2019/10/27/ssl-%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/</link>
+      <pubDate>Sun, 27 Oct 2019 10:51:23 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/27/ssl-%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/</guid>
+      <description>SSL 加密的思想运用到了对称加密和非对称加密，非堆成加密的优势在于没有私钥则无法解密，所以想要传输信息的一端只需要拿到公钥就可以完成加密传输，但</description>
+    </item>
+    
+    <item>
+      <title>Http 协议格式</title>
+      <link>https://zhixiangyuan.github.io/2019/10/27/http-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Sun, 27 Oct 2019 10:01:55 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/27/http-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F/</guid>
+      <description>1 HTTP 请求报文 HTTP 请求报文由请求行、请求头部、空行和请求包体 4 个部分组成，如下图所示： 1.1 请求行 请求行由方法字段、URL 字段和 HTTP 协议版本字段 3 个部</description>
+    </item>
     
     <item>
       <title>TCP：连接的建立与断开</title>

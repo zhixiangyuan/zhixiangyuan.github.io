@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-10-26T21:55:24+08:00" />
+<meta property="og:updated_time" content="2019-10-27T13:06:22+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -118,6 +118,111 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-hyperloglog/">Redis 中的 HyperLogLog</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-10 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      HyperLogLog 并不是数据结构而是一种基数算法，通过 HyperLogLog 可以利用极小的内存空间完成独立总数的统计，数据集可以是 IP、Email、ID 等。HyperLogLo
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-hyperloglog/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-bitmaps/">Redis 中的 Bitmaps</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-10 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&gt;set
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-bitmaps/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-pipeline/">Redis 中的 Pipeline</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-10 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 为什么要有 pipeline 要了解这个问题首先需要了解 redis 性能瓶颈在哪里，其实，redis 性能问题很多时候在网络传输上，我来计算一下为什么会这样。首先 redis 客户
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-pipeline/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/09/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">Redis 提供的命令行工具</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-09 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 redis-server 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 直接运行 $&gt; redis-server # 可以在后面指定配置然后运行 $&gt; redis-server --configKey1 configValue1 --configKey2 configValue2 # 比如说修改端口号 $&gt; redis-server --port 4500 # 指定配置文件启动 $&gt; redis-server
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/09/redis-%E6%8F%90%E4%BE%9B%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/09/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/">Redis 慢查询相关配置与命令</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-09 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 相关配置 配置有两个，分别是 slowlog-log-slower-than 和 slowlog-max-len，两个配置的含义如下 slowlog-log-slower-than: 超过这个时间的查询为慢查询，时间单位为微秒 slowlog-max-len: 保存的慢查询
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/09/redis-%E6%85%A2%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%91%BD%E4%BB%A4/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/10/08/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/">享元模式</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2019-10-08 </span>
@@ -133,111 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/10/08/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/08/leetcode-701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C/">Leetcode: 701 二叉搜索树中的插入操作</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-08 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"> 数据结构与算法 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 二叉搜索树中的插入操作 2 解 2.1 我的解 时间复杂度: O(logn) 空间复杂度: O(1) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 /** * Definition for
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/08/leetcode-701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/07/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/">责任链模式</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-07 </span>
-      <div class="post-category">
-          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      当接收到一个请求时，可能存在多种解析方式，但是只有一种解析方式能够满足，这个时候我们可以将这些解析方式组织成责任链的模式，让请求在责任链中传
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/07/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/07/%E5%B8%83%E5%81%B6%E7%8C%AB%E7%9A%84%E9%A2%9C%E8%89%B2%E8%8A%B1%E7%BA%B9%E5%88%86%E7%B1%BB/">布偶猫的颜色花纹分类</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-07 </span>
-      <div class="post-category">
-          <a href="/categories/%E5%AE%A0%E7%89%A9/"> 宠物 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      影响布偶猫的外形主要有三个因素，分别是颜色、色块位置、是否有山猫纹，下面一一举例 1 颜色分类 颜色大的方向分为黑色系、巧克力色系、红色系、玳瑁色
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/07/%E5%B8%83%E5%81%B6%E7%8C%AB%E7%9A%84%E9%A2%9C%E8%89%B2%E8%8A%B1%E7%BA%B9%E5%88%86%E7%B1%BB/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/07/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">工厂模式</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-07 </span>
-      <div class="post-category">
-          <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> 设计模式 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      工厂模式提供另外一种创建对象的方式，这种方式屏蔽了创建对象的细节，所以可以实现很多骚操作。下面的代码就是一个简单的工厂，通过传入全类名来创建
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/07/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/06/%E8%B7%AF%E8%A5%BF%E6%B3%95%E6%95%88%E5%BA%94/">路西法效应</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-06 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 环境使人走向邪恶的七步 无意中迈出的第一步 对他人去人性化 对自己去个体化 推卸个人责任 盲目服从权威 不加批判的遵从群体规范 对恶行为袖手旁观，消极容
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/06/%E8%B7%AF%E8%A5%BF%E6%B3%95%E6%95%88%E5%BA%94/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
