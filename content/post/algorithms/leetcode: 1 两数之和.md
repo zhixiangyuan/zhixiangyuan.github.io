@@ -7,7 +7,6 @@ tags: [
     "leetcode"
 ]
 categories: [
-    "数据结构与算法"
 ]
 author: "yuanzx"
 ---
