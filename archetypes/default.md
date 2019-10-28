@@ -4,12 +4,13 @@ date: {{ .Date }}
 keywords: []
 description: ""
 tags: [
-    "Java"
-    "redis"
+    "Java",
+    "redis",
+    "MySQL",
+    "数据结构与算法"
 ]
 categories: [
     "杂货铺"
-    "数据结构与算法"
 ]
 autoCollapseToc: false
 author: "yuanzx"
