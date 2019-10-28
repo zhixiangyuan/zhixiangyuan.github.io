@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 27 Oct 2019 13:06:22 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Oct 2019 15:32:01 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://zhixiangyuan.github.io/tags/mysql/</link>
+      <pubDate>Mon, 28 Oct 2019 15:32:01 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>redis</title>
@@ -27,15 +36,6 @@
       <pubDate>Sun, 27 Oct 2019 11:26:24 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MySQL</title>
-      <link>https://zhixiangyuan.github.io/tags/mysql/</link>
-      <pubDate>Sun, 27 Oct 2019 11:16:36 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/tags/mysql/</guid>
       <description></description>
     </item>
     
