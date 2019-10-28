@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 28 Oct 2019 15:32:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Oct 2019 20:37:26 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MySQL 日期和时间处理函数</title>
+      <link>https://zhixiangyuan.github.io/2019/10/28/mysql-%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Mon, 28 Oct 2019 20:37:26 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/28/mysql-%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/</guid>
+      <description>1 日期和时间处理函数 函数 说明 Date(&amp;lt;field&amp;gt;) 返回日期时间的日期部分 Time(&amp;lt;field&amp;gt;) 返回一个日期时间的时间部分 Year(&amp;lt;field&amp;gt;) 返回一个日期的年份部分 Month(&amp;lt;field&amp;gt;) 返回一个日期的月份部分 Day(&amp;lt;field&amp;gt;) 返回一个日</description>
+    </item>
     
     <item>
       <title>MySQL 文本处理函数</title>

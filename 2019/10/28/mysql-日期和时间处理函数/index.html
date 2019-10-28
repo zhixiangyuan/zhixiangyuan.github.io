@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MySQL 日期和时间处理函数 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 日期和时间处理函数 函数 说明 Date(&amp;lt;field&amp;gt;) 返回日期时间的日期部分 Time(&amp;lt;field&amp;gt;) 返回一个日期时间的时间部分 Year(&amp;lt;field&amp;gt;) 返回一个日期的年份部分 Month(&amp;lt;field&amp;gt;) 返回一个日期的月份部分 Day(&amp;lt;field&amp;gt;) 返回一个日" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/10/28/mysql-%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="MySQL 日期和时间处理函数" />
+<meta property="og:description" content="1 日期和时间处理函数 函数 说明 Date(&lt;field&gt;) 返回日期时间的日期部分 Time(&lt;field&gt;) 返回一个日期时间的时间部分 Year(&lt;field&gt;) 返回一个日期的年份部分 Month(&lt;field&gt;) 返回一个日期的月份部分 Day(&lt;field&gt;) 返回一个日" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/28/mysql-%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/" />
+<meta property="article:published_time" content="2019-10-28T20:37:26+08:00" />
+<meta property="article:modified_time" content="2019-10-28T20:37:26+08:00" />
+<meta itemprop="name" content="MySQL 日期和时间处理函数">
+<meta itemprop="description" content="1 日期和时间处理函数 函数 说明 Date(&lt;field&gt;) 返回日期时间的日期部分 Time(&lt;field&gt;) 返回一个日期时间的时间部分 Year(&lt;field&gt;) 返回一个日期的年份部分 Month(&lt;field&gt;) 返回一个日期的月份部分 Day(&lt;field&gt;) 返回一个日">
+
+
+<meta itemprop="datePublished" content="2019-10-28T20:37:26&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-28T20:37:26&#43;08:00" />
+<meta itemprop="wordCount" content="2143">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL 日期和时间处理函数"/>
+<meta name="twitter:description" content="1 日期和时间处理函数 函数 说明 Date(&lt;field&gt;) 返回日期时间的日期部分 Time(&lt;field&gt;) 返回一个日期时间的时间部分 Year(&lt;field&gt;) 返回一个日期的年份部分 Month(&lt;field&gt;) 返回一个日期的月份部分 Day(&lt;field&gt;) 返回一个日"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MySQL 日期和时间处理函数</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-28 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-日期和时间处理函数">1 日期和时间处理函数</a>
+<ul>
+<li><a href="#1-1-date-field">1.1 <code>Date(&lt;field&gt;)</code></a></li>
+<li><a href="#1-2-adddate">1.2 <code>AddDate()</code></a>
+<ul>
+<li><a href="#1-2-2-adddate-field-days">1.2.2 <code>ADDDATE(&lt;field&gt;, &lt;days&gt;)</code></a></li>
+<li><a href="#1-2-1-adddate-field-interval-value-unit">1.2.1 <code>ADDDATE(&lt;field&gt;, INTERVAL &lt;value&gt; &lt;unit&gt;)</code></a></li>
+</ul></li>
+<li><a href="#1-3-addtime-field-time">1.3 <code>AddTime(&lt;field&gt;, &lt;time&gt;)</code></a></li>
+<li><a href="#1-4-datediff-date1-date2">1.4 <code>DateDiff(&lt;date1&gt;, &lt;date2&gt;)</code></a></li>
+<li><a href="#1-5-date-add-date-interval-value-unit">1.5 <code>Date_Add(&lt;date&gt;, INTERVAL &lt;value&gt; &lt;unit&gt;)</code></a></li>
+<li><a href="#1-6-date-format-date-format">1.6 <code>Date_Format(&lt;date&gt;, &lt;format&gt;)</code></a></li>
+<li><a href="#1-7-dayofweek-date">1.7 <code>DayOfWeek(&lt;date&gt;)</code></a></li>
+<li><a href="#1-8-now">1.8 <code>Now()</code></a></li>
+<li><a href="#1-9-curdate">1.9  <code>CurDate()</code></a></li>
+<li><a href="#1-10-curtime">1.10 <code>CurTime()</code></a></li>
+</ul></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-日期和时间处理函数">1 日期和时间处理函数</h1>
+
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>Date(&lt;field&gt;)</code></td>
+<td>返回日期时间的日期部分</td>
+</tr>
+
+<tr>
+<td><code>Time(&lt;field&gt;)</code></td>
+<td>返回一个日期时间的时间部分</td>
+</tr>
+
+<tr>
+<td><code>Year(&lt;field&gt;)</code></td>
+<td>返回一个日期的年份部分</td>
+</tr>
+
+<tr>
+<td><code>Month(&lt;field&gt;)</code></td>
+<td>返回一个日期的月份部分</td>
+</tr>
+
+<tr>
+<td><code>Day(&lt;field&gt;)</code></td>
+<td>返回一个日期的天数部分</td>
+</tr>
+
+<tr>
+<td><code>Hour(&lt;field&gt;)</code></td>
+<td>返回一个时间的小时部分</td>
+</tr>
+
+<tr>
+<td><code>Minute(&lt;field&gt;)</code></td>
+<td>返回一个时间的分钟部分</td>
+</tr>
+
+<tr>
+<td><code>Second(&lt;field&gt;)</code></td>
+<td>返回一个时间的秒部分</td>
+</tr>
+
+<tr>
+<td><code>AddDate(&lt;field&gt;, INTERVAL &lt;value&gt; &lt;unit&gt;)</code></td>
+<td>增加时间日期等，功能强大，可选时间单位</td>
+</tr>
+
+<tr>
+<td><code>AddTime(&lt;field&gt;, &lt;time&gt;)</code></td>
+<td>增加时间，单位默认为秒</td>
+</tr>
+
+<tr>
+<td><code>DateDiff(&lt;date1&gt;, &lt;date2&gt;)</code></td>
+<td>计算两个日期之差</td>
+</tr>
+
+<tr>
+<td><code>Date_Add(&lt;date&gt;, INTERVAL &lt;value&gt; &lt;unit&gt;)</code></td>
+<td>高度灵活的日期运算函数</td>
+</tr>
+
+<tr>
+<td><code>Date_Format()</code></td>
+<td>返回一个格式化的日期或时间串</td>
+</tr>
+
+<tr>
+<td><code>DayOfWeek()</code></td>
+<td>对于一个日期，返回对应的星期几</td>
+</tr>
+
+<tr>
+<td><code>Now()</code></td>
+<td>返回当前日期和时间</td>
+</tr>
+
+<tr>
+<td><code>CurDate()</code></td>
+<td>返回当前日期</td>
+</tr>
+
+<tr>
+<td><code>CurTime()</code></td>
+<td>返回当前时间</td>
+</tr>
+</tbody>
+</table>
+
+<p>处理时间时使用 <code>yyyy-MM-dd HH:mm:ss</code> 这种时间格式，方式造成歧义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 先看一下表中的数据，下面的例子均用这个表中的数据</span>
+mysql&gt; SELECT * FROM _table<span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-1-date-field">1.1 <code>Date(&lt;field&gt;)</code></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 如果直接使用这种比较方式，那么 MySQL 会把 time 当成 00:00:00 比较</span>
+mysql&gt; SELECT * FROM _table WHERE <span class="nv">modify_date</span> <span class="o">=</span> <span class="s1">&#39;2005-09-01&#39;</span><span class="p">;</span>
++----+--------+---------------------+
+<span class="p">|</span> id <span class="p">|</span> name   <span class="p">|</span> modify_date         <span class="p">|</span>
++----+--------+---------------------+
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:00 <span class="p">|</span>
++----+--------+---------------------+
+
+<span class="c1"># 如果使用 DATE(modify_date) = &#39;2005-09-01‘，那么就会忽略时间，仅比较日期</span>
+mysql&gt; SELECT * FROM _table WHERE DATE<span class="o">(</span>modify_date<span class="o">)</span> <span class="o">=</span> <span class="s1">&#39;2005-09-01&#39;</span><span class="p">;</span>
++----+---------+---------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> modify_date         <span class="p">|</span>
++----+---------+---------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">11</span>:30:05 <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:00 <span class="p">|</span>
++----+---------+---------------------+
+
+<span class="c1"># DATE(modify_date) 还可以 BETWEEN 连用</span>
+mysql&gt; SELECT * FROM _table WHERE DATE<span class="o">(</span>modify_date<span class="o">)</span> BETWEEN <span class="s1">&#39;2005-09-01&#39;</span> AND <span class="s1">&#39;2006-09-01&#39;</span><span class="p">;;</span>
++----+---------+---------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> modify_date         <span class="p">|</span>
++----+---------+---------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">11</span>:30:05 <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:00 <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-01 <span class="m">11</span>:30:05 <span class="p">|</span>
++----+---------+---------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<p><code>Time(&lt;field&gt;)</code>、<code>Year(&lt;field&gt;)</code>、<code>Month(&lt;field&gt;)</code>、<code>Day(&lt;field&gt;)</code>、<code>Hour(&lt;field&gt;)</code>、<code>Minute(&lt;field&gt;)</code>、<code>Second(&lt;field&gt;)</code> 用法与 <code>Date(&lt;field&gt;)</code> 相同</p>
+
+<h2 id="1-2-adddate">1.2 <code>AddDate()</code></h2>
+
+<p>语法：</p>
+
+<ul>
+<li><code>ADDDATE(&lt;field&gt;, &lt;days&gt;)</code></li>
+<li><code>ADDDATE(&lt;field&gt;, INTERVAL &lt;value&gt; &lt;time unit&gt;)</code></li>
+</ul>
+
+<h3 id="1-2-2-adddate-field-days">1.2.2 <code>ADDDATE(&lt;field&gt;, &lt;days&gt;)</code></h3>
+
+<p>这种属于帮字段 field 增加 days 天</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 下面这个例子就是 modify_date 增加了一天</span>
+mysql&gt; SELECT id, name, AddDate<span class="o">(</span>modify_date, <span class="m">1</span><span class="o">)</span> FROM _table<span class="p">;</span>
++----+---------+-------------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> AddDate<span class="o">(</span>modify_date, <span class="m">1</span><span class="o">)</span> <span class="p">|</span>
++----+---------+-------------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-02 <span class="m">11</span>:30:05     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-02 <span class="m">00</span>:00:00     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-02 <span class="m">11</span>:30:05     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">4</span> <span class="p">|</span> Pamela  <span class="p">|</span> <span class="m">2012</span>-08-02 <span class="m">11</span>:30:05     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">5</span> <span class="p">|</span> Marquis <span class="p">|</span> <span class="m">2013</span>-10-02 <span class="m">11</span>:30:05     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">6</span> <span class="p">|</span> Ciaran  <span class="p">|</span> <span class="m">2014</span>-11-02 <span class="m">11</span>:30:05     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">7</span> <span class="p">|</span> Y.Lee   <span class="p">|</span> <span class="m">2017</span>-12-02 <span class="m">11</span>:30:05     <span class="p">|</span>
++----+---------+-------------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="1-2-1-adddate-field-interval-value-unit">1.2.1 <code>ADDDATE(&lt;field&gt;, INTERVAL &lt;value&gt; &lt;unit&gt;)</code></h3>
+
+<p>这种语法自由一点，可以选择时间单位，time unit 有以下的选择</p>
+
+<ul>
+<li>MICROSECOND</li>
+<li>SECOND</li>
+<li>MINUTE</li>
+<li>HOUR</li>
+<li>DAY</li>
+<li>WEEK</li>
+<li>MONTH</li>
+<li>QUARTER</li>
+<li>YEAR</li>
+<li>SECOND_MICROSECOND</li>
+<li>MINUTE_MICROSECOND</li>
+<li>MINUTE_SECOND</li>
+<li>HOUR_MICROSECOND</li>
+<li>HOUR_SECOND</li>
+<li>HOUR_MINUTE</li>
+<li>DAY_MICROSECOND</li>
+<li>DAY_SECOND</li>
+<li>DAY_MINUTE</li>
+<li>DAY_HOUR</li>
+<li>YEAR_MONTH</li>
+</ul>
+
+<p>时间单位比较多，根据情况选择</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 这个语句就等同于  AddDate(modify_date, 1)</span>
+mysql&gt; SELECT id, name, AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> DAY<span class="o">)</span> FROM _table<span class="p">;</span>
++----+---------+--------------------------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> DAY<span class="o">)</span> <span class="p">|</span>
++----+---------+--------------------------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-02 <span class="m">11</span>:30:05                  <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-02 <span class="m">00</span>:00:00                  <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-02 <span class="m">11</span>:30:05                  <span class="p">|</span>
+<span class="p">|</span>  <span class="m">4</span> <span class="p">|</span> Pamela  <span class="p">|</span> <span class="m">2012</span>-08-02 <span class="m">11</span>:30:05                  <span class="p">|</span>
+<span class="p">|</span>  <span class="m">5</span> <span class="p">|</span> Marquis <span class="p">|</span> <span class="m">2013</span>-10-02 <span class="m">11</span>:30:05                  <span class="p">|</span>
+<span class="p">|</span>  <span class="m">6</span> <span class="p">|</span> Ciaran  <span class="p">|</span> <span class="m">2014</span>-11-02 <span class="m">11</span>:30:05                  <span class="p">|</span>
+<span class="p">|</span>  <span class="m">7</span> <span class="p">|</span> Y.Lee   <span class="p">|</span> <span class="m">2017</span>-12-02 <span class="m">11</span>:30:05                  <span class="p">|</span>
++----+---------+--------------------------------------+
+<span class="c1"># 这样能起到加一秒的效果</span>
+mysql&gt; SELECT id, name, AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> SECOND<span class="o">)</span> FROM _table<span class="p">;</span>
++----+---------+-----------------------------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> SECOND<span class="o">)</span> <span class="p">|</span>
++----+---------+-----------------------------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">11</span>:30:06                     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:01                     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-01 <span class="m">11</span>:30:06                     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">4</span> <span class="p">|</span> Pamela  <span class="p">|</span> <span class="m">2012</span>-08-01 <span class="m">11</span>:30:06                     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">5</span> <span class="p">|</span> Marquis <span class="p">|</span> <span class="m">2013</span>-10-01 <span class="m">11</span>:30:06                     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">6</span> <span class="p">|</span> Ciaran  <span class="p">|</span> <span class="m">2014</span>-11-01 <span class="m">11</span>:30:06                     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">7</span> <span class="p">|</span> Y.Lee   <span class="p">|</span> <span class="m">2017</span>-12-01 <span class="m">11</span>:30:06                     <span class="p">|</span>
++----+---------+-----------------------------------------+
+<span class="c1"># 这样和 AddDate(modify_date, INTERVAL 1 SECOND) 没区别</span>
+mysql&gt; SELECT id, name, AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> HOUR_SECOND<span class="o">)</span> FROM _table<span class="p">;</span>
++----+---------+---------------------------------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> DAY_SECOND<span class="o">)</span> <span class="p">|</span>
++----+---------+---------------------------------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">11</span>:30:06                         <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:01                         <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-01 <span class="m">11</span>:30:06                         <span class="p">|</span>
+<span class="p">|</span>  <span class="m">4</span> <span class="p">|</span> Pamela  <span class="p">|</span> <span class="m">2012</span>-08-01 <span class="m">11</span>:30:06                         <span class="p">|</span>
+<span class="p">|</span>  <span class="m">5</span> <span class="p">|</span> Marquis <span class="p">|</span> <span class="m">2013</span>-10-01 <span class="m">11</span>:30:06                         <span class="p">|</span>
+<span class="p">|</span>  <span class="m">6</span> <span class="p">|</span> Ciaran  <span class="p">|</span> <span class="m">2014</span>-11-01 <span class="m">11</span>:30:06                         <span class="p">|</span>
+<span class="p">|</span>  <span class="m">7</span> <span class="p">|</span> Y.Lee   <span class="p">|</span> <span class="m">2017</span>-12-01 <span class="m">11</span>:30:06                         <span class="p">|</span>
++----+---------+---------------------------------------------+
+<span class="c1"># 这样和 AddDate(modify_date, INTERVAL 1 HOUR_SECOND) 好像是一样的</span>
+mysql&gt; SELECT id, name, AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> DAY_SECOND<span class="o">)</span> FROM _table<span class="p">;</span>
++----+---------+----------------------------------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> AddDate<span class="o">(</span>modify_date, INTERVAL <span class="m">1</span> HOUR_SECOND<span class="o">)</span> <span class="p">|</span>
++----+---------+----------------------------------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">11</span>:30:06                          <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:01                          <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-01 <span class="m">11</span>:30:06                          <span class="p">|</span>
+<span class="p">|</span>  <span class="m">4</span> <span class="p">|</span> Pamela  <span class="p">|</span> <span class="m">2012</span>-08-01 <span class="m">11</span>:30:06                          <span class="p">|</span>
+<span class="p">|</span>  <span class="m">5</span> <span class="p">|</span> Marquis <span class="p">|</span> <span class="m">2013</span>-10-01 <span class="m">11</span>:30:06                          <span class="p">|</span>
+<span class="p">|</span>  <span class="m">6</span> <span class="p">|</span> Ciaran  <span class="p">|</span> <span class="m">2014</span>-11-01 <span class="m">11</span>:30:06                          <span class="p">|</span>
+<span class="p">|</span>  <span class="m">7</span> <span class="p">|</span> Y.Lee   <span class="p">|</span> <span class="m">2017</span>-12-01 <span class="m">11</span>:30:06                          <span class="p">|</span>
++----+---------+----------------------------------------------+
+<span class="c1"># 所以 SECOND、HOUR_SECOND、DAY_SECOND 是一样的</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-3-addtime-field-time">1.3 <code>AddTime(&lt;field&gt;, &lt;time&gt;)</code></h2>
+
+<p>这里默认单位是秒</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 秒钟加一</span>
+mysql&gt; SELECT id, name, AddTime<span class="o">(</span>modify_date, <span class="m">1</span><span class="o">)</span> FROM _table<span class="p">;</span>
++----+---------+-------------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> AddTime<span class="o">(</span>modify_date, <span class="m">1</span><span class="o">)</span> <span class="p">|</span>
++----+---------+-------------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">11</span>:30:06     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:01     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-01 <span class="m">11</span>:30:06     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">4</span> <span class="p">|</span> Pamela  <span class="p">|</span> <span class="m">2012</span>-08-01 <span class="m">11</span>:30:06     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">5</span> <span class="p">|</span> Marquis <span class="p">|</span> <span class="m">2013</span>-10-01 <span class="m">11</span>:30:06     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">6</span> <span class="p">|</span> Ciaran  <span class="p">|</span> <span class="m">2014</span>-11-01 <span class="m">11</span>:30:06     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">7</span> <span class="p">|</span> Y.Lee   <span class="p">|</span> <span class="m">2017</span>-12-01 <span class="m">11</span>:30:06     <span class="p">|</span>
++----+---------+-------------------------+
+<span class="c1"># 还可以带点小数</span>
+mysql&gt; SELECT id, name, AddTime<span class="o">(</span>modify_date, <span class="m">1</span>.001<span class="o">)</span> FROM _table<span class="p">;</span>
++----+---------+-----------------------------+
+<span class="p">|</span> id <span class="p">|</span> name    <span class="p">|</span> AddTime<span class="o">(</span>modify_date, <span class="m">1</span>.001<span class="o">)</span> <span class="p">|</span>
++----+---------+-----------------------------+
+<span class="p">|</span>  <span class="m">1</span> <span class="p">|</span>  Celia  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">11</span>:30:06.001     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">2</span> <span class="p">|</span> Fraser  <span class="p">|</span> <span class="m">2005</span>-09-01 <span class="m">00</span>:00:01.001     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">3</span> <span class="p">|</span> Pearl   <span class="p">|</span> <span class="m">2006</span>-09-01 <span class="m">11</span>:30:06.001     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">4</span> <span class="p">|</span> Pamela  <span class="p">|</span> <span class="m">2012</span>-08-01 <span class="m">11</span>:30:06.001     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">5</span> <span class="p">|</span> Marquis <span class="p">|</span> <span class="m">2013</span>-10-01 <span class="m">11</span>:30:06.001     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">6</span> <span class="p">|</span> Ciaran  <span class="p">|</span> <span class="m">2014</span>-11-01 <span class="m">11</span>:30:06.001     <span class="p">|</span>
+<span class="p">|</span>  <span class="m">7</span> <span class="p">|</span> Y.Lee   <span class="p">|</span> <span class="m">2017</span>-12-01 <span class="m">11</span>:30:06.001     <span class="p">|</span>
++----+---------+-----------------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-4-datediff-date1-date2">1.4 <code>DateDiff(&lt;date1&gt;, &lt;date2&gt;)</code></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 前面的时间要大于后面的时间计算出来才是正的，而且计算出来的时间天数是</span>
+<span class="c1"># [&lt;date1&gt;, &lt;date2&gt;) 这样一个区间，时间单位是天</span>
+mysql&gt; SELECT DATEDIFF<span class="o">(</span><span class="s2">&#34;2017-01-01&#34;</span>, <span class="s2">&#34;2017-01-02&#34;</span><span class="o">)</span><span class="p">;</span>
++--------------------------------------+
+<span class="p">|</span> DATEDIFF<span class="o">(</span><span class="s2">&#34;2017-01-01&#34;</span>, <span class="s2">&#34;2017-01-02&#34;</span><span class="o">)</span> <span class="p">|</span>
++--------------------------------------+
+<span class="p">|</span>                                   -1 <span class="p">|</span>
++--------------------------------------+
+mysql&gt; SELECT DATEDIFF<span class="o">(</span><span class="s2">&#34;2017-01-02&#34;</span>, <span class="s2">&#34;2017-01-01&#34;</span><span class="o">)</span><span class="p">;</span>
++--------------------------------------+
+<span class="p">|</span> DATEDIFF<span class="o">(</span><span class="s2">&#34;2017-01-02&#34;</span>, <span class="s2">&#34;2017-01-01&#34;</span><span class="o">)</span> <span class="p">|</span>
++--------------------------------------+
+<span class="p">|</span>                                    <span class="m">1</span> <span class="p">|</span>
++--------------------------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-5-date-add-date-interval-value-unit">1.5 <code>Date_Add(&lt;date&gt;, INTERVAL &lt;value&gt; &lt;unit&gt;)</code></h2>
+
+<p>这里就不多说了，时间单位和 <code>ADDDATE(&lt;field&gt;, INTERVAL &lt;value&gt; &lt;unit&gt;)</code> 一样</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mysql&gt; SELECT DATE_ADD<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, INTERVAL <span class="m">10</span> DAY<span class="o">)</span><span class="p">;</span>
++-----------------------------------------+
+<span class="p">|</span> DATE_ADD<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, INTERVAL <span class="m">10</span> DAY<span class="o">)</span> <span class="p">|</span>
++-----------------------------------------+
+<span class="p">|</span> <span class="m">2017</span>-06-25                              <span class="p">|</span>
++-----------------------------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-6-date-format-date-format">1.6 <code>Date_Format(&lt;date&gt;, &lt;format&gt;)</code></h2>
+
+<p>format 多种格式可选，同时可以使用组合格式</p>
+
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>%a</td>
+<td>Abbreviated weekday name (Sun to Sat)</td>
+</tr>
+
+<tr>
+<td>%b</td>
+<td>Abbreviated month name (Jan to Dec)</td>
+</tr>
+
+<tr>
+<td>%c</td>
+<td>Numeric month name (0 to 12)</td>
+</tr>
+
+<tr>
+<td>%D</td>
+<td>Day of the month as a numeric value, followed by suffix (1st, 2nd, 3rd, &hellip;)</td>
+</tr>
+
+<tr>
+<td>%d</td>
+<td>Day of the month as a numeric value (01 to 31)</td>
+</tr>
+
+<tr>
+<td>%e</td>
+<td>Day of the month as a numeric value (0 to 31)</td>
+</tr>
+
+<tr>
+<td>%f</td>
+<td>Microseconds (000000 to 999999)</td>
+</tr>
+
+<tr>
+<td>%H</td>
+<td>Hour (00 to 23)</td>
+</tr>
+
+<tr>
+<td>%h</td>
+<td>Hour (00 to 12)</td>
+</tr>
+
+<tr>
+<td>%I</td>
+<td>Hour (00 to 12)</td>
+</tr>
+
+<tr>
+<td>%i</td>
+<td>Minutes (00 to 59)</td>
+</tr>
+
+<tr>
+<td>%j</td>
+<td>Day of the year (001 to 366)</td>
+</tr>
+
+<tr>
+<td>%k</td>
+<td>Hour (0 to 23)</td>
+</tr>
+
+<tr>
+<td>%l</td>
+<td>Hour (1 to 12)</td>
+</tr>
+
+<tr>
+<td>%M</td>
+<td>Month name in full (January to December)</td>
+</tr>
+
+<tr>
+<td>%m</td>
+<td>Month name as a numeric value (00 to 12)</td>
+</tr>
+
+<tr>
+<td>%p</td>
+<td>AM or PM</td>
+</tr>
+
+<tr>
+<td>%r</td>
+<td>Time in 12 hour AM or PM format (hh:mm:ss AM/PM)</td>
+</tr>
+
+<tr>
+<td>%S</td>
+<td>Seconds (00 to 59)</td>
+</tr>
+
+<tr>
+<td>%s</td>
+<td>Seconds (00 to 59)</td>
+</tr>
+
+<tr>
+<td>%T</td>
+<td>Time in 24 hour format (hh:mm:ss)</td>
+</tr>
+
+<tr>
+<td>%U</td>
+<td>Week where Sunday is the first day of the week (00 to 53)</td>
+</tr>
+
+<tr>
+<td>%u</td>
+<td>Week where Monday is the first day of the week (00 to 53)</td>
+</tr>
+
+<tr>
+<td>%V</td>
+<td>Week where Sunday is the first day of the week (01 to 53). Used with %X</td>
+</tr>
+
+<tr>
+<td>%v</td>
+<td>Week where Monday is the first day of the week (01 to 53). Used with %X</td>
+</tr>
+
+<tr>
+<td>%W</td>
+<td>Weekday name in full (Sunday to Saturday)</td>
+</tr>
+
+<tr>
+<td>%w</td>
+<td>Day of the week where Sunday=0 and Saturday=6</td>
+</tr>
+
+<tr>
+<td>%X</td>
+<td>Year for the week where Sunday is the first day of the week. Used with %V</td>
+</tr>
+
+<tr>
+<td>%x</td>
+<td>Year for the week where Monday is the first day of the week. Used with %V</td>
+</tr>
+
+<tr>
+<td>%Y</td>
+<td>Year as a numeric, 4-digit value</td>
+</tr>
+
+<tr>
+<td>%y</td>
+<td>Year as a numeric, 2-digit value</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 几个例子</span>
+mysql&gt; SELECT DATE_FORMAT<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, <span class="s2">&#34;%Y&#34;</span><span class="o">)</span><span class="p">;</span>
++---------------------------------+
+<span class="p">|</span> DATE_FORMAT<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, <span class="s2">&#34;%Y&#34;</span><span class="o">)</span> <span class="p">|</span>
++---------------------------------+
+<span class="p">|</span> <span class="m">2017</span>                            <span class="p">|</span>
++---------------------------------+
+mysql&gt; SELECT DATE_FORMAT<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, <span class="s2">&#34;%d/%m/%Y&#34;</span><span class="o">)</span><span class="p">;</span>
++---------------------------------------+
+<span class="p">|</span> DATE_FORMAT<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, <span class="s2">&#34;%d/%m/%Y&#34;</span><span class="o">)</span> <span class="p">|</span>
++---------------------------------------+
+<span class="p">|</span> <span class="m">15</span>/06/2017                            <span class="p">|</span>
++---------------------------------------+
+mysql&gt; SELECT DATE_FORMAT<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, <span class="s2">&#34;%d/%M/%Y&#34;</span><span class="o">)</span><span class="p">;</span>
++---------------------------------------+
+<span class="p">|</span> DATE_FORMAT<span class="o">(</span><span class="s2">&#34;2017-06-15&#34;</span>, <span class="s2">&#34;%d/%M/%Y&#34;</span><span class="o">)</span> <span class="p">|</span>
++---------------------------------------+
+<span class="p">|</span> <span class="m">15</span>/June/2017                          <span class="p">|</span>
++---------------------------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-7-dayofweek-date">1.7 <code>DayOfWeek(&lt;date&gt;)</code></h2>
+
+<p>下表为数字与 week 的对应关系，注意 1 代表周天</p>
+
+<table>
+<thead>
+<tr>
+<th>result</th>
+<th>week</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>Sunday</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Monday</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Tuesday</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Wednesday</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Thursday</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Friday</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>Saturday</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mysql&gt; SELECT DayOfWeek<span class="o">(</span><span class="s1">&#39;2019-10-28&#39;</span><span class="o">)</span><span class="p">;</span>
++-------------------------+
+<span class="p">|</span> DayOfWeek<span class="o">(</span><span class="s1">&#39;2019-10-28&#39;</span><span class="o">)</span> <span class="p">|</span>
++-------------------------+
+<span class="p">|</span>                       <span class="m">2</span> <span class="p">|</span>
++-------------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-8-now">1.8 <code>Now()</code></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mysql&gt; SELECT Now<span class="o">()</span><span class="p">;</span>
++---------------------+
+<span class="p">|</span> Now<span class="o">()</span>               <span class="p">|</span>
++---------------------+
+<span class="p">|</span> <span class="m">2019</span>-10-28 <span class="m">14</span>:15:38 <span class="p">|</span>
++---------------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-9-curdate">1.9  <code>CurDate()</code></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mysql&gt; SELECT CurDate<span class="o">()</span><span class="p">;</span>
++------------+
+<span class="p">|</span> CurDate<span class="o">()</span>  <span class="p">|</span>
++------------+
+<span class="p">|</span> <span class="m">2019</span>-10-28 <span class="p">|</span>
++------------+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-10-curtime">1.10 <code>CurTime()</code></h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">mysql&gt; SELECT CurTime<span class="o">()</span><span class="p">;</span>
++-----------+
+<span class="p">|</span> CurTime<span class="o">()</span> <span class="p">|</span>
++-----------+
+<span class="p">|</span> <span class="m">14</span>:16:38  <span class="p">|</span>
++-----------+</code></pre></td></tr></table>
+</div>
+</div>
+<p>这里记录的也不全，更全的参考见参考资料</p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li><a href="https://www.w3schools.com/sql/func_mysql_adddate.asp">SQL Tutorial</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">MySQL</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/10/28/mysql-%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/">
+            <span class="next-text nav-default">MySQL 文本处理函数</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
