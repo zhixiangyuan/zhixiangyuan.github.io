@@ -29,8 +29,8 @@ author: "yuanzx"
 | `AddTime(<field>, <time>)`                  | 增加时间，单位默认为秒                 |
 | `DateDiff(<date1>, <date2>)`                | 计算两个日期之差                       |
 | `Date_Add(<date>, INTERVAL <value> <unit>)` | 高度灵活的日期运算函数                 |
-| `Date_Format()`                             | 返回一个格式化的日期或时间串           |
-| `DayOfWeek()`                               | 对于一个日期，返回对应的星期几         |
+| `Date_Format(<date>, <format>)`             | 返回一个格式化的日期或时间串           |
+| `DayOfWeek(<date>)`                         | 对于一个日期，返回对应的星期几         |
 | `Now()`                                     | 返回当前日期和时间                     |
 | `CurDate()`                                 | 返回当前日期                           |
 | `CurTime()`                                 | 返回当前时间                           |
