@@ -1,5 +1,5 @@
 ---
-title: "MySQL 中的汇聚函数"
+title: "MySQL 中的聚集函数"
 date: 2019-10-29T11:08:19+08:00
 keywords: []
 description: ""
@@ -13,7 +13,7 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-# 1 MySQL 中的汇聚函数
+# 1 MySQL 中的聚集函数
 
 | 函数                               | 说明             |
 | ---------------------------------- | ---------------- |

@@ -264,6 +264,9 @@ mysql> SELECT <field> FROM <table> WHERE <field> != <value1> OR <field> != <valu
 mysql> SELECT <field> FROM <table> WHERE NOT <field> = <value>;
 # 上述语句等价于
 mysql> SELECT <field> FROM <table> WHERE <field> != <value>;
+
+# IS NULL 与 NOT 的使用有点不同
+mysql> SELECT <field> FROM <table> WHERE <field> IS NOT NULL;
 ```
 
 注意：NOT 的优先级低于 AND 和 OR
@@ -301,12 +304,44 @@ mysql> SELECT <field> as <alias> FROM <table>;
 
 ```shell
 # SELECT 后面的 field 可以是一个计算出来的字段，或者是函数处理出来的字段
-mysql SELECT <field1>+<field2> FROM <table>;
-mysql SELECT <field1>-<field2> FROM <table>;
-mysql SELECT <field1>*<field2> FROM <table>;
-mysql SELECT <field1>/<field2> FROM <table>;
+mysql> SELECT <field1>+<field2> FROM <table>;
+mysql> SELECT <field1>-<field2> FROM <table>;
+mysql> SELECT <field1>*<field2> FROM <table>;
+mysql> SELECT <field1>/<field2> FROM <table>;
 # 支持加减乘除四种运算
 ```
+
+## 3.13 GROUP BY 的使用
+
+注意：GROUP BY 必须配合聚集函数一起使用
+
+```shell
+# 下面的语句可以按照年龄分组，统计每个年龄的人数
+mysql> SELECT <age>, COUNT(<age>) FROM <table> GROUP BY <age>;
+# GROUP BY 后面还可以跟一个 ORDER BY 排一下序
+mysql> SELECT <age>, COUNT(<age>) FROM <table> GROUP BY <age> ORDER BY <age> ASC;
+```
+
+## 3.14 HAVING 的使用
+
+HAVING 跟在 GROUP BY 后面，是对于分组内数据的过滤，相当于 WHERE
+
+```shell
+# 下面的语句可以找出只有一个人在的年龄
+mysql> SELECT <age>, COUNT(<age>) FROM <table> GROUP BY <age> HAVING COUNT(<age>) = 1;
+```
+
+## 3.14 各个关键字的顺序
+
+| 子句     | 说明               | 是否必须使用           |
+| -------- | ------------------ | ---------------------- |
+| SELECT   | 要返回的列或表达式 | 是                     |
+| FROM     | 从中检索数据的表   | 仅在从表选择数据时使用 |
+| WHERE    | 行级过滤           | 否                     |
+| GROUP BY | 分组说明           | 仅在按组计算聚集时使用 |
+| HAVING   | 组级过滤           | 否                     |
+| ORDER BY | 输出排序顺序       | 否                     |
+| LIMIT    | 要检索的行数       | 否                     |
 
 # 4 什么时候使用引号 
 
