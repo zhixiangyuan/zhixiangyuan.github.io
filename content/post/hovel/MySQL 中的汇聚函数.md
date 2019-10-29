@@ -15,13 +15,16 @@ author: "yuanzx"
 
 # 1 MySQL 中的汇聚函数
 
-| 函数             | 说明             |
-| ---------------- | ---------------- |
-| `AVG(<field>)`   | 返回某列的平均值 |
-| `COUNT(<field>)` | 返回某列的行数   |
-| `MAX(<field>)`   | 返回某列的最大值 |
-| `MIN(<field>)`   | 返回某列的最小值 |
-| `SUM(<field>)`   | 返回某列值之和   |
+| 函数                            | 说明             |
+| ------------------------------- | ---------------- |
+| `AVG([DISTINCT or ALL] <field>)`   | 返回某列的平均值 |
+| `COUNT([DISTINCT or ALL] <field>)` | 返回某列的行数   |
+| `MAX(<field>)`                  | 返回某列的最大值 |
+| `MIN(<field>)`                  | 返回某列的最小值 |
+| `SUM([DISTINCT or ALL] <field>)`   | 返回某列值之和   |
+
+- DISTINCT 参数起到去重的作用
+- ALL 为默认参数，不指定则默认使用所有值
 
 以下表数据作为测试用例
 
@@ -43,14 +46,22 @@ mysql> SELECT * FROM _table;
 ## 1.1 `AVG(<field>)`
 
 ```shell
-# (1 + 2 + 3 +  4 + 5 + 6) / 6 = 3.5
+# (1 + 2 + 3 +  4 + 5 + 6 + 6) / 7 = 3.8571
 # 注意：NULL 是不会参与计算的
 mysql> SELECT AVG(age) FROM _table;
 +----------+
 | AVG(age) |
 +----------+
-|   3.5000 |
+|   3.8571 |
 +----------+
+# 使用 DISTINCT 去重
+#  (1 + 2 + 3 +  4 + 5 + 6) / 6 = 3.5
+mysql> SELECT AVG(DISTINCT age) FROM _table;
++-------------------+
+| AVG(DISTINCT age) |
++-------------------+
+|            3.5000 |
++-------------------+
 ```
 
 ## 1.2 `COUNT(<field>)`
@@ -60,15 +71,30 @@ mysql> SELECT COUNT(id) FROM _table;
 +-----------+
 | COUNT(id) |
 +-----------+
-|         7 |
+|         8 |
 +-----------+
 # 注意：NULL 会被忽略
 mysql> SELECT COUNT(age) FROM _table;
 +------------+
 | COUNT(age) |
 +------------+
-|          6 |
+|          7 |
 +------------+
+# 使用 DISTINCT 去重
+mysql> SELECT COUNT(DISTINCT age) FROM _table;
++---------------------+
+| COUNT(DISTINCT age) |
++---------------------+
+|                   6 |
++---------------------+
+# 对所有行进行计数，不忽略 NULL
+# 此时不能使用 DISTINCT
+mysql> SELECT COUNT(*) FROM _table;
++----------+
+| COUNT(*) |
++----------+
+|        8 |
++----------+
 ```
 
 ## 1.3 `MAX(<field>)`
@@ -82,6 +108,8 @@ mysql> SELECT MAX(age) FROM _table;
 +----------+
 ```
 
+注意：这个函数不要往文本上用，因为我测试过后返回的结果没什么规律
+
 ## 1.4 `MIN(<field>)`
 
 ```shell
@@ -93,6 +121,8 @@ mysql> SELECT MIN(age) FROM _table;
 +----------+
 ```
 
+注意：这个函数不要往文本上用，因为我测试过后返回的结果没什么规律
+
 ## 1.5 `SUM(<field>)`
 
 ```shell
@@ -100,6 +130,18 @@ mysql> SELECT SUM(age) FROM _table;
 +----------+
 | SUM(age) |
 +----------+
-|       21 |
+|       27 |
 +----------+
+```
+
+# 2 组合聚集函数
+
+```shell
+# 多个聚集函数可以一起使用
+mysql> SELECT COUNT(*) as line_num, MAX(age), MIN(age)  FROM _table;
++----------+----------+----------+
+| line_num | MAX(age) | MIN(age) |
++----------+----------+----------+
+|        8 |        6 |        1 |
++----------+----------+----------+
 ```
