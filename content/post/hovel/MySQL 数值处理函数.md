@@ -11,7 +11,6 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
-# draft: true
 markup: mmark
 mathjax: true
 ---
