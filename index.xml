@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 29 Oct 2019 10:04:43 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2019 11:08:19 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录</description>
+    </item>
+    
+    <item>
+      <title>MySQL 中的汇聚函数</title>
+      <link>https://zhixiangyuan.github.io/2019/10/29/mysql-%E4%B8%AD%E7%9A%84%E6%B1%87%E8%81%9A%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Tue, 29 Oct 2019 11:08:19 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/29/mysql-%E4%B8%AD%E7%9A%84%E6%B1%87%E8%81%9A%E5%87%BD%E6%95%B0/</guid>
+      <description>1 MySQL 中的汇聚函数 函数 说明 AVG(&amp;lt;field&amp;gt;) 返回某列的平均值 COUNT(&amp;lt;field&amp;gt;) 返回某列的行数 MAX(&amp;lt;field&amp;gt;) 返回某列的最大值 MIN(&amp;lt;field&amp;gt;) 返回某列的最小值 SUM(&amp;lt;field&amp;gt;) 返回某列值之和 以下表数据作为测试用例 1 2 3 4</description>
     </item>
     
     <item>

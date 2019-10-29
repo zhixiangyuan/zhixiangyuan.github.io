@@ -10,48 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-10-29T10:04:43+08:00</lastmod>
+    <lastmod>2019-10-29T11:08:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/mysql/</loc>
-    <lastmod>2019-10-29T10:04:43+08:00</lastmod>
+    <lastmod>2019-10-29T11:08:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/2019/10/29/mysql-%E6%95%B0%E5%80%BC%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2019-10-29T10:04:43+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/2019/10/29/mysql-%E4%B8%AD%E7%9A%84%E6%B1%87%E8%81%9A%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2019-10-29T11:08:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-10-29T10:04:43+08:00</lastmod>
+    <lastmod>2019-10-29T11:08:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-10-29T10:04:43+08:00</lastmod>
+    <lastmod>2019-10-29T11:08:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-10-29T10:04:43+08:00</lastmod>
+    <lastmod>2019-10-29T11:08:19+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2019-10-29T11:08:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/10/29/mysql-%E6%95%B0%E5%80%BC%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2019-10-29T10:04:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
