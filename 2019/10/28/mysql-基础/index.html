@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-28T09:53:55&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-28T09:53:55&#43;08:00" />
-<meta itemprop="wordCount" content="2363">
+<meta itemprop="wordCount" content="2641">
 
 
 
@@ -159,6 +159,9 @@
 <li><a href="#3-10-在-where-中使用正则表达式">3.10 在 WHERE 中使用正则表达式</a></li>
 <li><a href="#3-11-使用-as-设置别名">3.11 使用 as 设置别名</a></li>
 <li><a href="#3-12-使用计算字段">3.12 使用计算字段</a></li>
+<li><a href="#3-13-group-by-的使用">3.13 GROUP BY 的使用</a></li>
+<li><a href="#3-14-having-的使用">3.14 HAVING 的使用</a></li>
+<li><a href="#3-14-各个关键字的顺序">3.14 各个关键字的顺序</a></li>
 </ul></li>
 <li><a href="#4-什么时候使用引号">4 什么时候使用引号</a></li>
 <li><a href="#参考资料">参考资料</a></li>
@@ -645,14 +648,17 @@ mysql&gt; SELECT &lt;field&gt; FROM &lt;table&gt; WHERE &lt;field&gt; IN <span c
 <h2 id="3-8-在-where-中使用-not">3.8 在 WHERE 中使用 NOT</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># NOT 的作用是否定它后面所跟的条件</span>
@@ -662,7 +668,10 @@ mysql&gt; SELECT &lt;field&gt; FROM &lt;table&gt; WHERE &lt;field&gt; !<span cla
 
 mysql&gt; SELECT &lt;field&gt; FROM &lt;table&gt; WHERE NOT &lt;field&gt; <span class="o">=</span> &lt;value&gt;<span class="p">;</span>
 <span class="c1"># 上述语句等价于</span>
-mysql&gt; SELECT &lt;field&gt; FROM &lt;table&gt; WHERE &lt;field&gt; !<span class="o">=</span> &lt;value&gt;<span class="p">;</span></code></pre></td></tr></table>
+mysql&gt; SELECT &lt;field&gt; FROM &lt;table&gt; WHERE &lt;field&gt; !<span class="o">=</span> &lt;value&gt;<span class="p">;</span>
+
+<span class="c1"># IS NULL 与 NOT 的使用有点不同</span>
+mysql&gt; SELECT &lt;field&gt; FROM &lt;table&gt; WHERE &lt;field&gt; IS NOT NULL<span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>注意：NOT 的优先级低于 AND 和 OR</p>
@@ -724,13 +733,99 @@ mysql&gt; SELECT &lt;field&gt; as &lt;alias&gt; FROM &lt;table&gt;<span class="p
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># SELECT 后面的 field 可以是一个计算出来的字段，或者是函数处理出来的字段</span>
-mysql SELECT &lt;field1&gt;+&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
-mysql SELECT &lt;field1&gt;-&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
-mysql SELECT &lt;field1&gt;*&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
-mysql SELECT &lt;field1&gt;/&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
+mysql&gt; SELECT &lt;field1&gt;+&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
+mysql&gt; SELECT &lt;field1&gt;-&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
+mysql&gt; SELECT &lt;field1&gt;*&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
+mysql&gt; SELECT &lt;field1&gt;/&lt;field2&gt; FROM &lt;table&gt;<span class="p">;</span>
 <span class="c1"># 支持加减乘除四种运算</span></code></pre></td></tr></table>
 </div>
 </div>
+<h2 id="3-13-group-by-的使用">3.13 GROUP BY 的使用</h2>
+
+<p>注意：GROUP BY 必须配合聚集函数一起使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 下面的语句可以按照年龄分组，统计每个年龄的人数</span>
+mysql&gt; SELECT &lt;age&gt;, COUNT<span class="o">(</span>&lt;age&gt;<span class="o">)</span> FROM &lt;table&gt; GROUP BY &lt;age&gt;<span class="p">;</span>
+<span class="c1"># GROUP BY 后面还可以跟一个 ORDER BY 排一下序</span>
+mysql&gt; SELECT &lt;age&gt;, COUNT<span class="o">(</span>&lt;age&gt;<span class="o">)</span> FROM &lt;table&gt; GROUP BY &lt;age&gt; ORDER BY &lt;age&gt; ASC<span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-14-having-的使用">3.14 HAVING 的使用</h2>
+
+<p>HAVING 跟在 GROUP BY 后面，是对于分组内数据的过滤，相当于 WHERE</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 下面的语句可以找出只有一个人在的年龄</span>
+mysql&gt; SELECT &lt;age&gt;, COUNT<span class="o">(</span>&lt;age&gt;<span class="o">)</span> FROM &lt;table&gt; GROUP BY &lt;age&gt; HAVING COUNT<span class="o">(</span>&lt;age&gt;<span class="o">)</span> <span class="o">=</span> <span class="m">1</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-14-各个关键字的顺序">3.14 各个关键字的顺序</h2>
+
+<table>
+<thead>
+<tr>
+<th>子句</th>
+<th>说明</th>
+<th>是否必须使用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>SELECT</td>
+<td>要返回的列或表达式</td>
+<td>是</td>
+</tr>
+
+<tr>
+<td>FROM</td>
+<td>从中检索数据的表</td>
+<td>仅在从表选择数据时使用</td>
+</tr>
+
+<tr>
+<td>WHERE</td>
+<td>行级过滤</td>
+<td>否</td>
+</tr>
+
+<tr>
+<td>GROUP BY</td>
+<td>分组说明</td>
+<td>仅在按组计算聚集时使用</td>
+</tr>
+
+<tr>
+<td>HAVING</td>
+<td>组级过滤</td>
+<td>否</td>
+</tr>
+
+<tr>
+<td>ORDER BY</td>
+<td>输出排序顺序</td>
+<td>否</td>
+</tr>
+
+<tr>
+<td>LIMIT</td>
+<td>要检索的行数</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+
 <h1 id="4-什么时候使用引号">4 什么时候使用引号</h1>
 
 <p>使用 <code>''</code> 引起来的字段表示字符串，不引的一般是数值。比如后面这个 <code>'testStr'</code></p>
