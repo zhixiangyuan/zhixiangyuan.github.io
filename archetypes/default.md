@@ -7,7 +7,8 @@ tags: [
     "Java",
     "redis",
     "MySQL",
-    "数据结构与算法"
+    "数据结构与算法",
+    "M78 星云"
 ]
 categories: [
     "杂货铺"
