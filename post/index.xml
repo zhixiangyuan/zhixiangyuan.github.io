@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 29 Oct 2019 11:08:19 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Oct 2019 10:43:43 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MySQL 中子查询的使用</title>
+      <link>https://zhixiangyuan.github.io/2019/10/30/mysql-%E4%B8%AD%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 30 Oct 2019 10:43:43 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/30/mysql-%E4%B8%AD%E5%AD%90%E6%9F%A5%E8%AF%A2%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1 测试用例使用的数据表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 # 客户表，存储客户的信息 mysql&amp;gt; SELECT * FROM</description>
+    </item>
     
     <item>
       <title>MySQL 中的聚集函数</title>
