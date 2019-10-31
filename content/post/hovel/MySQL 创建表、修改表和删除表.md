@@ -59,7 +59,7 @@ CREATE TABLE [IF NOT EXISTS] <table_name> (
 [COMMENT=<comment>];
 ```
 
-# 1.1 [COLLATE <charset>] 的作用
+## 1.1 [COLLATE <charset>] 的作用
 
 COLLATE 用于指定排序规则，只有数据类型是 VARCHAR、CHAR、TEXT 类型的字段需要指定这个规则。这个排序规则会影响到 ORDER BY 和大小于号的排序，同时它对于索引也有一定的影响。
 
