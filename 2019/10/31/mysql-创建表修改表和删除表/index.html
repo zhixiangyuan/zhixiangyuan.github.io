@@ -140,8 +140,10 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-创建表">1 创建表</a></li>
+<li><a href="#1-创建表">1 创建表</a>
+<ul>
 <li><a href="#1-1-collate-charset-的作用">1.1 [COLLATE <charset>] 的作用</a></li>
+</ul></li>
 <li><a href="#2-修改表">2 修改表</a></li>
 <li><a href="#3-删除表">3 删除表</a></li>
 <li><a href="#4-重命名表">4 重命名表</a></li>
@@ -240,7 +242,7 @@
 </span><span class="c1"></span><span class="p">[</span><span class="k">COMMENT</span><span class="o">=&lt;</span><span class="k">comment</span><span class="o">&gt;</span><span class="p">];</span></code></pre></td></tr></table>
 </div>
 </div>
-<h1 id="1-1-collate-charset-的作用">1.1 [COLLATE <charset>] 的作用</h1>
+<h2 id="1-1-collate-charset-的作用">1.1 [COLLATE <charset>] 的作用</h2>
 
 <p>COLLATE 用于指定排序规则，只有数据类型是 VARCHAR、CHAR、TEXT 类型的字段需要指定这个规则。这个排序规则会影响到 ORDER BY 和大小于号的排序，同时它对于索引也有一定的影响。</p>
 
