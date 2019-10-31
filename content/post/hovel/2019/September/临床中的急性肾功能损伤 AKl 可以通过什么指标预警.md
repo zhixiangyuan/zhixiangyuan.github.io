@@ -4,7 +4,7 @@ date: 2019-09-17T20:25:18+08:00
 keywords: []
 description: ""
 tags: [
-
+    "M78 星云"
 ]
 categories: [
     "杂货铺"
