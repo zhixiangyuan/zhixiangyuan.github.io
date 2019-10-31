@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 -- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错 CREATE TABLE [IF NOT EXISTS] &amp;lt;table_name&amp;gt; ( -- &amp;lt;field_name&amp;gt; 字段名 -- &amp;lt;data_type&amp;gt; 数据类型 --" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 CREATE TABLE [IF NOT EXISTS] &amp;lt;table_name&amp;gt; ( &amp;lt;field_name&amp;gt; &amp;lt;data_type&amp;gt;[size] [NOT NULL|NULL] [DEFAULT &amp;lt;value&amp;gt;] [AUTO_INCREMENT] [COMMENT &amp;lt;comment&amp;gt;] [COLLATE &amp;lt;collate&amp;gt;] [UNSIGNED], [field_name data_type]... [PRIMARY KEY (&amp;lt;field&amp;gt;, [field...])]" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="MySQL 创建表、修改表和删除表" />
-<meta property="og:description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 -- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错 CREATE TABLE [IF NOT EXISTS] &lt;table_name&gt; ( -- &lt;field_name&gt; 字段名 -- &lt;data_type&gt; 数据类型 --" />
+<meta property="og:description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 CREATE TABLE [IF NOT EXISTS] &lt;table_name&gt; ( &lt;field_name&gt; &lt;data_type&gt;[size] [NOT NULL|NULL] [DEFAULT &lt;value&gt;] [AUTO_INCREMENT] [COMMENT &lt;comment&gt;] [COLLATE &lt;collate&gt;] [UNSIGNED], [field_name data_type]... [PRIMARY KEY (&lt;field&gt;, [field...])]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/31/mysql-%E5%88%9B%E5%BB%BA%E8%A1%A8%E4%BF%AE%E6%94%B9%E8%A1%A8%E5%92%8C%E5%88%A0%E9%99%A4%E8%A1%A8/" />
 <meta property="article:published_time" content="2019-10-31T15:22:49+08:00" />
 <meta property="article:modified_time" content="2019-10-31T15:22:49+08:00" />
 <meta itemprop="name" content="MySQL 创建表、修改表和删除表">
-<meta itemprop="description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 -- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错 CREATE TABLE [IF NOT EXISTS] &lt;table_name&gt; ( -- &lt;field_name&gt; 字段名 -- &lt;data_type&gt; 数据类型 --">
+<meta itemprop="description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 CREATE TABLE [IF NOT EXISTS] &lt;table_name&gt; ( &lt;field_name&gt; &lt;data_type&gt;[size] [NOT NULL|NULL] [DEFAULT &lt;value&gt;] [AUTO_INCREMENT] [COMMENT &lt;comment&gt;] [COLLATE &lt;collate&gt;] [UNSIGNED], [field_name data_type]... [PRIMARY KEY (&lt;field&gt;, [field...])]">
 
 
 <meta itemprop="datePublished" content="2019-10-31T15:22:49&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-31T15:22:49&#43;08:00" />
-<meta itemprop="wordCount" content="218">
+<meta itemprop="wordCount" content="657">
 
 
 
 <meta itemprop="keywords" content="MySQL," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MySQL 创建表、修改表和删除表"/>
-<meta name="twitter:description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 -- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错 CREATE TABLE [IF NOT EXISTS] &lt;table_name&gt; ( -- &lt;field_name&gt; 字段名 -- &lt;data_type&gt; 数据类型 --"/>
+<meta name="twitter:description" content="1 创建表 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 CREATE TABLE [IF NOT EXISTS] &lt;table_name&gt; ( &lt;field_name&gt; &lt;data_type&gt;[size] [NOT NULL|NULL] [DEFAULT &lt;value&gt;] [AUTO_INCREMENT] [COMMENT &lt;comment&gt;] [COLLATE &lt;collate&gt;] [UNSIGNED], [field_name data_type]... [PRIMARY KEY (&lt;field&gt;, [field...])]"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -141,6 +141,7 @@
     <nav id="TableOfContents">
 <ul>
 <li><a href="#1-创建表">1 创建表</a></li>
+<li><a href="#1-1-collate-charset-的作用">1.1 [COLLATE <charset>] 的作用</a></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
@@ -177,35 +178,77 @@
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错
-</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="p">(</span>
-    <span class="c1">-- &lt;field_name&gt; 字段名
-</span><span class="c1"></span>    <span class="c1">-- &lt;data_type&gt; 数据类型
-</span><span class="c1"></span>    <span class="c1">-- [size] todo 貌似是字段长度，具体作用待定
-</span><span class="c1"></span>    <span class="c1">-- [NOT NULL|NULL] 是否可以为 NULL
-</span><span class="c1"></span>    <span class="c1">-- [DEFAULT &lt;value&gt;] 是否有默认值
-</span><span class="c1"></span>    <span class="c1">-- [AUTO_INCREMENT] 是否自增，每张表只能有一个自增字段，并且必须给这个字段加索引，比如主键
-</span><span class="c1"></span>    <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span><span class="p">[</span><span class="k">size</span><span class="p">]</span> <span class="p">[</span><span class="k">NOT</span> <span class="k">NULL</span><span class="o">|</span><span class="k">NULL</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">AUTO_INCREMENT</span><span class="p">],</span>
-    <span class="p">[</span><span class="n">field_name</span> <span class="n">data_type</span><span class="p">]...</span>
-    <span class="c1">-- 设置主键
-</span><span class="c1"></span>    <span class="p">[</span><span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">field</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">[</span><span class="n">field</span><span class="p">...])]</span>
-<span class="p">)</span>
-<span class="c1">-- ENGING 选择引擎
-</span><span class="c1"></span><span class="n">ENGING</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
-
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span><span class="p">[</span><span class="k">size</span><span class="p">]</span> <span class="p">[</span><span class="k">NOT</span> <span class="k">NULL</span><span class="o">|</span><span class="k">NULL</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">AUTO_INCREMENT</span><span class="p">],</span>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span><span class="p">[</span><span class="k">size</span><span class="p">]</span> <span class="p">[</span><span class="k">NOT</span> <span class="k">NULL</span><span class="o">|</span><span class="k">NULL</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">AUTO_INCREMENT</span><span class="p">]</span> <span class="p">[</span><span class="k">COMMENT</span> <span class="o">&lt;</span><span class="k">comment</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="k">COLLATE</span> <span class="o">&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">UNSIGNED</span><span class="p">],</span>
     <span class="p">[</span><span class="n">field_name</span> <span class="n">data_type</span><span class="p">]...</span>
     <span class="p">[</span><span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">field</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">[</span><span class="n">field</span><span class="p">...])]</span>
-<span class="p">)</span><span class="n">ENGING</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
+<span class="p">)[</span><span class="n">ENGING</span><span class="o">=&lt;</span><span class="n">enging</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">CHARSET</span><span class="o">=&lt;</span><span class="n">charset</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="k">COLLATE</span><span class="o">=&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">];</span>
 
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">test</span> <span class="p">(</span>
-    <span class="n">id</span>  <span class="nb">int</span>
-<span class="p">);</span></code></pre></td></tr></table>
+<span class="c1">-- 下面对各个选项打上注释
+</span><span class="c1">-- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错
+</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="p">[</span><span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span><span class="p">]</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="p">(</span>
+    <span class="c1">-- &lt;field_name&gt; 字段名
+</span><span class="c1"></span>    <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span> 
+    <span class="c1">-- &lt;data_type&gt; 数据类型
+</span><span class="c1"></span>     <span class="c1">-- [size] todo 貌似是字段长度，具体作用待定
+</span><span class="c1"></span>    <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span><span class="p">[</span><span class="k">size</span><span class="p">]</span> 
+    <span class="c1">-- [NOT NULL|NULL] 是否可以为 NULL，默认可以为 NULL
+</span><span class="c1"></span>    <span class="p">[</span><span class="k">NOT</span> <span class="k">NULL</span><span class="o">|</span><span class="k">NULL</span><span class="p">]</span> 
+    <span class="c1">-- [DEFAULT &lt;value&gt;] 是否有默认值
+</span><span class="c1"></span>    <span class="p">[</span><span class="k">DEFAULT</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">]</span> 
+    <span class="c1">-- [AUTO_INCREMENT] 是否自增，每张表只能有一个自增字段，并且必须给这个字段加索引，比如主键
+</span><span class="c1"></span>    <span class="p">[</span><span class="n">AUTO_INCREMENT</span><span class="p">]</span> 
+    <span class="c1">-- [COMMENT &lt;comment&gt;] 注释字段
+</span><span class="c1"></span>    <span class="p">[</span><span class="k">COMMENT</span> <span class="o">&lt;</span><span class="k">comment</span><span class="o">&gt;</span><span class="p">]</span> 
+    <span class="c1">-- [COLLATE &lt;charset&gt;] 解释在下面
+</span><span class="c1"></span>    <span class="p">[</span><span class="k">COLLATE</span> <span class="o">&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">]</span>
+    <span class="c1">-- [UNSIGNED] 对于数字类型表示其没有符号
+</span><span class="c1"></span>    <span class="p">[</span><span class="n">UNSIGNED</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">field_name</span> <span class="n">data_type</span><span class="p">]...</span>
+    <span class="c1">-- [PRIMARY KEY (&lt;field&gt;, [field...])] 设置主键
+</span><span class="c1"></span>    <span class="p">[</span><span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">field</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">[</span><span class="n">field</span><span class="p">...])]</span>
+<span class="p">)</span>
+<span class="c1">-- [ENGING=&lt;enging&gt;] 选择引擎，不选择则是默认引擎
+</span><span class="c1"></span><span class="p">[</span><span class="n">ENGING</span><span class="o">=&lt;</span><span class="n">enging</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="c1">-- [CHARSET=&lt;charset&gt;] 选择字符集
+</span><span class="c1"></span><span class="p">[</span><span class="n">CHARSET</span><span class="o">=&lt;</span><span class="n">charset</span><span class="o">&gt;</span><span class="p">]</span> 
+<span class="c1">-- [COLLATE=&lt;collate&gt;] 选择排序规则
+</span><span class="c1"></span><span class="p">[</span><span class="k">COLLATE</span><span class="o">=&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">];</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test3</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="n">utf8_bin</span><span class="p">,</span>
+    <span class="n">test</span> <span class="nb">int</span> <span class="n">UNSIGNED</span>
+<span class="p">)</span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span> <span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_bin</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
+<h1 id="1-1-collate-charset-的作用">1.1 [COLLATE <charset>] 的作用</h1>
+
+<p>COLLATE 用于指定排序规则，只有数据类型是 VARCHAR、CHAR、TEXT 类型的字段需要指定这个规则。这个排序规则会影响到 ORDER BY 和大小于号的排序，同时它对于索引也有一定的影响。</p>
+
+<p>不同 CHARSET 都有一种默认的 COLLATE，例如 Latin1 编码的默认 COLLATE 为 latin1_swedish_ci，GBK 编码的默认 COLLATE 为 gbk_chinese_ci，utf8mb4 编码的默认值为 utf8mb4_general_ci。</p>
+
+<p>很多 COLLATE 都带有 _ci 字样，这是 Case Insensitive 的缩写，即大小写无关。与此同时，对于那些 _cs 后缀的 COLLATE，则是 Case Sensitive，即大小写敏感的。</p>
+
+<p>同时在 MySQL 中 utf8 编码是 utf8mb4， utf8 是一个历史遗留问题，它只支持 3 bytes，utf8mb4 支持 4 bytes，所以使用 utf8mb4 就好了。</p>
+
 <h1 id="参考资料">参考资料</h1>
 
 <ol>
