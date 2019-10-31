@@ -11,7 +11,6 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
-draft: true
 ---
 
 CAP 理论是 1998 年，加州大学的计算机科学家 EricBrewer 提出，其中包含三个指标
