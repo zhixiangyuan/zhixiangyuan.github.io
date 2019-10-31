@@ -10,48 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-10-31T10:05:58+08:00</lastmod>
+    <lastmod>2019-10-31T10:39:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/mysql/</loc>
-    <lastmod>2019-10-31T10:05:58+08:00</lastmod>
+    <lastmod>2019-10-31T10:39:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/2019/10/31/mysql-insert-%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2019-10-31T10:05:58+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/2019/10/31/mysql-updatedelete-%E4%B8%8E-truncate-%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2019-10-31T10:39:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-10-31T10:05:58+08:00</lastmod>
+    <lastmod>2019-10-31T10:39:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-10-31T10:05:58+08:00</lastmod>
+    <lastmod>2019-10-31T10:39:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-10-31T10:05:58+08:00</lastmod>
+    <lastmod>2019-10-31T10:39:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2019-10-31T10:39:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/10/31/mysql-insert-%E4%B8%8E-replace-%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2019-10-31T10:05:58+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
