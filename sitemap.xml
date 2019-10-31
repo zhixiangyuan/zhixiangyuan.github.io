@@ -695,6 +695,13 @@
   </url>
   
   <url>
+    <loc>https://zhixiangyuan.github.io/tags/vim/</loc>
+    <lastmod>2019-09-25T09:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://zhixiangyuan.github.io/2019/09/25/vim-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</loc>
     <lastmod>2019-09-25T09:54:44+08:00</lastmod>
     <changefreq>weekly</changefreq>

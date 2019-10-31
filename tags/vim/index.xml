@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/vim/</link>
+    <description>Recent content in Vim on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Wed, 25 Sep 2019 09:54:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vim 命令小记</title>
+      <link>https://zhixiangyuan.github.io/2019/09/25/vim-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Wed, 25 Sep 2019 09:54:44 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/09/25/vim-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</guid>
+      <description>1 移动命令 1.1 行间搜索移动 f${char} 移动到 char 字符的第一个字母上 t${char} 移动到 char 字符的第一个字母前面 &amp;rsquo;;&amp;rsquo; 配合 f 和 t 搜索该行的下一个 &amp;rsquo;,&amp;rsquo; 配合 f 和 t 搜索该行的上一个 1.2</description>
+    </item>
+    
+  </channel>
+</rss>
