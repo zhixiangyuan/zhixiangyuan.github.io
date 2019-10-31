@@ -1,10 +1,10 @@
 ---
-title: "理解 CAP"
+title: "CAP 简述"
 date: 2019-08-23T14:08:22+08:00
 keywords: []
 description: ""
 tags: [
-    "分布式系统"
+    "分布式事务"
 ]
 categories: [
     "杂货铺"
