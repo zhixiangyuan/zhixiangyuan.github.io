@@ -1084,6 +1084,15 @@
     </item>
     
     <item>
+      <title>理解 CAP</title>
+      <link>https://zhixiangyuan.github.io/2019/08/23/%E7%90%86%E8%A7%A3-cap/</link>
+      <pubDate>Fri, 23 Aug 2019 14:08:22 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/08/23/%E7%90%86%E8%A7%A3-cap/</guid>
+      <description>CAP 理论是 1998 年，加州大学的计算机科学家 EricBrewer 提出，其中包含三个指标 Consistency Availability Partition tolerance 1 Consistency 一致性 指的是所有数据在同一时刻看到的数据是一致的 all nodes see the same data at the same time</description>
+    </item>
+    
+    <item>
       <title>Leetcode: 1115 交替打印 FooBar</title>
       <link>https://zhixiangyuan.github.io/2019/08/14/leetcode-1115-%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0-foobar/</link>
       <pubDate>Wed, 14 Aug 2019 20:54:44 +0800</pubDate>
