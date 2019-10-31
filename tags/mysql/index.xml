@@ -111,5 +111,14 @@
       <description>MySQL 常用的引擎有 InnoDB、MyISAM、Memory，默认是 InnoDB 1 InnoDB 这种引擎序列化在磁盘中，支持事务，支持行级锁，B+Tree 索引。拥有良好</description>
     </item>
     
+    <item>
+      <title>数据库事务小记</title>
+      <link>https://zhixiangyuan.github.io/2018/11/24/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Sat, 24 Nov 2018 14:30:14 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2018/11/24/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%B0%8F%E8%AE%B0/</guid>
+      <description>1 为什么会有数据库事务 数据库在没有事务的情况下进行读写，可能出现脏读、不可重复读与幻读三种异常，而为了解决这三种异常，便引出了数据库事务，首</description>
+    </item>
+    
   </channel>
 </rss>

@@ -85,6 +85,24 @@
     </item>
     
     <item>
+      <title>Monitorenter 与 Monitorexit 小记</title>
+      <link>https://zhixiangyuan.github.io/2019/09/23/monitorenter-%E4%B8%8E-monitorexit-%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Mon, 23 Sep 2019 10:07:48 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/09/23/monitorenter-%E4%B8%8E-monitorexit-%E5%B0%8F%E8%AE%B0/</guid>
+      <description>首先对如下代码进行编译 1 2 3 4 5 public void Test() { synchronized(this) { System.out.println(); } } 将得到的字节码通过 javap 反编译 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 public void</description>
+    </item>
+    
+    <item>
+      <title>Javap 命令的使用</title>
+      <link>https://zhixiangyuan.github.io/2018/11/05/javap-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 05 Nov 2018 10:43:36 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2018/11/05/javap-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示</description>
+    </item>
+    
+    <item>
       <title>int 入栈指令 iconst、bipush、sipush、ldc</title>
       <link>https://zhixiangyuan.github.io/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/</link>
       <pubDate>Sat, 11 Aug 2018 18:47:43 +0800</pubDate>
