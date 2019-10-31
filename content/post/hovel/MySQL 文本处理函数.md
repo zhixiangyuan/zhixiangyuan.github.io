@@ -291,3 +291,6 @@ mysql> SELECT Concat(Trim(id), '-', Trim(name)) FROM _table;
 +-----------------------------------+
 ```
 
+# 参考资料
+
+1. 《MySQL 必知必会》

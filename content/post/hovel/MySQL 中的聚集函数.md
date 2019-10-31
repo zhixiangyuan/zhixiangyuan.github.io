@@ -146,3 +146,7 @@ mysql> SELECT COUNT(*) as line_num, MAX(age), MIN(age)  FROM _table;
 |        8 |        6 |        1 |
 +----------+----------+----------+
 ```
+
+# 参考资料
+
+1. 《MySQL 必知必会》
