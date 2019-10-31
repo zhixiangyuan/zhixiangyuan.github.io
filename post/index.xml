@@ -1075,11 +1075,11 @@
     </item>
     
     <item>
-      <title>理解 CAP</title>
-      <link>https://zhixiangyuan.github.io/2019/08/23/%E7%90%86%E8%A7%A3-cap/</link>
+      <title>CAP 简述</title>
+      <link>https://zhixiangyuan.github.io/2019/08/23/cap-%E7%AE%80%E8%BF%B0/</link>
       <pubDate>Fri, 23 Aug 2019 14:08:22 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/2019/08/23/%E7%90%86%E8%A7%A3-cap/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/08/23/cap-%E7%AE%80%E8%BF%B0/</guid>
       <description>CAP 理论是 1998 年，加州大学的计算机科学家 EricBrewer 提出，其中包含三个指标 Consistency Availability Partition tolerance 1 Consistency 一致性 指的是所有数据在同一时刻看到的数据是一致的 all nodes see the same data at the same time</description>
     </item>
     
