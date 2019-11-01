@@ -10,7 +10,8 @@ tags: [
     "数据结构与算法",
     "M78 星云",
     "JVM",
-    "Linux"
+    "Linux",
+    "IntelliJ IDEA"
 ]
 categories: [
     "杂货铺"
