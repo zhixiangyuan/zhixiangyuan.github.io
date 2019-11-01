@@ -19,14 +19,14 @@ author: "yuanzx"
 
 ```sql
 -- 创建视图
-CREATE VIEW <view_name> AS <SELECT ...>;
+CREATE VIEW <$view_name> AS <SELECT ...>;
 ```
 
 # 2 视图的删除
 
 ```sql
 -- 删除视图
-DROP VIEW <view_name>;
+DROP VIEW <$view_name>;
 ```
 
 # 3 对视图中数据的修改
