@@ -27,7 +27,7 @@
       <pubDate>Fri, 01 Nov 2019 16:45:48 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/11/01/mysql-%E8%A7%86%E5%9B%BE%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%A0%E9%99%A4/</guid>
-      <description>视图便是临时表，在每次查看视图的时候执行指定的 SQL 语句。 1 视图的创建 1 2 -- 创建视图 CREATE VIEW &amp;lt;view_name&amp;gt; AS &amp;lt;SELECT ...&amp;gt;; 2 视图的删除 1 2 -- 删除视图 DROP VIEW &amp;lt;view_name&amp;gt;; 3 对视图中数据的</description>
+      <description>视图便是临时表，在每次查看视图的时候执行指定的 SQL 语句。 1 视图的创建 1 2 -- 创建视图 CREATE VIEW &amp;lt;$view_name&amp;gt; AS &amp;lt;SELECT ...&amp;gt;; 2 视图的删除 1 2 -- 删除视图 DROP VIEW &amp;lt;$view_name&amp;gt;; 3 对视图中数据的</description>
     </item>
     
     <item>
