@@ -21,7 +21,7 @@ CREATE TABLE [IF NOT EXISTS] <table_name> (
     <field_name> <data_type>[size] [NOT NULL|NULL] [DEFAULT <value>] [AUTO_INCREMENT] [COMMENT <comment>] [CHARACTER SET <charset>] [COLLATE <collate>] [UNSIGNED],
     [field_name data_type]...
     [PRIMARY KEY (<field>, [field...])]
-)[ENGING=<enging>] [CHARSET=<charset>] [COLLATE=<collate>] [COMMENT=<comment>];
+)[ENGING=<enging>] [[DEFAULT] CHARSET=<charset>] [COLLATE=<collate>] [COMMENT=<comment>];
 
 -- 下面对各个选项打上注释
 -- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错
@@ -51,8 +51,8 @@ CREATE TABLE [IF NOT EXISTS] <table_name> (
 )
 -- [ENGING=<enging>] 选择引擎，不选择则是默认引擎
 [ENGING=<enging>]
--- [CHARSET=<charset>] 选择字符集
-[CHARSET=<charset>] 
+-- [[DEFAULT] CHARSET=<charset>] 选择字符集
+[[DEFAULT] CHARSET=<charset>] 
 -- [COLLATE=<collate>] 选择排序规则
 [COLLATE=<collate>]
 -- [COMMENT <comment>] 表级别注释
