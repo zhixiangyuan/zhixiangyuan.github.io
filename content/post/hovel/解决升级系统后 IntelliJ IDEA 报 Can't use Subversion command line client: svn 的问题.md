@@ -15,7 +15,7 @@ author: "yuanzx"
 
 系统版本：macOS Catalina Version 10.15.1
 
-在重装完系统后出现了下图中的错误
+在升级完系统后出现了下图中的错误
 
 ![idea 的报错](/hub/2019/November/1.png)
 
