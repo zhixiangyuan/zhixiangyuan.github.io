@@ -31,7 +31,7 @@ DROP VIEW <$view_name>;
 
 # 3 对视图中数据的修改
 
-对于视图的 SELECT、INSERT、UPDATE 和 DELETE 操作和对表的操作是一样的，操作的结果会打到相应的表上。不过对视图操作的前提是 MySQL 能够确定到相应的数据，比如说使用了 `DISTINCT`s、`Sum()` 等之类的函数便不能对视图做 INSERT、UPDATE 和 DELETE 操作。
+对于视图的 SELECT、INSERT、UPDATE 和 DELETE 操作和对表的操作是一样的，操作的结果会打到相应的表上。不过对视图操作的前提是 MySQL 能够确定到相应的数据，比如说使用了 `DISTINCT`、`Sum()` 等之类的函数便不能对视图做 INSERT、UPDATE 和 DELETE 操作。
 
 # 参考资料
 
