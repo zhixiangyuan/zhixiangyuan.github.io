@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 31 Oct 2019 20:39:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Nov 2019 10:00:53 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>解决升级系统后 IntelliJ IDEA 报 Can&#39;t use Subversion command line client: svn 的问题</title>
+      <link>https://zhixiangyuan.github.io/2019/11/01/%E8%A7%A3%E5%86%B3%E5%8D%87%E7%BA%A7%E7%B3%BB%E7%BB%9F%E5%90%8E-intellij-idea-%E6%8A%A5-cant-use-subversion-command-line-client-svn-%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 01 Nov 2019 10:00:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/01/%E8%A7%A3%E5%86%B3%E5%8D%87%E7%BA%A7%E7%B3%BB%E7%BB%9F%E5%90%8E-intellij-idea-%E6%8A%A5-cant-use-subversion-command-line-client-svn-%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>系统版本：macOS Catalina Version 10.15.1 在重装完系统后出现了下图中的错误 这个问题其实是由于命令行中 svn 命令失效导致的，在命令行中输入 svn 爆出以下错误 1 xcrun: error: invalid active</description>
+    </item>
     
     <item>
       <title>反斜杠 r 与 反斜杠 n 的含义</title>
