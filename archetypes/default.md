@@ -11,7 +11,8 @@ tags: [
     "M78 星云",
     "JVM",
     "Linux",
-    "IntelliJ IDEA"
+    "IntelliJ IDEA",
+    "Git"
 ]
 categories: [
     "杂货铺"
