@@ -10,41 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-11-01T11:08:07+08:00</lastmod>
+    <lastmod>2019-11-01T14:08:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/git/</loc>
-    <lastmod>2019-11-01T11:08:07+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
+    <lastmod>2019-11-01T14:08:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-11-01T11:08:07+08:00</lastmod>
+    <lastmod>2019-11-01T14:08:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-11-01T11:08:07+08:00</lastmod>
+    <lastmod>2019-11-01T14:08:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-11-01T11:08:07+08:00</lastmod>
+    <lastmod>2019-11-01T14:08:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/01/%E4%B8%96%E7%95%8C%E4%B8%8A%E6%B2%A1%E6%9C%89%E6%8A%80%E6%9C%AF%E9%A9%B1%E5%8A%A8%E5%9E%8B%E5%85%AC%E5%8F%B8/</loc>
+    <lastmod>2019-11-01T14:08:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2019-11-01T14:08:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/git/</loc>
     <lastmod>2019-11-01T11:08:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -137,13 +151,6 @@
   <url>
     <loc>https://zhixiangyuan.github.io/2019/10/29/mysql-%E6%95%B0%E5%80%BC%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2019-10-29T10:04:43+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
-    <lastmod>2019-10-29T09:51:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
