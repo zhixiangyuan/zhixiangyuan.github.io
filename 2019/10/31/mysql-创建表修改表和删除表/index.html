@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-31T15:22:49&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-31T15:22:49&#43;08:00" />
-<meta itemprop="wordCount" content="878">
+<meta itemprop="wordCount" content="881">
 
 
 
@@ -204,7 +204,7 @@
     <span class="o">&lt;</span><span class="n">field_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span><span class="p">[</span><span class="k">size</span><span class="p">]</span> <span class="p">[</span><span class="k">NOT</span> <span class="k">NULL</span><span class="o">|</span><span class="k">NULL</span><span class="p">]</span> <span class="p">[</span><span class="k">DEFAULT</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">AUTO_INCREMENT</span><span class="p">]</span> <span class="p">[</span><span class="k">COMMENT</span> <span class="o">&lt;</span><span class="k">comment</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="o">&lt;</span><span class="n">charset</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="k">COLLATE</span> <span class="o">&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">UNSIGNED</span><span class="p">],</span>
     <span class="p">[</span><span class="n">field_name</span> <span class="n">data_type</span><span class="p">]...</span>
     <span class="p">[</span><span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">field</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">[</span><span class="n">field</span><span class="p">...])]</span>
-<span class="p">)[</span><span class="n">ENGING</span><span class="o">=&lt;</span><span class="n">enging</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="n">CHARSET</span><span class="o">=&lt;</span><span class="n">charset</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="k">COLLATE</span><span class="o">=&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="k">COMMENT</span><span class="o">=&lt;</span><span class="k">comment</span><span class="o">&gt;</span><span class="p">];</span>
+<span class="p">)[</span><span class="n">ENGING</span><span class="o">=&lt;</span><span class="n">enging</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[[</span><span class="k">DEFAULT</span><span class="p">]</span> <span class="n">CHARSET</span><span class="o">=&lt;</span><span class="n">charset</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="k">COLLATE</span><span class="o">=&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="k">COMMENT</span><span class="o">=&lt;</span><span class="k">comment</span><span class="o">&gt;</span><span class="p">];</span>
 
 <span class="c1">-- 下面对各个选项打上注释
 </span><span class="c1">-- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错
@@ -234,8 +234,8 @@
 <span class="p">)</span>
 <span class="c1">-- [ENGING=&lt;enging&gt;] 选择引擎，不选择则是默认引擎
 </span><span class="c1"></span><span class="p">[</span><span class="n">ENGING</span><span class="o">=&lt;</span><span class="n">enging</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="c1">-- [CHARSET=&lt;charset&gt;] 选择字符集
-</span><span class="c1"></span><span class="p">[</span><span class="n">CHARSET</span><span class="o">=&lt;</span><span class="n">charset</span><span class="o">&gt;</span><span class="p">]</span> 
+<span class="c1">-- [[DEFAULT] CHARSET=&lt;charset&gt;] 选择字符集
+</span><span class="c1"></span><span class="p">[[</span><span class="k">DEFAULT</span><span class="p">]</span> <span class="n">CHARSET</span><span class="o">=&lt;</span><span class="n">charset</span><span class="o">&gt;</span><span class="p">]</span> 
 <span class="c1">-- [COLLATE=&lt;collate&gt;] 选择排序规则
 </span><span class="c1"></span><span class="p">[</span><span class="k">COLLATE</span><span class="o">=&lt;</span><span class="k">collate</span><span class="o">&gt;</span><span class="p">]</span>
 <span class="c1">-- [COMMENT &lt;comment&gt;] 表级别注释
