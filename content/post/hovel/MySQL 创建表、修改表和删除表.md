@@ -24,7 +24,7 @@ CREATE TABLE [IF NOT EXISTS] <table_name> (
 )[ENGING=<enging>] [[DEFAULT] CHARSET=<charset>] [COLLATE=<collate>] [COMMENT=<comment>];
 
 -- 下面对各个选项打上注释
--- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的报错
+-- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的情况下创建会报错
 CREATE TABLE [IF NOT EXISTS] <table_name> (
     -- <field_name> 字段名
     <field_name> 
