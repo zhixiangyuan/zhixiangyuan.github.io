@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Yuanzx Blog</title>
+  <title>改善 MySQL 性能的建议 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Yuanzx Blog" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="Yuanzx Blog" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/03/%E6%94%B9%E5%96%84-mysql-%E6%80%A7%E8%83%BD%E7%9A%84%E5%BB%BA%E8%AE%AE/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="Yuanzx Blog" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="改善 MySQL 性能的建议" />
+<meta property="og:description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/03/%E6%94%B9%E5%96%84-mysql-%E6%80%A7%E8%83%BD%E7%9A%84%E5%BB%BA%E8%AE%AE/" />
+<meta property="article:published_time" content="2019-11-03T00:51:01+08:00" />
+<meta property="article:modified_time" content="2019-11-03T00:51:01+08:00" />
+<meta itemprop="name" content="改善 MySQL 性能的建议">
+<meta itemprop="description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚">
 
-<meta property="og:updated_time" content="2019-11-03T00:51:01+08:00" />
-<meta itemprop="name" content="Yuanzx Blog">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2019-11-03T00:51:01&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-03T00:51:01&#43;08:00" />
+<meta itemprop="wordCount" content="944">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Yuanzx Blog"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="改善 MySQL 性能的建议"/>
+<meta name="twitter:description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,147 +121,82 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/11/05/javap-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/">Javap 命令的使用</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-11-05 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示
-    </div>
-    <div class="read-more">
-      <a href="/2018/11/05/javap-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">改善 MySQL 性能的建议</h1>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/17/finalfinallyfinalize-%E7%9A%84%E5%BC%82%E5%90%8C/">final、finally、finalize 的异同</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-17 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 final final 可以用来修饰类、方法、变量 1.1 final 修饰类 final 修饰 class 代表类不可以被继承 1.2 final 修饰变量 final 修饰的变量在初始化之后不能被再次赋值 1.3 final 修饰方法 final 修饰方法
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/17/finalfinallyfinalize-%E7%9A%84%E5%BC%82%E5%90%8C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+      <div class="post-meta">
+        <span class="post-time"> 2019-11-03 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/16/exception-%E4%B8%8E-error-%E7%9A%84%E5%BC%82%E5%90%8C/">Exception 与 Error 的异同</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-16 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Exception 和 Error 都是继承了 Throwable 类，在 Java 中只有继承了 Throwable 的类才可以被 throw 或者 catch，它是异常处理机制的基本组成类型。Exception 是程序正常运行中，可
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/16/exception-%E4%B8%8E-error-%E7%9A%84%E5%BC%82%E5%90%8C/" class="read-more-link">阅读更多</a>
-    </div>
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
   </div>
-</article>
+</div>
+    <div class="post-content">
+      
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/">sed 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-04 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+<ol>
+<li>MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚持遵循这些硬件建议。</li>
+<li>一般来说，关键的生产DBMS应该运行在自己的专用服务器上。</li>
+<li>MySQL 是用一系列的默认设置预先配置的，从这些设置开始通常是很好的。但过一段时间后你可能需要调整内存分配、缓冲区大小等。（为查看当前设置， 可使用 SHOW VARIABLES; 和 SHOW STATUS;）</li>
+<li>MySQL 一个多用户多线程的 DBMS，换言之，它经常同时执行多个任务。如果这些任务中的某一个执行缓慢，则所有请求都会执行缓慢。如果你遇到显著的性能不良，可使用 SHOW PROCESSLIST 显示所有活动进程（以及它们的线程ID和执行时间）。你还可以用KILL命令终结某个特定的进程（使用这个命令需要作为管理员登）。</li>
+<li>总是有不止一种方法编写同一条 SELECT 语句。应该试验联结、并、子查询等，找出最佳的方法。</li>
+<li>使用 EXPLAIN 语句让 MySQL 解释它将如何执行一条 SELECT 语句。</li>
+<li>一般来说，存储过程执行得比一条一条地执行其中的各条 MySQL 语句快。</li>
+<li>应该总是使用正确的数据类型。</li>
+<li>决不要检索比需求还要多的数据。换言之，不要用SELECT *（除非你真正需要每个列）。</li>
+<li>有的操作（包括INSERT）支持一个可选的 DELAYED 关键字，如果使用它，将把控制立即返回给调用程序，并且一旦有可能就实际执行该操作。</li>
+<li>在导入数据时，应该关闭自动提交。你可能还想删除索引（包括 FULLTEXT 索引），然后在导入完成后再重建它们。</li>
+<li>必须索引数据库表以改善数据检索的性能。确定索引什么不是一件微不足道的任务， 需要分析使用的 SELECT 语句以找出重复的 WHERE 和 ORDER BY子句。如果一个简单的 WHERE 子句返回结果所花的时间太长，则可以断定其中使用的列（或几个列）就是需要索引的对象。</li>
+<li>你的 SELECT 语句中有一系列复杂的 OR 条件吗？通过使用多条 SELECT 语句和连接它们的 UNION 语句， 你能看到极大的性能改进。</li>
+<li>索引改善数据检索的性能，但损害数据插入、删除和更新的性能。 如果你有一些表，它们收集数据且不经常被搜索，则在有必要不要索引它们。（索引可根据需要添加和删除。）</li>
+<li>LIKE 很慢。一般来说，最好是使用 FULLTEXT 而不是 LIKE。</li>
+<li>数据库是不断变化的实体。一组优化良好的表一会儿后可能就面目全非了。由于表的使用和内容的更改，理想的优化和配置也会改变。</li>
+<li>最重要的规则就是，每条规则在某些条件下都会被打破。</li>
+</ol>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li>《MySQL 必知必会》</li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">MySQL</a>
           </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 sed 的工作流程 sed 逐行处理文件或输入，默认不会修改文件，除非使用 shell 重定向保存结果。 工作流程： 将正在处理的行保存在一个临时缓存区中（也称为模式空
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/">grep 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-25 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      grep -A [line num]，向下显示多少行，after-context 缩写 -B [line num]，向上显示多少行，before-context 缩写 -C [line num]，上
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/">tar &amp; scp 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-24 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 scp 命令 上传：scp [文件路径] [用户名]@[IP 地址]:[服务器路径] 下载：scp [用户名]@[IP 地址]:[文件路径] [本地路径] 2 tar 命
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/27/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/29/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/11/02/mysql-%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
+            <span class="next-text nav-default">MySQL 中的用户和权限管理</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
