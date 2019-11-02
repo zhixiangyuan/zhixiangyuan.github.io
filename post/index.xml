@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 02 Nov 2019 22:05:42 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Nov 2019 23:55:47 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MySQL 中的用户和权限管理</title>
+      <link>https://zhixiangyuan.github.io/2019/11/02/mysql-%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sat, 02 Nov 2019 23:55:47 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/02/mysql-%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</guid>
+      <description>1 用户管理 MySql 用户账号存储在名为 mysql 的 MySQL 数据库中，一般不需要直接访问 mysql 数据库和表，通过相关命令即可完成操作。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18</description>
+    </item>
+    
+    <item>
+      <title>MySQL 查看支持的字符集和校对顺序</title>
+      <link>https://zhixiangyuan.github.io/2019/11/02/mysql-%E6%9F%A5%E7%9C%8B%E6%94%AF%E6%8C%81%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E6%A0%A1%E5%AF%B9%E9%A1%BA%E5%BA%8F/</link>
+      <pubDate>Sat, 02 Nov 2019 23:38:04 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/02/mysql-%E6%9F%A5%E7%9C%8B%E6%94%AF%E6%8C%81%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E6%A0%A1%E5%AF%B9%E9%A1%BA%E5%BA%8F/</guid>
+      <description>1 2 3 4 5 -- 展示 MySQL 支持的字符集 SHOW CHARACTER SET; -- 展示 MySQL 支持的所有校对顺序 SHOW COLLATION;</description>
+    </item>
     
     <item>
       <title>从系统架构角度对大脑的思考</title>

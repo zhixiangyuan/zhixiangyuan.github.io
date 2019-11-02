@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-11-02T21:21:35&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-02T21:21:35&#43;08:00" />
-<meta itemprop="wordCount" content="388">
+<meta itemprop="wordCount" content="417">
 
 
 
@@ -209,16 +209,28 @@
 <p>默认情况下 sql 语句都是自动提交的，可以更改这个设置。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 改为不自动提交 sql
 </span><span class="c1">-- 这项修改是针对连接的，不是针对服务器的。
 </span><span class="c1">-- 改完之后如果不 COMMIT 那么语句就不生效
-</span><span class="c1"></span><span class="k">SET</span> <span class="n">autocommit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span></code></pre></td></tr></table>
+</span><span class="c1"></span><span class="k">SET</span> <span class="n">autocommit</span><span class="o">=</span><span class="k">OFF</span><span class="p">;</span>
+
+<span class="c1">-- 改为自动提交
+</span><span class="c1"></span><span class="k">SET</span> <span class="n">autocommit</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
+
+<span class="c1">-- 查看当前 autocommit 是什么值
+</span><span class="c1"></span><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;autocommit&#39;</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="1-1-哪些语句可以被回滚">1.1 哪些语句可以被回滚</h2>
