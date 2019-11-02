@@ -49,7 +49,13 @@ RELEASE SAVEPOINT <$savepoint_name>;
 -- 改为不自动提交 sql
 -- 这项修改是针对连接的，不是针对服务器的。
 -- 改完之后如果不 COMMIT 那么语句就不生效
-SET autocommit=0;
+SET autocommit=OFF;
+
+-- 改为自动提交
+SET autocommit=ON;
+
+-- 查看当前 autocommit 是什么值
+SHOW VARIABLES LIKE 'autocommit';
 ```
 
 ## 1.1 哪些语句可以被回滚
