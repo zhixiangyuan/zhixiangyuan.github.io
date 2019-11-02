@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 01 Nov 2019 18:39:30 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Nov 2019 22:05:42 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录</description>
+    </item>
+    
+    <item>
+      <title>从系统架构角度对大脑的思考</title>
+      <link>https://zhixiangyuan.github.io/2019/11/02/%E4%BB%8E%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%A7%92%E5%BA%A6%E5%AF%B9%E5%A4%A7%E8%84%91%E7%9A%84%E6%80%9D%E8%80%83/</link>
+      <pubDate>Sat, 02 Nov 2019 22:05:42 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/02/%E4%BB%8E%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E8%A7%92%E5%BA%A6%E5%AF%B9%E5%A4%A7%E8%84%91%E7%9A%84%E6%80%9D%E8%80%83/</guid>
+      <description>现在一个比较通用系统架构都会用到数据库和缓存，对于外部的输入会先进入业务系统，最终根据存储策略打到缓存和数据库上。对于我这个大脑的用户而言，</description>
     </item>
     
     <item>
