@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-11-02T21:21:35&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-02T21:21:35&#43;08:00" />
-<meta itemprop="wordCount" content="238">
+<meta itemprop="wordCount" content="240">
 
 
 
@@ -140,8 +140,10 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-事务管理">1 事务管理</a></li>
+<li><a href="#1-事务管理">1 事务管理</a>
+<ul>
 <li><a href="#1-1-哪些语句可以被回滚">1.1 哪些语句可以被回滚</a></li>
+</ul></li>
 </ul>
 </nav>
   </div>
@@ -195,14 +197,19 @@
 </div>
 </div>
 <p>默认情况下 sql 语句都是自动提交的，可以更改这个设置。</p>
-
-<p>`<code>sql
--- 改为不自动提交 sql
--- 这项修改是针对连接的，不是针对服务器的。
-SET autocommit=0;
-</code></p>
-
-<h1 id="1-1-哪些语句可以被回滚">1.1 哪些语句可以被回滚</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 改为不自动提交 sql
+</span><span class="c1">-- 这项修改是针对连接的，不是针对服务器的。
+</span><span class="c1"></span><span class="k">SET</span> <span class="n">autocommit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-1-哪些语句可以被回滚">1.1 哪些语句可以被回滚</h2>
 
 <p>INSERT、UPDATE 和 DELETE 可以被回滚，SELECT 语句回滚没有用，CREATE、DROP 语句不会被回滚。</p>
 
