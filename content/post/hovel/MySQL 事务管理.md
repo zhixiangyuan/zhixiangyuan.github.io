@@ -44,9 +44,9 @@ RELEASE
 -- 改为不自动提交 sql
 -- 这项修改是针对连接的，不是针对服务器的。
 SET autocommit=0;
-``
+```
 
-# 1.1 哪些语句可以被回滚
+## 1.1 哪些语句可以被回滚
 
 INSERT、UPDATE 和 DELETE 可以被回滚，SELECT 语句回滚没有用，CREATE、DROP 语句不会被回滚。
 
