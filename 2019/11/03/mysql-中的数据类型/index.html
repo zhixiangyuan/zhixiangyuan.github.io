@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>改善 MySQL 性能的建议 - Yuanzx Blog</title>
+  <title>MySQL 中的数据类型 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 串数据类型 字符串数据类型必须括在引号内（通常为单引号，使用双引号也行）。 数据类型 说明 CHAR 1～255 个字符的定长串。它的长度必须在创建时指定，" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/03/%E6%94%B9%E5%96%84-mysql-%E6%80%A7%E8%83%BD%E7%9A%84%E5%BB%BA%E8%AE%AE/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/03/mysql-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="改善 MySQL 性能的建议" />
-<meta property="og:description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚" />
+<meta property="og:title" content="MySQL 中的数据类型" />
+<meta property="og:description" content="1 串数据类型 字符串数据类型必须括在引号内（通常为单引号，使用双引号也行）。 数据类型 说明 CHAR 1～255 个字符的定长串。它的长度必须在创建时指定，" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/03/%E6%94%B9%E5%96%84-mysql-%E6%80%A7%E8%83%BD%E7%9A%84%E5%BB%BA%E8%AE%AE/" />
-<meta property="article:published_time" content="2019-11-03T00:51:01+08:00" />
-<meta property="article:modified_time" content="2019-11-03T00:51:01+08:00" />
-<meta itemprop="name" content="改善 MySQL 性能的建议">
-<meta itemprop="description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/03/mysql-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" />
+<meta property="article:published_time" content="2019-11-03T01:02:34+08:00" />
+<meta property="article:modified_time" content="2019-11-03T01:02:34+08:00" />
+<meta itemprop="name" content="MySQL 中的数据类型">
+<meta itemprop="description" content="1 串数据类型 字符串数据类型必须括在引号内（通常为单引号，使用双引号也行）。 数据类型 说明 CHAR 1～255 个字符的定长串。它的长度必须在创建时指定，">
 
 
-<meta itemprop="datePublished" content="2019-11-03T00:51:01&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-03T00:51:01&#43;08:00" />
-<meta itemprop="wordCount" content="944">
+<meta itemprop="datePublished" content="2019-11-03T01:02:34&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-03T01:02:34&#43;08:00" />
+<meta itemprop="wordCount" content="891">
 
 
 
 <meta itemprop="keywords" content="MySQL," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="改善 MySQL 性能的建议"/>
-<meta name="twitter:description" content="MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚"/>
+<meta name="twitter:title" content="MySQL 中的数据类型"/>
+<meta name="twitter:description" content="1 串数据类型 字符串数据类型必须括在引号内（通常为单引号，使用双引号也行）。 数据类型 说明 CHAR 1～255 个字符的定长串。它的长度必须在创建时指定，"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">改善 MySQL 性能的建议</h1>
+      <h1 class="post-title">MySQL 中的数据类型</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-11-03 </span>
@@ -140,6 +140,10 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
+<li><a href="#1-串数据类型">1 串数据类型</a></li>
+<li><a href="#2-数值数据类型">2 数值数据类型</a></li>
+<li><a href="#3-日期和时间数据类型">3 日期和时间数据类型</a></li>
+<li><a href="#4-二进制数据类型">4 二进制数据类型</a></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
@@ -148,25 +152,201 @@
     <div class="post-content">
       
 
-<ol>
-<li>MySQL（与所有 DBMS 一样）具有特定的硬件建议。在学习和研究MySQL时，使用任何旧的计算机作为服务器都可以。但对用于生产的服务器来说，应该坚持遵循这些硬件建议。</li>
-<li>一般来说，关键的生产DBMS应该运行在自己的专用服务器上。</li>
-<li>MySQL 是用一系列的默认设置预先配置的，从这些设置开始通常是很好的。但过一段时间后你可能需要调整内存分配、缓冲区大小等。（为查看当前设置， 可使用 SHOW VARIABLES; 和 SHOW STATUS;）</li>
-<li>MySQL 一个多用户多线程的 DBMS，换言之，它经常同时执行多个任务。如果这些任务中的某一个执行缓慢，则所有请求都会执行缓慢。如果你遇到显著的性能不良，可使用 SHOW PROCESSLIST 显示所有活动进程（以及它们的线程ID和执行时间）。你还可以用KILL命令终结某个特定的进程（使用这个命令需要作为管理员登）。</li>
-<li>总是有不止一种方法编写同一条 SELECT 语句。应该试验联结、并、子查询等，找出最佳的方法。</li>
-<li>使用 EXPLAIN 语句让 MySQL 解释它将如何执行一条 SELECT 语句。</li>
-<li>一般来说，存储过程执行得比一条一条地执行其中的各条 MySQL 语句快。</li>
-<li>应该总是使用正确的数据类型。</li>
-<li>决不要检索比需求还要多的数据。换言之，不要用SELECT *（除非你真正需要每个列）。</li>
-<li>有的操作（包括INSERT）支持一个可选的 DELAYED 关键字，如果使用它，将把控制立即返回给调用程序，并且一旦有可能就实际执行该操作。</li>
-<li>在导入数据时，应该关闭自动提交。你可能还想删除索引（包括 FULLTEXT 索引），然后在导入完成后再重建它们。</li>
-<li>必须索引数据库表以改善数据检索的性能。确定索引什么不是一件微不足道的任务， 需要分析使用的 SELECT 语句以找出重复的 WHERE 和 ORDER BY子句。如果一个简单的 WHERE 子句返回结果所花的时间太长，则可以断定其中使用的列（或几个列）就是需要索引的对象。</li>
-<li>你的 SELECT 语句中有一系列复杂的 OR 条件吗？通过使用多条 SELECT 语句和连接它们的 UNION 语句， 你能看到极大的性能改进。</li>
-<li>索引改善数据检索的性能，但损害数据插入、删除和更新的性能。 如果你有一些表，它们收集数据且不经常被搜索，则在有必要不要索引它们。（索引可根据需要添加和删除。）</li>
-<li>LIKE 很慢。一般来说，最好是使用 FULLTEXT 而不是 LIKE。</li>
-<li>数据库是不断变化的实体。一组优化良好的表一会儿后可能就面目全非了。由于表的使用和内容的更改，理想的优化和配置也会改变。</li>
-<li>最重要的规则就是，每条规则在某些条件下都会被打破。</li>
-</ol>
+<h1 id="1-串数据类型">1 串数据类型</h1>
+
+<p>字符串数据类型必须括在引号内（通常为单引号，使用双引号也行）。</p>
+
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CHAR</td>
+<td>1～255 个字符的定长串。它的长度必须在创建时指定，否则 MySQL 假定为 CHAR(1)</td>
+</tr>
+
+<tr>
+<td>ENUM</td>
+<td>接受最多 64 KB 个串组成的一个预定义集合的某个串</td>
+</tr>
+
+<tr>
+<td>LONGTEXT</td>
+<td>与 TEXT 相同，但最大长度为 4 GB</td>
+</tr>
+
+<tr>
+<td>MEDIUMTEXT</td>
+<td>与 TEXT 相同，但最大长度为 16 KB</td>
+</tr>
+
+<tr>
+<td>SET</td>
+<td>接受最多 64 个串组成的一个预定义集合的零个或多个串</td>
+</tr>
+
+<tr>
+<td>TEXT</td>
+<td>最大长度为 64 KB 的变长文本</td>
+</tr>
+
+<tr>
+<td>TINYTEXT</td>
+<td>与 TEXT 相同，但最大长度为 255 B</td>
+</tr>
+
+<tr>
+<td>VARCHAR</td>
+<td>长度可变，最多不超过 255 B。如果在创建时指定为 VARCHAR(n)， 则可存储 0 到 n 个字符的变长串（其中n≤255）</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="2-数值数据类型">2 数值数据类型</h1>
+
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>BIT</td>
+<td>位字段，1～64 位。（在MySQL 5之前，BIT 在功能上等价于 TINYINT)</td>
+</tr>
+
+<tr>
+<td>BIGINT</td>
+<td>整数值，支持 -9223372036854775808～9223372036854775807 （如果是 UNSIGNED，为 0～18446744073709551615）的数</td>
+</tr>
+
+<tr>
+<td>BOOLEAN（或 BOOL）</td>
+<td>布尔标志，或者为 0 或者为 1，主要用于开/关（on/off）标志</td>
+</tr>
+
+<tr>
+<td>DECIMAL（或 DEC）</td>
+<td>精度可变的浮点值</td>
+</tr>
+
+<tr>
+<td>DOUBLE</td>
+<td>双精度浮点值</td>
+</tr>
+
+<tr>
+<td>FLOAT</td>
+<td>单精度浮点值</td>
+</tr>
+
+<tr>
+<td>INT（或 INTEGER）</td>
+<td>整数值，支持 -2147483648～2147483647（如果是 UNSIGNED， 为 0～4294967295）的数</td>
+</tr>
+
+<tr>
+<td>MEDIUMINT</td>
+<td>整数值，支持 -8388608～8388607（如果是 UNSIGNED，为 0～16777215）的数</td>
+</tr>
+
+<tr>
+<td>REAL</td>
+<td>4 字节的浮点值</td>
+</tr>
+
+<tr>
+<td>SMALLINT</td>
+<td>整数值， 支持 -32768～32767（如果是 UNSIGNED， 为 0～65535）的数</td>
+</tr>
+
+<tr>
+<td>TINYINT</td>
+<td>整数值，支持 -128～127（如果为 UNSIGNED，为 0～255）的数</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="3-日期和时间数据类型">3 日期和时间数据类型</h1>
+
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>TIME</td>
+<td>格式为 HH:MM:SS</td>
+</tr>
+
+<tr>
+<td>DATE</td>
+<td>表示 1000-01-01～9999-12-31 的日期， 格式为 YYYY-MM-DD</td>
+</tr>
+
+<tr>
+<td>DATETIME</td>
+<td>DATE 和 TIME 的组合</td>
+</tr>
+
+<tr>
+<td>TIMESTAMP</td>
+<td>功能和 DATETIME 相同（但范围较小）</td>
+</tr>
+
+<tr>
+<td>YEAR</td>
+<td>用 2 位数字表示，范围是70（1970年）～69（2069 年），用 4 位数字表示，范围是1901年～2155年</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="4-二进制数据类型">4 二进制数据类型</h1>
+
+<p>二进制数据类型可存储任何数据（甚至包括二进制信息），如图像、 多媒体、字处理文档等。</p>
+
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>TINYBLOB</td>
+<td>Blob 最大长度为 255 B</td>
+</tr>
+
+<tr>
+<td>BLOB</td>
+<td>Blob 最大长度为 64 KB</td>
+</tr>
+
+<tr>
+<td>MEDIUMBLOB</td>
+<td>Blob 最大长度为 16 MB</td>
+</tr>
+
+<tr>
+<td>LONGBLOB</td>
+<td>Blob 最大长度为 4 GB</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="参考资料">参考资料</h1>
 
@@ -182,13 +362,9 @@
           <a href="/tags/mysql/">MySQL</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/11/03/mysql-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">MySQL 中的数据类型</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/11/02/mysql-%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
-            <span class="next-text nav-default">MySQL 中的用户和权限管理</span>
+        
+        <a class="next" href="/2019/11/03/%E6%94%B9%E5%96%84-mysql-%E6%80%A7%E8%83%BD%E7%9A%84%E5%BB%BA%E8%AE%AE/">
+            <span class="next-text nav-default">改善 MySQL 性能的建议</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
