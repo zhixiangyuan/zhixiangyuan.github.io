@@ -25,6 +25,9 @@ ROLLBACK;
 
 -- 提交事务
 COMMIT;
+
+-- 设置保存点
+SAVEPOINT <>
 ```
 
 # 1.1 哪些语句可以被回滚
