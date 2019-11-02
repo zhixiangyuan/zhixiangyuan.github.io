@@ -59,7 +59,14 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/mysql/</loc>
-    <lastmod>2019-11-01T18:39:30+08:00</lastmod>
+    <lastmod>2019-11-02T21:21:35+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/02/mysql-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2019-11-02T21:21:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

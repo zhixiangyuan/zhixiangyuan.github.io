@@ -118,6 +118,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%AE%A1%E7%90%86/">Redis 客户端的管理</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-11 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 Jedis 的基本使用 首先引入包 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;redis.clients&lt;/groupId&gt; &lt;artifactId&gt;jedis&lt;/artifactId&gt; &lt;version&gt;3.1.0&lt;/version&gt; &lt;/dependency&gt; 基本使用 1 2 3 4 5 6 7 8 public static void main(String[] args) { Jedis jedis = new Jedis(IP, PORT); // 后面通过 jedis 中提供的各种方法就可以直接操作 redis 了 String
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%AE%A1%E7%90%86/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/10/11/redis-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">Redis 客户端通信协议</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2019-10-11 </span>
@@ -211,27 +232,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/10/10/%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%BD%9C%E8%A7%84%E5%88%99/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/">Redis 中的 GEO 功能</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-10 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      通过 GEO 功能可以实现诸如附近位置、摇一摇这类依赖于地理位置信息的功能，对于需要实现这些功能的开发者来说是一大福音。 1 命令 1.1 添加地理位置信息 geoadd &lt;key&gt;
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-geo-%E5%8A%9F%E8%83%BD/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
