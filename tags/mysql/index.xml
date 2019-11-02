@@ -18,7 +18,7 @@
       <pubDate>Sat, 02 Nov 2019 21:21:35 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/11/02/mysql-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/</guid>
-      <description>1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务 COMMIT; -- 设置保</description>
+      <description>1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务</description>
     </item>
     
     <item>

@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务 COMMIT; -- 设置保" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="MySQL 事务管理" />
-<meta property="og:description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务 COMMIT; -- 设置保" />
+<meta property="og:description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/02/mysql-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" />
 <meta property="article:published_time" content="2019-11-02T21:21:35+08:00" />
 <meta property="article:modified_time" content="2019-11-02T21:21:35+08:00" />
 <meta itemprop="name" content="MySQL 事务管理">
-<meta itemprop="description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务 COMMIT; -- 设置保">
+<meta itemprop="description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务">
 
 
 <meta itemprop="datePublished" content="2019-11-02T21:21:35&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-02T21:21:35&#43;08:00" />
-<meta itemprop="wordCount" content="240">
+<meta itemprop="wordCount" content="388">
 
 
 
 <meta itemprop="keywords" content="MySQL," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MySQL 事务管理"/>
-<meta name="twitter:description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务 COMMIT; -- 设置保"/>
+<meta name="twitter:description" content="1 事务管理 以下的语句是连接隔离的，每个连接都有自己的环境。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 -- 开始事务 START TRANSACTION; -- 事务回滚 ROLLBACK; -- 提交事务"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -174,6 +174,11 @@
 </span><span class="lnt">16
 </span><span class="lnt">17
 </span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 开始事务
@@ -191,9 +196,14 @@
 <span class="c1">-- 回滚到保存点
 </span><span class="c1">-- 保存点在事务处理完成后会自动释放
 </span><span class="c1">-- 也就是执行 ROLLBACK 或 COMMIT 后自动释放
+</span><span class="c1">-- 这里回滚保存点有一点需要注意，它内部应该是一个栈的结构
+</span><span class="c1">-- 比如设置了 savepoint1、savepoint2、savepoint3 三个点，
+</span><span class="c1">-- 顺序也是按照 1、2、3 来的如果回滚到 2，那么就不能再回
+</span><span class="c1">-- 滚到 3 了，不过可以多次回滚到 2
 </span><span class="c1"></span><span class="k">ROLLBACK</span> <span class="k">TO</span> <span class="o">&lt;</span><span class="err">$</span><span class="n">savepoint_name</span><span class="o">&gt;</span><span class="p">;</span>
 
-<span class="n">RELEASE</span></code></pre></td></tr></table>
+<span class="c1">-- 释放指定的保存点
+</span><span class="c1"></span><span class="n">RELEASE</span> <span class="n">SAVEPOINT</span> <span class="o">&lt;</span><span class="err">$</span><span class="n">savepoint_name</span><span class="o">&gt;</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>默认情况下 sql 语句都是自动提交的，可以更改这个设置。</p>
@@ -202,10 +212,12 @@
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 改为不自动提交 sql
 </span><span class="c1">-- 这项修改是针对连接的，不是针对服务器的。
+</span><span class="c1">-- 改完之后如果不 COMMIT 那么语句就不生效
 </span><span class="c1"></span><span class="k">SET</span> <span class="n">autocommit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
