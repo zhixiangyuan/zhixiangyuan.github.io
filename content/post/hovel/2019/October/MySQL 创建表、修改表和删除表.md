@@ -21,7 +21,7 @@ CREATE TABLE [IF NOT EXISTS] <table_name> (
     <field_name> <data_type>[size] [NOT NULL|NULL] [DEFAULT <value>] [AUTO_INCREMENT] [COMMENT <comment>] [CHARACTER SET <charset>] [COLLATE <collate>] [UNSIGNED],
     [field_name data_type]...
     [PRIMARY KEY (<field>, [field...])]
-)[ENGING=<enging>] [[DEFAULT] CHARSET=<charset>] [COLLATE=<collate>] [COMMENT=<comment>];
+)[ENGING=<enging>] [[DEFAULT] CHARSET=<charset>] [COLLATE=<collate>] [ROW_FORMAT={Compact|Redundant|Dynamic|Compressed}] [COMMENT=<comment>];
 
 -- 下面对各个选项打上注释
 -- [IF NOT EXISTS] 如果不加这个，那么如果表已存在的情况下创建会报错
@@ -55,6 +55,8 @@ CREATE TABLE [IF NOT EXISTS] <table_name> (
 [[DEFAULT] CHARSET=<charset>] 
 -- [COLLATE=<collate>] 选择排序规则
 [COLLATE=<collate>]
+-- InnoDB 行格式
+[ROW_FORMAT={Compact|Redundant|Dynamic|Compressed}]
 -- [COMMENT <comment>] 表级别注释
 [COMMENT=<comment>];
 ```
