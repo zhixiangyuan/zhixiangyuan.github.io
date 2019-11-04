@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2018-12-17T23:18:57&#43;08:00" />
 <meta itemprop="dateModified" content="2018-12-17T23:18:57&#43;08:00" />
-<meta itemprop="wordCount" content="297">
+<meta itemprop="wordCount" content="455">
 
 
 
@@ -158,6 +158,7 @@
 <li><a href="#3-2-从大到小遍历">3.2 从大到小遍历</a></li>
 </ul></li>
 <li><a href="#4-数组中的-length">4 数组中的 length</a></li>
+<li><a href="#5-对于-high-low-1-和-high-low-的理解">5 对于 high - low + 1 和 high - low 的理解</a></li>
 </ul>
 </nav>
   </div>
@@ -275,6 +276,18 @@ index = 12; index &gt;= 9; index--</pre></td></tr></table>
 <p>length = high - low + 1</p>
 
 <p>即 [low, high]</p>
+
+<h1 id="5-对于-high-low-1-和-high-low-的理解">5 对于 high - low + 1 和 high - low 的理解</h1>
+
+<p>对于从 low 到 high 的数组，我们将 low 和 high 全部带上，画成点，然后将响相邻点之间连成线，那么 low - high + 1 其实指的是节点的个数，而 low - high 指的是边数。</p>
+
+<p>假如 low = 1、high = 3，那么画成点和边就是下面这个样子</p>
+
+<p><img src="/hub/2019/November/3.png" alt="" /></p>
+
+<p>我们可以看到，节点数 = high - low + 1 = 3 - 1 + 1 = 3，边数 = high - low = 3 - 1 = 2</p>
+
+<p>所以数组长度等同于节点数</p>
 
     </div>
 
