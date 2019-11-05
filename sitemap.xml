@@ -10,14 +10,49 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-11-05T23:42:07+08:00</lastmod>
+    <lastmod>2019-11-06T07:20:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-11-05T23:42:07+08:00</lastmod>
+    <lastmod>2019-11-06T07:20:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/</loc>
+    <lastmod>2019-11-06T07:20:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/</loc>
+    <lastmod>2019-11-06T07:20:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/%E5%8C%BB%E5%AD%A6/</loc>
+    <lastmod>2019-11-06T07:20:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2019-11-06T07:20:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/06/%E8%84%91%E7%94%B5%E5%8F%8C%E9%A2%91%E6%8C%87%E6%95%B0/</loc>
+    <lastmod>2019-11-06T07:20:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -31,27 +66,6 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/2019/11/05/shell-%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F/</loc>
-    <lastmod>2019-11-05T23:42:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-11-05T23:42:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-11-05T23:42:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
     <lastmod>2019-11-05T23:42:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

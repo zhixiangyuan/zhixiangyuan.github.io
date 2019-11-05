@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 05 Nov 2019 23:42:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 07:20:22 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>脑电双频指数</title>
+      <link>https://zhixiangyuan.github.io/2019/11/06/%E8%84%91%E7%94%B5%E5%8F%8C%E9%A2%91%E6%8C%87%E6%95%B0/</link>
+      <pubDate>Wed, 06 Nov 2019 07:20:22 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/06/%E8%84%91%E7%94%B5%E5%8F%8C%E9%A2%91%E6%8C%87%E6%95%B0/</guid>
+      <description>脑电双频指数在监护仪上以字母“BIS”进行标识。 BIS = 100：患者处于完全清醒的状态。 BIS 处于 70～100 之间：患者处于轻度催眠状态，存在被唤醒</description>
     </item>
     
     <item>
@@ -45,7 +54,7 @@
       <pubDate>Tue, 05 Nov 2019 23:07:50 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/</guid>
-      <description>1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前</description>
+      <description>1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种执行文件的方式 前两</description>
     </item>
     
     <item>
