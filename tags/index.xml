@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 03 Nov 2019 01:02:34 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2019 23:07:50 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Shell</title>
+      <link>https://zhixiangyuan.github.io/tags/shell/</link>
+      <pubDate>Tue, 05 Nov 2019 23:07:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/shell/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>MySQL</title>

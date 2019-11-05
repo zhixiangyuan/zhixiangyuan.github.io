@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/shell/</link>
+    <description>Recent content in Shell on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Tue, 05 Nov 2019 23:07:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shell 执行文件的三种方式</title>
+      <link>https://zhixiangyuan.github.io/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/</link>
+      <pubDate>Tue, 05 Nov 2019 23:07:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/</guid>
+      <description>1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前</description>
+    </item>
+    
+  </channel>
+</rss>
