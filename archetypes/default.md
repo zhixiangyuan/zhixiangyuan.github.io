@@ -13,7 +13,8 @@ tags: [
     "Linux",
     "IntelliJ IDEA",
     "Git",
-    "Shell"
+    "Shell",
+    "医学"
 ]
 categories: [
     "杂货铺"
