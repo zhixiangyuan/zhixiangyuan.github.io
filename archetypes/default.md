@@ -12,7 +12,8 @@ tags: [
     "JVM",
     "Linux",
     "IntelliJ IDEA",
-    "Git"
+    "Git",
+    "Shell"
 ]
 categories: [
     "杂货铺"
