@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Shell 执行文件的三种方式 - Yuanzx Blog</title>
+  <title>Shell 中的变量 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 变量的名称 shell 变量的名称以字母或下划线开始，后面可以接任意长度的字母、数字或下划线。 2 获取变量值 使用 $ 来获取变量值，如 $var，这种表示方式" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/05/shell-%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="Shell 执行文件的三种方式" />
-<meta property="og:description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前" />
+<meta property="og:title" content="Shell 中的变量" />
+<meta property="og:description" content="1 变量的名称 shell 变量的名称以字母或下划线开始，后面可以接任意长度的字母、数字或下划线。 2 获取变量值 使用 $ 来获取变量值，如 $var，这种表示方式" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" />
-<meta property="article:published_time" content="2019-11-05T23:07:50+08:00" />
-<meta property="article:modified_time" content="2019-11-05T23:07:50+08:00" />
-<meta itemprop="name" content="Shell 执行文件的三种方式">
-<meta itemprop="description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/05/shell-%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F/" />
+<meta property="article:published_time" content="2019-11-05T23:42:07+08:00" />
+<meta property="article:modified_time" content="2019-11-05T23:42:07+08:00" />
+<meta itemprop="name" content="Shell 中的变量">
+<meta itemprop="description" content="1 变量的名称 shell 变量的名称以字母或下划线开始，后面可以接任意长度的字母、数字或下划线。 2 获取变量值 使用 $ 来获取变量值，如 $var，这种表示方式">
 
 
-<meta itemprop="datePublished" content="2019-11-05T23:07:50&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-05T23:07:50&#43;08:00" />
-<meta itemprop="wordCount" content="278">
+<meta itemprop="datePublished" content="2019-11-05T23:42:07&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-05T23:42:07&#43;08:00" />
+<meta itemprop="wordCount" content="386">
 
 
 
 <meta itemprop="keywords" content="Shell," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Shell 执行文件的三种方式"/>
-<meta name="twitter:description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前"/>
+<meta name="twitter:title" content="Shell 中的变量"/>
+<meta name="twitter:description" content="1 变量的名称 shell 变量的名称以字母或下划线开始，后面可以接任意长度的字母、数字或下划线。 2 获取变量值 使用 $ 来获取变量值，如 $var，这种表示方式"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Shell 执行文件的三种方式</h1>
+      <h1 class="post-title">Shell 中的变量</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-11-05 </span>
@@ -140,14 +140,10 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-shell-执行文件的三种方式">1 Shell 执行文件的三种方式</a>
-<ul>
-<li><a href="#1-1-前两种h执行文件的方式">1.1 前两种h执行文件的方式</a></li>
-<li><a href="#1-3-使用-source-执行文件">1.3 使用 source 执行文件</a>
-<ul>
-<li><a href="#1-3-1-source-命令的语法">1.3.1 source 命令的语法</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#1-变量的名称">1 变量的名称</a></li>
+<li><a href="#2-获取变量值">2 获取变量值</a></li>
+<li><a href="#3-变量的赋值">3 变量的赋值</a></li>
+<li><a href="#4-全局变量与局部变量">4 全局变量与局部变量</a></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
@@ -156,33 +152,85 @@
     <div class="post-content">
       
 
-<h1 id="1-shell-执行文件的三种方式">1 Shell 执行文件的三种方式</h1>
+<h1 id="1-变量的名称">1 变量的名称</h1>
 
-<ol>
-<li>使文件具有可执行权限，直接运行文件</li>
-<li>直接调用命令解释器执行文件，如 sh、bash</li>
-<li>使用 source 执行文件</li>
-</ol>
+<p>shell 变量的名称以字母或下划线开始，后面可以接任意长度的字母、数字或下划线。</p>
 
-<h2 id="1-1-前两种h执行文件的方式">1.1 前两种h执行文件的方式</h2>
+<h1 id="2-获取变量值">2 获取变量值</h1>
 
-<p>前两种方式执行脚本的时候，系统发现不是内建命令，于是父进程创建一个和自己一摸一样的子进程，此时父进程阻塞，同时执行子进程，当子进程执行完命令后退出子进程，父进程退出阻塞接着执行。</p>
+<p>使用 $ 来获取变量值，如 $var，这种表示方式是 ${var} 的缩写</p>
 
-<p>这种方式脚本无法修改父进程的环境变量，如 $PWD</p>
+<h1 id="3-变量的赋值">3 变量的赋值</h1>
 
-<h2 id="1-3-使用-source-执行文件">1.3 使用 source 执行文件</h2>
+<p>Shell 中全是字符串类型，如果字符串中存储的是整数，那么则可以进行整数运算（+、-、*、/）。</p>
 
-<p>使用 source 命令执行脚本则不会开辟子进程，而是在当前进程中执行脚本，所以脚本中修改的环境变量会影响到当前进程中的环境变量。</p>
+<p>赋值时使用 = 来进行赋值，两边都不能有空格</p>
 
-<h3 id="1-3-1-source-命令的语法">1.3.1 source 命令的语法</h3>
+<p>使用 <code>&quot;&lt;$var&gt;&quot;</code> 扩起来的字符串，中间可以使用变量替换，使用 <code>'&lt;$var&gt;'</code> 扩起来的字符串，中间不能进行变量替换</p>
+
+<p>变量名和用来赋值的字符串长度没有限制</p>
+
+<p>未赋值的变量值是 NULL，对于数字而言就是 0</p>
+
+<h1 id="4-全局变量与局部变量">4 全局变量与局部变量</h1>
+
+<p>局部变量必须明确以 local 声明，否则即使在代码块中，它也是全局可见的。</p>
+
+<p>环境变量是局部变量的一种</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
-</span><span class="lnt">2
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">source</span> &lt;<span class="nv">$script</span>&gt;
-. &lt;<span class="nv">$script</span>&gt;</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">num</span><span class="o">=</span><span class="m">123</span>
+func1 <span class="o">()</span> <span class="o">{</span>
+    <span class="nv">num</span><span class="o">=</span><span class="m">456</span>
+    <span class="nb">echo</span> <span class="s1">&#39;func1: &#39;</span><span class="nv">$num</span>
+<span class="o">}</span>
+func2 <span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local</span> <span class="nv">num</span><span class="o">=</span><span class="m">789</span>
+    <span class="nb">echo</span> <span class="s1">&#39;func2: &#39;</span><span class="nv">$num</span>
+<span class="o">}</span>
+<span class="nb">echo</span> <span class="s1">&#39;before func1: &#39;</span><span class="nv">$num</span>
+func1
+<span class="nb">echo</span> <span class="s1">&#39;after func1: &#39;</span><span class="nv">$num</span>
+<span class="nb">echo</span> <span class="s1">&#39;before func2: &#39;</span><span class="nv">$num</span>
+func2
+<span class="nb">echo</span> <span class="s1">&#39;after func2: &#39;</span><span class="nv">$num</span>
+
+<span class="c1"># 以下是输出</span>
+before func1: <span class="m">123</span>
+func1: <span class="m">456</span>
+after func1: <span class="m">456</span>
+before func2: <span class="m">456</span>
+func2: <span class="m">789</span>
+after func2: <span class="m">456</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="参考资料">参考资料</h1>
@@ -199,13 +247,9 @@
           <a href="/tags/shell/">Shell</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/11/05/shell-%E4%B8%AD%E7%9A%84-/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Shell 中的 #!</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/11/03/mysql-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-            <span class="next-text nav-default">MySQL 中的数据类型</span>
+        
+        <a class="next" href="/2019/11/05/shell-%E4%B8%AD%E7%9A%84-/">
+            <span class="next-text nav-default">Shell 中的 #!</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

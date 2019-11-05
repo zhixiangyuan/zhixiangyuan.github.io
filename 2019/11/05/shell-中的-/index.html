@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Shell 执行文件的三种方式 - Yuanzx Blog</title>
+  <title>Shell 中的 #! - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 #! 的作用 它的作用便是高所 shell 使用什么进程来执行此脚本 2 例子 2.1 echo Hello world 1 2 #!/bin/bash echo &amp;#34;Hello world!&amp;#34; 2.2 python 的 Hello world 1 2 #!/usr/bin/python print &amp;#34;Hello world!&amp;#34; 2.3 只会删除自己的脚本 1 2 3 #!/bin/rm # 这个 Hello world 打" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/05/shell-%E4%B8%AD%E7%9A%84-/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="Shell 执行文件的三种方式" />
-<meta property="og:description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前" />
+<meta property="og:title" content="Shell 中的 #!" />
+<meta property="og:description" content="1 #! 的作用 它的作用便是高所 shell 使用什么进程来执行此脚本 2 例子 2.1 echo Hello world 1 2 #!/bin/bash echo &#34;Hello world!&#34; 2.2 python 的 Hello world 1 2 #!/usr/bin/python print &#34;Hello world!&#34; 2.3 只会删除自己的脚本 1 2 3 #!/bin/rm # 这个 Hello world 打" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" />
-<meta property="article:published_time" content="2019-11-05T23:07:50+08:00" />
-<meta property="article:modified_time" content="2019-11-05T23:07:50+08:00" />
-<meta itemprop="name" content="Shell 执行文件的三种方式">
-<meta itemprop="description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/05/shell-%E4%B8%AD%E7%9A%84-/" />
+<meta property="article:published_time" content="2019-11-05T23:22:09+08:00" />
+<meta property="article:modified_time" content="2019-11-05T23:22:09+08:00" />
+<meta itemprop="name" content="Shell 中的 #!">
+<meta itemprop="description" content="1 #! 的作用 它的作用便是高所 shell 使用什么进程来执行此脚本 2 例子 2.1 echo Hello world 1 2 #!/bin/bash echo &#34;Hello world!&#34; 2.2 python 的 Hello world 1 2 #!/usr/bin/python print &#34;Hello world!&#34; 2.3 只会删除自己的脚本 1 2 3 #!/bin/rm # 这个 Hello world 打">
 
 
-<meta itemprop="datePublished" content="2019-11-05T23:07:50&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-05T23:07:50&#43;08:00" />
-<meta itemprop="wordCount" content="278">
+<meta itemprop="datePublished" content="2019-11-05T23:22:09&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-05T23:22:09&#43;08:00" />
+<meta itemprop="wordCount" content="109">
 
 
 
 <meta itemprop="keywords" content="Shell," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Shell 执行文件的三种方式"/>
-<meta name="twitter:description" content="1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种h执行文件的方式 前"/>
+<meta name="twitter:title" content="Shell 中的 #!"/>
+<meta name="twitter:description" content="1 #! 的作用 它的作用便是高所 shell 使用什么进程来执行此脚本 2 例子 2.1 echo Hello world 1 2 #!/bin/bash echo &#34;Hello world!&#34; 2.2 python 的 Hello world 1 2 #!/usr/bin/python print &#34;Hello world!&#34; 2.3 只会删除自己的脚本 1 2 3 #!/bin/rm # 这个 Hello world 打"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Shell 执行文件的三种方式</h1>
+      <h1 class="post-title">Shell 中的 #!</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-11-05 </span>
@@ -140,13 +140,13 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-shell-执行文件的三种方式">1 Shell 执行文件的三种方式</a>
+<li><a href="#1-的作用">1 #! 的作用</a></li>
+<li><a href="#2-例子">2 例子</a>
 <ul>
-<li><a href="#1-1-前两种h执行文件的方式">1.1 前两种h执行文件的方式</a></li>
-<li><a href="#1-3-使用-source-执行文件">1.3 使用 source 执行文件</a>
-<ul>
-<li><a href="#1-3-1-source-命令的语法">1.3.1 source 命令的语法</a></li>
-</ul></li>
+<li><a href="#2-1-echo-hello-world">2.1 echo Hello world</a></li>
+<li><a href="#2-2-python-的-hello-world">2.2 python 的 Hello world</a></li>
+<li><a href="#2-3-只会删除自己的脚本">2.3 只会删除自己的脚本</a></li>
+<li><a href="#2-4-给-readme-文件加上-bin-more">2.4 给 README 文件加上 #!/bin/more</a></li>
 </ul></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
@@ -156,33 +156,56 @@
     <div class="post-content">
       
 
-<h1 id="1-shell-执行文件的三种方式">1 Shell 执行文件的三种方式</h1>
+<h1 id="1-的作用">1 #! 的作用</h1>
 
-<ol>
-<li>使文件具有可执行权限，直接运行文件</li>
-<li>直接调用命令解释器执行文件，如 sh、bash</li>
-<li>使用 source 执行文件</li>
-</ol>
+<p>它的作用便是高所 shell 使用什么进程来执行此脚本</p>
 
-<h2 id="1-1-前两种h执行文件的方式">1.1 前两种h执行文件的方式</h2>
+<h1 id="2-例子">2 例子</h1>
 
-<p>前两种方式执行脚本的时候，系统发现不是内建命令，于是父进程创建一个和自己一摸一样的子进程，此时父进程阻塞，同时执行子进程，当子进程执行完命令后退出子进程，父进程退出阻塞接着执行。</p>
-
-<p>这种方式脚本无法修改父进程的环境变量，如 $PWD</p>
-
-<h2 id="1-3-使用-source-执行文件">1.3 使用 source 执行文件</h2>
-
-<p>使用 source 命令执行脚本则不会开辟子进程，而是在当前进程中执行脚本，所以脚本中修改的环境变量会影响到当前进程中的环境变量。</p>
-
-<h3 id="1-3-1-source-命令的语法">1.3.1 source 命令的语法</h3>
+<h2 id="2-1-echo-hello-world">2.1 echo Hello world</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">source</span> &lt;<span class="nv">$script</span>&gt;
-. &lt;<span class="nv">$script</span>&gt;</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nb">echo</span> <span class="s2">&#34;Hello world!&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-2-python-的-hello-world">2.2 python 的 Hello world</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/usr/bin/python
+</span><span class="cp"></span>print <span class="s2">&#34;Hello world!&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-3-只会删除自己的脚本">2.3 只会删除自己的脚本</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/rm
+</span><span class="cp"></span><span class="c1"># 这个 Hello world 打印不出来</span>
+<span class="nb">echo</span> <span class="s2">&#34;Hello world!&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="2-4-给-readme-文件加上-bin-more">2.4 给 README 文件加上 #!/bin/more</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/more
+</span><span class="cp"></span>....README</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="参考资料">参考资料</h1>
@@ -199,13 +222,13 @@
           <a href="/tags/shell/">Shell</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/11/05/shell-%E4%B8%AD%E7%9A%84-/">
+        <a class="prev" href="/2019/11/05/shell-%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Shell 中的 #!</span>
+            <span class="prev-text nav-default">Shell 中的变量</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/2019/11/03/mysql-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-            <span class="next-text nav-default">MySQL 中的数据类型</span>
+        <a class="next" href="/2019/11/05/shell-%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+            <span class="next-text nav-default">Shell 执行文件的三种方式</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
