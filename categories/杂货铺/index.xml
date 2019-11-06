@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 06 Nov 2019 07:20:22 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 09:51:39 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Echo 支持的转义字符</title>
+      <link>https://zhixiangyuan.github.io/2019/11/06/echo-%E6%94%AF%E6%8C%81%E7%9A%84%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6/</link>
+      <pubDate>Wed, 06 Nov 2019 09:51:39 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/06/echo-%E6%94%AF%E6%8C%81%E7%9A%84%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6/</guid>
+      <description>echo 需要加上 -e 才能够处理转义字符 转义字符 含义 \a 报警符，计算机会发出一声报警音 \b 退格符（Backspace） \c 禁止尾随，这个字符后面的所有字符都</description>
+    </item>
     
     <item>
       <title>脑电双频指数</title>
