@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 06 Nov 2019 11:12:45 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 11:59:46 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unset 命令</title>
+      <link>https://zhixiangyuan.github.io/2019/11/06/unset-%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Wed, 06 Nov 2019 11:59:46 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/06/unset-%E5%91%BD%E4%BB%A4/</guid>
+      <description>1 2 3 4 5 6 7 # 删除某个变量 $&amp;gt; unset &amp;lt;$变量名&amp;gt; # 或 $&amp;gt; unset -v &amp;lt;$变量名&amp;gt; # 删除某个函数 $&amp;gt; unset -f &amp;lt;$函数名&amp;gt; 案例：</description>
+    </item>
+    
+    <item>
+      <title>Env 命令</title>
+      <link>https://zhixiangyuan.github.io/2019/11/06/env-%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Wed, 06 Nov 2019 11:44:09 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/06/env-%E5%91%BD%E4%BB%A4/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 # 输出所有的环境变量 $&amp;gt; env # 删除某个环境变量 # 运行某个命令在指定的环境变量下 $&amp;gt; env -u &amp;lt;$环境变量&amp;gt; [运行的命令]</description>
+    </item>
     
     <item>
       <title>常见的环境变量</title>

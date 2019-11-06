@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>常见的环境变量 - Yuanzx Blog</title>
+  <title>Env 命令 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="变量名 描述 HOME 用户的专属目录，在 linux 中用 ~ 扩展 PATH 外部命令的搜索路径 HISTSIZE 保存历史命令记录的条数 LOGNAME 当前用户的登录名 HOSTNAME 主机的名称，许多应用程序如果要用到" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 2 3 4 5 6 7 8 9 10 # 输出所有的环境变量 $&amp;gt; env # 删除某个环境变量 # 运行某个命令在指定的环境变量下 $&amp;gt; env -u &amp;lt;$环境变量&amp;gt; [运行的命令]" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/06/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/06/env-%E5%91%BD%E4%BB%A4/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="常见的环境变量" />
-<meta property="og:description" content="变量名 描述 HOME 用户的专属目录，在 linux 中用 ~ 扩展 PATH 外部命令的搜索路径 HISTSIZE 保存历史命令记录的条数 LOGNAME 当前用户的登录名 HOSTNAME 主机的名称，许多应用程序如果要用到" />
+<meta property="og:title" content="Env 命令" />
+<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 # 输出所有的环境变量 $&gt; env # 删除某个环境变量 # 运行某个命令在指定的环境变量下 $&gt; env -u &lt;$环境变量&gt; [运行的命令]" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/06/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" />
-<meta property="article:published_time" content="2019-11-06T11:12:45+08:00" />
-<meta property="article:modified_time" content="2019-11-06T11:12:45+08:00" />
-<meta itemprop="name" content="常见的环境变量">
-<meta itemprop="description" content="变量名 描述 HOME 用户的专属目录，在 linux 中用 ~ 扩展 PATH 外部命令的搜索路径 HISTSIZE 保存历史命令记录的条数 LOGNAME 当前用户的登录名 HOSTNAME 主机的名称，许多应用程序如果要用到">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/06/env-%E5%91%BD%E4%BB%A4/" />
+<meta property="article:published_time" content="2019-11-06T11:44:09+08:00" />
+<meta property="article:modified_time" content="2019-11-06T11:44:09+08:00" />
+<meta itemprop="name" content="Env 命令">
+<meta itemprop="description" content="1 2 3 4 5 6 7 8 9 10 # 输出所有的环境变量 $&gt; env # 删除某个环境变量 # 运行某个命令在指定的环境变量下 $&gt; env -u &lt;$环境变量&gt; [运行的命令]">
 
 
-<meta itemprop="datePublished" content="2019-11-06T11:12:45&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-06T11:12:45&#43;08:00" />
-<meta itemprop="wordCount" content="349">
+<meta itemprop="datePublished" content="2019-11-06T11:44:09&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-06T11:44:09&#43;08:00" />
+<meta itemprop="wordCount" content="310">
 
 
 
 <meta itemprop="keywords" content="Shell," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="常见的环境变量"/>
-<meta name="twitter:description" content="变量名 描述 HOME 用户的专属目录，在 linux 中用 ~ 扩展 PATH 外部命令的搜索路径 HISTSIZE 保存历史命令记录的条数 LOGNAME 当前用户的登录名 HOSTNAME 主机的名称，许多应用程序如果要用到"/>
+<meta name="twitter:title" content="Env 命令"/>
+<meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 # 输出所有的环境变量 $&gt; env # 删除某个环境变量 # 运行某个命令在指定的环境变量下 $&gt; env -u &lt;$环境变量&gt; [运行的命令]"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">常见的环境变量</h1>
+      <h1 class="post-title">Env 命令</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-11-06 </span>
@@ -142,70 +142,68 @@
   </div>
 </div>
     <div class="post-content">
-      <table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>描述</th>
-</tr>
-</thead>
+      <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 输出所有的环境变量</span>
+$&gt; env 
 
-<tbody>
-<tr>
-<td>HOME</td>
-<td>用户的专属目录，在 linux 中用 <code>~</code> 扩展</td>
-</tr>
+<span class="c1"># 删除某个环境变量</span>
+<span class="c1"># 运行某个命令在指定的环境变量下</span>
+$&gt; env -u &lt;$环境变量&gt; <span class="o">[</span>运行的命令<span class="o">]</span>
 
-<tr>
-<td>PATH</td>
-<td>外部命令的搜索路径</td>
-</tr>
+<span class="c1"># 删除所有的环境变量</span>
+<span class="c1"># [$环境变量=$环境变量的值] 为设置的新的环境变量的值</span>
+$&gt; env -i <span class="o">[</span>$<span class="nv">环境变量</span><span class="o">=</span>$环境变量的值<span class="o">]</span> <span class="o">[</span>运行的命令<span class="o">]</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>以下为 -u 使用案例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 先打印看一下环境变量</span>
+$&gt; <span class="nb">export</span> -p <span class="p">|</span> grep USER
+<span class="c1"># 以下为输出</span>
+<span class="nb">export</span> <span class="nv">USER</span><span class="o">=</span>zhixiangyuan
+<span class="nb">export</span> <span class="nv">__CF_USER_TEXT_ENCODING</span><span class="o">=</span>0x0:0:0
 
-<tr>
-<td>HISTSIZE</td>
-<td>保存历史命令记录的条数</td>
-</tr>
+<span class="c1"># 看一下脚本</span>
+$&gt; cat echo.sh
+<span class="c1">#!/bin/bash</span>
+<span class="nb">export</span> -p <span class="p">|</span> grep USER
 
-<tr>
-<td>LOGNAME</td>
-<td>当前用户的登录名</td>
-</tr>
-
-<tr>
-<td>HOSTNAME</td>
-<td>主机的名称，许多应用程序如果要用到主机名，通常是从这个环境变量中取得</td>
-</tr>
-
-<tr>
-<td>SHELL</td>
-<td>当前用户使用的 Shell 类型</td>
-</tr>
-
-<tr>
-<td>LANG/LANGUAGE</td>
-<td>语言相关的环境变量，使用多种语言的用户可以修改此环境变量</td>
-</tr>
-
-<tr>
-<td>MAIL</td>
-<td>当前用户的邮件存放目录</td>
-</tr>
-
-<tr>
-<td>PS1</td>
-<td>PS1 是基本提示符，对于 root 用户是 #，对于普通用户是 $</td>
-</tr>
-
-<tr>
-<td>PS2</td>
-<td>PS2 是附属提示符，默认是 &ldquo;&gt;”</td>
-</tr>
-</tbody>
-</table>
-
-<p>注意：如果一个命令在 PATH 中两个不同目录下都存在，则位于 PATH 前端目录中的命令会被执行</p>
-
-<p>以下是我主机上的设置：</p>
+<span class="c1"># 删除 USER 环境变量</span>
+$&gt; env -u USER ./echo.sh
+<span class="nb">declare</span> -x <span class="nv">__CF_USER_TEXT_ENCODING</span><span class="o">=</span><span class="s2">&#34;0x0:0:0&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>以下为 -i 使用案例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
@@ -230,52 +228,30 @@
 </span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$&gt; <span class="nb">echo</span> <span class="nv">$HOME</span>
-/Users/zhixiangyuan
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看一下环境变量</span>
+$&gt; env
+<span class="c1"># 输出一堆环境变量</span>
+...
 
-$&gt; <span class="nb">echo</span> <span class="nv">$PATH</span>
-/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/zhixiangyuan/workspace/script:/Users/zhixiangyuan/workspace/company_project/smyl/arc/arcanist/bin
+<span class="c1"># 看一下脚本</span>
+$&gt; cat echo.sh 
+<span class="c1">#!/bin/bash</span>
+env
 
-$&gt; <span class="nb">echo</span> <span class="nv">$HISTSIZE</span>
-<span class="m">50000</span>
+<span class="c1"># 清除所有环境变量</span>
+$&gt; env -i ./echo.sh
+<span class="nv">PWD</span><span class="o">=</span>/Users/zhixiangyuan/Downloads/tmp
+<span class="nv">SHLVL</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">_</span><span class="o">=</span>/usr/bin/env
 
-$&gt; <span class="nb">echo</span> <span class="nv">$LOGNAME</span>
-zhixiangyuan
-
-$&gt; <span class="nb">echo</span> <span class="nv">$HOSTNAME</span>
-<span class="c1"># 啥也没有</span>
-
-$&gt; <span class="nb">echo</span> <span class="nv">$SHELL</span>
-/bin/zsh
-
-$&gt; <span class="nb">echo</span> <span class="nv">$LANG</span>
-<span class="c1"># 啥也没有</span>
-
-$&gt; <span class="nb">echo</span> <span class="nv">$LANGUAGE</span>
-<span class="c1"># 啥也没有</span>
-
-$&gt; <span class="nb">echo</span> <span class="nv">$MAIL</span>
-<span class="c1"># 啥也没有</span>
-
-$&gt; <span class="nb">echo</span> <span class="nv">$PS1</span>
-%<span class="o">{</span>%<span class="o">}</span><span class="c1">#%{%} %{%}${PWD/#$HOME/~} %{%}$(git_prompt_info)$(git_prompt_short_sha)%{%}[%*]</span>
-%<span class="o">(</span>?:%<span class="o">{</span>%<span class="o">}</span>➜ :%<span class="o">{</span>%<span class="o">}</span>➜ <span class="o">)</span>%<span class="o">{</span>%<span class="o">}</span>
-
-$&gt; <span class="nb">echo</span> <span class="nv">$PS2</span>
-%_&gt;</code></pre></td></tr></table>
+<span class="c1"># 设置一个 PATH 变量</span>
+$&gt; env -i <span class="nv">PATH</span><span class="o">=</span>./:<span class="nv">$PATH</span> ./echo.sh
+<span class="nv">PATH</span><span class="o">=</span>./:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/zhixiangyuan/workspace/script:/Users/zhixiangyuan/workspace/company_project/smyl/arc/arcanist/bin
+<span class="nv">PWD</span><span class="o">=</span>/Users/zhixiangyuan/Downloads/tmp
+<span class="nv">SHLVL</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">_</span><span class="o">=</span>/usr/bin/env</code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -286,13 +262,13 @@ $&gt; <span class="nb">echo</span> <span class="nv">$PS2</span>
           <a href="/tags/shell/">Shell</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/11/06/env-%E5%91%BD%E4%BB%A4/">
+        <a class="prev" href="/2019/11/06/unset-%E5%91%BD%E4%BB%A4/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Env 命令</span>
+            <span class="prev-text nav-default">Unset 命令</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/2019/11/06/bash-%E5%90%AF%E5%8A%A8%E6%97%B6%E5%92%8C%E7%99%BB%E5%87%BA%E6%97%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%87%E4%BB%B6/">
-            <span class="next-text nav-default">Bash 启动时和登出时会运行的文件</span>
+        <a class="next" href="/2019/11/06/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">
+            <span class="next-text nav-default">常见的环境变量</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

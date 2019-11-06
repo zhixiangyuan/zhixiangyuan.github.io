@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-11-06T11:12:45+08:00" />
+<meta property="og:updated_time" content="2019-11-06T11:59:46+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,48 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/25/%E4%B8%80%E6%9D%A1%E5%A5%BD%E7%94%A8%E7%9A%84-git-%E5%88%AB%E5%90%8D%E5%91%BD%E4%BB%A4/">一条好用的 Git 别名命令</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-25 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 2 $&gt; git config --global alias.loginfo &#34;log --pretty=format:&#39;%C(auto) %h | %ai | %Cred %an %Cgreen %s %C(auto) %d&#39; --date=local&#34; # 使用时输入 git loginfo 该命令是对于 git log 界面的格式化，格式化之后显示效果看起来更舒服，下图是命令执行过后看起
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/25/%E4%B8%80%E6%9D%A1%E5%A5%BD%E7%94%A8%E7%9A%84-git-%E5%88%AB%E5%90%8D%E5%91%BD%E4%BB%A4/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/23/java-%E4%B8%AD%E7%9A%84%E6%A1%A5%E6%8E%A5%E6%96%B9%E6%B3%95/">Java 中的桥接方法</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-23 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      先看下面的接口与接口实现 1 2 3 4 5 6 7 8 9 10 public interface AInterface&lt;T&gt; { void func(T t); } public class AClass implements AInterface&lt;String&gt; { @Override public void func(String s) { System.out.println(s); } } 由于 Java 的泛型是要擦除的，所以当虚拟机看到的时候其实
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/23/java-%E4%B8%AD%E7%9A%84%E6%A1%A5%E6%8E%A5%E6%96%B9%E6%B3%95/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/10/22/xpath-%E8%A7%A3%E6%9E%90%E5%99%A8%E7%A4%BA%E4%BE%8B/">XPath 解析器示例</a></h1>
@@ -194,46 +236,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/10/21/leetcode-450-%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/18/threadlocal-%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/">ThreadLocal 源码浅析</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-18 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      ThreadLocal 用于不同线程存储不同的线程全局变量，在该线程下用 ThreadLocal 取出的值是一致的。这里先简述一下原理，然后再看代码。ThreadLocal 其实是一个 Ke
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/18/threadlocal-%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/18/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-18 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      快速排序使用分治思想，实际实现过程和二叉树的前序遍历很像，在第一次碰到节点时进行遍历分区，然后再对子分区进行遍历分区，直到分区中只有一个节点
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/18/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

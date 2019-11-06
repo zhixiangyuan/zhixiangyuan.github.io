@@ -118,9 +118,9 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/16/java-byte-0xff-%E7%9A%84%E4%BD%9C%E7%94%A8/">Java Byte &amp; 0xFF 的作用</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/">int 入栈指令 iconst、bipush、sipush、ldc</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-09-16 </span>
+      <span class="post-time"> 2018-08-11 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -129,105 +129,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      Java 代码中，经常能够见到 byte &amp; 0xFF 这串代码，这是由于 Java 在处理 byte 的时候，将 byte 当作有符号来处理，所以比如说我们要进行 byte &lt;&lt; 8，如果 byte 的第一位为 0，那么在
+      1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:
     </div>
     <div class="read-more">
-      <a href="/2019/09/16/java-byte-0xff-%E7%9A%84%E4%BD%9C%E7%94%A8/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/16/leetcode-104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/">Leetcode: 104 二叉树的最大深度</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-16 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 二叉树的最大深度 2 解 2.1 我的解 时间复杂度: O(n) 空间复杂度: O(1) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 /** * Definition for a binary tree node. * public class
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/16/leetcode-104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/15/leetcode-20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/">Leetcode: 20 有效的括号</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-15 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 有效的括号 2 解 2.1 我的解 时间复杂度 O(n) 空间复杂度 O(n) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 class Solution { public boolean isValid(String s) { Stack
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/15/leetcode-20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/14/leetcode-2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">Leetcode: 2 两数相加</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-14 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 两数相加 2 解 2.1 我的解 时间复杂度: O(n) 空间复杂度: O(n) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/14/leetcode-2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/13/leetcode-146-lru-%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">Leetcode: 146 LRU 缓存机制</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-13 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 LRU 缓存机制 2 解 2.1 我的解 没解出来 2.2 官方解法 厉害了，对 LinkedhashMap 稍加改造就完成了这个效果，强 LRU = Last recent used，最近被使用的缓存不要被覆盖掉。 1 2 3
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/13/leetcode-146-lru-%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/12/leetcode-102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">Leetcode: 102 二叉树的层序遍历</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-12 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 二叉树的前序遍历 2 解 2.1 我的解 由于他要对每一层进行分层，所以我想的就是通过 List&lt;List&lt;TreeNode&gt;&gt; 去分层，但是我这个解跑出来的效果看上去时间复杂度和空间复杂度
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/12/leetcode-102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="read-more-link">阅读更多</a>
+      <a href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -235,14 +140,11 @@
     </section>
   
   <nav class="pagination">
-    <a class="prev" href="/page/21/">
+    <a class="prev" href="/page/30/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text">上一页</span>
       </a>
-    <a class="next" href="/page/23/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
+    
   </nav>
         </div>
         
