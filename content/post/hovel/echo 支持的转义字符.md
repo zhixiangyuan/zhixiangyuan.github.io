@@ -83,3 +83,7 @@ echo -e "before-\\after"
 # 输出：before-fter
 # 还输出了一声报警音
 ```
+
+# 参考资料
+
+1. 《Linux Shell 编程从入门到精通》
