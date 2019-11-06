@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 06 Nov 2019 10:50:16 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 11:01:55 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bash 启动时和登出时会运行的文件</title>
+      <link>https://zhixiangyuan.github.io/2019/11/06/bash-%E5%90%AF%E5%8A%A8%E6%97%B6%E5%92%8C%E7%99%BB%E5%87%BA%E6%97%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Wed, 06 Nov 2019 11:01:55 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/06/bash-%E5%90%AF%E5%8A%A8%E6%97%B6%E5%92%8C%E7%99%BB%E5%87%BA%E6%97%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
+      <description>启动文件/登出文件 描述 /etc/profile 系统范围的默认值，大部分用来设置环境（所有由 sh 衍生出的 shell 均适用） /etc/bashrc 特定于 Bash 的，系统范围函数于别名 $HOME/.bash_profile 用户定义的，环境默</description>
+    </item>
     
     <item>
       <title>Export 命令</title>
