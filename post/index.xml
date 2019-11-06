@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 06 Nov 2019 11:01:55 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 11:12:45 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>常见的环境变量</title>
+      <link>https://zhixiangyuan.github.io/2019/11/06/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Wed, 06 Nov 2019 11:12:45 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/06/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid>
+      <description>变量名 描述 HOME 用户的专属目录，在 linux 中用 ~ 扩展 PATH 外部命令的搜索路径 HISTSIZE 保存历史命令记录的条数 LOGNAME 当前用户的登录名 HOSTNAME 主机的名称，许多应用程序如果要用到</description>
+    </item>
     
     <item>
       <title>Bash 启动时和登出时会运行的文件</title>
