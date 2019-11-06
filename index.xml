@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 06 Nov 2019 09:51:39 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 10:50:16 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>Export 命令</title>
+      <link>https://zhixiangyuan.github.io/2019/11/06/export-%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Wed, 06 Nov 2019 10:50:16 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/06/export-%E5%91%BD%E4%BB%A4/</guid>
+      <description>1 语法 export [-fnp] [{$变量名称}={$变量的值}] 2 命令作用 设置环境变量，使用 export 设置的环境变量仅改变当前进程的环境，当前进程销毁则设置的环境变量失</description>
     </item>
     
     <item>
