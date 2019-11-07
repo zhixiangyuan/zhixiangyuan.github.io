@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 06 Nov 2019 11:59:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 07 Nov 2019 09:10:09 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>Shell 脚本的参数传递</title>
+      <link>https://zhixiangyuan.github.io/2019/11/07/shell-%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/</link>
+      <pubDate>Thu, 07 Nov 2019 09:10:09 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/07/shell-%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/</guid>
+      <description>1 Shell 编程中的参数引用 引用参数 描述 0, 1, 2&amp;hellip; 传递给脚本的参数位置，可以理解为传递进去的参数是个数组，通过数组下标取得参数 * 显示所有向脚本传递的参数</description>
     </item>
     
     <item>

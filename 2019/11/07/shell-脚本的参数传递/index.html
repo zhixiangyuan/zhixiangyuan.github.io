@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Shell 脚本的参数传递 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 Shell 编程中的参数引用 引用参数 描述 0, 1, 2&amp;hellip; 传递给脚本的参数位置，可以理解为传递进去的参数是个数组，通过数组下标取得参数 * 显示所有向脚本传递的参数" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/07/shell-%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Shell 脚本的参数传递" />
+<meta property="og:description" content="1 Shell 编程中的参数引用 引用参数 描述 0, 1, 2&hellip; 传递给脚本的参数位置，可以理解为传递进去的参数是个数组，通过数组下标取得参数 * 显示所有向脚本传递的参数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/07/shell-%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" />
+<meta property="article:published_time" content="2019-11-07T09:10:09+08:00" />
+<meta property="article:modified_time" content="2019-11-07T09:10:09+08:00" />
+<meta itemprop="name" content="Shell 脚本的参数传递">
+<meta itemprop="description" content="1 Shell 编程中的参数引用 引用参数 描述 0, 1, 2&hellip; 传递给脚本的参数位置，可以理解为传递进去的参数是个数组，通过数组下标取得参数 * 显示所有向脚本传递的参数">
+
+
+<meta itemprop="datePublished" content="2019-11-07T09:10:09&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-07T09:10:09&#43;08:00" />
+<meta itemprop="wordCount" content="1042">
+
+
+
+<meta itemprop="keywords" content="Shell," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Shell 脚本的参数传递"/>
+<meta name="twitter:description" content="1 Shell 编程中的参数引用 引用参数 描述 0, 1, 2&hellip; 传递给脚本的参数位置，可以理解为传递进去的参数是个数组，通过数组下标取得参数 * 显示所有向脚本传递的参数"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Shell 脚本的参数传递</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-11-07 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-shell-编程中的参数引用">1 Shell 编程中的参数引用</a>
+<ul>
+<li><a href="#1-1-0-1-2-例子">1.1 0, 1, 2&hellip; 例子</a></li>
+<li><a href="#1-2-和-的区别">1.2 $* 和 $@ 的区别</a></li>
+<li><a href="#1-3-的含义">1.3 $- 的含义</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-shell-编程中的参数引用">1 Shell 编程中的参数引用</h1>
+
+<table>
+<thead>
+<tr>
+<th>引用参数</th>
+<th>描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0, 1, 2&hellip;</td>
+<td>传递给脚本的参数位置，可以理解为传递进去的参数是个数组，通过数组下标取得参数</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>显示所有向脚本传递的参数</td>
+</tr>
+
+<tr>
+<td>@</td>
+<td>显示所有向脚本传递的参数</td>
+</tr>
+
+<tr>
+<td>#</td>
+<td>参数数量（不包含参数 0）</td>
+</tr>
+
+<tr>
+<td>$</td>
+<td>脚本运行的当前进程 ID 号</td>
+</tr>
+
+<tr>
+<td>!</td>
+<td>后台运行的最后一个进程的 ID 号</td>
+</tr>
+
+<tr>
+<td>?</td>
+<td>显示最后命令退出的状态，0 表示没有错误，任何其他值都表示有错误</td>
+</tr>
+
+<tr>
+<td>-</td>
+<td>显示 shell 使用的当前选项</td>
+</tr>
+</tbody>
+</table>
+
+<p>以下是案例：</p>
+
+<h2 id="1-1-0-1-2-例子">1.1 0, 1, 2&hellip; 例子</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 看一下脚本</span>
+$&gt; cat para.sh
+<span class="c1">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s1">&#39;$0 = &#39;</span><span class="nv">$0</span>
+<span class="nb">echo</span> <span class="s1">&#39;$1 = &#39;</span><span class="nv">$1</span>
+<span class="nb">echo</span> <span class="s1">&#39;$2 = &#39;</span><span class="nv">$2</span>
+<span class="nb">echo</span> <span class="s1">&#39;$3 = &#39;</span><span class="nv">$3</span>
+$&gt; ./para.sh <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+<span class="nv">$0</span> <span class="o">=</span> ./para.sh
+<span class="nv">$1</span> <span class="o">=</span> <span class="m">1</span>
+<span class="nv">$2</span> <span class="o">=</span> <span class="m">2</span>
+<span class="nv">$3</span> <span class="o">=</span> <span class="m">3</span>
+<span class="c1"># 可以理解为下面这个式子</span>
+<span class="c1"># 所以 bash 的第一个参数就是 ./para.sh</span>
+<span class="c1"># 第二个参数就是 1</span>
+<span class="c1"># 传入的参数是一个数组，下标从 0 开始</span>
+$&gt; /bin/bash ./para.sh <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+<span class="nv">$0</span> <span class="o">=</span> ./para.sh
+<span class="nv">$1</span> <span class="o">=</span> <span class="m">1</span>
+<span class="nv">$2</span> <span class="o">=</span> <span class="m">2</span>
+<span class="nv">$3</span> <span class="o">=</span> <span class="m">3</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>0, 1, 2&hellip; 只能表达到 9，如果你拥的参数多于 9 个，则不能使用 $10 来引用第十个参数。首先必须处理或保存第一个参数 $1，然后使用 shift 命令删除参数 1，并将所有剩余的参数下移一位，因此 $10 就变成了 $9，以此类推。$# 的值将被更新，以反映参数的剩余数量。在实践中，最常见的情况是将参数迭代到函数或 shell 脚本或者迭代到命令，替换使用 for 语句创建的列表，因此这个约束基本不成问题。</p>
+
+<p>下面是遍历参数的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$&gt; cat ./para.sh
+<span class="c1">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">&#34;参数的剩余个数： </span><span class="nv">$#</span><span class="s2">&#34;</span>
+<span class="k">for</span> var in <span class="nv">$@</span>
+<span class="k">do</span> 
+    <span class="nb">echo</span> <span class="s2">&#34;参数的值：</span><span class="nv">$var</span><span class="s2">&#34;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;执行 shift&#34;</span>
+    <span class="nb">shift</span>
+    <span class="nb">echo</span> <span class="s2">&#34;参数的剩余个数： </span><span class="nv">$#</span><span class="s2">&#34;</span>
+<span class="k">done</span>
+$&gt; ./para.sh <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+参数的剩余个数： <span class="m">3</span>
+参数的值：1
+执行 <span class="nb">shift</span>
+参数的剩余个数： <span class="m">2</span>
+参数的值：2
+执行 <span class="nb">shift</span>
+参数的剩余个数： <span class="m">1</span>
+参数的值：3
+执行 <span class="nb">shift</span>
+参数的剩余个数： <span class="m">0</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-2-和-的区别">1.2 $* 和 $@ 的区别</h2>
+
+<p>$* 和 $@ 都表示传递给函数或脚本的所有参数，不被双引号 &ldquo;&lt;$content&gt;&rdquo; 包含时，都以 &ldquo;$1&rdquo; &ldquo;$2&rdquo; … &ldquo;$n&rdquo; 的形式输出所有参数。但是当它们被双引号 &ldquo;&lt;$content&gt;&rdquo; 包含时，&rdquo;$*&rdquo; 会将所有的参数作为一个整体，以 &ldquo;$1 $2 … $n&rdquo; 的形式输出所有参数；&rdquo;$@&rdquo; 会将各个参数分开，以 &ldquo;$1&rdquo; &ldquo;$2&rdquo; … &ldquo;$n&rdquo; 的形式输出所有参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$&gt; cat para.sh
+<span class="c1">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">&#34;直接输出：&#34;</span>
+<span class="nb">echo</span> <span class="s1">&#39;$* = &#39;</span><span class="nv">$*</span>
+<span class="nb">echo</span> <span class="s1">&#39;$@ = &#39;</span><span class="nv">$@</span>
+<span class="nb">echo</span> <span class="s2">&#34;&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;不使用双引号直接遍历：&#34;</span>
+<span class="nb">echo</span> <span class="s1">&#39;$*: &#39;</span>
+<span class="k">for</span> var in <span class="nv">$*</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$var</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s1">&#39;$@: &#39;</span>
+<span class="k">for</span> var in <span class="nv">$@</span>
+<span class="k">do</span> 
+    <span class="nb">echo</span> <span class="nv">$var</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s2">&#34;&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;使用双引号再遍历：&#34;</span>
+<span class="nb">echo</span> <span class="s1">&#39;$*: &#39;</span>
+<span class="k">for</span> var in <span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$var</span>
+<span class="k">done</span>
+<span class="nb">echo</span> <span class="s1">&#39;$@: &#39;</span>
+<span class="k">for</span> var in <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+<span class="k">do</span> 
+    <span class="nb">echo</span> <span class="nv">$var</span>
+<span class="k">done</span>
+$&gt; ./para.sh <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+直接输出：
+<span class="nv">$*</span> <span class="o">=</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+<span class="nv">$@</span> <span class="o">=</span> <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+
+不使用双引号直接遍历：
+<span class="nv">$*</span>:
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="nv">$@</span>:
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+
+使用双引号再遍历：
+<span class="nv">$*</span>:
+<span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+<span class="nv">$@</span>:
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-3-的含义">1.3 $- 的含义</h2>
+
+<p>// todo 待完成</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/shell/">Shell</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/11/06/unset-%E5%91%BD%E4%BB%A4/">
+            <span class="next-text nav-default">Unset 命令</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

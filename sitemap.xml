@@ -10,48 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-11-06T11:59:46+08:00</lastmod>
+    <lastmod>2019-11-07T09:10:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-11-06T11:59:46+08:00</lastmod>
+    <lastmod>2019-11-07T09:10:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/shell/</loc>
-    <lastmod>2019-11-06T11:59:46+08:00</lastmod>
+    <lastmod>2019-11-07T09:10:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/07/shell-%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/</loc>
+    <lastmod>2019-11-07T09:10:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-11-06T11:59:46+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/2019/11/06/unset-%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2019-11-06T11:59:46+08:00</lastmod>
+    <lastmod>2019-11-07T09:10:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-11-06T11:59:46+08:00</lastmod>
+    <lastmod>2019-11-07T09:10:09+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2019-11-07T09:10:09+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/06/unset-%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2019-11-06T11:59:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
