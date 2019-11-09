@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 09 Nov 2019 09:23:05 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Nov 2019 16:50:59 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>标准输入、标准输出与标准错误输出</title>
+      <link>https://zhixiangyuan.github.io/2019/11/09/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA%E4%B8%8E%E6%A0%87%E5%87%86%E9%94%99%E8%AF%AF%E8%BE%93%E5%87%BA/</link>
+      <pubDate>Sat, 09 Nov 2019 16:50:59 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/09/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA%E4%B8%8E%E6%A0%87%E5%87%86%E9%94%99%E8%AF%AF%E8%BE%93%E5%87%BA/</guid>
+      <description>符号 含义 0 标准输入 1 标准输出 2 标准错误输出 0&amp;lt; 从标准输入中获取 1&amp;gt;&amp;lt;xxx&amp;gt; 将标准输出传输到 &amp;lt;xxx&amp;gt; 2&amp;gt;&amp;lt;xxx&amp;gt; 将标准错误输出输出到 &amp;lt;xxx&amp;gt; &amp;amp;&amp;gt;&amp;lt;xxx&amp;gt; 将标准输出和标准错误输出输出到 &amp;lt;xxx&amp;gt; /dev/null</description>
+    </item>
     
     <item>
       <title>Base64 的编码方式</title>
