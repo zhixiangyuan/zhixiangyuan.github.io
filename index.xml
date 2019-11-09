@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 08 Nov 2019 19:59:12 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Nov 2019 09:23:05 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>Base64 的编码方式</title>
+      <link>https://zhixiangyuan.github.io/2019/11/09/base64-%E7%9A%84%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</link>
+      <pubDate>Sat, 09 Nov 2019 09:23:05 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/09/base64-%E7%9A%84%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</guid>
+      <description>1 Base64 使用场景 数据传输需要经过多个路由设备，不同设备的处理方式不同，为了防止处理不可见字符出现错误，所以使用 Base64 将数据转换成可见字符，防止传输中</description>
     </item>
     
     <item>

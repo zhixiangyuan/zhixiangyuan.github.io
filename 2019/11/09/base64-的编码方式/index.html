@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Yuanzx Blog</title>
+  <title>Base64 的编码方式 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 Base64 使用场景 数据传输需要经过多个路由设备，不同设备的处理方式不同，为了防止处理不可见字符出现错误，所以使用 Base64 将数据转换成可见字符，防止传输中" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Yuanzx Blog" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="Yuanzx Blog" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/09/base64-%E7%9A%84%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="Yuanzx Blog" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="Base64 的编码方式" />
+<meta property="og:description" content="1 Base64 使用场景 数据传输需要经过多个路由设备，不同设备的处理方式不同，为了防止处理不可见字符出现错误，所以使用 Base64 将数据转换成可见字符，防止传输中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/09/base64-%E7%9A%84%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/" />
+<meta property="article:published_time" content="2019-11-09T09:23:05+08:00" />
+<meta property="article:modified_time" content="2019-11-09T09:23:05+08:00" />
+<meta itemprop="name" content="Base64 的编码方式">
+<meta itemprop="description" content="1 Base64 使用场景 数据传输需要经过多个路由设备，不同设备的处理方式不同，为了防止处理不可见字符出现错误，所以使用 Base64 将数据转换成可见字符，防止传输中">
 
-<meta property="og:updated_time" content="2019-11-09T09:23:05+08:00" />
-<meta itemprop="name" content="Yuanzx Blog">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2019-11-09T09:23:05&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-09T09:23:05&#43;08:00" />
+<meta itemprop="wordCount" content="692">
+
+
+
+<meta itemprop="keywords" content="数据结构与算法," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Yuanzx Blog"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="Base64 的编码方式"/>
+<meta name="twitter:description" content="1 Base64 使用场景 数据传输需要经过多个路由设备，不同设备的处理方式不同，为了防止处理不可见字符出现错误，所以使用 Base64 将数据转换成可见字符，防止传输中"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,145 +121,100 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/28/mysql-select-%E7%9A%84%E4%BD%BF%E7%94%A8/">MySQL SELECT 的使用</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-28 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 SELECT 命令浅析 1 2 3 4 5 6 7 8 9 10 # 检索单列数据 mysql&gt; SELECT &lt;field&gt; FROM &lt;table&gt;; # 检索多列数据，列与列之间用 &#39;,&#39; 隔开即可 # 注意：最后一个列名后面不需要加逗号 mysql&gt; SELECT &lt;field&gt;,&lt;field&gt; FROM &lt;table&gt;;
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/28/mysql-select-%E7%9A%84%E4%BD%BF%E7%94%A8/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Base64 的编码方式</h1>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">Redis 中的数据结构</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 Redis 中的数据结构 redis 中的数据结构是 key value 形式的，key 是字符串，value 有五种数据结构 string list hash set sorted set 2 Redis 中底层的数据结构 简单动态字符串（SDS）
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/redis-%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+      <div class="post-meta">
+        <span class="post-time"> 2019-11-09 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/b-%E6%A0%91%E5%92%8C-b-%E6%A0%91%E7%9A%84%E5%8C%BA%E5%88%AB/">B&#43;树和 B 树的区别</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-base64-使用场景">1 Base64 使用场景</a></li>
+<li><a href="#2-加密方式">2 加密方式</a>
+<ul>
+<li><a href="#2-1-只有两个字节">2.1 只有两个字节</a></li>
+<li><a href="#2-2-只有一个字节">2.2 只有一个字节</a></li>
+</ul></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
       
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      B 树的非叶子结点存储实际记录的指针 B+ 树的非叶子节点不存储实际记录的指针，所有的指针均存储在叶子结点，并且叶子结点使用指针串了起来，形成了链表
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/b-%E6%A0%91%E5%92%8C-b-%E6%A0%91%E7%9A%84%E5%8C%BA%E5%88%AB/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/mysql-%E4%B8%89%E5%A4%A7%E5%BC%95%E6%93%8E/">MySQL 三大引擎</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+<h1 id="1-base64-使用场景">1 Base64 使用场景</h1>
+
+<ol>
+<li>数据传输需要经过多个路由设备，不同设备的处理方式不同，为了防止处理不可见字符出现错误，所以使用 Base64 将数据转换成可见字符，防止传输中出错。</li>
+<li>进行简单的数据加密（对于懂行的人这玩意和没加密一样）</li>
+</ol>
+
+<h1 id="2-加密方式">2 加密方式</h1>
+
+<ol>
+<li>每三个字节作为一组，一共是 24 个二进制位</li>
+<li>将这 24 个二进制位分为四组，每个组有 6 个二进制位</li>
+<li>在每个组前加两个 0，扩展成 32 个二进制位，即四个字节</li>
+<li>根据下表，得到扩展后的每个字节对应可见字符，也就是 Base64 编码后的结果</li>
+</ol>
+
+<p><img src="/hub/2019/November/4.png" alt="Base64 码表" /></p>
+
+<p>对于不足三个字节的情况分成两种：</p>
+
+<h2 id="2-1-只有两个字节">2.1 只有两个字节</h2>
+
+<p>将两个字节共 16 位按照上述规则分成三组，最后一组除了前面加两个 0 意外，后面也加两个 0，这样就得到一个三位的 Base64 编码，再在末尾补上一个 &ldquo;=&rdquo; 号。</p>
+
+<p>比如，&rdquo;Ma&rdquo; 这个字符串，二进制形式是 01001101_01100001，将它分成三组，即 010011、010110、0001，然后在前面加两个 0，最后一个字节后面也加两个 0，变成 00010011、00010110、00000100，将这三个二进制转成十进制就是 19、22、4，在码表中查找对应的字符，即 T、W、E，将他们合在一起最后补上 = 即可，也就是 TWE=</p>
+
+<h2 id="2-2-只有一个字节">2.2 只有一个字节</h2>
+
+<p>将一个字节共 8 位按照上述规则分成两组，最后一组除了前面加两个 0 以外，后面再加 4 个 0.这样就得到一个两位的 Base64 编码，再在末尾补上两个 = 号。</p>
+
+<p>比如 &ldquo;M&rdquo; 个字母是一个字节，二进制是 01001101，分成两组即 010011、01，然后再前面补上两个 0，最后一个字节补上四个 0，也就是 00010011、00010000，换算成十进制也就是 19、16，然后查看码表得到 T、Q，最后合在一起补上两个 = 即可，也就是 TQ==</p>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li><a href="http://www.ruanyifeng.com/blog/2008/06/base64.html">Base64 笔记</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
           </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      MySQL 常用的引擎有 InnoDB、MyISAM、Memory，默认是 InnoDB 1 InnoDB 这种引擎序列化在磁盘中，支持事务，支持行级锁，B+Tree 索引。拥有良好
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/mysql-%E4%B8%89%E5%A4%A7%E5%BC%95%E6%93%8E/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/ssl-%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/">SSL 加密流程简述</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      SSL 加密的思想运用到了对称加密和非对称加密，非堆成加密的优势在于没有私钥则无法解密，所以想要传输信息的一端只需要拿到公钥就可以完成加密传输，但
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/ssl-%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/http-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F/">Http 协议格式</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 HTTP 请求报文 HTTP 请求报文由请求行、请求头部、空行和请求包体 4 个部分组成，如下图所示： 1.1 请求行 请求行由方法字段、URL 字段和 HTTP 协议版本字段 3 个部
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/http-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/6/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/8/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/11/08/%E4%BA%BA%E6%B4%BB%E7%9D%80%E5%88%B0%E5%BA%95%E5%9C%A8%E8%BF%BD%E6%B1%82%E4%BB%80%E4%B9%88/">
+            <span class="next-text nav-default">人活着到底在追求什么</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
