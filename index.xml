@@ -1512,7 +1512,7 @@
       <pubDate>Fri, 12 Jul 2019 15:05:42 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/07/12/tcp%E9%A6%96%E9%83%A8%E7%BB%93%E6%9E%84/</guid>
-      <description>1 TCP 数据在 IP 数据报中的封装 2 TCP 首部的数据格式 TCP 首部的数据结构，如果不计选项字段，首部是 20 个字节。 2.1 序号 32 位 序号是 32 位无符号数，序号范围从 0 到</description>
+      <description>鲁迅曾今说过，TCP 是一个可靠的（reliable）、面向连接的（connection-oriented）、基于字节流（byte-strea</description>
     </item>
     
     <item>
