@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 21 Oct 2019 10:13:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Nov 2019 08:22:38 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Leetcode: 38 报数</title>
+      <link>https://zhixiangyuan.github.io/2019/11/11/leetcode-38-%E6%8A%A5%E6%95%B0/</link>
+      <pubDate>Mon, 11 Nov 2019 08:22:38 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/11/leetcode-38-%E6%8A%A5%E6%95%B0/</guid>
+      <description>1 题目 报数 2 解 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 class Solution { /** 编译正则，按照重复的数字分组 */ private Pattern pattern = Pattern.compile(&amp;#34;(\\d)\\1*&amp;#34;); public String countAndSay(int n) { if (n == 1) return &amp;#34;1&amp;#34;; StringBuilder result = new StringBuilder(); result.append(&amp;#34;1&amp;#34;); for</description>
+    </item>
     
     <item>
       <title>Leetcode: 450 删除二叉搜索树中的节点</title>
