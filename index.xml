@@ -1552,11 +1552,11 @@
     </item>
     
     <item>
-      <title>网际协议：IP</title>
-      <link>https://zhixiangyuan.github.io/2019/07/09/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEip/</link>
+      <title>IP 协议</title>
+      <link>https://zhixiangyuan.github.io/2019/07/09/ip-%E5%8D%8F%E8%AE%AE/</link>
       <pubDate>Tue, 09 Jul 2019 21:06:22 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/2019/07/09/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEip/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/07/09/ip-%E5%8D%8F%E8%AE%AE/</guid>
       <description>1 网际协议 IP 简介 IP 协议提供不可靠的、无连接的数据包传输 不可靠指的是从客户端发到目标端的数据包对方可能会收不到 无连接指的是发送的每个数据包都是</description>
     </item>
     
