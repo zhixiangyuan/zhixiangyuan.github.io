@@ -1057,6 +1057,15 @@
     </item>
     
     <item>
+      <title>关于 sshd 的坑</title>
+      <link>https://zhixiangyuan.github.io/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/</link>
+      <pubDate>Wed, 16 Jan 2019 20:30:59 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/</guid>
+      <description>1 sshd 死都打不开 试试先用 /usr/sbin/sshd stop 关掉再 start 看看行不行 莫名其妙，直接运行 /usr/sbin/sshd 就好了 1.1 开启 sshd /usr/sbin/sshd start 1.2 sshd 的配置文件权限必须在 root 下为 600 才行 配置文件在 /etc/ssh 目录下，目</description>
+    </item>
+    
+    <item>
       <title>Sftp 命令小记</title>
       <link>https://zhixiangyuan.github.io/2019/01/14/sftp-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Mon, 14 Jan 2019 20:26:53 +0800</pubDate>
