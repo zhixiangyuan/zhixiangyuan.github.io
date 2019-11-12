@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-01-12T19:56:52&#43;08:00" />
 <meta itemprop="dateModified" content="2019-01-12T19:56:52&#43;08:00" />
-<meta itemprop="wordCount" content="364">
+<meta itemprop="wordCount" content="523">
 
 
 
@@ -145,6 +145,9 @@
 <li><a href="#进入容器有两个命令">进入容器有两个命令</a></li>
 <li><a href="#容器管理命令">容器管理命令</a></li>
 <li><a href="#镜像管理命令">镜像管理命令</a></li>
+<li><a href="#推送镜像的方法">推送镜像的方法</a></li>
+<li><a href="#image-改名方法">image 改名方法</a></li>
+<li><a href="#开启-docker-远程访问步骤">开启 docker 远程访问步骤</a></li>
 </ul>
 </nav>
   </div>
@@ -210,6 +213,27 @@
 
 <p><code>docker image rm &lt;$image_id&gt;</code>：删除镜像</p>
 
+<h1 id="推送镜像的方法">推送镜像的方法</h1>
+
+<p><code>docker push &lt;$注册用户名&gt;/&lt;$镜像名&gt;:&lt;$标签名&gt;</code></p>
+
+<p>例如：<code>docker push yuanzx/hadoop_pseudo:latest</code></p>
+
+<h1 id="image-改名方法">image 改名方法</h1>
+
+<p><code>docker tag &lt;$原来的名字&gt; &lt;$修改后的名字&gt;</code></p>
+
+<h1 id="开启-docker-远程访问步骤">开启 docker 远程访问步骤</h1>
+
+<ol>
+<li><code>vi /usr/lib/systemd/system/docker.service</code></li>
+<li>增加 <code>ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock</code>，保存退出</li>
+<li><code>systemctl daemon-reload</code></li>
+<li><code>systemctl restart docker</code></li>
+<li><code>/sbin/iptables -I INPUT -p tcp --dport 2375 -j ACCEPT</code></li>
+<li><code>iptables-save</code></li>
+</ol>
+
     </div>
 
     
@@ -218,9 +242,9 @@
           <a href="/tags/docker/">docker</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/">
+        <a class="prev" href="/2019/01/13/linux-%E4%B8%8B%E8%AF%AF%E5%88%A0-secure-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8D%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97%E9%97%AE%E9%A2%98/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">一次内存泄漏排查的经历</span>
+            <span class="prev-text nav-default">Linux 下误删 Secure 文件，系统不记录日志问题</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/2018/12/17/%E6%B1%82%E6%95%B0%E7%BB%84%E4%B8%AD%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AA%E6%95%B0/">

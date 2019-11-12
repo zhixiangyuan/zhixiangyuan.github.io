@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Yuanzx Blog</title>
+  <title>Linux 下误删 Secure 文件，系统不记录日志问题 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="第一步创建文件 touch /var/log/secure 第二步修改权限 chmod 600 /var/log/secure 第三步重启服务 service sshd restart service syslog(rsyslog) restart 注意：如果不重启服务的话，原来的程序依然向被删除的文件中写入数据，那么新建的" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Yuanzx Blog" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="Yuanzx Blog" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/01/13/linux-%E4%B8%8B%E8%AF%AF%E5%88%A0-secure-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8D%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97%E9%97%AE%E9%A2%98/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="Yuanzx Blog" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="Linux 下误删 Secure 文件，系统不记录日志问题" />
+<meta property="og:description" content="第一步创建文件 touch /var/log/secure 第二步修改权限 chmod 600 /var/log/secure 第三步重启服务 service sshd restart service syslog(rsyslog) restart 注意：如果不重启服务的话，原来的程序依然向被删除的文件中写入数据，那么新建的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/01/13/linux-%E4%B8%8B%E8%AF%AF%E5%88%A0-secure-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8D%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97%E9%97%AE%E9%A2%98/" />
+<meta property="article:published_time" content="2019-01-13T20:16:21+08:00" />
+<meta property="article:modified_time" content="2019-01-13T20:16:21+08:00" />
+<meta itemprop="name" content="Linux 下误删 Secure 文件，系统不记录日志问题">
+<meta itemprop="description" content="第一步创建文件 touch /var/log/secure 第二步修改权限 chmod 600 /var/log/secure 第三步重启服务 service sshd restart service syslog(rsyslog) restart 注意：如果不重启服务的话，原来的程序依然向被删除的文件中写入数据，那么新建的">
 
-<meta property="og:updated_time" content="2019-11-11T08:22:38+08:00" />
-<meta itemprop="name" content="Yuanzx Blog">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2019-01-13T20:16:21&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-13T20:16:21&#43;08:00" />
+<meta itemprop="wordCount" content="76">
+
+
+
+<meta itemprop="keywords" content="Linux," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Yuanzx Blog"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="Linux 下误删 Secure 文件，系统不记录日志问题"/>
+<meta name="twitter:description" content="第一步创建文件 touch /var/log/secure 第二步修改权限 chmod 600 /var/log/secure 第三步重启服务 service sshd restart service syslog(rsyslog) restart 注意：如果不重启服务的话，原来的程序依然向被删除的文件中写入数据，那么新建的"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,147 +121,76 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/11/05/javap-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/">Javap 命令的使用</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-11-05 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示
-    </div>
-    <div class="read-more">
-      <a href="/2018/11/05/javap-%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8/" class="read-more-link">阅读更多</a>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux 下误删 Secure 文件，系统不记录日志问题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-13 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-01-13T20:16:21" title="January 13, 2019">January 13, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
     </div>
   </div>
-</article>
+    <div class="post-content">
+      <p>第一步创建文件</p>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/17/finalfinallyfinalize-%E7%9A%84%E5%BC%82%E5%90%8C/">final、finally、finalize 的异同</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-17 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+<p><code>touch /var/log/secure</code></p>
+
+<p>第二步修改权限</p>
+
+<p><code>chmod 600 /var/log/secure</code></p>
+
+<p>第三步重启服务</p>
+
+<ol>
+<li><code>service sshd restart</code></li>
+<li><code>service syslog(rsyslog) restart</code></li>
+</ol>
+
+<p>注意：如果不重启服务的话，原来的程序依然向被删除的文件中写入数据，那么新建的文件就没卵用</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
           </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 final final 可以用来修饰类、方法、变量 1.1 final 修饰类 final 修饰 class 代表类不可以被继承 1.2 final 修饰变量 final 修饰的变量在初始化之后不能被再次赋值 1.3 final 修饰方法 final 修饰方法
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/17/finalfinallyfinalize-%E7%9A%84%E5%BC%82%E5%90%8C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/16/exception-%E4%B8%8E-error-%E7%9A%84%E5%BC%82%E5%90%8C/">Exception 与 Error 的异同</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-16 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Exception 和 Error 都是继承了 Throwable 类，在 Java 中只有继承了 Throwable 的类才可以被 throw 或者 catch，它是异常处理机制的基本组成类型。Exception 是程序正常运行中，可
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/16/exception-%E4%B8%8E-error-%E7%9A%84%E5%BC%82%E5%90%8C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/">sed 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-04 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 sed 的工作流程 sed 逐行处理文件或输入，默认不会修改文件，除非使用 shell 重定向保存结果。 工作流程： 将正在处理的行保存在一个临时缓存区中（也称为模式空
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/">grep 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-25 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      grep -A [line num]，向下显示多少行，after-context 缩写 -B [line num]，向上显示多少行，before-context 缩写 -C [line num]，上
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/">tar &amp; scp 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-24 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 scp 命令 上传：scp [文件路径] [用户名]@[IP 地址]:[服务器路径] 下载：scp [用户名]@[IP 地址]:[文件路径] [本地路径] 2 tar 命
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/30/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/32/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">一次内存泄漏排查的经历</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/01/12/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            <span class="next-text nav-default">Docker 常用命令</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
