@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Yuanzx Blog</title>
+  <title>Centos 配置无密登录 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &amp;gt;&amp;gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Yuanzx Blog" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="Yuanzx Blog" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="Yuanzx Blog" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="Centos 配置无密登录" />
+<meta property="og:description" content="生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &gt;&gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/" />
+<meta property="article:published_time" content="2019-01-17T20:34:37+08:00" />
+<meta property="article:modified_time" content="2019-01-17T20:34:37+08:00" />
+<meta itemprop="name" content="Centos 配置无密登录">
+<meta itemprop="description" content="生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &gt;&gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys">
 
-<meta property="og:updated_time" content="2019-11-11T08:22:38+08:00" />
-<meta itemprop="name" content="Yuanzx Blog">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2019-01-17T20:34:37&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-17T20:34:37&#43;08:00" />
+<meta itemprop="wordCount" content="32">
+
+
+
+<meta itemprop="keywords" content="Linux," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Yuanzx Blog"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="Centos 配置无密登录"/>
+<meta name="twitter:description" content="生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &gt;&gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,123 +121,81 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/">sed 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-04 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 sed 的工作流程 sed 逐行处理文件或输入，默认不会修改文件，除非使用 shell 重定向保存结果。 工作流程： 将正在处理的行保存在一个临时缓存区中（也称为模式空
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/04/sed-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/">grep 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-25 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      grep -A [line num]，向下显示多少行，after-context 缩写 -B [line num]，向上显示多少行，before-context 缩写 -C [line num]，上
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/25/grep-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/">tar &amp; scp 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-24 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 scp 命令 上传：scp [文件路径] [用户名]@[IP 地址]:[服务器路径] 下载：scp [用户名]@[IP 地址]:[文件路径] [本地路径] 2 tar 命
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/24/tar-scp-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/09/03/hashmap-%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/">HashMap 不得不说的故事</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-09-03 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      本文基于 Jdk 1.8 1 什么是 HashMap 要理解这个问题，首先需要理解什么是 Hash 以及什么是 Map 1.1 什么是 Hash Hash 是一种散列算法，用于确定关键字到指定位置的对应关系 1.2 什么是
-    </div>
-    <div class="read-more">
-      <a href="/2018/09/03/hashmap-%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AF%B4%E7%9A%84%E6%95%85%E4%BA%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/">int 入栈指令 iconst、bipush、sipush、ldc</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-08-11 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:
-    </div>
-    <div class="read-more">
-      <a href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/31/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
+          <article class="post">
     
-  </nav>
+    <header class="post-header">
+      <h1 class="post-title">Centos 配置无密登录</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-17 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#生成密钥方法">生成密钥方法</a></li>
+<li><a href="#配置权限">配置权限</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+  <div class="post-outdated">
+    <div class="warn">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-01-17T20:34:37" title="January 17, 2019">January 17, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
+    <div class="post-content">
+      
+
+<h1 id="生成密钥方法">生成密钥方法</h1>
+
+<ol>
+<li>ssh-keygen -t rsa // 一路回车</li>
+<li>cat id_rsa.pub &gt;&gt; authorized_keys</li>
+</ol>
+
+<h1 id="配置权限">配置权限</h1>
+
+<ul>
+<li>chmod 700 /home/hadoop</li>
+<li>chmod 700 -R ~/.ssh</li>
+<li>chmod 600 authorized_keys</li>
+</ul>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">一次内存泄漏排查的经历</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/">
+            <span class="next-text nav-default">关于 sshd 的坑</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

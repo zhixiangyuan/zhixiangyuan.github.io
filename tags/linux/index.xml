@@ -67,6 +67,15 @@
     </item>
     
     <item>
+      <title>Centos 配置无密登录</title>
+      <link>https://zhixiangyuan.github.io/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Thu, 17 Jan 2019 20:34:37 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/</guid>
+      <description>生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &amp;gt;&amp;gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys</description>
+    </item>
+    
+    <item>
       <title>关于 sshd 的坑</title>
       <link>https://zhixiangyuan.github.io/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/</link>
       <pubDate>Wed, 16 Jan 2019 20:30:59 +0800</pubDate>
