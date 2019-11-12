@@ -111,5 +111,14 @@
       <description>1 Shell 执行文件的三种方式 使文件具有可执行权限，直接运行文件 直接调用命令解释器执行文件，如 sh、bash 使用 source 执行文件 1.1 前两种执行文件的方式 前两</description>
     </item>
     
+    <item>
+      <title>Sftp 命令小记</title>
+      <link>https://zhixiangyuan.github.io/2019/01/14/sftp-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Mon, 14 Jan 2019 20:26:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/01/14/sftp-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</guid>
+      <description>sftp 命令会先连接到服务器，然后再下载文件 登陆命令 sftp &amp;lt;username&amp;gt;@&amp;lt;ip&amp;gt; 下载命令 递归下载 `get -r &amp;lt;$文件&amp;gt; &amp;lt;$本地路径&amp;gt;</description>
+    </item>
+    
   </channel>
 </rss>

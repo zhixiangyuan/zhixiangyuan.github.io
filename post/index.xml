@@ -1597,6 +1597,15 @@
     </item>
     
     <item>
+      <title>Sftp 命令小记</title>
+      <link>https://zhixiangyuan.github.io/2019/01/14/sftp-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Mon, 14 Jan 2019 20:26:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/01/14/sftp-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/</guid>
+      <description>sftp 命令会先连接到服务器，然后再下载文件 登陆命令 sftp &amp;lt;username&amp;gt;@&amp;lt;ip&amp;gt; 下载命令 递归下载 `get -r &amp;lt;$文件&amp;gt; &amp;lt;$本地路径&amp;gt;</description>
+    </item>
+    
+    <item>
       <title>Linux 下误删 Secure 文件，系统不记录日志问题</title>
       <link>https://zhixiangyuan.github.io/2019/01/13/linux-%E4%B8%8B%E8%AF%AF%E5%88%A0-secure-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8D%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97%E9%97%AE%E9%A2%98/</link>
       <pubDate>Sun, 13 Jan 2019 20:16:21 +0800</pubDate>
