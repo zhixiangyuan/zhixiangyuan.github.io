@@ -14,7 +14,8 @@ tags: [
     "IntelliJ IDEA",
     "Git",
     "Shell",
-    "医学"
+    "医学",
+    "docker"
 ]
 categories: [
     "杂货铺"
