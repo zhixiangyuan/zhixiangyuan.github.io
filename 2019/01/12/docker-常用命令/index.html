@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>求数组中间的数据个数 - Yuanzx Blog</title>
+  <title>Docker 常用命令 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 求范围内的数字个数 求 0 和 4 中间的数字个数 1.1 既不包含 0，也不包含 4，即 (0,4) 4 - 0 - 1 = 3 1.2 包含 0 或 4，即 (0,4] 或是 [0,4) 4 - 0 = 4 1.3 既包含 0 又包含 4，" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="保存镜像 docker commit &amp;lt;$container_id&amp;gt; &amp;lt;$image_name&amp;gt; 使用镜像新建容器 1 2 3 4 5 6 7 8 9 10 docker run # 以下是一些可选项 # 这是两个参数，一个是 -i：交互式操作，一个是 -t 终端 # 使用这个选项" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2018/12/17/%E6%B1%82%E6%95%B0%E7%BB%84%E4%B8%AD%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AA%E6%95%B0/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/01/12/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="求数组中间的数据个数" />
-<meta property="og:description" content="1 求范围内的数字个数 求 0 和 4 中间的数字个数 1.1 既不包含 0，也不包含 4，即 (0,4) 4 - 0 - 1 = 3 1.2 包含 0 或 4，即 (0,4] 或是 [0,4) 4 - 0 = 4 1.3 既包含 0 又包含 4，" />
+<meta property="og:title" content="Docker 常用命令" />
+<meta property="og:description" content="保存镜像 docker commit &lt;$container_id&gt; &lt;$image_name&gt; 使用镜像新建容器 1 2 3 4 5 6 7 8 9 10 docker run # 以下是一些可选项 # 这是两个参数，一个是 -i：交互式操作，一个是 -t 终端 # 使用这个选项" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2018/12/17/%E6%B1%82%E6%95%B0%E7%BB%84%E4%B8%AD%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AA%E6%95%B0/" />
-<meta property="article:published_time" content="2018-12-17T23:18:57+08:00" />
-<meta property="article:modified_time" content="2018-12-17T23:18:57+08:00" />
-<meta itemprop="name" content="求数组中间的数据个数">
-<meta itemprop="description" content="1 求范围内的数字个数 求 0 和 4 中间的数字个数 1.1 既不包含 0，也不包含 4，即 (0,4) 4 - 0 - 1 = 3 1.2 包含 0 或 4，即 (0,4] 或是 [0,4) 4 - 0 = 4 1.3 既包含 0 又包含 4，">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/01/12/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" />
+<meta property="article:published_time" content="2019-01-12T19:56:52+08:00" />
+<meta property="article:modified_time" content="2019-01-12T19:56:52+08:00" />
+<meta itemprop="name" content="Docker 常用命令">
+<meta itemprop="description" content="保存镜像 docker commit &lt;$container_id&gt; &lt;$image_name&gt; 使用镜像新建容器 1 2 3 4 5 6 7 8 9 10 docker run # 以下是一些可选项 # 这是两个参数，一个是 -i：交互式操作，一个是 -t 终端 # 使用这个选项">
 
 
-<meta itemprop="datePublished" content="2018-12-17T23:18:57&#43;08:00" />
-<meta itemprop="dateModified" content="2018-12-17T23:18:57&#43;08:00" />
-<meta itemprop="wordCount" content="455">
+<meta itemprop="datePublished" content="2019-01-12T19:56:52&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-12T19:56:52&#43;08:00" />
+<meta itemprop="wordCount" content="364">
 
 
 
-<meta itemprop="keywords" content="M78 星云," />
+<meta itemprop="keywords" content="docker," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="求数组中间的数据个数"/>
-<meta name="twitter:description" content="1 求范围内的数字个数 求 0 和 4 中间的数字个数 1.1 既不包含 0，也不包含 4，即 (0,4) 4 - 0 - 1 = 3 1.2 包含 0 或 4，即 (0,4] 或是 [0,4) 4 - 0 = 4 1.3 既包含 0 又包含 4，"/>
+<meta name="twitter:title" content="Docker 常用命令"/>
+<meta name="twitter:description" content="保存镜像 docker commit &lt;$container_id&gt; &lt;$image_name&gt; 使用镜像新建容器 1 2 3 4 5 6 7 8 9 10 docker run # 以下是一些可选项 # 这是两个参数，一个是 -i：交互式操作，一个是 -t 终端 # 使用这个选项"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,10 +124,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">求数组中间的数据个数</h1>
+      <h1 class="post-title">Docker 常用命令</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018-12-17 </span>
+        <span class="post-time"> 2019-01-12 </span>
         <div class="post-category">
             <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
             </div>
@@ -140,75 +140,31 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-求范围内的数字个数">1 求范围内的数字个数</a>
-<ul>
-<li><a href="#1-1-既不包含-0-也不包含-4-即-0-4">1.1 既不包含 0，也不包含 4，即 (0,4)</a></li>
-<li><a href="#1-2-包含-0-或-4-即-0-4-或是-0-4">1.2 包含 0 或 4，即 (0,4] 或是 [0,4)</a></li>
-<li><a href="#1-3-既包含-0-又包含-4-即-0-4">1.3 既包含 0 又包含 4，即 [0,4]</a></li>
-</ul></li>
-<li><a href="#2-求范围内的数字个数">2 求范围内的数字个数</a>
-<ul>
-<li><a href="#1-1-既不包含-low-也不包含-high-即-low-high">1.1 既不包含 low，也不包含 high，即 (low,high)</a></li>
-<li><a href="#1-2-包含-low-或-high-即-low-high-或是-low-high">1.2 包含 low 或 high，即 (low,high] 或是 [low,high)</a></li>
-<li><a href="#1-3-既包含-high-又包含-low-即-low-high">1.3 既包含 high 又包含 low，即 [low,high]</a></li>
-</ul></li>
-<li><a href="#3-数组遍历模版">3 数组遍历模版</a>
-<ul>
-<li><a href="#3-1-从小到大遍历">3.1 从小到大遍历</a></li>
-<li><a href="#3-2-从大到小遍历">3.2 从大到小遍历</a></li>
-</ul></li>
-<li><a href="#4-数组中的-length">4 数组中的 length</a></li>
-<li><a href="#5-对于-high-low-1-和-high-low-的理解">5 对于 high - low + 1 和 high - low 的理解</a></li>
+<li><a href="#保存镜像">保存镜像</a></li>
+<li><a href="#使用镜像新建容器">使用镜像新建容器</a></li>
+<li><a href="#进入容器有两个命令">进入容器有两个命令</a></li>
+<li><a href="#容器管理命令">容器管理命令</a></li>
+<li><a href="#镜像管理命令">镜像管理命令</a></li>
 </ul>
 </nav>
   </div>
 </div>
   <div class="post-outdated">
     <div class="warn">
-      <p>【注意】最后更新于 <span class="timeago" datetime="2018-12-17T23:18:57" title="December 17, 2018">December 17, 2018</span>，文中内容可能已过时，请谨慎使用。</p>
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-01-12T19:56:52" title="January 12, 2019">January 12, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
     </div>
   </div>
     <div class="post-content">
       
 
-<h1 id="1-求范围内的数字个数">1 求范围内的数字个数</h1>
+<h1 id="保存镜像">保存镜像</h1>
 
-<p>求 0 和 4 中间的数字个数</p>
+<p><code>docker commit &lt;$container_id&gt; &lt;$image_name&gt;</code></p>
 
-<h2 id="1-1-既不包含-0-也不包含-4-即-0-4">1.1 既不包含 0，也不包含 4，即 (0,4)</h2>
-
-<p><code>4 - 0 - 1 = 3</code></p>
-
-<h2 id="1-2-包含-0-或-4-即-0-4-或是-0-4">1.2 包含 0 或 4，即 (0,4] 或是 [0,4)</h2>
-
-<p><code>4 - 0 = 4</code></p>
-
-<h2 id="1-3-既包含-0-又包含-4-即-0-4">1.3 既包含 0 又包含 4，即 [0,4]</h2>
-
-<p><code>4 - 0 + 1 = 5</code></p>
-
-<h1 id="2-求范围内的数字个数">2 求范围内的数字个数</h1>
-
-<p>求 low 和 high 中间的数字个数</p>
-
-<h2 id="1-1-既不包含-low-也不包含-high-即-low-high">1.1 既不包含 low，也不包含 high，即 (low,high)</h2>
-
-<p><code>high - low - 1 = ...</code></p>
-
-<h2 id="1-2-包含-low-或-high-即-low-high-或是-low-high">1.2 包含 low 或 high，即 (low,high] 或是 [low,high)</h2>
-
-<p><code>high - low = ...</code></p>
-
-<h2 id="1-3-既包含-high-又包含-low-即-low-high">1.3 既包含 high 又包含 low，即 [low,high]</h2>
-
-<p><code>high - low + 1 = ...</code></p>
-
-<h1 id="3-数组遍历模版">3 数组遍历模版</h1>
-
-<h2 id="3-1-从小到大遍历">3.1 从小到大遍历</h2>
+<h1 id="使用镜像新建容器">使用镜像新建容器</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -218,92 +174,57 @@
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">遍历数组 [low,high]
-
-index = low; index &lt;= high; index++
-
-比如说：
-
-[0,2]
-
-index = 0; index &lt;= 2 - 0; index++
-
-[9,12]
-
-index = 9; index &lt;= 12; index++</pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">docker run
+<span class="c1"># 以下是一些可选项</span>
+<span class="c1"># 这是两个参数，一个是 -i：交互式操作，一个是 -t 终端</span>
+<span class="c1"># 使用这个选项则需要在容器名最后加上 /bin/bash</span>
+<span class="o">[</span>-it<span class="o">]</span>
+<span class="c1"># 对这两个路径做绑定，起到挂载的效果</span>
+<span class="o">[</span>-v <span class="o">{</span>$容器中的路径<span class="o">}</span>:<span class="o">{</span>$宿主机中的路径<span class="o">}]</span>
+<span class="o">[</span>-h <span class="o">{</span><span class="nv">$hostname</span><span class="o">}]</span> 
+<span class="o">[</span>--name <span class="o">{</span>$机器名称<span class="o">}]</span> 
+&lt;$容器名称&gt;</code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="3-2-从大到小遍历">3.2 从大到小遍历</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">遍历数组 [low,high]
+<h1 id="进入容器有两个命令">进入容器有两个命令</h1>
 
-index = high; index &gt;= low; index--
+<p>进入容器，使用 exit 退出时，容器不会终止（推荐）</p>
 
-比如说：
+<p><code>docker exec -it &lt;$container_id&gt; bash</code></p>
 
-[0,2]
+<p>使用下面的命令进入容器后，使用 exit 退出容器，容器会停止运行</p>
 
-index = 2; index &gt;= 0; index--
+<p><code>docker attach &lt;$container_id&gt;</code></p>
 
-[9,12]
+<h1 id="容器管理命令">容器管理命令</h1>
 
-index = 12; index &gt;= 9; index--</pre></td></tr></table>
-</div>
-</div>
-<h1 id="4-数组中的-length">4 数组中的 length</h1>
+<p><code>docker container start &lt;$container_id&gt;</code>：启动已经终止的容器，但不会进入容器，容器在后台执行</p>
 
-<p>length = high - low + 1</p>
+<p><code>docker container stop &lt;$container_id&gt;</code>：终止容器</p>
 
-<p>即 [low, high]</p>
+<p><code>docker container rm &lt;$container_id&gt;</code>：删除终止状态的容器</p>
 
-<h1 id="5-对于-high-low-1-和-high-low-的理解">5 对于 high - low + 1 和 high - low 的理解</h1>
+<h1 id="镜像管理命令">镜像管理命令</h1>
 
-<p>对于从 low 到 high 的数组，我们将 low 和 high 全部带上，画成点，然后将响相邻点之间连成线，那么 low - high + 1 其实指的是节点的个数，而 low - high 指的是边数。</p>
-
-<p>假如 low = 1、high = 3，那么画成点和边就是下面这个样子</p>
-
-<p><img src="/hub/2019/November/3.png" alt="" /></p>
-
-<p>我们可以看到，节点数 = high - low + 1 = 3 - 1 + 1 = 3，边数 = high - low = 3 - 1 = 2</p>
-
-<p>所以数组长度等同于节点数</p>
+<p><code>docker image rm &lt;$image_id&gt;</code>：删除镜像</p>
 
     </div>
 
     
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/m78-%E6%98%9F%E4%BA%91/">M78 星云</a>
+          <a href="/tags/docker/">docker</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/01/12/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+        <a class="prev" href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Docker 常用命令</span>
+            <span class="prev-text nav-default">一次内存泄漏排查的经历</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/2018/11/24/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E5%B0%8F%E8%AE%B0/">
-            <span class="next-text nav-default">数据库事务小记</span>
+        <a class="next" href="/2018/12/17/%E6%B1%82%E6%95%B0%E7%BB%84%E4%B8%AD%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AA%E6%95%B0/">
+            <span class="next-text nav-default">求数组中间的数据个数</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
