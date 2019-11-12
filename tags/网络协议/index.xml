@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 27 Oct 2019 10:51:23 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 23:08:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>以太网的帧格式</title>
+      <link>https://zhixiangyuan.github.io/2019/11/12/%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Tue, 12 Nov 2019 23:08:25 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/12/%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F/</guid>
+      <description>1 以太网的帧格式 以太网的帧最小是 64 字节，除去 14 字节的头部（目标地址 + 源地址 + 长度类型）和 4 字节的 CRC 字段，有效荷载最小为 46 字节。最大帧为 1518 字节</description>
+    </item>
     
     <item>
       <title>SSL 加密流程简述</title>
