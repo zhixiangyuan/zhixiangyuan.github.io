@@ -54,3 +54,21 @@ docker run
 
 `docker image rm <$image_id>`：删除镜像
 
+# 推送镜像的方法
+
+`docker push <$注册用户名>/<$镜像名>:<$标签名>`
+
+例如：`docker push yuanzx/hadoop_pseudo:latest`
+
+# image 改名方法
+
+`docker tag <$原来的名字> <$修改后的名字>`
+
+# 开启 docker 远程访问步骤
+
+1. `vi /usr/lib/systemd/system/docker.service`
+2. 增加 `ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock`，保存退出
+3. `systemctl daemon-reload `
+4. `systemctl restart docker`
+5. `/sbin/iptables -I INPUT -p tcp --dport 2375 -j ACCEPT`
+6. `iptables-save`
