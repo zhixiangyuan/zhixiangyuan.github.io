@@ -13,7 +13,6 @@ tags: [
     "Linux",
     "IntelliJ IDEA",
     "Git",
-    "Shell",
     "医学",
     "docker",
     "网络协议"
