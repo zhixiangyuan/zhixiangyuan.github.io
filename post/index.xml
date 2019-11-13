@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 12 Nov 2019 23:08:25 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 Nov 2019 10:50:12 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>wireshark 的基本操作</title>
+      <link>https://zhixiangyuan.github.io/2019/11/13/wireshark-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Wed, 13 Nov 2019 10:50:12 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/13/wireshark-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</guid>
+      <description>1 抓包过滤 抓包的过程很耗 CPU 和内存资源而且大部分情况下我们不是对所有的包都感兴趣，因此可以只抓取满足特定条件的包，丢弃不感兴趣的包，比如只想抓</description>
+    </item>
     
     <item>
       <title>以太网的帧格式</title>

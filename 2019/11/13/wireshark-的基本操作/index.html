@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>以太网的帧格式 - Yuanzx Blog</title>
+  <title>wireshark 的基本操作 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 以太网的帧格式 以太网的帧最小是 64 字节，除去 14 字节的头部（目标地址 &#43; 源地址 &#43; 长度类型）和 4 字节的 CRC 字段，有效荷载最小为 46 字节。最大帧为 1518 字节" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 抓包过滤 抓包的过程很耗 CPU 和内存资源而且大部分情况下我们不是对所有的包都感兴趣，因此可以只抓取满足特定条件的包，丢弃不感兴趣的包，比如只想抓" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/12/%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/13/wireshark-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="以太网的帧格式" />
-<meta property="og:description" content="1 以太网的帧格式 以太网的帧最小是 64 字节，除去 14 字节的头部（目标地址 &#43; 源地址 &#43; 长度类型）和 4 字节的 CRC 字段，有效荷载最小为 46 字节。最大帧为 1518 字节" />
+<meta property="og:title" content="wireshark 的基本操作" />
+<meta property="og:description" content="1 抓包过滤 抓包的过程很耗 CPU 和内存资源而且大部分情况下我们不是对所有的包都感兴趣，因此可以只抓取满足特定条件的包，丢弃不感兴趣的包，比如只想抓" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/12/%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F/" />
-<meta property="article:published_time" content="2019-11-12T23:08:25+08:00" />
-<meta property="article:modified_time" content="2019-11-12T23:08:25+08:00" />
-<meta itemprop="name" content="以太网的帧格式">
-<meta itemprop="description" content="1 以太网的帧格式 以太网的帧最小是 64 字节，除去 14 字节的头部（目标地址 &#43; 源地址 &#43; 长度类型）和 4 字节的 CRC 字段，有效荷载最小为 46 字节。最大帧为 1518 字节">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/13/wireshark-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" />
+<meta property="article:published_time" content="2019-11-13T10:50:12+08:00" />
+<meta property="article:modified_time" content="2019-11-13T10:50:12+08:00" />
+<meta itemprop="name" content="wireshark 的基本操作">
+<meta itemprop="description" content="1 抓包过滤 抓包的过程很耗 CPU 和内存资源而且大部分情况下我们不是对所有的包都感兴趣，因此可以只抓取满足特定条件的包，丢弃不感兴趣的包，比如只想抓">
 
 
-<meta itemprop="datePublished" content="2019-11-12T23:08:25&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-12T23:08:25&#43;08:00" />
-<meta itemprop="wordCount" content="237">
+<meta itemprop="datePublished" content="2019-11-13T10:50:12&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-13T10:50:12&#43;08:00" />
+<meta itemprop="wordCount" content="1399">
 
 
 
 <meta itemprop="keywords" content="网络协议," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="以太网的帧格式"/>
-<meta name="twitter:description" content="1 以太网的帧格式 以太网的帧最小是 64 字节，除去 14 字节的头部（目标地址 &#43; 源地址 &#43; 长度类型）和 4 字节的 CRC 字段，有效荷载最小为 46 字节。最大帧为 1518 字节"/>
+<meta name="twitter:title" content="wireshark 的基本操作"/>
+<meta name="twitter:description" content="1 抓包过滤 抓包的过程很耗 CPU 和内存资源而且大部分情况下我们不是对所有的包都感兴趣，因此可以只抓取满足特定条件的包，丢弃不感兴趣的包，比如只想抓"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,10 +124,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">以太网的帧格式</h1>
+      <h1 class="post-title">wireshark 的基本操作</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-11-12 </span>
+        <span class="post-time"> 2019-11-13 </span>
         <div class="post-category">
             <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
             </div>
@@ -140,7 +140,11 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-以太网的帧格式">1 以太网的帧格式</a></li>
+<li><a href="#1-抓包过滤">1 抓包过滤</a></li>
+<li><a href="#2-显示过滤-display-filter">2 显示过滤（Display filter）</a></li>
+<li><a href="#3-比较运算符">3 比较运算符</a></li>
+<li><a href="#4-从-wireshark-看协议分层">4 从 wireshark 看协议分层</a></li>
+<li><a href="#5-解密-https-包">5 解密 HTTPS 包</a></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
@@ -149,22 +153,113 @@
     <div class="post-content">
       
 
-<h1 id="1-以太网的帧格式">1 以太网的帧格式</h1>
+<h1 id="1-抓包过滤">1 抓包过滤</h1>
 
-<p><img src="/hub/2019/November/27.png" alt="以太网的帧格式" /></p>
+<p>抓包的过程很耗 CPU 和内存资源而且大部分情况下我们不是对所有的包都感兴趣，因此可以只抓取满足特定条件的包，丢弃不感兴趣的包，比如只想抓取 ip 为 172.18.80.49 端口号为 3306 的包，可以输入 host 172.18.80.49 and port 3306</p>
 
-<p>以太网的帧最小是 64 字节，除去 14 字节的头部（目标地址 + 源地址 + 长度类型）和 4 字节的 CRC 字段，有效荷载最小为 46 字节。最大帧为 1518 字节，去掉 14 字节的头部（目标地址 + 源地址 + 长度类型）和 4 字节的 CRC 字段，有效荷载最大为 1500，这个值就是以太网的 MTU （Maximum Transmission Unit，MTU）。</p>
+<p><img src="/hub/2019/November/32.png" alt="" /></p>
 
-<p>如果传输 100KB 的数据，至少需要 （100 * 1024 / 1500）= 69 个以太网帧。</p>
+<p>这里关于抓包过滤具体的语法规则暂时不太清楚，后面再补充。</p>
 
-<p>不同的数据链路层的 MTU 是不同的，通过 <code>netstat -i</code> 查看 MTU 大小，以太网只是数据链路层中的一种格式。</p>
+<h1 id="2-显示过滤-display-filter">2 显示过滤（Display filter）</h1>
 
-<p><img src="/hub/2019/November/28.png" alt="netstat -i 查看的效果" /></p>
+<p>显示过滤可以算是 wireshark 最常用的功能了，与抓包过滤不一样的是，显示过滤不会丢弃包的内容，不符合过滤条件的包被隐藏起来，方便我们阅读。</p>
+
+<p><img src="/hub/2019/November/33.png" alt="" /></p>
+
+<p>字段过滤器可以更加精确的过滤出想要的包，比如我们只想看锤科网站 t.tt 域名的 dns 解析，可以输入 dns.qry.name == t.tt</p>
+
+<p><img src="/hub/2019/November/34.png" alt="" /></p>
+
+<p>要想记住这些很难，有一个小技巧，比如怎么知道 域名为 t.tt 的 dns 查询要用 dns.qry.name 呢？</p>
+
+<p>可以随便找一个 dns 的查询，找到查询报文，展开详情里面的内容，然后鼠标选中想过滤的字段，最下面的状态码就会出现当前 wireshark 对应的查看条件，比如下图中的 dns.qry.name</p>
+
+<p><img src="/hub/2019/November/35.png" alt="" /></p>
+
+<p>常用的查询条件有：</p>
+
+<p>tcp 相关过滤器：</p>
+
+<ol>
+<li>tcp.flags.syn==1：过滤 SYN 包</li>
+<li>tcp.flags.reset==1：过滤 RST 包</li>
+<li>tcp.analysis.retransmission：过滤重传包</li>
+<li>tcp.analysis.zero_window：零窗口</li>
+</ol>
+
+<p>http 相关过滤器：</p>
+
+<ol>
+<li>http.host==t.tt：过滤指定域名的 http 包</li>
+<li>http.response.code==302：过滤 http 响应状态码为 302 的数据包</li>
+<li>http.request.method==POST：过滤所有请求方式为 POST 的 http 请求包</li>
+<li>http.transfer_encoding == &ldquo;chunked&rdquo; 根据 transfer_encoding 过滤</li>
+<li>http.request.uri contains &ldquo;/appstock/app/minute/query&rdquo;：过滤 http 请求 url 中包含指定路径的请求</li>
+</ol>
+
+<p>通信延迟常用的过滤器：</p>
+
+<ol>
+<li>http.time&gt;0.5：请求发出到收到第一个响应包的时间间隔，可以用这个条件来过滤 http 的时延</li>
+<li>tcp.time_delta&gt;0.3：tcp 某连接中两次包的数据间隔，可以用这个来分析 TCP 的时延</li>
+<li>dns.time&gt;0.5：dns 的查询耗时</li>
+</ol>
+
+<p>wireshakr 所有的查询条件在这里可以查到：<a href="https://www.wireshark.org/docs/dfref/">https://www.wireshark.org/docs/dfref/</a></p>
+
+<h1 id="3-比较运算符">3 比较运算符</h1>
+
+<p>eshark 支持比较运算符和逻辑运算符。这些运算符可以灵活的组合出强大的过滤表达式。</p>
+
+<ol>
+<li>等于：== 或者 eq</li>
+<li>不等于：!= 或者 ne</li>
+<li>大于：&gt; 或者 gt</li>
+<li>小于：&lt; 或者 lt</li>
+<li>包含 contains</li>
+<li>匹配 matches</li>
+<li>与操作：AND 或者 &amp;&amp;</li>
+<li>或操作：OR 或者 ||</li>
+<li>取反：NOT 或者！</li>
+</ol>
+
+<h1 id="4-从-wireshark-看协议分层">4 从 wireshark 看协议分层</h1>
+
+<p>下图是抓取的一次 http 请求的包 curl <a href="http://www.baidu.com：">http://www.baidu.com：</a></p>
+
+<p><img src="/hub/2019/November/36.png" alt="" /></p>
+
+<p>可以看到协议的分层，从上往下依次是</p>
+
+<ol>
+<li>Frame：物理层的数据帧</li>
+<li>Ethernet II：数据链路层以太网帧头部信息</li>
+<li>Internet Protocol Version 4：互联网层 IP 包头部信息</li>
+<li>Transmission Control Protocol：传输层的数据段头部信息，此处是 TCP 协议</li>
+<li>Hypertext Transfer Protocol：应用层 HTTP 的信息</li>
+</ol>
+
+<h1 id="5-解密-https-包">5 解密 HTTPS 包</h1>
+
+<p>随着 https 和 http2.0 的流行，https 正全面取代 http，这给我们抓包带来了一点点小困难。Wireshark 的抓包原理是直接读取并分析网卡数据。 下图是访问 www.baidu.com 的部分包截图，传输包的内容被加密了。</p>
+
+<p><img src="/hub/2019/November/37.png" alt="" /></p>
+
+<p>要想让它解密 HTTPS 流量，要么拥有 HTTPS 网站的加密私钥，可以用来解密这个网站的加密流量，但这种一般没有可能拿到。要么某些浏览器支持将 TLS 会话中使用的对称加密密钥保存在外部文件中，可供 Wireshark 解密流量。 在启动 Chrome 时加上环境变量 SSLKEYLOGFILE 时，chrome 会把会话密钥输出到文件。</p>
+
+<p><code>SSLKEYLOGFILE=/tmp/SSLKEYLOGFILE.log /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome</code></p>
+
+<p>wireshark 可以在 <code>Wireshark -&gt; Preferences... -&gt; Protocols -&gt; SSL</code> 打开 Wireshark 的 SSL 配置面板，在 (Pre)-Master-Secret log filename 选项中输入 SSLKEYLOGFILE 文件路径。</p>
+
+<p><img src="/hub/2019/November/38.png" alt="" /></p>
+
+<p>这样就可以查看加密前的 https 流量了</p>
 
 <h1 id="参考资料">参考资料</h1>
 
 <ol>
-<li><a href="https://juejin.im/book/5c70dbbe51882562046911bc/section/5ce495166fb9a07eeb137def">深入理解 TCP 协议：从原理到实战</a></li>
+<li><a href="https://juejin.im/book/5c70dbbe51882562046911bc/section/5c70e330f265da2d8b6344d2">深入理解 TCP 协议：从原理到实战</a></li>
 </ol>
 
     </div>
@@ -175,13 +270,9 @@
           <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/11/13/wireshark-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">wireshark 的基本操作</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/11/11/leetcode-38-%E6%8A%A5%E6%95%B0/">
-            <span class="next-text nav-default">Leetcode: 38 报数</span>
+        
+        <a class="next" href="/2019/11/12/%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F/">
+            <span class="next-text nav-default">以太网的帧格式</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
