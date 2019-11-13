@@ -48,3 +48,7 @@ $> netstat -atnp | grep ":8080" | grep ESTABLISHED
 # 统计处于各个状态的连接个数
 $> netstat -ant | awk '{print $6}' | sort | uniq -c | sort -n
 ```
+
+# 参考资料
+
+1. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268)

@@ -232,5 +232,5 @@ D、1000
 
 1. [TCP-IP 详解：第17 章TCP ：传输控制协议](https://gitee.com/zhixiangyuan/bookStorage/raw/master/%E7%BC%96%E7%A8%8B/TCP-IP%E8%AF%A6%E8%A7%A3(%E5%8D%B7%E4%B8%80%E3%80%81%E4%BA%8C%E3%80%81%E4%B8%89).pdf)
 2. [详解 TCP 和 UDP 数据段的首部格式](https://www.cnblogs.com/winner-0715/p/5032738.html)
-3. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc/section/5c90d1d55188252d7e34d708)
+3. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268)
    - 很棒的一本小册

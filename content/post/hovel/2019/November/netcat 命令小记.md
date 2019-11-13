@@ -31,3 +31,7 @@ $> nc [$ip] [$port]
 # 了 -v 参数则会输出更多详细信息（verbose）
 $> nc -zv [$ip] [$port]
 ```
+
+# 参考资料
+
+1. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268)

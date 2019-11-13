@@ -108,4 +108,4 @@ wireshark 可以在 `Wireshark -> Preferences... -> Protocols -> SSL` 打开 Wir
 
 # 参考资料
 
-1. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc/section/5c70e330f265da2d8b6344d2)
+1. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268)
