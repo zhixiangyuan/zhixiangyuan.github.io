@@ -22,6 +22,13 @@ author: "yuanzx"
 # 2 内网主机的配置修改
 
 1. 配置内网端口到公网端口的映射，可以是本机，也可以是内网中别的主机，`ssh -NfR <$公网端口>:<$内网IP>:<$内网端口> root@<$公网IP>`
+2. 修改心跳包
+   
+```shell
+# 在内网主机的 ~/.ssh/config 文件中，增加如下两条语句
+ServerAliveInterval 60
+ServerAliveCountMax 9999999999
+```
 
 下面是一个例子
 
