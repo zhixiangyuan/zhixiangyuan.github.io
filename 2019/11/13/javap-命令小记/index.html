@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>javap 命令小记 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/13/javap-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="javap 命令小记" />
+<meta property="og:description" content="通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/13/javap-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" />
+<meta property="article:published_time" content="2019-11-13T17:00:53+08:00" />
+<meta property="article:modified_time" content="2019-11-13T17:00:53+08:00" />
+<meta itemprop="name" content="javap 命令小记">
+<meta itemprop="description" content="通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示">
+
+
+<meta itemprop="datePublished" content="2019-11-13T17:00:53&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-13T17:00:53&#43;08:00" />
+<meta itemprop="wordCount" content="484">
+
+
+
+<meta itemprop="keywords" content="java," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="javap 命令小记"/>
+<meta name="twitter:description" content="通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">javap 命令小记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-11-13 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。</p>
+
+<p><img src="/media/book_abstract/1.png" alt="javap 命令截图" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"><span class="o">-</span><span class="nx">help</span> <span class="o">--</span><span class="nx">help</span> <span class="o">-</span><span class="err">?</span>     <span class="nx">打印使用信息</span><span class="err">（</span><span class="nx">也就是打印图中所示内容</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">version</span>            <span class="nx">打印版本信息</span><span class="err">（</span><span class="nx">实际打印出来的和</span> <span class="nx">java</span> <span class="nx">的版本是一致的</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">v</span> <span class="o">-</span><span class="nx">verbose</span>         <span class="nx">打印详细信息</span><span class="err">（</span><span class="nx">这是一个</span> <span class="nx">javap</span> <span class="nx">反编译文件能够打印出来的更详细的信息</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">l</span>                  <span class="nx">打印行号和本地变量表</span><span class="err">（</span><span class="nx">这里的行号不明白有什么用</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">public</span>             <span class="nx">仅仅打印</span> <span class="nx">public</span> <span class="nx">修饰的类</span><span class="err">、</span><span class="nx">成员字段和方法</span><span class="err">（</span><span class="nx">这里如果</span> <span class="nx">class</span> <span class="nx">没有被</span> <span class="nx">public</span> <span class="nx">修饰</span><span class="err">，</span><span class="nx">同样能打印出来</span><span class="err">，</span><span class="nx">只是构造函数没有打印</span><span class="err">，</span><span class="nx">编译过后的构造函数和类一样没有被</span> <span class="nx">public</span> <span class="nx">修饰</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">protected</span>          <span class="nx">仅仅打印</span> <span class="nx">public</span><span class="o">/</span><span class="nx">protected</span> <span class="nx">修饰的类</span><span class="err">、</span><span class="nx">成员字段和方法</span>
+<span class="o">-</span><span class="kn">package</span>            <span class="nx">仅仅打印</span> <span class="nx">public</span><span class="o">/</span><span class="nx">protected</span><span class="o">/</span><span class="kn">package</span> <span class="nx">修饰的类</span><span class="err">、</span><span class="nx">成员字段和方法</span>
+<span class="o">-</span><span class="nx">p</span> <span class="o">-</span><span class="nx">private</span>         <span class="nx">打印所有的类</span><span class="err">、</span><span class="nx">成员字段和方法</span>
+<span class="o">-</span><span class="nx">c</span>                  <span class="nx">打印具体的代码执行方式</span>
+<span class="o">-</span><span class="nx">s</span>                  <span class="nx">打印内部类型方法签名</span><span class="err">（</span><span class="nx">这个方法签名和我们常写表示法不一样</span><span class="err">，</span><span class="nx">但实际的含义是一样的</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">sysinfo</span>            <span class="nx">打印所在路径</span><span class="err">（</span><span class="nx">随着文件移动位置发生变化</span><span class="err">）、</span><span class="nx">文件大小</span><span class="err">、</span><span class="nx">文件最后修改日期</span><span class="err">（</span><span class="nx">精确到日</span><span class="err">）、</span><span class="nx">MD5</span> <span class="nx">值</span>
+<span class="o">-</span><span class="nx">constants</span>          <span class="nx">打印常量的实际数值</span><span class="err">（</span><span class="nx">如果是</span> <span class="nx">private</span> <span class="nx">修饰的还要加</span> <span class="o">-</span><span class="nx">p</span> <span class="nx">才行</span><span class="err">，</span><span class="nx">不加这个时候</span><span class="err">，</span><span class="nx">打印</span> <span class="nx">final</span> <span class="nx">变量只打印到变量名</span><span class="err">，</span><span class="nx">后面就是分号了</span><span class="err">，</span><span class="nx">加了这个</span><span class="err">，</span><span class="nx">直接把常量的值也打印出来</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">classpath</span> <span class="p">&lt;</span><span class="nx">path</span><span class="p">&gt;</span>   <span class="err">（</span><span class="nx">不知道干什么用的</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">cp</span> <span class="p">&lt;</span><span class="nx">path</span><span class="p">&gt;</span>          <span class="err">（</span><span class="nx">不知道干什么用的</span><span class="err">）</span>
+<span class="o">-</span><span class="nx">bootclasspath</span> <span class="p">&lt;</span><span class="nx">path</span><span class="p">&gt;</span>   <span class="err">（</span><span class="nx">不知道干什么用的</span><span class="err">）</span></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/11/13/netstat-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">
+            <span class="next-text nav-default">netstat 命令小记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

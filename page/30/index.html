@@ -35,7 +35,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 <link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
 
 
@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-11-13T14:33:39+08:00" />
+<meta property="og:updated_time" content="2019-11-13T17:00:53+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -118,6 +118,69 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/07/10/double-%E8%BD%AC-bigdecimal-%E9%80%A0%E6%88%90%E7%9A%84%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/">double 转 BigDecimal 造成的精度丢失</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-10 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 2 3 4 5 6 public static void main(String[] args) { double d1 = 36.8d; double d2 = 36.5d; BigDecimal subtract = new BigDecimal(d1).subtract(new BigDecimal(d2)); System.out.println(subtract); } 对于上述类型的计算会得到结果 0.29999999999999715782905695
+    </div>
+    <div class="read-more">
+      <a href="/2019/07/10/double-%E8%BD%AC-bigdecimal-%E9%80%A0%E6%88%90%E7%9A%84%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/07/09/ip-%E5%8D%8F%E8%AE%AE/">IP 协议</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-09 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 网际协议 IP 简介 IP 协议提供不可靠的、无连接的数据包传输 不可靠指的是从客户端发到目标端的数据包对方可能会收不到 无连接指的是发送的每个数据包都是
+    </div>
+    <div class="read-more">
+      <a href="/2019/07/09/ip-%E5%8D%8F%E8%AE%AE/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/07/09/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AEudp/">用户数据报协议：UDP</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-09 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 UDP 协议简介 UDP 是一种面向数据包协议，应用层向下传递的每一次操作都会产生一个 UDP 数据包，这一个 UDP 数据包会组装成一份 IP 数据包，这里是一一对应的关系
+    </div>
+    <div class="read-more">
+      <a href="/2019/07/09/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AEudp/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/07/09/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">学习路径</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2019-07-09 </span>
@@ -177,69 +240,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/02/java-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">Java 性能优化</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-02 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 明确是否需要优化以及要优化到什么程度 首先需要在实践中检测代码是否需要优化，如果不需要优化，那么优化可能占用大量时间，而且优化完了也不会有任
-    </div>
-    <div class="read-more">
-      <a href="/2019/07/02/java-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/">一次内存泄漏排查的经历</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-01 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      开发环境: JDK: 1.8 Netty: 4.1.21.Final 1 起因 由于我之前写过一个接收医疗设备数据的项目，于是为了压力测试，就又按照该协议实现了一个发送设备数据的项目。这个项目在使
-    </div>
-    <div class="read-more">
-      <a href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/">Centos 配置无密登录</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-17 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &gt;&gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys
-    </div>
-    <div class="read-more">
-      <a href="/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -274,11 +274,7 @@
     <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
-  <div class="busuanzi-footer">
-    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
-      <span class="division">|</span>
-    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
-  </div>
+  
 
   <span class="copyright-year">
     &copy; 
