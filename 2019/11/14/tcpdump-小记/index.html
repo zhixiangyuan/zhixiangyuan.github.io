@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Tcpdump 小记 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/14/tcpdump-%E5%B0%8F%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Tcpdump 小记" />
+<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/14/tcpdump-%E5%B0%8F%E8%AE%B0/" />
+<meta property="article:published_time" content="2019-11-14T09:39:39+08:00" />
+<meta property="article:modified_time" content="2019-11-14T09:39:39+08:00" />
+<meta itemprop="name" content="Tcpdump 小记">
+<meta itemprop="description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70">
+
+
+<meta itemprop="datePublished" content="2019-11-14T09:39:39&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-14T09:39:39&#43;08:00" />
+<meta itemprop="wordCount" content="1778">
+
+
+
+<meta itemprop="keywords" content="Linux," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tcpdump 小记"/>
+<meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Tcpdump 小记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-11-14 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#tcpdump-输出解读">tcpdump 输出解读</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p><img src="/hub/2019/November/42.png" alt="" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># -i 表示指定哪一个网卡，any 表示任意。有哪些网卡可以用 ifconfig 来查看</span>
+$&gt; tcpdump -i any
+
+<span class="c1"># 查看 eth0 网卡经过的数据</span>
+$&gt; tcpdump -i eth0
+
+<span class="c1"># 查看 host 为 &lt;$ip&gt; 的数据包</span>
+$&gt; tcpdump -i any host &lt;<span class="nv">$ip</span>&gt;
+
+<span class="c1"># 过滤源地址</span>
+$&gt; tcpdump -i any src &lt;<span class="nv">$ip</span>&gt;
+
+<span class="c1"># 过滤目标地址</span>
+$&gt; tcpdump -i any dst &lt;<span class="nv">$ip</span>&gt;
+
+<span class="c1"># 查看某端口通信的 tcp 数据包</span>
+$&gt; tcpdump -i any port &lt;<span class="nv">$port</span>&gt;
+
+<span class="c1"># dst port 是目标端口，查找目标端口为 &lt;$port&gt; 的数据包</span>
+$&gt; tcpdump -i any dst port &lt;<span class="nv">$port</span>&gt;
+
+<span class="c1"># src port 是源端口，查找源端口为 &lt;$port&gt; 的数据包</span>
+$&gt; tcpdump -i any src port &lt;<span class="nv">$port</span>&gt;
+
+<span class="c1"># 过滤指定端口范围内的流量，[21, 23] 端口</span>
+$&gt; tcpdump portrange <span class="m">21</span>-23
+
+<span class="c1"># 不将 ip 翻译成主机名 -n</span>
+$&gt; tcpdump -i any -n
+
+<span class="c1"># 不将 ip 翻译成主机名同时不将 port 翻译成协议名</span>
+<span class="c1"># 如将 22 端口翻译成 ssh</span>
+$&gt; tcpdump -i any -nn
+
+<span class="c1"># 过滤协议</span>
+$&gt; tcpdump -i any -nn udp
+
+<span class="c1"># 用 ASCII 格式查看包体内容 -A</span>
+$&gt; tcpdump -i any -nn port <span class="m">80</span> -A
+<span class="m">11</span>:04:25.793298 IP <span class="m">183</span>.57.82.231.80 &gt; <span class="m">10</span>.211.55.10.40842: Flags <span class="o">[</span>P.<span class="o">]</span>, seq <span class="m">1</span>:1461, ack <span class="m">151</span>, win <span class="m">16384</span>, length <span class="m">1460</span>
+HTTP/1.1 <span class="m">200</span> OK
+Server: Tengine
+Content-Type: application/javascript
+Content-Length: <span class="m">63522</span>
+Connection: keep-alive
+Vary: Accept-Encoding
+Date: Wed, <span class="m">13</span> Mar <span class="m">2019</span> <span class="m">11</span>:49:35 GMT
+Expires: Mon, <span class="m">02</span> Mar <span class="m">2020</span> <span class="m">11</span>:49:35 GMT
+Last-Modified: Tue, <span class="m">05</span> Mar <span class="m">2019</span> <span class="m">23</span>:30:55 GMT
+ETag: W/<span class="s2">&#34;5c7f06af-f822&#34;</span>
+Cache-Control: public, max-age<span class="o">=</span><span class="m">30672000</span>
+Access-Control-Allow-Origin: *
+Served-In-Seconds: <span class="m">0</span>.002
+
+<span class="c1"># 同时显示 HEX 和 ASCII 格式的内容 -X</span>
+$&gt; tcpdump -i any -nn port <span class="m">80</span> -X
+<span class="m">10</span>:11:32.715043 IP <span class="m">172</span>.17.42.178.59678 &gt; <span class="m">100</span>.100.109.104.80: Flags <span class="o">[</span>P.<span class="o">]</span>, seq <span class="m">13237</span>:13255, ack <span class="m">1</span>, win <span class="m">229</span>, length <span class="m">18</span>: HTTP
+	0x0000:  <span class="m">4500</span> 003a 7fef <span class="m">4000</span> <span class="m">4006</span> 123f ac11 2ab2  E..:..@.@..?..*.
+	0x0010:  <span class="m">6464</span> 6d68 e91e <span class="m">0050</span> bd9b 6de1 7eb4 0a5b  ddmh...P..m.~..<span class="o">[</span>
+	0x0020:  <span class="m">5018</span> 00e5 a8bc <span class="m">0000</span> <span class="m">3132</span> <span class="m">3632</span> <span class="m">3331</span> <span class="m">2070</span>  P.......126231.p
+	0x0030:  <span class="m">6167</span> 655f 696e 3d30 200a <span class="m">0307</span> <span class="m">0000</span> <span class="m">0000</span>  <span class="nv">age_in</span><span class="o">=</span><span class="m">0</span>........
+	0x0040:  <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>
+
+<span class="c1"># 限制查看包体的内容大小</span>
+<span class="c1"># 只查看包体前 500 字节的内容</span>
+$&gt; tcpdump -i any -nn port <span class="m">80</span> -s <span class="m">500</span> -X
+<span class="m">10</span>:14:14.298880 IP <span class="m">100</span>.100.30.26.80 &gt; <span class="m">172</span>.17.42.178.36266: Flags <span class="o">[</span>.<span class="o">]</span>, ack <span class="m">8332</span>, win <span class="m">24570</span>, length <span class="m">0</span>
+	0x0000:  <span class="m">4500</span> <span class="m">0028</span> a9b7 <span class="m">4000</span> <span class="m">3506</span> 42d7 <span class="m">6464</span> 1e1a  E..<span class="o">(</span>..@.5.B.dd..
+	0x0010:  ac11 2ab2 <span class="m">0050</span> 8daa <span class="m">3669</span> bcd0 bc1f 0a05  ..*..P..6i......
+	0x0020:  <span class="m">5010</span> 5ffa af3f <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>  P._..?..........
+	0x0030:  <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span> <span class="m">0000</span>       ..............
+
+<span class="c1"># -s 0 表示显示所有内容</span>
+$&gt; tcpdump -i any -nn port <span class="m">80</span> -s <span class="m">0</span> -X
+
+<span class="c1"># -c 100 表示只抓去 100 个报文然后退出</span>
+$&gt; tcpdump -i any -nn port <span class="m">80</span> -X -c <span class="m">100</span>
+
+<span class="c1"># 数据报文输出到文件 -w 选项</span>
+<span class="c1"># 生成的 test.pcap 可以使用 wireshark 打开进行更详细的分析</span>
+<span class="c1"># 也可以加上 -U 强制立即写到本地磁盘，性能稍差</span>
+$&gt; tcpdump -i any port <span class="m">80</span> -w test.pcap -c <span class="m">5</span>
+
+<span class="c1"># 默认 tcpdump 显示的 seq 是从 0 开始的相对序号，如果想查看</span>
+<span class="c1"># 真正的绝对序号，加上 -S 参数即可</span>
+$&gt; tcpdump -i any -S
+
+<span class="c1"># 支持的布尔运算</span>
+<span class="c1"># and 也可写成 &amp;&amp;</span>
+<span class="c1"># or 也可写成 ||</span>
+<span class="c1"># not 也可写成 !</span>
+$&gt; tcpdump -i any -nn dst port <span class="m">80</span> <span class="o">&amp;&amp;</span> host <span class="m">100</span>.100.109.104
+
+<span class="c1"># 如何使用 () 来对条件进行分组</span>
+<span class="c1"># 加上 &#39;&#39; 号即可</span>
+$&gt; tcpdump -i any <span class="s1">&#39;src 10.211.55.10 and (dst port 3306 or 6379)&#39;</span>
+
+<span class="c1"># 如何过滤出 RST 不为 0 的数据包</span>
+<span class="c1"># tcp 头中第十三个字节的第三位为 RST</span> 
+<span class="c1"># 4 写成二进制就是 0b00000100</span>
+$&gt; tcpdump <span class="s1">&#39;tcp[13] &amp; 4 != 0&#39;</span>
+
+<span class="c1"># 18 写成二进制就是 00010010</span>
+<span class="c1"># 表示过滤出 SYN 和 ACK 不为 0 的数据包</span>
+$&gt; tcpdump <span class="s1">&#39;tcp[13] &amp; 18 != 0&#39;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="tcpdump-输出解读">tcpdump 输出解读</h1>
+
+<p>先用 <code>nc -l 9090</code> 开启一个 tcp 的监听，然后新建一个终端用 <code>tcpdump -i any port 9090 -nn -A</code> 监听这个端口，然后再新建一个终端用 <code>nc 127.0.0.1 9090</code> 连接服务器便可以看到下面三个包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 以下为三次握手的过程</span>
+<span class="c1"># 14:21:30.393783 是这个包的时间，精确到微妙</span>
+<span class="c1"># 127.0.0.1.34448 &gt; 127.0.0.1.9090 表示 TCP 四元组，源地址、源端口、目标地址、目标端口，中间的大于号表示包的流向</span>
+<span class="c1"># Flags [S] 表示 TCP 首部的 flags 字段，S 表示这是一个 SYN 的包</span>
+<span class="c1"># seq 3273551255 表示的 SYN 包的序列号，需要注意的是默认在 SYN 包里面显示的是真正的序列号，在随后的包中，tcpdump 为了阅读方便将显示相对序列号</span>
+<span class="c1"># win 43690 表示自己声明的接受窗口的大小</span>
+<span class="c1"># `[]` 包起来的是 tcp 的选项值，选项值中的 wscale 表示的是窗口缩放的大小，后面的窗口大小都要乘上 2^7</span>
+<span class="c1"># length 参数表示当前包的长度</span>
+<span class="m">14</span>:21:30.393783 IP <span class="m">127</span>.0.0.1.34448 &gt; <span class="m">127</span>.0.0.1.9090: Flags <span class="o">[</span>S<span class="o">]</span>, seq <span class="m">3273551255</span>, win <span class="m">43690</span>, options <span class="o">[</span>mss <span class="m">65495</span>,sackOK,TS val <span class="m">2942574212</span> ecr <span class="m">0</span>,nop,wscale <span class="m">7</span><span class="o">]</span>, length <span class="m">0</span>
+E..&lt;s.@.@.............#...m..........0.........
+.d..........................
+<span class="c1"># 第二个数据包便是 SYN+ACK 的数据包，窗口大小为 43690，wscale 为 7</span>
+<span class="m">14</span>:21:30.393800 IP <span class="m">127</span>.0.0.1.9090 &gt; <span class="m">127</span>.0.0.1.34448: Flags <span class="o">[</span>S.<span class="o">]</span>, seq <span class="m">1196008388</span>, ack <span class="m">3273551256</span>, win <span class="m">43690</span>, options <span class="o">[</span>mss <span class="m">65495</span>,sackOK,TS val <span class="m">2942574212</span> ecr <span class="m">2942574212</span>,nop,wscale <span class="m">7</span><span class="o">]</span>, length <span class="m">0</span>
+E..&lt;..@.@.&lt;.........#...GI....m......0.........
+.d...d......................
+<span class="c1"># 从第三个包开始，tcpdump 显得序列号是相对序列号了，这个包的窗口大小为 342 * 2 ^ 7</span>
+<span class="m">14</span>:21:30.393811 IP <span class="m">127</span>.0.0.1.34448 &gt; <span class="m">127</span>.0.0.1.9090: Flags <span class="o">[</span>.<span class="o">]</span>, ack <span class="m">1</span>, win <span class="m">342</span>, options <span class="o">[</span>nop,nop,TS val <span class="m">2942574212</span> ecr <span class="m">2942574212</span><span class="o">]</span>, length <span class="m">0</span>
+E..4s.@.@.............#...m.GI.....V.<span class="o">(</span>.....
+.d...d..................</code></pre></td></tr></table>
+</div>
+</div>
+<p>Flags 的其他标志：</p>
+
+<ul>
+<li>F: FIN</li>
+<li>R: RST</li>
+<li>P: PSH</li>
+<li>U: URG</li>
+<li>.: 没有标志，ACK 情况下使用（意思应该就是这是一个 ACK 的包）</li>
+</ul>
+
+<p>然后我们在客户端输入 hello world，看到抓到如下的数据包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 客户端（127.0.0.1.9090）收到 helloworld 后 Flags [P.] 立刻上交给应用层，seq 为 [1,13)，length 为 12</span>
+<span class="m">14</span>:37:48.120714 IP <span class="m">127</span>.0.0.1.34448 &gt; <span class="m">127</span>.0.0.1.9090: Flags <span class="o">[</span>P.<span class="o">]</span>, seq <span class="m">1</span>:13, ack <span class="m">1</span>, win <span class="m">342</span>, options <span class="o">[</span>nop,nop,TS val <span class="m">2943551939</span> ecr <span class="m">2943543795</span><span class="o">]</span>, length <span class="m">12</span>
+E..@..@.@.D!......... <span class="c1">#.Ka.b.......V.4.....</span>
+.s	..r..hello world
+................
+<span class="c1"># 客户端回复服务端（127.0.0.1.34448），ack 13，表示 13 之前的数据包都接收到了，下次从 13 开始发</span>
+<span class="m">14</span>:37:48.120724 IP <span class="m">127</span>.0.0.1.9090 &gt; <span class="m">127</span>.0.0.1.34448: Flags <span class="o">[</span>.<span class="o">]</span>, ack <span class="m">13</span>, win <span class="m">342</span>, options <span class="o">[</span>nop,nop,TS val <span class="m">2943551939</span> ecr <span class="m">2943551939</span><span class="o">]</span>, length <span class="m">0</span>
+E..4uY@.@..h........#.. ....Ka.n...V.<span class="o">(</span>.....
+.s	..s	.................</code></pre></td></tr></table>
+</div>
+</div>
+<p>然后再客户端按下 Ctrl+C 退出 nc 客户端，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 客户端发给服务端的挥手 FIN 包</span>
+<span class="m">14</span>:44:18.691143 IP <span class="m">127</span>.0.0.1.34592 &gt; <span class="m">127</span>.0.0.1.9090: Flags <span class="o">[</span>F.<span class="o">]</span>, seq <span class="m">13</span>, ack <span class="m">1</span>, win <span class="m">342</span>, options <span class="o">[</span>nop,nop,TS val <span class="m">2943942509</span> ecr <span class="m">2943551939</span><span class="o">]</span>, length <span class="m">0</span>
+E..4..@.@.D,......... <span class="c1">#.Ka.n.......V.(.....</span>
+.x.m.s	.................
+<span class="c1"># 服务端给客户端回复的 FIN+ACK 包</span>
+<span class="m">14</span>:44:18.691290 IP <span class="m">127</span>.0.0.1.9090 &gt; <span class="m">127</span>.0.0.1.34592: Flags <span class="o">[</span>F.<span class="o">]</span>, seq <span class="m">1</span>, ack <span class="m">14</span>, win <span class="m">342</span>, options <span class="o">[</span>nop,nop,TS val <span class="m">2943942509</span> ecr <span class="m">2943942509</span><span class="o">]</span>, length <span class="m">0</span>
+E..4uZ@.@..g........#.. ....Ka.o...V.<span class="o">(</span>.....
+.x.m.x.m................
+<span class="c1"># 客户端给服务端发送的 FIN 包的 ACK</span>
+<span class="m">14</span>:44:18.691298 IP <span class="m">127</span>.0.0.1.34592 &gt; <span class="m">127</span>.0.0.1.9090: Flags <span class="o">[</span>.<span class="o">]</span>, ack <span class="m">2</span>, win <span class="m">342</span>, options <span class="o">[</span>nop,nop,TS val <span class="m">2943942509</span> ecr <span class="m">2943942509</span><span class="o">]</span>, length <span class="m">0</span>
+E..4..@.@.D+......... <span class="c1">#.Ka.o.......V.(.....</span>
+.x.m.x.m................</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li><a href="https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268">深入理解 TCP 协议：从原理到实战</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/11/13/%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%E6%9F%A5%E6%89%BE%E8%BF%9B%E7%A8%8B%E7%9B%91%E5%90%AC%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7/">
+            <span class="next-text nav-default">通过文件描述符查找进程监听的端口号</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
