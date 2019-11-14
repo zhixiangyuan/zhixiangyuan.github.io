@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 14 Nov 2019 09:39:39 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 Nov 2019 21:29:27 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>构造一个处于 SYN_SENT 状态的连接</title>
+      <link>https://zhixiangyuan.github.io/2019/11/14/%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E5%A4%84%E4%BA%8E-syn_sent-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</link>
+      <pubDate>Thu, 14 Nov 2019 21:29:27 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/14/%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E5%A4%84%E4%BA%8E-syn_sent-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</guid>
+      <description>下图是一个三次握手的变化过程 在客户端发出 SYN 包之后，便进入 SYN-SENT 的状态，如果没有收到服务端的 ACK，那么便会一直维持在这个状态，多次重发 SYN 数据包，</description>
+    </item>
     
     <item>
       <title>tcpdump 小记</title>

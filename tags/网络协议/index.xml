@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 13 Nov 2019 10:50:12 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 Nov 2019 21:29:27 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>构造一个处于 SYN_SENT 状态的连接</title>
+      <link>https://zhixiangyuan.github.io/2019/11/14/%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E5%A4%84%E4%BA%8E-syn_sent-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</link>
+      <pubDate>Thu, 14 Nov 2019 21:29:27 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/14/%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E5%A4%84%E4%BA%8E-syn_sent-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</guid>
+      <description>下图是一个三次握手的变化过程 在客户端发出 SYN 包之后，便进入 SYN-SENT 的状态，如果没有收到服务端的 ACK，那么便会一直维持在这个状态，多次重发 SYN 数据包，</description>
+    </item>
+    
+    <item>
+      <title>tcpdump 小记</title>
+      <link>https://zhixiangyuan.github.io/2019/11/14/tcpdump-%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Thu, 14 Nov 2019 09:39:39 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/14/tcpdump-%E5%B0%8F%E8%AE%B0/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70</description>
+    </item>
     
     <item>
       <title>wireshark 的基本操作</title>
