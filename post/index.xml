@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 14 Nov 2019 21:29:27 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Nov 2019 09:50:41 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Google 的程序员等级精简说明</title>
+      <link>https://zhixiangyuan.github.io/2019/11/15/google-%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%AD%89%E7%BA%A7%E7%B2%BE%E7%AE%80%E8%AF%B4%E6%98%8E/</link>
+      <pubDate>Fri, 15 Nov 2019 09:50:41 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/15/google-%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%AD%89%E7%BA%A7%E7%B2%BE%E7%AE%80%E8%AF%B4%E6%98%8E/</guid>
+      <description>可以简单参考下Google的程序员等级说明. 具体很长,我高度简化(略带修饰)的总结下: 1 Software Engineer I 技术方面: 你需要培养一阵才能真正有用.这个级别</description>
+    </item>
     
     <item>
       <title>构造一个处于 SYN_SENT 状态的连接</title>

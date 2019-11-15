@@ -10,35 +10,49 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-11-14T21:29:27+08:00</lastmod>
+    <lastmod>2019-11-15T09:50:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/15/google-%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%AD%89%E7%BA%A7%E7%B2%BE%E7%AE%80%E8%AF%B4%E6%98%8E/</loc>
+    <lastmod>2019-11-15T09:50:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
+    <lastmod>2019-11-15T09:50:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-11-14T21:29:27+08:00</lastmod>
+    <lastmod>2019-11-15T09:50:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-11-14T21:29:27+08:00</lastmod>
+    <lastmod>2019-11-15T09:50:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-11-14T21:29:27+08:00</lastmod>
+    <lastmod>2019-11-15T09:50:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
-    <lastmod>2019-11-14T21:29:27+08:00</lastmod>
+    <lastmod>2019-11-15T09:50:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -165,13 +179,6 @@
   <url>
     <loc>https://zhixiangyuan.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2019-11-09T09:23:05+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
-    <lastmod>2019-11-08T19:59:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
