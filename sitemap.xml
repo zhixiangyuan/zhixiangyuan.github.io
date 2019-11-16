@@ -10,41 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-11-16T09:45:12+08:00</lastmod>
+    <lastmod>2019-11-16T22:02:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
-    <lastmod>2019-11-16T09:45:12+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/tags/java/</loc>
+    <lastmod>2019-11-16T22:02:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-11-16T09:45:12+08:00</lastmod>
+    <lastmod>2019-11-16T22:02:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-11-16T09:45:12+08:00</lastmod>
+    <lastmod>2019-11-16T22:02:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-11-16T09:45:12+08:00</lastmod>
+    <lastmod>2019-11-16T22:02:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/</loc>
+    <lastmod>2019-11-16T22:02:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2019-11-16T22:02:48+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
     <lastmod>2019-11-16T09:45:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -109,13 +123,6 @@
   <url>
     <loc>https://zhixiangyuan.github.io/2019/11/13/lsof-%E5%B0%8F%E8%AE%B0/</loc>
     <lastmod>2019-11-13T21:32:47+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/java/</loc>
-    <lastmod>2019-11-13T17:00:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

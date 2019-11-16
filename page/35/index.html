@@ -118,9 +118,9 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/07/shell-%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/">Shell 脚本的参数传递</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/">int 入栈指令 iconst、bipush、sipush、ldc</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-11-07 </span>
+      <span class="post-time"> 2018-08-11 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -129,115 +129,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 Shell 编程中的参数引用 引用参数 描述 0, 1, 2&hellip; 传递给脚本的参数位置，可以理解为传递进去的参数是个数组，通过数组下标取得参数 * 显示所有向脚本传递的参数
+      1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:
     </div>
     <div class="read-more">
-      <a href="/2019/11/07/shell-%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/06/unset-%E5%91%BD%E4%BB%A4/">Unset 命令</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-06 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 2 3 4 5 6 7 # 删除某个变量 $&gt; unset &lt;$变量名&gt; # 或 $&gt; unset -v &lt;$变量名&gt; # 删除某个函数 $&gt; unset -f &lt;$函数名&gt; 案例：
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/06/unset-%E5%91%BD%E4%BB%A4/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/06/env-%E5%91%BD%E4%BB%A4/">Env 命令</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-06 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 2 3 4 5 6 7 8 9 10 # 输出所有的环境变量 $&gt; env # 删除某个环境变量 # 运行某个命令在指定的环境变量下 $&gt; env -u &lt;$环境变量&gt; [运行的命令]
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/06/env-%E5%91%BD%E4%BB%A4/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/06/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">常见的环境变量</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-06 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      变量名 描述 HOME 用户的专属目录，在 linux 中用 ~ 扩展 PATH 外部命令的搜索路径 HISTSIZE 保存历史命令记录的条数 LOGNAME 当前用户的登录名 HOSTNAME 主机的名称，许多应用程序如果要用到
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/06/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/06/bash-%E5%90%AF%E5%8A%A8%E6%97%B6%E5%92%8C%E7%99%BB%E5%87%BA%E6%97%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%87%E4%BB%B6/">Bash 启动时和登出时会运行的文件</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-06 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      启动文件/登出文件 描述 /etc/profile 系统范围的默认值，大部分用来设置环境（所有由 sh 衍生出的 shell 均适用） /etc/bashrc 特定于 Bash 的，系统范围函数于别名 $HOME/.bash_profile 用户定义的，环境默
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/06/bash-%E5%90%AF%E5%8A%A8%E6%97%B6%E5%92%8C%E7%99%BB%E5%87%BA%E6%97%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%87%E4%BB%B6/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/06/export-%E5%91%BD%E4%BB%A4/">Export 命令</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-06 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 语法 export [-fnp] [{$变量名称}={$变量的值}] 2 命令作用 设置环境变量，使用 export 设置的环境变量仅改变当前进程的环境，当前进程销毁则设置的环境变量失
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/06/export-%E5%91%BD%E4%BB%A4/" class="read-more-link">阅读更多</a>
+      <a href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -245,14 +140,11 @@
     </section>
   
   <nav class="pagination">
-    <a class="prev" href="/page/3/">
+    <a class="prev" href="/page/34/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text">上一页</span>
       </a>
-    <a class="next" href="/page/5/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
+    
   </nav>
         </div>
         

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>解决 OBS 无法录制 Soundflower 的问题 - Yuanzx Blog</title>
+  <title>如何在 Maven 打包的时候设置主类 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="本文中使用的 OBS 为 24.0.2 版本，这个版本在最新的 catalina 有 bug，它不会自动申请麦克风权限，我又没办法把权限给他，就造成了没法录声音的问题，解决办法是通过" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; ... &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-jar-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;archive&amp;gt; &amp;lt;manifest&amp;gt; &amp;lt;addClasspath&amp;gt;true&amp;lt;/addClasspath&amp;gt; &amp;lt;classpathPrefix&amp;gt;lib/&amp;lt;/classpathPrefix&amp;gt; &amp;lt;mainClass&amp;gt;&amp;lt;$mainClass&amp;gt;&amp;lt;/mainClass&amp;gt; &amp;lt;/manifest&amp;gt; &amp;lt;/archive&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &amp;l" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/16/%E8%A7%A3%E5%86%B3-obs-%E6%97%A0%E6%B3%95%E5%BD%95%E5%88%B6-soundflower-%E7%9A%84%E9%97%AE%E9%A2%98/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="解决 OBS 无法录制 Soundflower 的问题" />
-<meta property="og:description" content="本文中使用的 OBS 为 24.0.2 版本，这个版本在最新的 catalina 有 bug，它不会自动申请麦克风权限，我又没办法把权限给他，就造成了没法录声音的问题，解决办法是通过" />
+<meta property="og:title" content="如何在 Maven 打包的时候设置主类" />
+<meta property="og:description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/16/%E8%A7%A3%E5%86%B3-obs-%E6%97%A0%E6%B3%95%E5%BD%95%E5%88%B6-soundflower-%E7%9A%84%E9%97%AE%E9%A2%98/" />
-<meta property="article:published_time" content="2019-11-16T09:45:12+08:00" />
-<meta property="article:modified_time" content="2019-11-16T09:45:12+08:00" />
-<meta itemprop="name" content="解决 OBS 无法录制 Soundflower 的问题">
-<meta itemprop="description" content="本文中使用的 OBS 为 24.0.2 版本，这个版本在最新的 catalina 有 bug，它不会自动申请麦克风权限，我又没办法把权限给他，就造成了没法录声音的问题，解决办法是通过">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/" />
+<meta property="article:published_time" content="2019-11-16T22:02:48+08:00" />
+<meta property="article:modified_time" content="2019-11-16T22:02:48+08:00" />
+<meta itemprop="name" content="如何在 Maven 打包的时候设置主类">
+<meta itemprop="description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l">
 
 
-<meta itemprop="datePublished" content="2019-11-16T09:45:12&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-16T09:45:12&#43;08:00" />
-<meta itemprop="wordCount" content="125">
+<meta itemprop="datePublished" content="2019-11-16T22:02:48&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-16T22:02:48&#43;08:00" />
+<meta itemprop="wordCount" content="113">
 
 
 
-<meta itemprop="keywords" content="M78 星云," />
+<meta itemprop="keywords" content="Java," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="解决 OBS 无法录制 Soundflower 的问题"/>
-<meta name="twitter:description" content="本文中使用的 OBS 为 24.0.2 版本，这个版本在最新的 catalina 有 bug，它不会自动申请麦克风权限，我又没办法把权限给他，就造成了没法录声音的问题，解决办法是通过"/>
+<meta name="twitter:title" content="如何在 Maven 打包的时候设置主类"/>
+<meta name="twitter:description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">解决 OBS 无法录制 Soundflower 的问题</h1>
+      <h1 class="post-title">如何在 Maven 打包的时候设置主类</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-11-16 </span>
@@ -142,23 +142,64 @@
   </div>
 </div>
     <div class="post-content">
-      <p>本文中使用的 OBS 为 24.0.2 版本，这个版本在最新的 catalina 有 bug，它不会自动申请麦克风权限，我又没办法把权限给他，就造成了没法录声音的问题，解决办法是通过命令行运行，<code>open /Applications/OBS.app/Contents/MacOS/OBS --args -picture</code>，通过这个命令可以让 OBS 来申请权限，我们在打开的时候点允许就解决问题了。</p>
+      <p>在 maven 中配置以下插件即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">    &lt;build&gt;
+        &lt;plugins&gt;
+            ...
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+                &lt;version&gt;2.4&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;archive&gt;
+                        &lt;manifest&gt;
+                            &lt;addClasspath&gt;true&lt;/addClasspath&gt;
+                            &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
+                            &lt;mainClass&gt;&lt;<span class="nv">$mainClass</span>&gt;&lt;/mainClass&gt;
+                        &lt;/manifest&gt;
+                    &lt;/archive&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>原理便是在打包的时候，向 MANIFEST.MF 文件中写入 <code>Main-Class: &lt;$mainClass&gt;</code>，这样java 命令在运行 jar 的时候便会读取到主类并执行。</p>
 
     </div>
 
     
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/m78-%E6%98%9F%E4%BA%91/">M78 星云</a>
+          <a href="/tags/java/">Java</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">如何在 Maven 打包的时候设置主类</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/11/16/%E5%9C%A8-mac-%E4%B8%8A%E8%8E%B7%E5%8F%96-gopro-udp-%E8%A7%86%E9%A2%91%E6%B5%81/">
-            <span class="next-text nav-default">在 Mac 上获取 Gopro Udp 视频流</span>
+        
+        <a class="next" href="/2019/11/16/%E8%A7%A3%E5%86%B3-obs-%E6%97%A0%E6%B3%95%E5%BD%95%E5%88%B6-soundflower-%E7%9A%84%E9%97%AE%E9%A2%98/">
+            <span class="next-text nav-default">解决 OBS 无法录制 Soundflower 的问题</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

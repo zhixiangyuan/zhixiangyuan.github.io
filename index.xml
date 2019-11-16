@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 16 Nov 2019 09:45:12 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Nov 2019 22:02:48 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>如何在 Maven 打包的时候设置主类</title>
+      <link>https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/</link>
+      <pubDate>Sat, 16 Nov 2019 22:02:48 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/</guid>
+      <description>在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; ... &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-jar-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;archive&amp;gt; &amp;lt;manifest&amp;gt; &amp;lt;addClasspath&amp;gt;true&amp;lt;/addClasspath&amp;gt; &amp;lt;classpathPrefix&amp;gt;lib/&amp;lt;/classpathPrefix&amp;gt; &amp;lt;mainClass&amp;gt;&amp;lt;$mainClass&amp;gt;&amp;lt;/mainClass&amp;gt; &amp;lt;/manifest&amp;gt; &amp;lt;/archive&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &amp;l</description>
     </item>
     
     <item>
