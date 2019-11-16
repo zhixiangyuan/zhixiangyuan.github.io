@@ -15,7 +15,7 @@ author: "yuanzx"
 
 gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。
 
-本文使用 gopro 4 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack 这个网址
+本文使用 gopro 4 black 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack 这个网址
 
 1. 首先用手机 app 连接 gopro，设置好 wifi，然后使用 mac 连接 gopro 的 wifi
 2. 当 mac 连接 gopro wifi 之后，向 http://10.5.5.9/gp/gpControl/execute?p1=gpStream&a1=proto_v2&c1=restart 这个地址发送 get 请求，当 gopro 收到这个 get 请求之后，便开始向我们的电脑发送 udp 数据包
