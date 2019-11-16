@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在 Mac 上获取 Gopro Udp 视频流 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。 本文使用 gopro 4 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack 这" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/16/%E5%9C%A8-mac-%E4%B8%8A%E8%8E%B7%E5%8F%96-gopro-udp-%E8%A7%86%E9%A2%91%E6%B5%81/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="在 Mac 上获取 Gopro Udp 视频流" />
+<meta property="og:description" content="gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。 本文使用 gopro 4 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack 这" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/16/%E5%9C%A8-mac-%E4%B8%8A%E8%8E%B7%E5%8F%96-gopro-udp-%E8%A7%86%E9%A2%91%E6%B5%81/" />
+<meta property="article:published_time" content="2019-11-16T09:34:37+08:00" />
+<meta property="article:modified_time" content="2019-11-16T09:34:37+08:00" />
+<meta itemprop="name" content="在 Mac 上获取 Gopro Udp 视频流">
+<meta itemprop="description" content="gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。 本文使用 gopro 4 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack 这">
+
+
+<meta itemprop="datePublished" content="2019-11-16T09:34:37&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-16T09:34:37&#43;08:00" />
+<meta itemprop="wordCount" content="355">
+
+
+
+<meta itemprop="keywords" content="M78 星云," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Mac 上获取 Gopro Udp 视频流"/>
+<meta name="twitter:description" content="gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。 本文使用 gopro 4 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack 这"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">在 Mac 上获取 Gopro Udp 视频流</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-11-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。</p>
+
+<p>本文使用 gopro 4 进行测试，如果使用其他型号的 gopro，触发 url 参考 <a href="https://github.com/KonradIT/goprowifihack">https://github.com/KonradIT/goprowifihack</a> 这个网址</p>
+
+<ol>
+<li>首先用手机 app 连接 gopro，设置好 wifi，然后使用 mac 连接 gopro 的 wifi</li>
+<li>当 mac 连接 gopro wifi 之后，向 <a href="http://10.5.5.9/gp/gpControl/execute?p1=gpStream&amp;a1=proto_v2&amp;c1=restart">http://10.5.5.9/gp/gpControl/execute?p1=gpStream&amp;a1=proto_v2&amp;c1=restart</a> 这个地址发送 get 请求，当 gopro 收到这个 get 请求之后，便开始向我们的电脑发送 udp 数据包</li>
+</ol>
+
+<p>这时候发送数据包一段时间之后会停止，我们需要一直让它或者，直接在命令行运行以下脚本即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 文件名可设为 hero4-udp-keep-alive-send.py</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="k">def</span> <span class="nf">get_command_msg</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+	<span class="k">return</span> <span class="s2">&#34;_GPHD_:</span><span class="si">%u</span><span class="s2">:</span><span class="si">%u</span><span class="s2">:</span><span class="si">%d</span><span class="s2">:</span><span class="si">%1lf</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">UDP_IP</span> <span class="o">=</span> <span class="s2">&#34;10.5.5.9&#34;</span>
+<span class="n">UDP_PORT</span> <span class="o">=</span> <span class="mi">8554</span>
+<span class="n">KEEP_ALIVE_PERIOD</span> <span class="o">=</span> <span class="mi">2500</span>
+<span class="n">KEEP_ALIVE_CMD</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">MESSAGE</span> <span class="o">=</span> <span class="n">get_command_msg</span><span class="p">(</span><span class="n">KEEP_ALIVE_CMD</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;UDP target IP:&#34;</span><span class="p">,</span> <span class="n">UDP_IP</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;UDP target port:&#34;</span><span class="p">,</span> <span class="n">UDP_PORT</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;message:&#34;</span><span class="p">,</span> <span class="n">MESSAGE</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">major</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+  <span class="n">MESSAGE</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">,</span> <span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+	<span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+	<span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">,</span> <span class="p">(</span><span class="n">UDP_IP</span><span class="p">,</span> <span class="n">UDP_PORT</span><span class="p">))</span>
+	<span class="n">sleep</span><span class="p">(</span><span class="n">KEEP_ALIVE_PERIOD</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>此时虽然 mac 在源源不断的收到 udp 视频流，但是却无法播放，我们使用 <code>brew install ffmpeg</code> 安装 ffmpeg，在安装完成之后运行 <code>ffplay -fflags nobuffer -f:v mpegts -probesize 8192 udp://:8554</code> 即可看到画面。</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/m78-%E6%98%9F%E4%BA%91/">M78 星云</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/11/15/google-%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%AD%89%E7%BA%A7%E7%B2%BE%E7%AE%80%E8%AF%B4%E6%98%8E/">
+            <span class="next-text nav-default">Google 的程序员等级精简说明</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

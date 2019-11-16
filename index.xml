@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 15 Nov 2019 09:50:41 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 Nov 2019 09:34:37 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>在 Mac 上获取 Gopro Udp 视频流</title>
+      <link>https://zhixiangyuan.github.io/2019/11/16/%E5%9C%A8-mac-%E4%B8%8A%E8%8E%B7%E5%8F%96-gopro-udp-%E8%A7%86%E9%A2%91%E6%B5%81/</link>
+      <pubDate>Sat, 16 Nov 2019 09:34:37 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/16/%E5%9C%A8-mac-%E4%B8%8A%E8%8E%B7%E5%8F%96-gopro-udp-%E8%A7%86%E9%A2%91%E6%B5%81/</guid>
+      <description>gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。 本文使用 gopro 4 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack 这</description>
     </item>
     
     <item>
