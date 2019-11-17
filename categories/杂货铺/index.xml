@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 17 Nov 2019 15:56:38 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 21:30:01 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Shell 中的 ``、$()、${} 和 $(())</title>
+      <link>https://zhixiangyuan.github.io/2019/11/17/shell-%E4%B8%AD%E7%9A%84-%E5%92%8C/</link>
+      <pubDate>Sun, 17 Nov 2019 21:30:01 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/17/shell-%E4%B8%AD%E7%9A%84-%E5%92%8C/</guid>
+      <description>1 ${} 这个符号用于变量替换 2 &amp;lt;content&amp;gt; 和 $() 这两个都用于命令替换，意思就是他们两个里面写的东西会当成命令执行。 `` 所有的系统都支持，$() 可能会有系统不支</description>
+    </item>
     
     <item>
       <title>TCP 11 种状态变迁</title>
@@ -742,11 +751,11 @@
     </item>
     
     <item>
-      <title>Linux 基础 1</title>
-      <link>https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80-1/</link>
+      <title>Linux 基础</title>
+      <link>https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Sat, 12 Oct 2019 13:04:55 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80-1/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/10/12/linux-%E5%9F%BA%E7%A1%80/</guid>
       <description>useradd 1 2 3 4 5 # 新建用户 $&amp;gt; useradd &amp;lt;usrename&amp;gt; # 新建用户，并将用户加入指定的组 # 组名必须存在，否则会提示不存在 $&amp;gt; useradd &amp;lt;username&amp;gt; -g &amp;lt;groupname&amp;gt; passwd 1 2 3 4 # 更改当前用户的密码 $&amp;gt; passwd # 更</description>
     </item>
     
