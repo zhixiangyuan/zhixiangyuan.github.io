@@ -61,11 +61,7 @@ author: "yuanzx"
 
 完全可以，当 server 收到 client 的 FIN 包后，如果 server 没有数据发给 client，那么可以将 server 端的 FIN 和 ACK 包合并发给 client，这样就变成了三次挥手。如果在 server 端收到 FIN 包之后还有数据要发给 client，那么就不能完成三次挥手，而先回复 FIN 的 ACK，然后将剩下需要发送的数据发送给 client，然后再发送 ACK 包。
 
-# 4 握手可以变成四次吗？
-
-握手时只需要将 SYN+ACK 包拆成 SYN 包和 ACK 包就变成了四次握手，不过此时还没有建立通信，这样做没有意义。
-
-# 5 服务端与客户端同时发起 FIN 关闭连接
+# 4 服务端与客户端同时发起 FIN 关闭连接
 
 ![](/hub/2019/November/51.png)
 
