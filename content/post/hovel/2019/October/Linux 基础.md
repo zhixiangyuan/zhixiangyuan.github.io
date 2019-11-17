@@ -1,5 +1,5 @@
 ---
-title: "Linux 基础 1"
+title: "Linux 基础"
 date: 2019-10-12T13:04:55+08:00
 keywords: []
 description: ""
