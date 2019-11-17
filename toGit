@@ -5,8 +5,6 @@
 # @param $1 对于该次提交的评论
 # @param $2 true 表示重新生成页面上传
 
-cd $(dirname $0)
-
 ### 先把修改的文件推上去
 git add .
 comment=""

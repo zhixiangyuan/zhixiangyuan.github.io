@@ -51,7 +51,6 @@ client 依旧死等 server 的 ACK
 
 client 首先修改自己的 IP 为别的 client 的 IP，然后发送一个 SYN 包，发送之后由于能猜测到 ISN，那么就再发送一个 server 回复的 SYN+ACK 的 ACK 成功与 server 建立连接，这条连接建立完成之后，由于真正的 client 无法知道序列号，所以无法与 server 建立连接，这样就完成了攻击。
 
-
 # 参考资料
 
 1. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268)
