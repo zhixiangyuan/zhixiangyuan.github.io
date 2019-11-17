@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 17 Nov 2019 14:40:12 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 15:56:38 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>TCP 11 种状态变迁</title>
+      <link>https://zhixiangyuan.github.io/2019/11/17/tcp-11-%E7%A7%8D%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81/</link>
+      <pubDate>Sun, 17 Nov 2019 15:56:38 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/17/tcp-11-%E7%A7%8D%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81/</guid>
+      <description>1 CLOSED CLOSED 状态是一个假想的状态，它处于 TCP 连接还未开始建立或者已经释放掉的状态。因此无法通过 netstat 或者 lsof 看到。 从 CLOSED 状态转换为其他状态有两种可能 一种是服</description>
     </item>
     
     <item>
