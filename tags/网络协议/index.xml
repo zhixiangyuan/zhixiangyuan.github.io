@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 14 Nov 2019 21:29:27 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 11:00:11 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TCP 四次挥手详解</title>
+      <link>https://zhixiangyuan.github.io/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sun, 17 Nov 2019 11:00:11 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/</guid>
+      <description>1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client</description>
+    </item>
     
     <item>
       <title>构造一个处于 SYN_SENT 状态的连接</title>

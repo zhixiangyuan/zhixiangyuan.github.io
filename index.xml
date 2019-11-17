@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 16 Nov 2019 22:02:48 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Nov 2019 11:00:11 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>TCP 四次挥手详解</title>
+      <link>https://zhixiangyuan.github.io/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Sun, 17 Nov 2019 11:00:11 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/</guid>
+      <description>1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client</description>
     </item>
     
     <item>

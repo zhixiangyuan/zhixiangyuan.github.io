@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-11-16T22:02:48+08:00" />
+<meta property="og:updated_time" content="2019-11-17T11:00:11+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/26/jvm-%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E7%94%9F%E6%AD%BB/">JVM 中如何判断对象生死</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-26 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 引用器计数法 如果某个引用被别的引用引用一次，那么引用计数器就加一，引用计数器为 0 时便回收对象。 这种方法有缺陷，如果出现循环引用，那么 GC 便无
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/26/jvm-%E4%B8%AD%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E7%94%9F%E6%AD%BB/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/10/26/rabbitmq-%E7%9A%84%E5%9B%9B%E7%A7%8D%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%B1%BB%E5%9E%8B/">RabbitMQ 的四种交换机类型</a></h1>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/10/22/mybatis-%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/21/rabbitmq-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91%E5%90%91%E5%AF%BC/">RabbitMQ 客户端开发向导</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-21 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 引入依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.rabbitmq&lt;/groupId&gt; &lt;artifactId&gt;amqp-client&lt;/artifactId&gt; &lt;version&gt;5.4.3&lt;/version&gt; &lt;/dependency&gt; 2 连接 RabbitMQ 2.1 通过给定参数来连接 1 2 3 4 5 6 7 ConnectionFactory factory = new ConnectionFactory(); factory.setUsername(&#34;&lt;username&gt;&#34;); factory.setPassword(&#34;&lt;password&gt;&#34;); factory.setVirtualHost(&#34;&lt;virtual_host&gt;&#34;); factory.setHost(&#34;&lt;host&gt;&#34;); factory.setPort(5672); Connection connection = factory.newConnection(); 2.2 通过给定 URI 的方式来连接 1 2 3 4 5 ConnectionFactory factory =
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/21/rabbitmq-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91%E5%90%91%E5%AF%BC/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>如何在 Maven 打包的时候设置主类 - Yuanzx Blog</title>
+  <title>TCP 四次挥手详解 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; ... &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-jar-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;archive&amp;gt; &amp;lt;manifest&amp;gt; &amp;lt;addClasspath&amp;gt;true&amp;lt;/addClasspath&amp;gt; &amp;lt;classpathPrefix&amp;gt;lib/&amp;lt;/classpathPrefix&amp;gt; &amp;lt;mainClass&amp;gt;&amp;lt;$mainClass&amp;gt;&amp;lt;/mainClass&amp;gt; &amp;lt;/manifest&amp;gt; &amp;lt;/archive&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &amp;l" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="如何在 Maven 打包的时候设置主类" />
-<meta property="og:description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l" />
+<meta property="og:title" content="TCP 四次挥手详解" />
+<meta property="og:description" content="1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/" />
-<meta property="article:published_time" content="2019-11-16T22:02:48+08:00" />
-<meta property="article:modified_time" content="2019-11-16T22:02:48+08:00" />
-<meta itemprop="name" content="如何在 Maven 打包的时候设置主类">
-<meta itemprop="description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/" />
+<meta property="article:published_time" content="2019-11-17T11:00:11+08:00" />
+<meta property="article:modified_time" content="2019-11-17T11:00:11+08:00" />
+<meta itemprop="name" content="TCP 四次挥手详解">
+<meta itemprop="description" content="1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client">
 
 
-<meta itemprop="datePublished" content="2019-11-16T22:02:48&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-16T22:02:48&#43;08:00" />
-<meta itemprop="wordCount" content="113">
+<meta itemprop="datePublished" content="2019-11-17T11:00:11&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-17T11:00:11&#43;08:00" />
+<meta itemprop="wordCount" content="1023">
 
 
 
-<meta itemprop="keywords" content="Java," />
+<meta itemprop="keywords" content="网络协议," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="如何在 Maven 打包的时候设置主类"/>
-<meta name="twitter:description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l"/>
+<meta name="twitter:title" content="TCP 四次挥手详解"/>
+<meta name="twitter:description" content="1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,10 +124,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">如何在 Maven 打包的时候设置主类</h1>
+      <h1 class="post-title">TCP 四次挥手详解</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-11-16 </span>
+        <span class="post-time"> 2019-11-17 </span>
         <div class="post-category">
             <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
             </div>
@@ -138,72 +138,107 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-四次挥手数据包的交互过程">1 四次挥手数据包的交互过程</a></li>
+<li><a href="#2-为什么-fin-报文要消耗一个序列号">2 为什么 FIN 报文要消耗一个序列号</a></li>
+<li><a href="#3-为什么挥手要四次-变成三次可以吗">3 为什么挥手要四次，变成三次可以吗？</a></li>
+<li><a href="#4-握手可以变成四次吗">4 握手可以变成四次吗？</a></li>
+<li><a href="#5-服务端与客户端同时发起-fin-关闭连接">5 服务端与客户端同时发起 FIN 关闭连接</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      <p>在 maven 中配置以下插件即可</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">    &lt;build&gt;
-        &lt;plugins&gt;
-            ...
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
-                &lt;version&gt;2.4&lt;/version&gt;
-                &lt;configuration&gt;
-                    &lt;archive&gt;
-                        &lt;manifest&gt;
-                            &lt;addClasspath&gt;true&lt;/addClasspath&gt;
-                            &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
-                            &lt;mainClass&gt;&lt;<span class="nv">$mainClass</span>&gt;&lt;/mainClass&gt;
-                        &lt;/manifest&gt;
-                    &lt;/archive&gt;
-                &lt;/configuration&gt;
-            &lt;/plugin&gt;
-        &lt;/plugins&gt;
-    &lt;/build&gt;</code></pre></td></tr></table>
-</div>
-</div>
-<p>原理便是在打包的时候，向 MANIFEST.MF 文件中写入 <code>Main-Class: &lt;$mainClass&gt;</code>，这样java 命令在运行 jar 的时候便会读取到主类并执行。</p>
+      
+
+<h1 id="1-四次挥手数据包的交互过程">1 四次挥手数据包的交互过程</h1>
+
+<p><img src="/hub/2019/November/44.png" alt="" /></p>
+
+<p>下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。</p>
+
+<ol>
+<li>client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态</li>
+<li>server 收到 client 的 FIN 包，然后 server 回复 client 关于 FIN 的 ACK 包并进入 CLOSE_WAIT 状态</li>
+<li>client 收到 server 发送的关于 FIN 的 ACK 包则进入 FIN-WAIT-2 状态，此时 client 的 FIN 包已经确认完成</li>
+<li>server 发送 FIN 包给 client，然后进入 LAST-ACK 状态</li>
+<li>client 收到 server 的 FIN 包，然后回复关于 FIN 包的 ACK 之后进入 TIME-WAIT 状态，同时在这个状态等待 2*MSL 的时间，防止 ACK 包中途丢失，如果 ACK 包中途丢失，那么 server 在等待 ACK 超时之后会再次重发 FIN 包</li>
+<li>server 收到 client 关于 FIN 的 ACK 包，进入 CLOSED 状态</li>
+<li>client 在等待 2*MSL 的时间之后也进入 CLOSED 状态</li>
+</ol>
+
+<h1 id="2-为什么-fin-报文要消耗一个序列号">2 为什么 FIN 报文要消耗一个序列号</h1>
+
+<p>如果 FIN 不消耗一个序列号，那么如果 FIN 包之前有数据未被确认，那么当发出 FIN 包之后收到 ACK 便无法确认到底这个 ACK 是之前数据的还是 FIN 包的。</p>
+
+<p>如下是一个例子，client 先发送一个 hello，然后进行四次挥手</p>
+
+<p>下图为 client 发出一个 hello 的数据包，sequence number 为 1，data 有 6 个字节，所以 next sequence number 为 7，ack 也要 ack 7</p>
+
+<p><img src="/hub/2019/November/45.png" alt="" /></p>
+
+<p>下图为 server 给的 ack 数据包，其中 ack 为 7</p>
+
+<p><img src="/hub/2019/November/46.png" alt="" /></p>
+
+<p>下图为 client 发送的 FIN 数据包，sequence number 为 7，虽然没有携带数据，但是 next sequence number 却要为 8（wireshark 显示为 7 不知道是不是 bug）</p>
+
+<p><img src="/hub/2019/November/47.png" alt="" /></p>
+
+<p>下图为 server 回复 client 关于 FIN 的 ACK，可以看到 ack 为 8，说明消耗了一个序列号</p>
+
+<p><img src="/hub/2019/November/48.png" alt="" /></p>
+
+<p>下图为 server 发给 client 的 FIN 数据包，sequence number 1 为 ，虽然没有携带数据，但是 next sequence number 却要为 2（wireshark 显示为 2 不知道是不是 bug）</p>
+
+<p><img src="/hub/2019/November/49.png" alt="" /></p>
+
+<p>下图为 client 回复 server 关于 FIN 的 ACK，可以看到 ack 为 2，说明消耗了一个序列号</p>
+
+<p><img src="/hub/2019/November/50.png" alt="" /></p>
+
+<h1 id="3-为什么挥手要四次-变成三次可以吗">3 为什么挥手要四次，变成三次可以吗？</h1>
+
+<p>完全可以，当 server 收到 client 的 FIN 包后，如果 server 没有数据发给 client，那么可以将 server 端的 FIN 和 ACK 包合并发给 client，这样就变成了三次挥手。如果在 server 端收到 FIN 包之后还有数据要发给 client，那么就不能完成三次挥手，而先回复 FIN 的 ACK，然后将剩下需要发送的数据发送给 client，然后再发送 ACK 包。</p>
+
+<h1 id="4-握手可以变成四次吗">4 握手可以变成四次吗？</h1>
+
+<p>握手时只需要将 SYN+ACK 包拆成 SYN 包和 ACK 包就变成了四次握手，不过此时还没有建立通信，这样做没有意义。</p>
+
+<h1 id="5-服务端与客户端同时发起-fin-关闭连接">5 服务端与客户端同时发起 FIN 关闭连接</h1>
+
+<p><img src="/hub/2019/November/51.png" alt="" /></p>
+
+<p>以客户端为例：</p>
+
+<ol>
+<li>最初 client 和 server 都处于 ESTABLISHED 状态</li>
+<li>client 发送 FIN 包，等待 server 发送 ACK 包，同时进入 FIN-WAIT-1 状态</li>
+<li>处于 FIN-WAIT-1 状态的 client 还没等到 ACK，就收到了 server 发送过来的 FIN 包</li>
+<li>收到 FIN 包以后 client 会发送这个 FIN 包的确认 ACK 包，同时自己进入 CLOSING 状态，继续等待自己的 FIN 包的 ACK</li>
+<li>处于 CLOSING 状态的 client 终于等到了 ACK，随后进入 TIME-WAIT 状态</li>
+<li>在 TIME-WAIT 状态持续 2*MSL 最终进入 CLOSED 状态</li>
+</ol>
+
+<h1 id="参考资料">参考资料</h1>
+
+<ol>
+<li><a href="https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268">深入理解 TCP 协议：从原理到实战</a></li>
+</ol>
 
     </div>
 
     
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/java/">Java</a>
+          <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">TCP 四次挥手详解</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/11/16/%E8%A7%A3%E5%86%B3-obs-%E6%97%A0%E6%B3%95%E5%BD%95%E5%88%B6-soundflower-%E7%9A%84%E9%97%AE%E9%A2%98/">
-            <span class="next-text nav-default">解决 OBS 无法录制 Soundflower 的问题</span>
+        
+        <a class="next" href="/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/">
+            <span class="next-text nav-default">如何在 Maven 打包的时候设置主类</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
