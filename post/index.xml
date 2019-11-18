@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 17 Nov 2019 21:30:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 18 Nov 2019 14:51:35 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于 TCP 半连接队列与全连接队列</title>
+      <link>https://zhixiangyuan.github.io/2019/11/18/%E5%85%B3%E4%BA%8E-tcp-%E5%8D%8A%E8%BF%9E%E6%8E%A5%E9%98%9F%E5%88%97%E4%B8%8E%E5%85%A8%E8%BF%9E%E6%8E%A5%E9%98%9F%E5%88%97/</link>
+      <pubDate>Mon, 18 Nov 2019 14:51:35 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/18/%E5%85%B3%E4%BA%8E-tcp-%E5%8D%8A%E8%BF%9E%E6%8E%A5%E9%98%9F%E5%88%97%E4%B8%8E%E5%85%A8%E8%BF%9E%E6%8E%A5%E9%98%9F%E5%88%97/</guid>
+      <description>以下使用 client 代替客户端，server 代替服务端，看起来更清晰 半连接队列与全连接队列与服务端相关，在 server 调用 int listen(int sockfd, int backlog); 开启 LISTEN 监听时，与此同时内核创</description>
+    </item>
     
     <item>
       <title>Shell 中的 ``、$()、${} 和 $(())</title>
