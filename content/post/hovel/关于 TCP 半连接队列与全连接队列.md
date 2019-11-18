@@ -50,6 +50,10 @@ Recv-Q Send-Q   Local Address:Port Peer Address:Port
 0       100                 *:8080            *:*
 ```
 
+# 4 一种针对半连接队列的 Dos 攻击
+
+随便一台主机冒充不同的 IP 地址不停的向受害者主机发送 SYN 请求，很快就能把受害者主机的半连接队列填满，这时候受害者主机没法处理正常用户的请求，便出现了停止服务的情况。
+
 # 参考文章
 
 1. [深入理解 TCP 协议：从原理到实战](https://juejin.im/book/5c70dbbe51882562046911bc?referrer=5aa21ad15188255585072268)
