@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; ... &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-jar-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;archive&amp;gt; &amp;lt;manifest&amp;gt; &amp;lt;addClasspath&amp;gt;true&amp;lt;/addClasspath&amp;gt; &amp;lt;classpathPrefix&amp;gt;lib/&amp;lt;/classpathPrefix&amp;gt; &amp;lt;mainClass&amp;gt;&amp;lt;$mainClass&amp;gt;&amp;lt;/mainClass&amp;gt; &amp;lt;/manifest&amp;gt; &amp;lt;/archive&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &amp;l" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 普通项目 在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; ... &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-jar-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;archive&amp;gt; &amp;lt;manifest&amp;gt; &amp;lt;addClasspath&amp;gt;true&amp;lt;/addClasspath&amp;gt; &amp;lt;classpathPrefix&amp;gt;lib/&amp;lt;/classpathPrefix&amp;gt; &amp;lt;mainClass&amp;gt;&amp;lt;$mainClass&amp;gt;&amp;lt;/mainClass&amp;gt; &amp;lt;/manifest&amp;gt; &amp;lt;/archive&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="如何在 Maven 打包的时候设置主类" />
-<meta property="og:description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l" />
+<meta property="og:description" content="1 普通项目 在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/" />
 <meta property="article:published_time" content="2019-11-16T22:02:48+08:00" />
 <meta property="article:modified_time" content="2019-11-16T22:02:48+08:00" />
 <meta itemprop="name" content="如何在 Maven 打包的时候设置主类">
-<meta itemprop="description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l">
+<meta itemprop="description" content="1 普通项目 在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中">
 
 
 <meta itemprop="datePublished" content="2019-11-16T22:02:48&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-16T22:02:48&#43;08:00" />
-<meta itemprop="wordCount" content="113">
+<meta itemprop="wordCount" content="174">
 
 
 
 <meta itemprop="keywords" content="Java," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="如何在 Maven 打包的时候设置主类"/>
-<meta name="twitter:description" content="在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 Main-Class: &l"/>
+<meta name="twitter:description" content="1 普通项目 在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -138,14 +138,23 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-普通项目">1 普通项目</a></li>
+<li><a href="#2-springboot-项目">2 SpringBoot 项目</a></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      <p>在 maven 中配置以下插件即可</p>
+      
+
+<h1 id="1-普通项目">1 普通项目</h1>
+
+<p>在 maven 中配置以下插件即可</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -166,29 +175,62 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">    &lt;build&gt;
-        &lt;plugins&gt;
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
             ...
-            &lt;plugin&gt;
-                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
-                &lt;version&gt;2.4&lt;/version&gt;
-                &lt;configuration&gt;
-                    &lt;archive&gt;
-                        &lt;manifest&gt;
-                            &lt;addClasspath&gt;true&lt;/addClasspath&gt;
-                            &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
-                            &lt;mainClass&gt;&lt;<span class="nv">$mainClass</span>&gt;&lt;/mainClass&gt;
-                        &lt;/manifest&gt;
-                    &lt;/archive&gt;
-                &lt;/configuration&gt;
-            &lt;/plugin&gt;
-        &lt;/plugins&gt;
-    &lt;/build&gt;</code></pre></td></tr></table>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;archive&gt;</span>
+                        <span class="nt">&lt;manifest&gt;</span>
+                            <span class="nt">&lt;addClasspath&gt;</span>true<span class="nt">&lt;/addClasspath&gt;</span>
+                            <span class="nt">&lt;classpathPrefix&gt;</span>lib/<span class="nt">&lt;/classpathPrefix&gt;</span>
+                            <span class="nt">&lt;mainClass&gt;</span><span class="err">&lt;</span>$mainClass&gt;<span class="nt">&lt;/mainClass&gt;</span>
+                        <span class="nt">&lt;/manifest&gt;</span>
+                    <span class="nt">&lt;/archive&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>原理便是在打包的时候，向 MANIFEST.MF 文件中写入 <code>Main-Class: &lt;$mainClass&gt;</code>，这样java 命令在运行 jar 的时候便会读取到主类并执行。</p>
 
+<h1 id="2-springboot-项目">2 SpringBoot 项目</h1>
+
+<p>SpringBoot 项目打包需要用 springboot 自己的插件，否则会出现不打包依赖的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            ...
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;mainClass&gt;</span><span class="err">&lt;</span>$mainClass&gt;<span class="nt">&lt;/mainClass&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
