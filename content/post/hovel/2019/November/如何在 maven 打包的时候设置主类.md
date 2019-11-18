@@ -13,9 +13,11 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
+# 1 普通项目
+
 在 maven 中配置以下插件即可
 
-```shell
+```xml
     <build>
         <plugins>
             ...
@@ -38,3 +40,22 @@ author: "yuanzx"
 ```
 
 原理便是在打包的时候，向 MANIFEST.MF 文件中写入 `Main-Class: <$mainClass>`，这样java 命令在运行 jar 的时候便会读取到主类并执行。
+
+# 2 SpringBoot 项目
+
+SpringBoot 项目打包需要用 springboot 自己的插件，否则会出现不打包依赖的情况
+
+```xml
+    <build>
+        <plugins>
+            ...
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass><$mainClass></mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
