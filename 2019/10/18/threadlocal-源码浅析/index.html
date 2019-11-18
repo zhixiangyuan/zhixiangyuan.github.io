@@ -141,6 +141,11 @@
     
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-10-18T16:36:38" title="October 18, 2019">October 18, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>ThreadLocal 用于不同线程存储不同的线程全局变量，在该线程下用 ThreadLocal 取出的值是一致的。这里先简述一下原理，然后再看代码。ThreadLocal 其实是一个 Key，在 Thread 当中有一个 threadLocals 变量，存储着 ThreadLocalMap，ThreadLocal 便是 ThreadLocalMap 当中的键，value 便是我们存储的值，由于每一个 Thread 都有自己的 threadLocals，所以我们在不同的线程中就可以用相同的 ThreadLocal 取出不同的值。</p>
 

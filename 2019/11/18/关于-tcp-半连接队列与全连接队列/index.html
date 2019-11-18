@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-11-18T14:51:35&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-18T14:51:35&#43;08:00" />
-<meta itemprop="wordCount" content="673">
+<meta itemprop="wordCount" content="767">
 
 
 
@@ -143,6 +143,7 @@
 <li><a href="#1-全连接队列大小">1 全连接队列大小</a></li>
 <li><a href="#2-半连接队列大小">2 半连接队列大小</a></li>
 <li><a href="#3-相关的命令">3 相关的命令</a></li>
+<li><a href="#4-一种针对半连接队列的-dos-攻击">4 一种针对半连接队列的 Dos 攻击</a></li>
 <li><a href="#参考文章">参考文章</a></li>
 </ul>
 </nav>
@@ -200,6 +201,10 @@ Recv-Q Send-Q   Local Address:Port Peer Address:Port
 <span class="m">0</span>       <span class="m">100</span>                 *:8080            *:*</code></pre></td></tr></table>
 </div>
 </div>
+<h1 id="4-一种针对半连接队列的-dos-攻击">4 一种针对半连接队列的 Dos 攻击</h1>
+
+<p>随便一台主机冒充不同的 IP 地址不停的向受害者主机发送 SYN 请求，很快就能把受害者主机的半连接队列填满，这时候受害者主机没法处理正常用户的请求，便出现了停止服务的情况。</p>
+
 <h1 id="参考文章">参考文章</h1>
 
 <ol>
