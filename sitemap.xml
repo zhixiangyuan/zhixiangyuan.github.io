@@ -10,48 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-11-19T19:57:55+08:00</lastmod>
+    <lastmod>2019-11-19T21:04:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-11-19T19:57:55+08:00</lastmod>
+    <lastmod>2019-11-19T21:04:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-11-19T19:57:55+08:00</lastmod>
+    <lastmod>2019-11-19T21:04:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_reuseaddr-%E9%80%89%E9%A1%B9/</loc>
-    <lastmod>2019-11-19T19:57:55+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_linger-%E9%80%89%E9%A1%B9/</loc>
+    <lastmod>2019-11-19T21:04:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-11-19T19:57:55+08:00</lastmod>
+    <lastmod>2019-11-19T21:04:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
-    <lastmod>2019-11-19T19:57:55+08:00</lastmod>
+    <lastmod>2019-11-19T21:04:04+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</loc>
+    <lastmod>2019-11-19T21:04:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_reuseaddr-%E9%80%89%E9%A1%B9/</loc>
     <lastmod>2019-11-19T19:57:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

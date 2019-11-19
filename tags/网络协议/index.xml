@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 19 Nov 2019 19:57:55 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2019 21:04:04 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TCP 中的 SO_LINGER 选项</title>
+      <link>https://zhixiangyuan.github.io/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_linger-%E9%80%89%E9%A1%B9/</link>
+      <pubDate>Tue, 19 Nov 2019 21:04:04 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_linger-%E9%80%89%E9%A1%B9/</guid>
+      <description>SO_LINGER 参数的作用就是改变 close 的默认行为，SO_LINGER 参数在 Linux 系统中就是一个 linger 结构体，代码如下 1 2 3 4 struct linger { int l_onoff; /* linger active */ int l_linger; /* how many seconds to linger for */ };</description>
+    </item>
     
     <item>
       <title>TCP 中的 SO_REUSEADDR 选项</title>
