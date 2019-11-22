@@ -19,19 +19,19 @@ author: "yuanzx"
 
 # 1.1 %
 
-`${variable%pattern}`，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最短的匹配模式
+`${variable%pattern}`，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最短的匹配模式
 
 # 1.2 %%
 
-`${variable%%pattern}`，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最长的匹配模式
+`${variable%%pattern}`，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最长的匹配模式
 
 # 1.3 \#
 
-`${variable#pattern}` 这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最短的匹配模式
+`${variable#pattern}` 这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最短的匹配模式
 
 # 1.4 \#\#
 
-`${variable##pattern}` 这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最长的匹配模式
+`${variable##pattern}` 这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最长的匹配模式
 
 # 1.5 关于 pattern
 
