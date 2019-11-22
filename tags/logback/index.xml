@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logback on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/logback/</link>
+    <description>Recent content in Logback on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Fri, 22 Nov 2019 10:22:25 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/logback/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何关闭 Logback 的初始化日志</title>
+      <link>https://zhixiangyuan.github.io/2019/11/22/%E5%A6%82%E4%BD%95%E5%85%B3%E9%97%AD-logback-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Fri, 22 Nov 2019 10:22:25 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/22/%E5%A6%82%E4%BD%95%E5%85%B3%E9%97%AD-logback-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%97%A5%E5%BF%97/</guid>
+      <description>logback 版本 1.1.1 先看解决方案 1 2 3 4 5 6 7 8 9 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;configuration&amp;gt; ... &amp;lt;!-- 关闭 logback 自身的初始化日志 --&amp;gt; &amp;lt;!-- 使用 NopStatusListener 或 StatusListenerAsList 均可以达到效果--&amp;gt; &amp;lt;!-- &amp;lt;statusListener class=&amp;#34;ch.qos.logback.core.status.NopStatusListener&amp;#34;/&amp;gt;--&amp;gt; &amp;lt;statusListener class=&amp;#34;ch.qos.logback.core.status.StatusListenerAsList&amp;#34;/&amp;gt; ... &amp;lt;/configuration&amp;gt; 1 为什么加上一</description>
+    </item>
+    
+  </channel>
+</rss>

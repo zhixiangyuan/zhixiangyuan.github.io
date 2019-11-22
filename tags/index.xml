@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 19 Nov 2019 21:04:04 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 22 Nov 2019 10:22:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Logback</title>
+      <link>https://zhixiangyuan.github.io/tags/logback/</link>
+      <pubDate>Fri, 22 Nov 2019 10:22:25 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/logback/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>网络协议</title>
