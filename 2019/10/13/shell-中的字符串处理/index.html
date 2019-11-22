@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,13 +39,13 @@
 
 
 <meta property="og:title" content="Shell 中的字符串处理" />
-<meta property="og:description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，" />
+<meta property="og:description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/2019/10/13/shell-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" />
 <meta property="article:published_time" content="2019-10-13T19:27:09+08:00" />
 <meta property="article:modified_time" content="2019-10-13T19:27:09+08:00" />
 <meta itemprop="name" content="Shell 中的字符串处理">
-<meta itemprop="description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，">
+<meta itemprop="description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，">
 
 
 <meta itemprop="datePublished" content="2019-10-13T19:27:09&#43;08:00" />
@@ -57,7 +57,7 @@
 <meta itemprop="keywords" content="linux," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Shell 中的字符串处理"/>
-<meta name="twitter:description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，"/>
+<meta name="twitter:description" content="1 字符串截取 使用 %、# 实现字符串截取 1.1 % ${variable%pattern}，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -178,19 +178,19 @@
 
 <h1 id="1-1">1.1 %</h1>
 
-<p><code>${variable%pattern}</code>，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最短的匹配模式</p>
+<p><code>${variable%pattern}</code>，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最短的匹配模式</p>
 
 <h1 id="1-2">1.2 %%</h1>
 
-<p><code>${variable%%pattern}</code>，这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最长的匹配模式</p>
+<p><code>${variable%%pattern}</code>，这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 结尾，如果是，就从命令行把 variable 中的内容去掉右边最长的匹配模式</p>
 
 <h1 id="1-3">1.3 #</h1>
 
-<p><code>${variable#pattern}</code> 这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最短的匹配模式</p>
+<p><code>${variable#pattern}</code> 这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最短的匹配模式</p>
 
 <h1 id="1-4">1.4 ##</h1>
 
-<p><code>${variable##pattern}</code> 这种模式时，shell 在 variable 中查找，看它是否一给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最长的匹配模式</p>
+<p><code>${variable##pattern}</code> 这种模式时，shell 在 variable 中查找，看它是否以给的模式 pattern 开始，如果是，就从命令行把 variable 中的内容去掉左边最长的匹配模式</p>
 
 <h1 id="1-5-关于-pattern">1.5 关于 pattern</h1>
 
