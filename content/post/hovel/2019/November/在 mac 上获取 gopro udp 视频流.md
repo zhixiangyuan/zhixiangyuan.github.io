@@ -20,7 +20,7 @@ gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中
 1. 首先用手机 app 连接 gopro，设置好 wifi，然后使用 mac 连接 gopro 的 wifi
 2. 当 mac 连接 gopro wifi 之后，向 http://10.5.5.9/gp/gpControl/execute?p1=gpStream&a1=proto_v2&c1=restart 这个地址发送 get 请求，当 gopro 收到这个 get 请求之后，便开始向我们的电脑发送 udp 数据包
 
-这时候发送数据包一段时间之后会停止，我们需要一直让它或者，直接在命令行运行以下脚本即可
+这时候发送数据包一段时间之后会停止，我们需要一直让它活着，直接在命令行运行以下脚本即可
 
 ```python
 # 文件名可设为 hero4-udp-keep-alive-send.py
