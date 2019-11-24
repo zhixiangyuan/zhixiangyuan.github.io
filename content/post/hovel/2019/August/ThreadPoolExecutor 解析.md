@@ -364,6 +364,9 @@ execute 方法便是将需要执行的任务加入到线程池当中，但是这
 
 # 4 Worker 类详解
 
+Worker 类的作用主要有两个，一是通过继承 AbstractQueuedSynchronizer 成为了一把锁，二是通过实现 Runnable 变成一个 Thread 执行 target，然后将 Thread 执行的 run 方法代理到 `runWorker` 方法上，`runWorker` 方法内部实现循环去使用线程不断的执行任务，这样就起到了开启的线程重复使用，不断的接受任务去执行。
+
+
 # 5 零碎方法详解
 
 ## 5.1 private boolean compareAndIncrementWorkerCount(int expect)
