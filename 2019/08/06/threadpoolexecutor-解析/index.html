@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-08-06T17:26:17&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-06T17:26:17&#43;08:00" />
-<meta itemprop="wordCount" content="3311">
+<meta itemprop="wordCount" content="3503">
 
 
 
@@ -467,7 +467,7 @@
 </span><span class="c1"></span>        <span class="c1">// 则将 command 加入到工作队列当中
 </span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">isRunning</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">workQueue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">command</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// 这里之所以需要再次检查，是因为前面从 ctl.get() 中获取到 ctl
-</span><span class="c1"></span>            <span class="c1">// 的值之后，判断的都是 c，而再次期间 ctl 的状态可能会发生改变，
+</span><span class="c1"></span>            <span class="c1">// 的值之后，判断的都是 c，而在此期间 ctl 的状态可能会发生改变，
 </span><span class="c1"></span>            <span class="c1">// 所以这里需要再次检查，如果检查出来线程池不是 RUNNING 状态，则
 </span><span class="c1"></span>            <span class="c1">// 将添加的任务移除，实现了一个手动乐观锁的效果
 </span><span class="c1"></span>            <span class="kt">int</span> <span class="nf">recheck</span> <span class="o">=</span> <span class="n">ctl</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
@@ -487,6 +487,8 @@
     <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
+<p>看完上述代码，便能大概总结线程池的工作原理了，首先一个任务进入线程池，线程池会先判断是否当前工作的线程数小于核心线程数，如果小于的话那么就开启新的线程去执行任务，如果检查出来工作线程数大于等于核心线程数，那么就将任务放到任务队列里面，如果当放入任务队列失败时，那么便会去开启新的工作线程执行任务，如果开启新的工作线程失败，那么则使用指定的拒绝策略拒绝任务。</p>
+
 <h2 id="3-2-final-void-reject-runnable-command">3.2 final void reject(Runnable command)</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -600,6 +602,7 @@
 </span><span class="lnt">93
 </span><span class="lnt">94
 </span><span class="lnt">95
+</span><span class="lnt">96
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java">    <span class="cm">/**
@@ -685,6 +688,7 @@
                 <span class="p">}</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">workerAdded</span><span class="p">)</span> <span class="p">{</span>
                     <span class="c1">// worker 添加成功，启动 worker 线程
+</span><span class="c1"></span>                    <span class="c1">// 这里便是 worker 线程启动的地方
 </span><span class="c1"></span>                    <span class="n">t</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
                     <span class="n">workerStarted</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
                 <span class="p">}</span>
