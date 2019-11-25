@@ -45,8 +45,6 @@ tcp6       0      0 :::9999     :::*                    LISTEN      20096/java
 
 # 5 ESTABLISHED
 
-// todo 从这里开始改图
-
 进入 ESTABLISHED 状态后，后面有两种状态的变化方式
 
 1. 调用 close 系统调用主动关闭连接，这个时候会发送 FIN 包给对端，同时自己进入 FIN_WAIT_1 状态
