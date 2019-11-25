@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 19 Nov 2019 21:04:04 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Nov 2019 11:39:43 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TCP 中的七个定时器</title>
+      <link>https://zhixiangyuan.github.io/2019/11/25/tcp-%E4%B8%AD%E7%9A%84%E4%B8%83%E4%B8%AA%E5%AE%9A%E6%97%B6%E5%99%A8/</link>
+      <pubDate>Mon, 25 Nov 2019 11:39:43 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/25/tcp-%E4%B8%AD%E7%9A%84%E4%B8%83%E4%B8%AA%E5%AE%9A%E6%97%B6%E5%99%A8/</guid>
+      <description>1 连接建立定时器 这个定时器的作用就是在建立连接发送第一个 SYN 包的时候起作用，在发送 SYN 包后开启这个定时器，如果定的时间到了，那么就会重传 SYN 数据包</description>
+    </item>
     
     <item>
       <title>TCP 中的 SO_LINGER 选项</title>
