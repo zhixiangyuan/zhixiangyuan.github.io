@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 25 Nov 2019 11:39:43 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Nov 2019 15:16:41 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>蓝绿发布、AB 测试和灰度发布</title>
+      <link>https://zhixiangyuan.github.io/2019/11/25/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83ab-%E6%B5%8B%E8%AF%95%E5%92%8C%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/</link>
+      <pubDate>Mon, 25 Nov 2019 15:16:41 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/25/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83ab-%E6%B5%8B%E8%AF%95%E5%92%8C%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/</guid>
+      <description>1 蓝绿发布 蓝绿发布可以减少发布过程中服务停止的时间，但是带来了另一个问题，就是需要的机器数量需要翻倍。发布时候，首先流量都是打在绿色的版本上</description>
     </item>
     
     <item>
