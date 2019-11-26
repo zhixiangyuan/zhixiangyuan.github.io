@@ -6,6 +6,7 @@
 # @param $2 true 表示重新生成页面上传
 
 ### 先把修改的文件推上去
+git status
 git add .
 comment=""
 if [[ -n "$1" ]]; then
@@ -19,6 +20,7 @@ git push github dev:dev -v
 
 echo "start push html."
 ### 把生成的网页推上去
+git status
 if [[ $2 == true ]]; then 
     rm -rf public
     hugo  >/dev/null 2>&1
