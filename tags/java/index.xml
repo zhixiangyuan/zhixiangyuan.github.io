@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on Yuanzx Blog</title>
+    <title>java on Yuanzx Blog</title>
     <link>https://zhixiangyuan.github.io/tags/java/</link>
-    <description>Recent content in Java on Yuanzx Blog</description>
+    <description>Recent content in java on Yuanzx Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 16 Nov 2019 22:02:48 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 26 Nov 2019 11:33:07 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>WeakReference 的使用场景</title>
+      <link>https://zhixiangyuan.github.io/2019/11/26/weakreference-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</link>
+      <pubDate>Tue, 26 Nov 2019 11:33:07 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/26/weakreference-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/</guid>
+      <description>WeakReference 所指的便是弱引用，它的作用便是能够让你获取到引用到对象，但是当弱引用引用的对象没有强引用引用时，那么便可以被虚拟机回收。这个类可以用在下面</description>
+    </item>
     
     <item>
       <title>如何在 Maven 打包的时候设置主类</title>
