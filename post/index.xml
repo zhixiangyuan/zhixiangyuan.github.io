@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 28 Nov 2019 14:54:19 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 Nov 2019 16:48:50 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java 中的 WeakReference 和 SoftReference</title>
+      <link>https://zhixiangyuan.github.io/2019/11/28/java-%E4%B8%AD%E7%9A%84-weakreference-%E5%92%8C-softreference/</link>
+      <pubDate>Thu, 28 Nov 2019 16:48:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/11/28/java-%E4%B8%AD%E7%9A%84-weakreference-%E5%92%8C-softreference/</guid>
+      <description>1 WeakReference 当一个对象没有被强引用时，只有 WeakReference，那么在下一次 GC 时会被回收。 1 2 3 4 5 6 7 8 9 10 public static void main(String[] args) { Object referent = new Object(); WeakReference&amp;lt;Object&amp;gt; weakReference = new WeakReference&amp;lt;&amp;gt;(referent);</description>
+    </item>
     
     <item>
       <title>ScheduledThreadPoolExecutor 的实现原理</title>
