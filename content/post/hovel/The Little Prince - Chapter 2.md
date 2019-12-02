@@ -270,12 +270,50 @@ To those who understand life, that would have given a much greater air of truth 
 
 If I try to describe him here, it is to make sure that I shall not forget him. To forget a friend is sad. Not every one has had a friend. And if I forget him, I may become like the grown-ups who are no longer interested in anything but figures...
 
+```
+词汇：
+    1. make sure 确保
+语法：
+    1. It is to 不定式表目的，这是为了...
+```
+
 It is for that purpose, again, that I have bought a box of paints and some pencils. It is hard to take up drawing again at my age, when I have never made any pictures except those of the boa constrictor from the outside and the boa constrictor from the inside, since I was six. I shall certainly try to make my portraits as true to life as possible.
+
+```
+词汇：
+    1. portraits n. 肖像
+    2. true to life 逼真
+    3. as ... as possible 尽可能地
+    4. take up 开始
+```
 
 But I am not at all sure of success. One drawing goes along all right, and another has no resemblance to its subject. I make some errors, too, in the little prince's height: in one place he is too tall and in another too short.
 
+```
+词汇：
+    1. go along 进行
+语法：
+    1. have resemblance to sth 与某物相似，这里加了 no 表示不像
+```
+
 And I feel some doubts about the color of his costume. So I fumble（摸索） along as best I can, now good, now bad, and I hope generally fair-to-middling. In certain more important details I shall make mistakes, also.
 
+```
+词汇：
+    1. costume n. 服装
+    2. fumble v. 摸索
+    3. fumble along 摸索前进，指画画过程
+    4. fair-to-middling 差强人意
+    5. generally adv. 通常
+```
+
 But that is something that will not be my fault. My friend never explained anything to me. He thought, perhaps, that I was like himself. But I, alas（哎）, do not know how to see sheep through the walls of boxes.
+
+```
+词汇：
+    1. explained v. 解释，explain 的过去式以及过去分词
+    2. thought v. 思考，认为，think 的过去式和过去分词
+    3. through prep. 穿过
+```
 
 Perhaps I am a little like the grown-ups. I have had to grow old.
