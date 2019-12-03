@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-12-02T10:10:05+08:00" />
+<meta property="og:updated_time" content="2019-12-03T07:27:27+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-bitmaps/">Redis 中的 Bitmaps</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-10-10 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 存储 bitmap 的数据结构 其实就是普通的 string，只不过可以通过 bitmap 来操作二进制位为 0 或 1，比如说下面这个例子 1 2 3 4 5 6 7 8 # 先设置一个键值对 $redis-cli&gt;set
+    </div>
+    <div class="read-more">
+      <a href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-bitmaps/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/10/10/redis-%E4%B8%AD%E7%9A%84-pipeline/">Redis 中的 Pipeline</a></h1>
@@ -213,25 +234,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/10/08/leetcode-701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/07/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/">责任链模式</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-07 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      当接收到一个请求时，可能存在多种解析方式，但是只有一种解析方式能够满足，这个时候我们可以将这些解析方式组织成责任链的模式，让请求在责任链中传
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/07/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
