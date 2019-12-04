@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 04 Dec 2019 08:11:14 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 Dec 2019 14:14:09 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何查看文本文件的编码格式</title>
+      <link>https://zhixiangyuan.github.io/2019/12/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Wed, 04 Dec 2019 14:14:09 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</guid>
+      <description>通过查看文本文件的前两个字节就可以知道该文件是什么编码 1 2 3 4 前两个字节 编码格式 0xFFFE Unicode 0xFEFF Unicode big endian 0xEFBB UTF-8</description>
+    </item>
     
     <item>
       <title>The Little Prince - Chapter 5</title>

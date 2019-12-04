@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 16 Nov 2019 09:45:12 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 04 Dec 2019 14:14:09 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何查看文本文件的编码格式</title>
+      <link>https://zhixiangyuan.github.io/2019/12/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Wed, 04 Dec 2019 14:14:09 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/</guid>
+      <description>通过查看文本文件的前两个字节就可以知道该文件是什么编码 1 2 3 4 前两个字节 编码格式 0xFFFE Unicode 0xFEFF Unicode big endian 0xEFBB UTF-8</description>
+    </item>
     
     <item>
       <title>解决 OBS 无法录制 Soundflower 的问题</title>
