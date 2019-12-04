@@ -13,6 +13,8 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
+>本文基于 jdk 1.8
+
 直接看取消的函数实现
 
 ```java
