@@ -141,6 +141,8 @@ And when he watered the flower for the last time, and prepared to place her unde
 
 "I have been silly," she said to him, at last. "I ask your forgiveness. Try to be happy..." He was surprised by this absence of reproaches（责备）. He stood there all bewildered, the glass globe held arrested in mid-air. He did not understand this quiet sweetness. 
 
+![](/hub/2019/December/7.jpg)
+
 "Of course I love you," the flower said to him. "It is my fault that you have not known it all the while. That is of no importance. But you-- you have been just as foolish as I. Try to be happy... let the glass globe be. I don't want it any more."
 
 "But the wind--"
