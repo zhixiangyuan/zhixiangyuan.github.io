@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-12-04T14:14:09+08:00" />
+<meta property="og:updated_time" content="2019-12-05T10:46:36+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -118,90 +118,6 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/24/%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%B6%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">删除数据库时报错的解决方案</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-24 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      今天删除数据库的时候出现了一个诡异的报错，报错如下所示 1 1010 - Error dropping database (can&#39;t rmdir &#39;./apolloportaldb&#39;, errno: 39) 网上查了一下，解决方案是直接去手动删除文件夹中的内容，我是 docker 启动
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/24/%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%B6%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/22/%E5%A6%82%E4%BD%95%E5%85%B3%E9%97%AD-logback-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%97%A5%E5%BF%97/">如何关闭 Logback 的初始化日志</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-22 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      logback 版本 1.1.1 先看解决方案 1 2 3 4 5 6 7 8 9 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;configuration&gt; ... &lt;!-- 关闭 logback 自身的初始化日志 --&gt; &lt;!-- 使用 NopStatusListener 或 StatusListenerAsList 均可以达到效果--&gt; &lt;!-- &lt;statusListener class=&#34;ch.qos.logback.core.status.NopStatusListener&#34;/&gt;--&gt; &lt;statusListener class=&#34;ch.qos.logback.core.status.StatusListenerAsList&#34;/&gt; ... &lt;/configuration&gt; 1 为什么加上一
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/22/%E5%A6%82%E4%BD%95%E5%85%B3%E9%97%AD-logback-%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%97%A5%E5%BF%97/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_linger-%E9%80%89%E9%A1%B9/">TCP 中的 SO_LINGER 选项</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-19 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      SO_LINGER 参数的作用就是改变 close 的默认行为，SO_LINGER 参数在 Linux 系统中就是一个 linger 结构体，代码如下 1 2 3 4 struct linger { int l_onoff; /* linger active */ int l_linger; /* how many seconds to linger for */ };
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_linger-%E9%80%89%E9%A1%B9/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_reuseaddr-%E9%80%89%E9%A1%B9/">TCP 中的 SO_REUSEADDR 选项</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-19 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 地址重用 SO_REUSEADDR 选项的作用就像它的名字一样，它是用来使得地址能够重用的。比如说我的 ip 是 192.168.3.9，那么如果没有设置这个选项，那么当我
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_reuseaddr-%E9%80%89%E9%A1%B9/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/11/18/%E5%85%B3%E4%BA%8E-tcp-%E5%8D%8A%E8%BF%9E%E6%8E%A5%E9%98%9F%E5%88%97%E4%B8%8E%E5%85%A8%E8%BF%9E%E6%8E%A5%E9%98%9F%E5%88%97/">关于 TCP 半连接队列与全连接队列</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2019-11-18 </span>
@@ -238,6 +154,90 @@
     </div>
     <div class="read-more">
       <a href="/2019/11/17/shell-%E4%B8%AD%E7%9A%84-%E5%92%8C/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/17/tcp-11-%E7%A7%8D%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81/">TCP 11 种状态变迁</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-17 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 CLOSED CLOSED 状态是一个假想的状态，它处于 TCP 连接还未开始建立或者已经释放掉的状态。因此无法通过 netstat 或者 lsof 看到。 从 CLOSED 状态转换为其他状态有两种可能 一种是服
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/17/tcp-11-%E7%A7%8D%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/17/tcp-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/">TCP 三次握手详解</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-17 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 三次握手数据包交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发出 SYN 数据包给服务端，同时初始化一个序列号 X，发出数
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/17/tcp-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/">TCP 四次挥手详解</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-17 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/">如何在 Maven 打包的时候设置主类</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-16 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 普通项目 在 maven 中配置以下插件即可 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;build&gt; &lt;plugins&gt; ... &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;configuration&gt; &lt;archive&gt; &lt;manifest&gt; &lt;addClasspath&gt;true&lt;/addClasspath&gt; &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt; &lt;mainClass&gt;&lt;$mainClass&gt;&lt;/mainClass&gt; &lt;/manifest&gt; &lt;/archive&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 原理便是在打包的时候，向 MANIFEST.MF 文件中
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/16/%E5%A6%82%E4%BD%95%E5%9C%A8-maven-%E6%89%93%E5%8C%85%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%BE%E7%BD%AE%E4%B8%BB%E7%B1%BB/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

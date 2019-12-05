@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-12-04T14:14:09+08:00" />
+<meta property="og:updated_time" content="2019-12-05T10:46:36+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -118,6 +118,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/12/05/%E5%A4%A7%E5%B0%8F%E5%86%99%E5%AD%97%E6%AF%8D%E8%BD%AC%E6%8D%A2%E6%8A%80%E5%B7%A7/">大小写字母转换技巧</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-12-05 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 /** * 小写转大写 * * @param c 小写字母 * @return 大写字母 */ public static char upper(char c) { return (char) (c &amp; 0xdf); } /** * 大写转小写 * * @param
+    </div>
+    <div class="read-more">
+      <a href="/2019/12/05/%E5%A4%A7%E5%B0%8F%E5%86%99%E5%AD%97%E6%AF%8D%E8%BD%AC%E6%8D%A2%E6%8A%80%E5%B7%A7/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/12/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/">如何查看文本文件的编码格式</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2019-12-04 </span>
@@ -133,27 +154,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/12/04/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/04/the-little-prince-chapter-5/">The Little Prince - Chapter 5</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-12-04 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Then one morning, exactly at sunrise, she suddenly showed herself. And, after working with all this painstaking precision, she yawned and said: &ldquo;Ah! I am scarcely awake. I beg that you will excuse me. My petals are still all disarranged&hellip;&rdquo; 1 2 3 4 5 6 1. sunrise n. 日出 2. painstaking adj. 煞费苦心的 3. precision n. 精度 4. yawned v. 打哈欠
-    </div>
-    <div class="read-more">
-      <a href="/2019/12/04/the-little-prince-chapter-5/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -181,9 +181,9 @@
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/03/the-little-prince-chapter-4/">The Little Prince - Chapter 4</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/11/28/java-%E4%B8%AD%E7%9A%84-weakreference-%E5%92%8C-softreference/">Java 中的 WeakReference 和 SoftReference</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-03 </span>
+      <span class="post-time"> 2019-11-28 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -192,19 +192,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      On the fifth day&ndash; again, as always, it was thanks to the sheep&ndash; the secret of the little prince&rsquo;s life was revealed to me. Abruptly, without anything to lead up to it, and as if the question had been born of long and silent meditation on his problem, he demanded: &ldquo;A sheep&ndash; if it eats little bushes, does it eat flowers, too?&rdquo; 1 2 1. thanks to 多亏，
+      1 WeakReference 当一个对象没有被强引用时，只有 WeakReference，那么在下一次 GC 时会被回收。 1 2 3 4 5 6 7 8 9 10 public static void main(String[] args) { Object referent = new Object(); WeakReference&lt;Object&gt; weakReference = new WeakReference&lt;&gt;(referent);
     </div>
     <div class="read-more">
-      <a href="/2019/12/03/the-little-prince-chapter-4/" class="read-more-link">阅读更多</a>
+      <a href="/2019/11/28/java-%E4%B8%AD%E7%9A%84-weakreference-%E5%92%8C-softreference/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/02/the-little-prince-chapter-3/">The Little Prince - Chapter 3</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/11/28/scheduledthreadpoolexecutor-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">ScheduledThreadPoolExecutor 的实现原理</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-02 </span>
+      <span class="post-time"> 2019-11-28 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -213,19 +213,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      As each day passed I would learn, in our talk, something about the little prince&rsquo;s planet, his departure from it, his journey. The information would come very slowly, as it might chance to fall from his thoughts. It was in this way that I heard, on the third day, about the catastrophe of the baobabs. 1 2 3 4 5 6 7 词汇： 1. chance v. 偶然
+      1 如何实现定时的效果 定时效果实现的关键在 ScheduledFutureTask 的 public void run() 方法，下面是该方法的实现 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 public void run() { // 判断是否是
     </div>
     <div class="read-more">
-      <a href="/2019/12/02/the-little-prince-chapter-3/" class="read-more-link">阅读更多</a>
+      <a href="/2019/11/28/scheduledthreadpoolexecutor-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/01/the-little-prince-chapter-2/">The Little Prince - Chapter 2</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/11/26/weakreference-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/">WeakReference 的使用场景</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-01 </span>
+      <span class="post-time"> 2019-11-26 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -234,10 +234,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      It took me a long time to learn where he came from. The little prince, who asked me so many questions, never seemed to hear the ones I asked him. It was from words dropped by chance that, little by little, everything was revealed to me. 1 2 3 4 5 6 7 8 词汇： 1. reveal v. 显露 语法： 1. 这里的 drop
+      WeakReference 所指的便是弱引用，它的作用便是能够让你获取到引用到对象，但是当弱引用引用的对象没有强引用引用时，那么便可以被虚拟机回收。这个类可以用在下面
     </div>
     <div class="read-more">
-      <a href="/2019/12/01/the-little-prince-chapter-2/" class="read-more-link">阅读更多</a>
+      <a href="/2019/11/26/weakreference-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
