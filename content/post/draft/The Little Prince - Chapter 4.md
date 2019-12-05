@@ -11,6 +11,7 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
+draft: true
 ---
 
 On the fifth day-- again, as always, it was thanks to the sheep-- the secret of the little prince's life was revealed to me. Abruptly, without anything to lead up to it, and as if the question had been born of long and silent meditation on his problem, he demanded: "A sheep-- if it eats little bushes, does it eat flowers, too?"

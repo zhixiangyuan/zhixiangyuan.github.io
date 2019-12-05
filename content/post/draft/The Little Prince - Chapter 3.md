@@ -11,6 +11,7 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
+draft: true
 ---
 
 As each day passed I would learn, in our talk, something about the little prince's planet, his departure from it, his journey. The information would come very slowly, as it might chance to fall from his thoughts. It was in this way that I heard, on the third day, about the catastrophe of the baobabs.

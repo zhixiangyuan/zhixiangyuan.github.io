@@ -11,6 +11,7 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
+draft: true
 ---
 
 Once when I was six years old I saw a magnificent picture in a book, called True Stories from Nature, about the primeval forest. It was a picture of a boa constrictor in the act of swallowing an animal. Here is a copy of the drawing. 
