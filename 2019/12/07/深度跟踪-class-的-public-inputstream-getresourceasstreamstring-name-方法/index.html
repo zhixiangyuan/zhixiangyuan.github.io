@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="本日志基于 openjdk8 1 public final class Class 我们从这个方法开始 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public InputStream getResourceAsStream(String name) { // 这个方法见 1.1 解析 // 这里假如传入的 name 为 /Web.xml" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/12/07/%E6%B7%B1%E5%BA%A6%E8%B7%9F%E8%B8%AA-class-%E7%9A%84-public-inputstream-getresourceasstreamstring-name-%E6%96%B9%E6%B3%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法" />
+<meta property="og:description" content="本日志基于 openjdk8 1 public final class Class 我们从这个方法开始 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public InputStream getResourceAsStream(String name) { // 这个方法见 1.1 解析 // 这里假如传入的 name 为 /Web.xml" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/12/07/%E6%B7%B1%E5%BA%A6%E8%B7%9F%E8%B8%AA-class-%E7%9A%84-public-inputstream-getresourceasstreamstring-name-%E6%96%B9%E6%B3%95/" />
+<meta property="article:published_time" content="2019-12-07T06:31:41+08:00" />
+<meta property="article:modified_time" content="2019-12-07T06:31:41+08:00" />
+<meta itemprop="name" content="深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法">
+<meta itemprop="description" content="本日志基于 openjdk8 1 public final class Class 我们从这个方法开始 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public InputStream getResourceAsStream(String name) { // 这个方法见 1.1 解析 // 这里假如传入的 name 为 /Web.xml">
+
+
+<meta itemprop="datePublished" content="2019-12-07T06:31:41&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-07T06:31:41&#43;08:00" />
+<meta itemprop="wordCount" content="3151">
+
+
+
+<meta itemprop="keywords" content="java," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法"/>
+<meta name="twitter:description" content="本日志基于 openjdk8 1 public final class Class 我们从这个方法开始 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public InputStream getResourceAsStream(String name) { // 这个方法见 1.1 解析 // 这里假如传入的 name 为 /Web.xml"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-07 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-public-final-class-class-t">1 public final class Class<T></a>
+<ul>
+<li><a href="#1-1-class-private-string-resolvename-string-name">1.1 Class / private String resolveName(String name)</a></li>
+<li><a href="#1-2-class-public-native-boolean-isarray">1.2 Class / public native boolean isArray()</a></li>
+<li><a href="#1-3-class-public-native-class-getcomponenttype">1.3 Class / public native Class&lt;?&gt; getComponentType()</a></li>
+<li><a href="#1-4-class-public-string-getname">1.4 Class / public String getName()</a></li>
+<li><a href="#1-5-class-private-native-string-getname0">1.5 Class / private native String getName0()</a></li>
+<li><a href="#1-6-class-classloader-getclassloader0">1.6 Class / ClassLoader getClassLoader0()</a></li>
+</ul></li>
+<li><a href="#2-public-class-urlclassloader-extends-secureclassloader-implements-closeable">2 public class URLClassLoader extends SecureClassLoader implements Closeable</a>
+<ul>
+<li><a href="#2-1-public-inputstream-getresourceasstream-string-name">2.1 public InputStream getResourceAsStream(String name)</a></li>
+</ul></li>
+<li><a href="#3-public-abstract-class-classloader">3 public abstract class ClassLoader</a>
+<ul>
+<li><a href="#3-1-public-url-getresource-string-name">3.1 public URL getResource(String name)</a></li>
+<li><a href="#3-2-private-static-url-getbootstrapresource-string-name">3.2 private static URL getBootstrapResource(String name)</a></li>
+<li><a href="#3-3-static-urlclasspath-getbootstrapclasspath">3.3 static URLClassPath getBootstrapClassPath()</a></li>
+</ul></li>
+<li><a href="#4-public-class-launcher">4 public class Launcher</a>
+<ul>
+<li><a href="#4-1-public-static-urlclasspath-getbootstrapclasspath">4.1 public static URLClassPath getBootstrapClassPath()</a></li>
+</ul></li>
+<li><a href="#5-public-class-urlclasspath">5 public class URLClassPath</a>
+<ul>
+<li><a href="#5-1-public-resource-getresource-string-name">5.1 public Resource getResource(String name)</a></li>
+<li><a href="#5-2-public-resource-getresource-string-name-boolean-check">5.2 public Resource getResource(String name, boolean check)</a></li>
+<li><a href="#5-3-private-synchronized-int-getlookupcache-string-name">5.3 private synchronized int[] getLookupCache(String name)</a></li>
+<li><a href="#5-4-private-synchronized-loader-getnextloader-int-cache-int-index">5.4 private synchronized Loader getNextLoader(int[] cache, int index)</a></li>
+<li><a href="#5-5-private-synchronized-loader-getloader-int-index">5.5 private synchronized Loader getLoader(int index)</a></li>
+<li><a href="#5-6-private-loader-getloader-final-url-url-throws-ioexception">5.6 private Loader getLoader(final URL url) throws IOException</a></li>
+<li><a href="#5-7-private-void-push-url-us">5.7 private void push(URL[] us)</a></li>
+<li><a href="#5-8-private-synchronized-void-validatelookupcache-int-index-string-urlnofragstring">5.8 private synchronized void validateLookupCache(int index, String urlNoFragString)</a></li>
+</ul></li>
+<li><a href="#6-public-class-urlutil">6 public class URLUtil</a>
+<ul>
+<li><a href="#6-1-public-static-string-urlnofragstring-url-url">6.1 public static String urlNoFragString(URL url)</a></li>
+</ul></li>
+<li><a href="#7-static-class-jarloader-extends-loader">7 static class JarLoader extends Loader</a>
+<ul>
+<li><a href="#7-1-resource-getresource-final-string-name-boolean-check">7.1 Resource getResource(final String name, boolean check)</a></li>
+</ul></li>
+<li><a href="#8-public-class-metaindex">8 public class MetaIndex</a>
+<ul>
+<li><a href="#8-1-public-boolean-maycontain-string-entry">8.1 public boolean mayContain(String entry)</a></li>
+</ul></li>
+<li><a href="#参考文章">参考文章</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<blockquote>
+<p>本日志基于 openjdk8</p>
+</blockquote>
+
+<h1 id="1-public-final-class-class-t">1 public final class Class<T></h1>
+
+<p>我们从这个方法开始</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">InputStream</span> <span class="n">getResourceAsStream</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 这个方法见 1.1 解析
+</span><span class="c1"></span>        <span class="c1">// 这里假如传入的 name 为 /Web.xml，那么解析出来为 Web.xml，仅仅去掉了 / 就出来了
+</span><span class="c1"></span>        <span class="c1">// 如果这里传入的是 Web.xml，那么就会去寻找是哪个类调用的这个方法，比如说 String 调用的
+</span><span class="c1"></span>        <span class="c1">// String.class.getResourceAsStream(&#34;Web.xml&#34;)，那么他就会返回 java/lang/Web.xml，因为
+</span><span class="c1"></span>        <span class="c1">// String 在 java.lang 包下
+</span><span class="c1"></span>        <span class="n">name</span> <span class="o">=</span> <span class="n">resolveName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="c1">// getClassLoader0 见 1.6
+</span><span class="c1"></span>        <span class="n">ClassLoader</span> <span class="nf">cl</span> <span class="o">=</span> <span class="n">getClassLoader0</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cl</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// cl 为 null，那么说明调用的这个类是一个系统中的类，
+</span><span class="c1"></span>            <span class="c1">// todo 暂时不太懂这里
+</span><span class="c1"></span>            <span class="c1">// A system class.
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">ClassLoader</span><span class="p">.</span><span class="na">getSystemResourceAsStream</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// 见 2.1 
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">cl</span><span class="p">.</span><span class="na">getResourceAsStream</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-1-class-private-string-resolvename-string-name">1.1 Class / private String resolveName(String name)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="nf">String</span> <span class="n">resolveName</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">name</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 判断 name 是否以 / 开头
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">name</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+            <span class="c1">// isArray 见 1.2，getComponentType 见 1.3
+</span><span class="c1"></span>            <span class="c1">// 这里 c 初始化为 this，如果 c 是数组，那么就获取数组中存储的元素的类型
+</span><span class="c1"></span>            <span class="c1">// 这里的功能其实就是递归获取数组中的类的类型
+</span><span class="c1"></span>            <span class="k">while</span> <span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">isArray</span><span class="p">())</span> <span class="p">{</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="na">getComponentType</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="c1">// 获取包名，详见 1.4
+</span><span class="c1"></span>            <span class="n">String</span> <span class="nf">baseName</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+            <span class="c1">// 这一步就是获取包的最后一个 . 的位置
+</span><span class="c1"></span>            <span class="c1">// 比如说 java.lang.String 就是获取 String 后面的 . 的位置，方便截取的时候
+</span><span class="c1"></span>            <span class="c1">// 截取出 java.lang
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="nf">index</span> <span class="o">=</span> <span class="n">baseName</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="sc">&#39;.&#39;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// 接着上面的例子，这里的 baseName.substring(0, index) 就是将 java.lang.String
+</span><span class="c1"></span>                <span class="c1">// 截取成 java.lang，然后替换成 java/lang，最后拼接上我们传进来的 name
+</span><span class="c1"></span>                <span class="n">name</span> <span class="o">=</span> <span class="n">baseName</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="n">index</span><span class="p">).</span><span class="na">replace</span><span class="p">(</span><span class="sc">&#39;.&#39;</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span><span class="p">)</span>
+                    <span class="o">+</span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">name</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 如果以 / 开头则去掉 / 然后返回
+</span><span class="c1"></span>            <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">1</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-2-class-public-native-boolean-isarray">1.2 Class / public native boolean isArray()</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 确定此类对象是否表示数组类
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">native</span> <span class="kt">boolean</span> <span class="nf">isArray</span><span class="p">();</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-3-class-public-native-class-getcomponenttype">1.3 Class / public native Class&lt;?&gt; getComponentType()</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 如果是数组类，那么则返回 componentType 
+</span><span class="c1"></span>    <span class="c1">// 其实 componentType 指的是数组中数组元素的类型，如果不是数组类型，那么 componentType 就是 null
+</span><span class="c1"></span>    <span class="c1">// 比如说: 
+</span><span class="c1"></span>    <span class="c1">//     int[].class.getComponentType() 的结果是 int
+</span><span class="c1"></span>    <span class="c1">//     int.class.getComponentType() 的结果是 null
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">native</span> <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">getComponentType</span><span class="p">();</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-4-class-public-string-getname">1.4 Class / public String getName()</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">String</span> <span class="n">getName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 这是 name 的声明 private transient String name;
+</span><span class="c1"></span>        <span class="c1">// 这个 name 其实就是类的全类名
+</span><span class="c1"></span>        <span class="c1">// 比如说：
+</span><span class="c1"></span>        <span class="c1">//    String.class.name 就是 java.lang.String 
+</span><span class="c1"></span>        <span class="c1">//    int.class.name 是 null，他不属于任何包
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="p">;</span>
+        <span class="c1">// 第一次调用这个方法的时候 name 是 null
+</span><span class="c1"></span>        <span class="c1">// 去调用 getName0 获取全类名，然后放到
+</span><span class="c1"></span>        <span class="c1">// this.name 里面缓存起来
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="c1">// getName0 见 1.5 
+</span><span class="c1"></span>            <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span> <span class="o">=</span> <span class="n">getName0</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-5-class-private-native-string-getname0">1.5 Class / private native String getName0()</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 这里的 getName0 就是获取类的全类名
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">native</span> <span class="n">String</span> <span class="nf">getName0</span><span class="p">();</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="1-6-class-classloader-getclassloader0">1.6 Class / ClassLoader getClassLoader0()</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 获取当前类的类加载器
+</span><span class="c1"></span>    <span class="n">ClassLoader</span> <span class="nf">getClassLoader0</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">classLoader</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="2-public-class-urlclassloader-extends-secureclassloader-implements-closeable">2 public class URLClassLoader extends SecureClassLoader implements Closeable</h1>
+
+<p>先看一下 URLClassLoader 的继承关系</p>
+
+<p><img src="/hub/2019/December/8.png" alt="URLClassLoader 的继承关系" /></p>
+
+<h2 id="2-1-public-inputstream-getresourceasstream-string-name">2.1 public InputStream getResourceAsStream(String name)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">InputStream</span> <span class="n">getResourceAsStream</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 见 3.1
+</span><span class="c1"></span>        <span class="c1">// 在整个 class path 下面寻找一个叫 name 的文件
+</span><span class="c1"></span>        <span class="n">URL</span> <span class="nf">url</span> <span class="o">=</span> <span class="n">getResource</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">url</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// 根据 url 的类型去创建一个 URLConnection 的类型
+</span><span class="c1"></span>            <span class="c1">// URLConnection 有很多种，比如 FileURLConnection、JarURLConnection 之类的
+</span><span class="c1"></span>            <span class="n">URLConnection</span> <span class="nf">urlc</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="na">openConnection</span><span class="p">();</span>
+            <span class="c1">// 从 urlc 获取流，到这里流就拿到了，后面就不解析了
+</span><span class="c1"></span>            <span class="n">InputStream</span> <span class="nf">is</span> <span class="o">=</span> <span class="n">urlc</span><span class="p">.</span><span class="na">getInputStream</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">urlc</span> <span class="nf">instanceof</span> <span class="n">JarURLConnection</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">JarURLConnection</span> <span class="nf">juc</span> <span class="o">=</span> <span class="p">(</span><span class="n">JarURLConnection</span><span class="p">)</span><span class="n">urlc</span><span class="p">;</span>
+                <span class="n">JarFile</span> <span class="nf">jar</span> <span class="o">=</span> <span class="n">juc</span><span class="p">.</span><span class="na">getJarFile</span><span class="p">();</span>
+                <span class="kd">synchronized</span> <span class="p">(</span><span class="n">closeables</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">closeables</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">jar</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="n">closeables</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">jar</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">urlc</span> <span class="nf">instanceof</span> <span class="n">sun</span><span class="p">.</span><span class="na">net</span><span class="p">.</span><span class="na">www</span><span class="p">.</span><span class="na">protocol</span><span class="p">.</span><span class="na">file</span><span class="p">.</span><span class="na">FileURLConnection</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">synchronized</span> <span class="p">(</span><span class="n">closeables</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">closeables</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">is</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">is</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="3-public-abstract-class-classloader">3 public abstract class ClassLoader</h1>
+
+<h2 id="3-1-public-url-getresource-string-name">3.1 public URL getResource(String name)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">URL</span> <span class="n">getResource</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">URL</span> <span class="nf">url</span><span class="p">;</span>
+        <span class="c1">// 这里便体现了双亲委派模型
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 如果父加载器不为 null，那么则让父加载器去加载
+</span><span class="c1"></span>            <span class="c1">// parent 的声明 private final ClassLoader parent;
+</span><span class="c1"></span>            <span class="n">url</span> <span class="o">=</span> <span class="n">parent</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 当没有父加载器则用这个方法加载
+</span><span class="c1"></span>            <span class="n">url</span> <span class="o">=</span> <span class="n">getBootstrapResource</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">url</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 其实看过了上面的 getBootstrapResource() 就会发现这里面是一样的逻辑
+</span><span class="c1"></span>            <span class="c1">// 只是如果父加载器中没有找到的话，那么子加载器也需要找找，所以就进入
+</span><span class="c1"></span>            <span class="c1">// 这个方法了，内部实现大致和 getBootstrapResource() 相同
+</span><span class="c1"></span>            <span class="n">url</span> <span class="o">=</span> <span class="n">findResource</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">url</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-2-private-static-url-getbootstrapresource-string-name">3.2 private static URL getBootstrapResource(String name)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="nf">static</span> <span class="n">URL</span> <span class="nf">getBootstrapResource</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 见 3.3 
+</span><span class="c1"></span>        <span class="n">URLClassPath</span> <span class="nf">ucp</span> <span class="o">=</span> <span class="n">getBootstrapClassPath</span><span class="p">();</span>
+        <span class="c1">// 见 5.1 
+</span><span class="c1"></span>        <span class="n">Resource</span> <span class="nf">res</span> <span class="o">=</span> <span class="n">ucp</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">res</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">res</span><span class="p">.</span><span class="na">getURL</span><span class="p">()</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-3-static-urlclasspath-getbootstrapclasspath">3.3 static URLClassPath getBootstrapClassPath()</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">URLClassPath</span> <span class="n">getBootstrapClassPath</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 见 4.1 
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">sun</span><span class="p">.</span><span class="na">misc</span><span class="p">.</span><span class="na">Launcher</span><span class="p">.</span><span class="na">getBootstrapClassPath</span><span class="p">();</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="4-public-class-launcher">4 public class Launcher</h1>
+
+<h2 id="4-1-public-static-urlclasspath-getbootstrapclasspath">4.1 public static URLClassPath getBootstrapClassPath()</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">static</span> <span class="n">URLClassPath</span> <span class="nf">getBootstrapClassPath</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// BootClassPathHolder 是 Launcher 的内部类
+</span><span class="c1"></span>        <span class="c1">// 它的定义是 private static class BootClassPathHolder
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">BootClassPathHolder</span><span class="p">.</span><span class="na">bcp</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="5-public-class-urlclasspath">5 public class URLClassPath</h1>
+
+<h2 id="5-1-public-resource-getresource-string-name">5.1 public Resource getResource(String name)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">Resource</span> <span class="n">getResource</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 见 5.2 
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">getResource</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-2-public-resource-getresource-string-name-boolean-check">5.2 public Resource getResource(String name, boolean check)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">Resource</span> <span class="n">getResource</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">,</span> <span class="kt">boolean</span> <span class="nf">check</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">DEBUG</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;URLClassPath.getResource(\&#34;&#34;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&#34;\&#34;)&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">Loader</span> <span class="nf">loader</span><span class="p">;</span>
+        <span class="c1">// 见 5.3 
+</span><span class="c1"></span>        <span class="kt">int</span><span class="p">[]</span> <span class="nf">cache</span> <span class="o">=</span> <span class="n">getLookupCache</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="c1">// 见 5.4 
+</span><span class="c1"></span>        <span class="c1">// 这里所做的比较简单，其实就是找文件的加载器（Loader），然后通过加载器
+</span><span class="c1"></span>        <span class="c1">// 去判断这个文件里面比如说 jar 里面是否有我们需要的资源，如果有的话则返回
+</span><span class="c1"></span>        <span class="c1">// 没有就返回 null
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span> <span class="p">(</span><span class="n">loader</span> <span class="o">=</span> <span class="n">getNextLoader</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 见 7.1
+</span><span class="c1"></span>            <span class="n">Resource</span> <span class="nf">res</span> <span class="o">=</span> <span class="n">loader</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">check</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-3-private-synchronized-int-getlookupcache-string-name">5.3 private synchronized int[] getLookupCache(String name)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="nf">synchronized</span> <span class="kt">int</span><span class="p">[]</span> <span class="nf">getLookupCache</span><span class="p">(</span><span class="n">String</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// lookupCacheURLs 的声明 private URL[] lookupCacheURLs;
+</span><span class="c1"></span>        <span class="c1">// lookupCacheEnabled 的声明 private static volatile boolean lookupCacheEnabled = &#34;true&#34;.equals(VM.getSavedProperty(&#34;sun.cds.enableSharedLookupCache&#34;));
+</span><span class="c1"></span>        <span class="c1">// 这里就是判断是否有缓存 url，以及缓存功能是否打开，没有缓存
+</span><span class="c1"></span>        <span class="c1">// 或者缓存功能没有打开则直接返回 null
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">lookupCacheURLs</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">!</span><span class="n">lookupCacheEnabled</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span><span class="p">[]</span> <span class="nf">cache</span> <span class="o">=</span> <span class="n">getLookupCacheForClassLoader</span><span class="p">(</span><span class="n">lookupCacheLoader</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cache</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">cache</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="nf">maxindex</span> <span class="o">=</span> <span class="n">cache</span><span class="p">[</span><span class="n">cache</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="p">];</span> <span class="c1">// cache[] is strictly ascending.
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ensureLoaderOpened</span><span class="p">(</span><span class="n">maxindex</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">DEBUG_LOOKUP_CACHE</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Expanded loaders FAILED &#34;</span> <span class="o">+</span>
+                                       <span class="n">loaders</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#34; for maxindex=&#34;</span> <span class="o">+</span> <span class="n">maxindex</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">cache</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-4-private-synchronized-loader-getnextloader-int-cache-int-index">5.4 private synchronized Loader getNextLoader(int[] cache, int index)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="nf">synchronized</span> <span class="n">Loader</span> <span class="nf">getNextLoader</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">cache</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">closed</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">cache</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">cache</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Loader</span> <span class="nf">loader</span> <span class="o">=</span> <span class="n">loaders</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">DEBUG_LOOKUP_CACHE</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;HASCACHE: Loading from : &#34;</span> <span class="o">+</span> <span class="n">cache</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                                       <span class="o">+</span> <span class="s">&#34; = &#34;</span> <span class="o">+</span> <span class="n">loader</span><span class="p">.</span><span class="na">getBaseURL</span><span class="p">());</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="n">loader</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// finished iterating over cache[]
+</span><span class="c1"></span>            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 见 5.5 
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">getLoader</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-5-private-synchronized-loader-getloader-int-index">5.5 private synchronized Loader getLoader(int index)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">     <span class="kd">private</span> <span class="nf">synchronized</span> <span class="n">Loader</span> <span class="nf">getLoader</span><span class="p">(</span><span class="kt">int</span> <span class="nf">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">closed</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+         <span class="c1">// Expand URL search path until the request can be satisfied
+</span><span class="c1"></span>         <span class="c1">// or the URL stack is empty.
+</span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">loaders</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Pop the next URL from the URL stack
+</span><span class="c1"></span>            <span class="n">URL</span> <span class="nf">url</span><span class="p">;</span>
+            <span class="c1">// urls 的声明  Stack&lt;URL&gt; urls = new Stack&lt;URL&gt;();
+</span><span class="c1"></span>            <span class="c1">// 这个存储的就是系统加载的 jar，我的系统里面存的是这个路径
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/classes&#34;
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jfr.jar&#34;
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/charsets.jar&#34;
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jce.jar&#34;
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jsse.jar&#34;
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/sunrsasign.jar&#34;
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/rt.jar&#34;
+</span><span class="c1"></span>            <span class="c1">// &#34;file:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/resources.jar&#34;
+</span><span class="c1"></span>            <span class="kd">synchronized</span> <span class="p">(</span><span class="n">urls</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// urls 为空则返回 null，有则弹一个出来
+</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">urls</span><span class="p">.</span><span class="na">empty</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="c1">// Skip this URL if it already has a Loader. (Loader
+</span><span class="c1"></span>            <span class="c1">// may be null in the case where URL has not been opened
+</span><span class="c1"></span>            <span class="c1">// but is referenced by a JAR index.)
+</span><span class="c1"></span>            <span class="c1">// 见 6.1 
+</span><span class="c1"></span>            <span class="n">String</span> <span class="nf">urlNoFragString</span> <span class="o">=</span> <span class="n">URLUtil</span><span class="p">.</span><span class="na">urlNoFragString</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">lmap</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">urlNoFragString</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// Otherwise, create a new Loader for the URL.
+</span><span class="c1"></span>            <span class="n">Loader</span> <span class="nf">loader</span><span class="p">;</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="c1">// 见 5.6
+</span><span class="c1"></span>                <span class="n">loader</span> <span class="o">=</span> <span class="n">getLoader</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+                <span class="c1">// If the loader defines a local class path then add the
+</span><span class="c1"></span>                <span class="c1">// URLs to the list of URLs to be opened.
+</span><span class="c1"></span>                <span class="c1">// 这里的 getClassPath 会根据 Loader 的不同而不同
+</span><span class="c1"></span>                <span class="c1">// Loader 只有两种，FileLoader 和 JarLoader
+</span><span class="c1"></span>                <span class="n">URL</span><span class="p">[]</span> <span class="nf">urls</span> <span class="o">=</span> <span class="n">loader</span><span class="p">.</span><span class="na">getClassPath</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">urls</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">// 见 5.7
+</span><span class="c1"></span>                    <span class="c1">// urls 推到 this.urls 中
+</span><span class="c1"></span>                    <span class="n">push</span><span class="p">(</span><span class="n">urls</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Silently ignore for now...
+</span><span class="c1"></span>                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">SecurityException</span> <span class="nf">se</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Always silently ignore. The context, if there is one, that
+</span><span class="c1"></span>                <span class="c1">// this URLClassPath was given during construction will never
+</span><span class="c1"></span>                <span class="c1">// have permission to access the URL.
+</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">DEBUG</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Failed to access &#34;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span> <span class="o">+</span> <span class="n">se</span> <span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// Finally, add the Loader to the search path.
+</span><span class="c1"></span>            <span class="c1">// 见 5.8
+</span><span class="c1"></span>            <span class="n">validateLookupCache</span><span class="p">(</span><span class="n">loaders</span><span class="p">.</span><span class="na">size</span><span class="p">(),</span> <span class="n">urlNoFragString</span><span class="p">);</span>
+            <span class="c1">// 将 loader 放入缓存中，下次查询的时候判断如果存在的话则直接跳过
+</span><span class="c1"></span>            <span class="n">loaders</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+            <span class="n">lmap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">urlNoFragString</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">DEBUG_LOOKUP_CACHE</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;NOCACHE: Loading from : &#34;</span> <span class="o">+</span> <span class="n">index</span> <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// 返回结果
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">loaders</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-6-private-loader-getloader-final-url-url-throws-ioexception">5.6 private Loader getLoader(final URL url) throws IOException</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="nf">Loader</span> <span class="n">getLoader</span><span class="p">(</span><span class="kd">final</span> <span class="nf">URL</span> <span class="n">url</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">IOException</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// 关于 java 权限相关的内容见参考文章 1 的内容
+</span><span class="c1"></span>            <span class="c1">// 这里可以简单的认为 run() 中的方法会无条件执行
+</span><span class="c1"></span>            <span class="c1">// 同时 run 中 return 的内容便是 doPrivileged return
+</span><span class="c1"></span>            <span class="c1">// 的内容
+</span><span class="c1"></span>            <span class="k">return</span> <span class="n">java</span><span class="p">.</span><span class="na">security</span><span class="p">.</span><span class="na">AccessController</span><span class="p">.</span><span class="na">doPrivileged</span><span class="p">(</span>
+                <span class="k">new</span> <span class="n">java</span><span class="p">.</span><span class="na">security</span><span class="p">.</span><span class="na">PrivilegedExceptionAction</span><span class="o">&lt;</span><span class="n">Loader</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">public</span> <span class="nf">Loader</span> <span class="n">run</span><span class="p">()</span> <span class="kd">throws</span> <span class="nf">IOException</span> <span class="p">{</span>
+                    <span class="n">String</span> <span class="nf">file</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="na">getFile</span><span class="p">();</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">file</span><span class="p">.</span><span class="na">endsWith</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="s">&#34;file&#34;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="na">getProtocol</span><span class="p">()))</span> <span class="p">{</span>
+                            <span class="k">return</span> <span class="k">new</span> <span class="n">FileLoader</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="k">return</span> <span class="k">new</span> <span class="n">Loader</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="k">new</span> <span class="n">JarLoader</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">jarHandler</span><span class="p">,</span> <span class="n">lmap</span><span class="p">,</span> <span class="n">acc</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span> <span class="n">acc</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">security</span><span class="p">.</span><span class="na">PrivilegedActionException</span> <span class="nf">pae</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="p">(</span><span class="n">IOException</span><span class="p">)</span><span class="n">pae</span><span class="p">.</span><span class="na">getException</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-7-private-void-push-url-us">5.7 private void push(URL[] us)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="nf">void</span> <span class="n">push</span><span class="p">(</span><span class="n">URL</span><span class="p">[]</span> <span class="nf">us</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// us 推到 urls 中
+</span><span class="c1"></span>        <span class="kd">synchronized</span> <span class="p">(</span><span class="n">urls</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">us</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">urls</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">us</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-8-private-synchronized-void-validatelookupcache-int-index-string-urlnofragstring">5.8 private synchronized void validateLookupCache(int index, String urlNoFragString)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="nf">synchronized</span> <span class="kt">void</span> <span class="nf">validateLookupCache</span><span class="p">(</span><span class="kt">int</span> <span class="nf">index</span><span class="p">,</span>
+                                                  <span class="n">String</span> <span class="nf">urlNoFragString</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">lookupCacheURLs</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">lookupCacheEnabled</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">lookupCacheURLs</span><span class="p">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span>
+                <span class="n">urlNoFragString</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span>
+                    <span class="n">URLUtil</span><span class="p">.</span><span class="na">urlNoFragString</span><span class="p">(</span><span class="n">lookupCacheURLs</span><span class="p">[</span><span class="n">index</span><span class="p">])))</span> <span class="p">{</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">DEBUG</span> <span class="o">||</span> <span class="n">DEBUG_LOOKUP_CACHE</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;WARNING: resource lookup cache invalidated &#34;</span>
+                                   <span class="o">+</span> <span class="s">&#34;for lookupCacheLoader at &#34;</span> <span class="o">+</span> <span class="n">index</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">disableAllLookupCaches</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="6-public-class-urlutil">6 public class URLUtil</h1>
+
+<h2 id="6-1-public-static-string-urlnofragstring-url-url">6.1 public static String urlNoFragString(URL url)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// url 转 string
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">static</span> <span class="n">String</span> <span class="nf">urlNoFragString</span><span class="p">(</span><span class="n">URL</span> <span class="nf">url</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">StringBuilder</span> <span class="nf">strForm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="c1">// 从 url 中拿出协议并拼接协议
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">protocol</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="na">getProtocol</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">protocol</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="cm">/* protocol is compared case-insensitive, so convert to lowercase */</span>
+            <span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">();</span>
+            <span class="n">strForm</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">protocol</span><span class="p">);</span>
+            <span class="n">strForm</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&#34;://&#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// 从 url 中拿出 host 并拼接 host
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">host</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="na">getHost</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">host</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="cm">/* host is compared case-insensitive, so convert to lowercase */</span>
+            <span class="n">host</span> <span class="o">=</span> <span class="n">host</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">();</span>
+            <span class="n">strForm</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">host</span><span class="p">);</span>
+            <span class="c1">// 从 url 中拿出端口并拼接端口
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="nf">port</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="na">getPort</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">port</span> <span class="o">==</span> <span class="o">-</span><span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="cm">/* if no port is specificed then use the protocols
+</span><span class="cm">                 * default, if there is one */</span>
+                <span class="n">port</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="na">getDefaultPort</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">port</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">strForm</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&#34;:&#34;</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 从 url 中拿出文件路径并拼接路径
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">file</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="na">getFile</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">strForm</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">strForm</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="7-static-class-jarloader-extends-loader">7 static class JarLoader extends Loader</h1>
+
+<h2 id="7-1-resource-getresource-final-string-name-boolean-check">7.1 Resource getResource(final String name, boolean check)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">Resource</span> <span class="nf">getResource</span><span class="p">(</span><span class="kd">final</span> <span class="nf">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">boolean</span> <span class="nf">check</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">metaIndex</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 见 8.1
+</span><span class="c1"></span>            <span class="c1">// metaIndex 中存放着 jar 中的所有资源
+</span><span class="c1"></span>            <span class="c1">// 如果这里判断不包含
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">metaIndex</span><span class="p">.</span><span class="na">mayContain</span><span class="p">(</span><span class="n">name</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">ensureOpen</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">InternalError</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="kd">final</span> <span class="nf">JarEntry</span> <span class="n">entry</span> <span class="o">=</span> <span class="n">jar</span><span class="p">.</span><span class="na">getJarEntry</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">entry</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">checkResource</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">entry</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">getResource</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">check</span><span class="p">,</span> <span class="n">visited</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="8-public-class-metaindex">8 public class MetaIndex</h1>
+
+<h2 id="8-1-public-boolean-maycontain-string-entry">8.1 public boolean mayContain(String entry)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="nf">boolean</span> <span class="n">mayContain</span><span class="p">(</span><span class="n">String</span> <span class="nf">entry</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Ask non-class file from class only jar returns false
+</span><span class="c1"></span>        <span class="c1">// This check is important to avoid some class only jar
+</span><span class="c1"></span>        <span class="c1">// files such as rt.jar are opened for resource request.
+</span><span class="c1"></span>        <span class="c1">// 如果该 jar 包中只包含 class 文件，而我们要找的 entry
+</span><span class="c1"></span>        <span class="c1">// 不以 .class 结尾，说明该包中没有该资源
+</span><span class="c1"></span>        <span class="k">if</span>  <span class="p">(</span><span class="n">isClassOnlyJar</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">entry</span><span class="p">.</span><span class="na">endsWith</span><span class="p">(</span><span class="s">&#34;.class&#34;</span><span class="p">)){</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// contents 中存放着资源文件的完整路径和包的前缀
+</span><span class="c1"></span>        <span class="n">String</span><span class="p">[]</span> <span class="nf">conts</span> <span class="o">=</span> <span class="n">contents</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">conts</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="n">conts</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="参考文章">参考文章</h1>
+
+<ol>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-javasecurity/index.html">Java 安全模型介绍</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/12/05/%E5%A4%A7%E5%B0%8F%E5%86%99%E5%AD%97%E6%AF%8D%E8%BD%AC%E6%8D%A2%E6%8A%80%E5%B7%A7/">
+            <span class="next-text nav-default">大小写字母转换技巧</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
