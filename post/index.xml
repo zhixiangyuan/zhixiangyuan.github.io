@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 07 Dec 2019 06:31:41 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 Dec 2019 14:25:48 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>乐观锁 VS 悲观锁</title>
+      <link>https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-vs-%E6%82%B2%E8%A7%82%E9%94%81/</link>
+      <pubDate>Mon, 09 Dec 2019 14:25:48 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-vs-%E6%82%B2%E8%A7%82%E9%94%81/</guid>
+      <description>乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。 1 概念 悲观锁的概念：悲观锁认为自己在</description>
+    </item>
     
     <item>
       <title>深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法</title>
