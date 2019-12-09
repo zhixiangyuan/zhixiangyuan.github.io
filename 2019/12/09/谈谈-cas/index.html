@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>乐观锁 VS 悲观锁 - Yuanzx Blog</title>
+  <title>谈谈 CAS - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。 1 概念 悲观锁的概念：悲观锁认为自己在" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="CAS 其实指的就是 sun.misc.Unsafe 类中的一系列 compareAndSwap 方法 例如 compareAndSwapInt 方法 1 2 3 public final native boolean compareAndSwapInt( Object o, long offset, int expected, int x ); 这种方法提供四个参数，分别是需要修改值的对象 o，需要改的值在对" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-vs-%E6%82%B2%E8%A7%82%E9%94%81/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/12/09/%E8%B0%88%E8%B0%88-cas/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="乐观锁 VS 悲观锁" />
-<meta property="og:description" content="乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。 1 概念 悲观锁的概念：悲观锁认为自己在" />
+<meta property="og:title" content="谈谈 CAS" />
+<meta property="og:description" content="CAS 其实指的就是 sun.misc.Unsafe 类中的一系列 compareAndSwap 方法 例如 compareAndSwapInt 方法 1 2 3 public final native boolean compareAndSwapInt( Object o, long offset, int expected, int x ); 这种方法提供四个参数，分别是需要修改值的对象 o，需要改的值在对" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-vs-%E6%82%B2%E8%A7%82%E9%94%81/" />
-<meta property="article:published_time" content="2019-12-09T14:25:48+08:00" />
-<meta property="article:modified_time" content="2019-12-09T14:25:48+08:00" />
-<meta itemprop="name" content="乐观锁 VS 悲观锁">
-<meta itemprop="description" content="乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。 1 概念 悲观锁的概念：悲观锁认为自己在">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/12/09/%E8%B0%88%E8%B0%88-cas/" />
+<meta property="article:published_time" content="2019-12-09T15:04:35+08:00" />
+<meta property="article:modified_time" content="2019-12-09T15:04:35+08:00" />
+<meta itemprop="name" content="谈谈 CAS">
+<meta itemprop="description" content="CAS 其实指的就是 sun.misc.Unsafe 类中的一系列 compareAndSwap 方法 例如 compareAndSwapInt 方法 1 2 3 public final native boolean compareAndSwapInt( Object o, long offset, int expected, int x ); 这种方法提供四个参数，分别是需要修改值的对象 o，需要改的值在对">
 
 
-<meta itemprop="datePublished" content="2019-12-09T14:25:48&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-09T14:25:48&#43;08:00" />
-<meta itemprop="wordCount" content="418">
+<meta itemprop="datePublished" content="2019-12-09T15:04:35&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-09T15:04:35&#43;08:00" />
+<meta itemprop="wordCount" content="543">
 
 
 
 <meta itemprop="keywords" content="java," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="乐观锁 VS 悲观锁"/>
-<meta name="twitter:description" content="乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。 1 概念 悲观锁的概念：悲观锁认为自己在"/>
+<meta name="twitter:title" content="谈谈 CAS"/>
+<meta name="twitter:description" content="CAS 其实指的就是 sun.misc.Unsafe 类中的一系列 compareAndSwap 方法 例如 compareAndSwapInt 方法 1 2 3 public final native boolean compareAndSwapInt( Object o, long offset, int expected, int x ); 这种方法提供四个参数，分别是需要修改值的对象 o，需要改的值在对"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,7 +124,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">乐观锁 VS 悲观锁</h1>
+      <h1 class="post-title">谈谈 CAS</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2019-12-09 </span>
@@ -140,9 +140,12 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#1-概念">1 概念</a></li>
-<li><a href="#2-适合的场景">2 适合的场景</a></li>
-<li><a href="#3-java-中的实现方式">3 Java 中的实现方式</a></li>
+<li><a href="#1-cas-的问题">1 CAS 的问题</a>
+<ul>
+<li><a href="#1-1-aba-问题">1.1 ABA 问题</a></li>
+<li><a href="#1-2-循环时间长开销大">1.2 循环时间长开销大</a></li>
+<li><a href="#1-3-只能保证一个共享变量的原子操作">1.3 只能保证一个共享变量的原子操作</a></li>
+</ul></li>
 <li><a href="#参考文章">参考文章</a></li>
 </ul>
 </nav>
@@ -151,26 +154,40 @@
     <div class="post-content">
       
 
-<p>乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。</p>
+<p>CAS 其实指的就是 sun.misc.Unsafe 类中的一系列 compareAndSwap 方法</p>
 
-<h1 id="1-概念">1 概念</h1>
+<p>例如 compareAndSwapInt 方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">final</span> <span class="kd">native</span> <span class="nf">boolean</span> <span class="n">compareAndSwapInt</span><span class="p">(</span>
+    <span class="n">Object</span> <span class="nf">o</span><span class="p">,</span> <span class="kt">long</span> <span class="nf">offset</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">expected</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">x</span>
+<span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这种方法提供四个参数，分别是需要修改值的对象 o，需要改的值在对象中的偏移量 offset，期望原值 expected，修改之后的值 x</p>
 
-<p>悲观锁的概念：悲观锁认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候会先加锁，确保数据不会被别的线程修改。Java 中，synchronized 关键字和 Lock 的实现类都是悲观锁。</p>
+<p>实现的效果就是内存（这里的内存应该是堆内存）中的值如果是指定的 expected，那么就将值修改为 x，而这个过程是通过 CPU 的 cmpxchg 指令（比较并交换）实现的，是一个原子操作。</p>
 
-<p>乐观锁的概念：乐观锁认为自己在使用数据时不会有可的线程修改数据，所以不会添加锁，只是在更新数据的时候去判断之前有没有别的线程更新了这个数据。如果这个数据没有被更新，当线程将自己修改的数据成功写入。如果数据已经被其他线程更新，则根据不同的实现方式执行不同的操作（例如报错或者自动重试）。</p>
+<p>将来深挖 openjdk 中的相关实现时，再补上 native 内部的实现。</p>
 
-<h1 id="2-适合的场景">2 适合的场景</h1>
+<h1 id="1-cas-的问题">1 CAS 的问题</h1>
 
-<ul>
-<li>悲观锁适合写操作多的场景，先加锁可以保证写操作时数据正确</li>
-<li>乐观锁适合读操作多的场景，不加锁的特点能够使其读操作的性能大幅提高</li>
-</ul>
+<h2 id="1-1-aba-问题">1.1 ABA 问题</h2>
 
-<h1 id="3-java-中的实现方式">3 Java 中的实现方式</h1>
+<p>CAS 需要在操作值的时候检查内存值是否发生变化，没有发生变化才会更新内存值。但是如果内存值原来是 A，后来变成了 B，然后又变成了 A，那么 CAS 进行检查时会发现值没有发生变化，但是实际上是有变化的。ABA 问题的解决思路就是在变量前面添加版本号，每次变量更新的时候都把版本号加一，这样变化过程就从 “A－B－A” 变成了 “1A－2B－3A”。</p>
 
-<p>悲观锁在 Java 中的实现有 synchronized 和各种 Lock</p>
+<h2 id="1-2-循环时间长开销大">1.2 循环时间长开销大</h2>
 
-<p>乐观锁依靠 CAS</p>
+<p>通常我们使用 CAS 的时候都换在 CAS 修改失败之后进行重试（也就是自旋），所以 CAS 操作如果长时间不成功，会导致其一直自旋，给 CPU 带来非常大的开销。</p>
+
+<h2 id="1-3-只能保证一个共享变量的原子操作">1.3 只能保证一个共享变量的原子操作</h2>
+
+<p>可以看到 CAS 的方法只能指定一个对象加上一个值在对象中的偏移量，所以 CAS 方法只对单个对象起作用。</p>
 
 <h1 id="参考文章">参考文章</h1>
 
@@ -190,13 +207,9 @@
           <a href="/tags/java/">java</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/12/09/%E8%B0%88%E8%B0%88-cas/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">谈谈 CAS</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/12/07/%E6%B7%B1%E5%BA%A6%E8%B7%9F%E8%B8%AA-class-%E7%9A%84-public-inputstream-getresourceasstreamstring-name-%E6%96%B9%E6%B3%95/">
-            <span class="next-text nav-default">深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法</span>
+        
+        <a class="next" href="/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-vs-%E6%82%B2%E8%A7%82%E9%94%81/">
+            <span class="next-text nav-default">乐观锁 VS 悲观锁</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
