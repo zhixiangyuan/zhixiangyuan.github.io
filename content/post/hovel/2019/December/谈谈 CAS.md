@@ -101,4 +101,3 @@ public class Main {
 # 参考文章
 
 1. [【基本功】不可不说的 Java “锁” 事](https://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&mid=2651749434&idx=3&sn=5ffa63ad47fe166f2f1a9f604ed10091&chksm=bd12a5778a652c61509d9e718ab086ff27ad8768586ea9b38c3dcf9e017a8e49bcae3df9bcc8&scene=38#wechat_redirect)
-   - 深度好文，强烈推荐
