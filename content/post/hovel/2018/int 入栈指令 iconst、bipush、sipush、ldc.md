@@ -4,7 +4,7 @@ date: 2018-08-11T18:47:43+08:00
 keywords: []
 description: ""
 tags: [
-    "JVM"
+    "java"
 ]
 categories: [
     "杂货铺"
