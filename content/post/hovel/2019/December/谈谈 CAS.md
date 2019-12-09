@@ -43,6 +43,61 @@ CAS 需要在操作值的时候检查内存值是否发生变化，没有发生�
 
 可以看到 CAS 的方法只能指定一个对象加上一个值在对象中的偏移量，所以 CAS 方法只对单个对象起作用。
 
+# 2 注意
+
+需要注意的是 Unsafe 中的这几个 compareAndSwap 方法本身是线程安全的，使用的时候无需在字段上面加 volatile 关键字，所以下面这种方式也会出正确的结果。
+
+```java
+public class Main {
+
+    public static Unsafe reflectGetUnsafe() {
+        try {
+            Field field = Unsafe.class.getDeclaredField("theUnsafe");
+            field.setAccessible(true);
+            return (Unsafe) field.get(null);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            return null;
+        }
+    }
+
+    private static final Unsafe unsafe = reflectGetUnsafe();
+    private static final long valueOffset;
+
+    static {
+        try {
+            valueOffset = unsafe.objectFieldOffset
+                    (AtomicInteger.class.getDeclaredField("value"));
+        } catch (Exception ex) { throw new Error(ex); }
+    }
+
+    private int value = 0;
+    public static void main(String[] args) throws InterruptedException {
+
+        // 我们初始化一个可以装 10 个线程的线程池
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        Main main = new Main();
+        CountDownLatch cdl = new CountDownLatch(10);
+        // 这里我们提交 10 次任务
+        for (int i = 0; i < 10; i++) {
+            executorService.submit(() -> {
+                for (int j = 0; j < 100000; j++) {
+                    while (!unsafe.compareAndSwapInt(main, valueOffset, main.value, main.value + 1)) {
+                    }
+                }
+                cdl.countDown();
+            });
+        }
+
+        // 这里我们等待所有的线程都执行完
+        cdl.await();
+        executorService.shutdown();
+        System.out.println("value: " + main.value);
+    }
+}
+```
+
+很多博客说这里面必须加 volatile 保证字段线程可见，这是胡扯，我亲自测试过了，不加一点问题没有。但是这里面还有一个疑点，就是 Unsafe 的这个方法为什么是线程安全的，这个就需要到 openjdk 里面找答案了，等我将来看到那儿再补上一篇博文。
+
 # 参考文章
 
 1. [【基本功】不可不说的 Java “锁” 事](https://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&mid=2651749434&idx=3&sn=5ffa63ad47fe166f2f1a9f604ed10091&chksm=bd12a5778a652c61509d9e718ab086ff27ad8768586ea9b38c3dcf9e017a8e49bcae3df9bcc8&scene=38#wechat_redirect)
