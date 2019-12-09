@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 09 Dec 2019 15:04:35 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 09 Dec 2019 20:30:38 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>自旋锁 与 适应性自旋锁</title>
+      <link>https://zhixiangyuan.github.io/2019/12/09/%E8%87%AA%E6%97%8B%E9%94%81-%E4%B8%8E-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81/</link>
+      <pubDate>Mon, 09 Dec 2019 20:30:38 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/09/%E8%87%AA%E6%97%8B%E9%94%81-%E4%B8%8E-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81/</guid>
+      <description>阻塞或唤醒一个 Java 线程需要操作系统切换 CPU 状态来完成，这种状态转换需要耗费处理器时间，如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比</description>
+    </item>
     
     <item>
       <title>谈谈 CAS</title>
@@ -22,11 +31,11 @@
     </item>
     
     <item>
-      <title>乐观锁 VS 悲观锁</title>
-      <link>https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-vs-%E6%82%B2%E8%A7%82%E9%94%81/</link>
+      <title>乐观锁 与 悲观锁</title>
+      <link>https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-%E4%B8%8E-%E6%82%B2%E8%A7%82%E9%94%81/</link>
       <pubDate>Mon, 09 Dec 2019 14:25:48 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-vs-%E6%82%B2%E8%A7%82%E9%94%81/</guid>
+      <guid>https://zhixiangyuan.github.io/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-%E4%B8%8E-%E6%82%B2%E8%A7%82%E9%94%81/</guid>
       <description>乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。 1 概念 悲观锁的概念：悲观锁认为自己在</description>
     </item>
     
