@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 09 Dec 2019 20:30:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2019 08:28:37 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IDEA 中 UML 的箭头含义</title>
+      <link>https://zhixiangyuan.github.io/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/</link>
+      <pubDate>Tue, 10 Dec 2019 08:28:37 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/</guid>
+      <description>本文中所使用的关系名词并不是 UML 中所定义的，因为我觉得他那种方式不够具体，对于 Javer 来说并不好理解，所以这里我直接用易于 javer 理解的名词来解释类之间的</description>
+    </item>
     
     <item>
       <title>自旋锁 与 适应性自旋锁</title>
