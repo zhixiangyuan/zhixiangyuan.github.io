@@ -146,3 +146,33 @@ public class A {
 如果是内部类的形式，IDEA 的表示形式是下面这种形式
 
 ![](/hub/2019/December/17.png)
+
+# 6 注解相关
+
+```java
+public @interface B {
+}
+
+@B
+public class A {
+
+}
+```
+
+注解关系是用黄色虚线表示的
+
+![](/hub/2019/December/19.png)
+
+```java
+public @interface B {
+}
+
+@B
+public @interface A {
+
+}
+```
+
+注解 B 标 A 同样用黄色虚线表示
+
+![](/hub/2019/December/20.png)
