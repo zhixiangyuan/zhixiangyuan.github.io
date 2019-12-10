@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 10 Dec 2019 08:28:37 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 10 Dec 2019 15:01:38 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java 的可重入锁可以重入多少次</title>
+      <link>https://zhixiangyuan.github.io/2019/12/10/java-%E7%9A%84%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%85%A5%E5%A4%9A%E5%B0%91%E6%AC%A1/</link>
+      <pubDate>Tue, 10 Dec 2019 15:01:38 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/10/java-%E7%9A%84%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%85%A5%E5%A4%9A%E5%B0%91%E6%AC%A1/</guid>
+      <description>Java 中有两个常用的可重入锁，一个是 synchronized，另一个是 ReentrantLock，我们先测试 ReentrantLock 的可重入次数 1 ReentrantLock 的可重入次数上限 1</description>
+    </item>
     
     <item>
       <title>IDEA 中 UML 的箭头含义</title>
