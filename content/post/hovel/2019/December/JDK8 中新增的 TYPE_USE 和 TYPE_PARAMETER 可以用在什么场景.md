@@ -32,7 +32,7 @@ public @interface TestTypeUse {
     // 3. 声明变量的时候可以使用
     @TestTypeUse Object obj;
 
-    // 4. 声明范型的时候可以使用
+    // 4. 使用范型的时候可以使用
     List<@TestTypeUse String> list;
 
     // 5. 也可以标在类上面
@@ -51,15 +51,21 @@ public @interface TestTypeUse {
 
     // 9. 标在方法的参数上
     public static void main(@TestTypeUse String[] args) {...}
+
+    // 10. 类上面声明范型的时候可以使用
+    public class Main<@TestTypeUse T> {...}
 ```
 
 # 2 TYPE_PARAMETER
 
-这个注解类型很奇怪，标哪儿都报错，网上也没找到资料，暂时先放着
-
 ```java
+// 先定义一个测试注解
 @Target(ElementType.TYPE_PARAMETER)
 public @interface TestTypeParameter {
 }
+    // 1. 类上面声明范型的时候可以使用
+    public class Main<@TestTypeParameter T> {...}
 
+    // 2. 方法上面声明范型的时候也可以使用
+    public static <@TestTypeParameter T> void testMethod() {...}
 ```
