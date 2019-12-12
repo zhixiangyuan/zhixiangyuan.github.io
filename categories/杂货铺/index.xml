@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 10 Dec 2019 15:01:38 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 12 Dec 2019 13:48:56 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JDK8 中新增的 TYPE_USE 和 TYPE_PARAMETER 可以用在什么场景</title>
+      <link>https://zhixiangyuan.github.io/2019/12/12/jdk8-%E4%B8%AD%E6%96%B0%E5%A2%9E%E7%9A%84-type_use-%E5%92%8C-type_parameter-%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%9C%A8%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF/</link>
+      <pubDate>Thu, 12 Dec 2019 13:48:56 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/12/jdk8-%E4%B8%AD%E6%96%B0%E5%A2%9E%E7%9A%84-type_use-%E5%92%8C-type_parameter-%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%9C%A8%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF/</guid>
+      <description>本篇直接用示例代码展示该注解可以用在什么场景 1 TYPE_USE 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 // 先定义一个测试注解 @Target(ElementType.TYPE_USE) public @interface</description>
+    </item>
     
     <item>
       <title>Java 的可重入锁可以重入多少次</title>
