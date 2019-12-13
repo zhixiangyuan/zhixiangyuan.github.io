@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 13 Dec 2019 10:49:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 13:23:09 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring Xml 配置文件格式</title>
+      <link>https://zhixiangyuan.github.io/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Fri, 13 Dec 2019 13:23:09 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</guid>
+      <description>本文基于 Spring 源码，选项均从源码中提取出来而非 Spring 文档、别人的博客、DTD 或是 XSD，博主没在源码中找到版本号的位置，所以不清楚具体的版本号，不过</description>
+    </item>
     
     <item>
       <title>语义化版本控制</title>

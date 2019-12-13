@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on Yuanzx Blog</title>
+    <title>java on Yuanzx Blog</title>
     <link>https://zhixiangyuan.github.io/tags/java/</link>
-    <description>Recent content in Java on Yuanzx Blog</description>
+    <description>Recent content in java on Yuanzx Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 12 Dec 2019 13:48:56 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 13:23:09 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring Xml 配置文件格式</title>
+      <link>https://zhixiangyuan.github.io/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Fri, 13 Dec 2019 13:23:09 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</guid>
+      <description>本文基于 Spring 源码，选项均从源码中提取出来而非 Spring 文档、别人的博客、DTD 或是 XSD，博主没在源码中找到版本号的位置，所以不清楚具体的版本号，不过</description>
+    </item>
     
     <item>
       <title>JDK8 中新增的 TYPE_USE 和 TYPE_PARAMETER 可以用在什么场景</title>

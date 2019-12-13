@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2019-12-13T10:49:49+08:00" />
+<meta property="og:updated_time" content="2019-12-13T13:23:09+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/12/09/%E8%B0%88%E8%B0%88-cas/">谈谈 CAS</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-12-09 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      CAS 其实指的就是 sun.misc.Unsafe 类中的一系列 compareAndSwap 方法 例如 compareAndSwapInt 方法 1 2 3 public final native boolean compareAndSwapInt( Object o, long offset, int expected, int x ); 这种方法提供四个参数，分别是需要修改值的对象 o，需要改的值在对
+    </div>
+    <div class="read-more">
+      <a href="/2019/12/09/%E8%B0%88%E8%B0%88-cas/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-%E4%B8%8E-%E6%82%B2%E8%A7%82%E9%94%81/">乐观锁 与 悲观锁</a></h1>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/12/03/futuretask-%E7%9A%84%E5%8F%96%E6%B6%88%E5%8A%9F%E8%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/28/java-%E4%B8%AD%E7%9A%84-weakreference-%E5%92%8C-softreference/">Java 中的 WeakReference 和 SoftReference</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-28 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 WeakReference 当一个对象没有被强引用时，只有 WeakReference，那么在下一次 GC 时会被回收。 1 2 3 4 5 6 7 8 9 10 public static void main(String[] args) { Object referent = new Object(); WeakReference&lt;Object&gt; weakReference = new WeakReference&lt;&gt;(referent);
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/28/java-%E4%B8%AD%E7%9A%84-weakreference-%E5%92%8C-softreference/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
