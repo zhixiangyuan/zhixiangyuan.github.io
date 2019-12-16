@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 16 Dec 2019 10:00:29 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 16:55:27 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JDK 中推荐的事件模型</title>
+      <link>https://zhixiangyuan.github.io/2019/12/16/jdk-%E4%B8%AD%E6%8E%A8%E8%8D%90%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Mon, 16 Dec 2019 16:55:27 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/16/jdk-%E4%B8%AD%E6%8E%A8%E8%8D%90%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</guid>
+      <description>1 事件模型 JDK 中提供了一个接口和一个类给用户实现自己的事件机制，一个是 EventObject 事件，另一个是 EventListener 事件监听器。 一般使用是都是在事件监听器中实现相应的方法</description>
+    </item>
     
     <item>
       <title>spring 中的 Resource 和 ResourceLoader</title>
