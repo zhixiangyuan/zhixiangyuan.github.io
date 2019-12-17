@@ -27,6 +27,7 @@ public class Main {
         System.out.println(B.class.getSuperclass());        // class me.yuanzx.test.A
         System.out.println(B.class.getGenericSuperclass()); // class me.yuanzx.test.A
         System.out.println(C.class.getSuperclass());        // class me.yuanzx.test.A
+        // 打印出带泛型的类型
         System.out.println(C.class.getGenericSuperclass()); // me.yuanzx.test.A<java.lang.String>
     }
 }
