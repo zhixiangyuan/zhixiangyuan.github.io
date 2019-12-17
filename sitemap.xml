@@ -10,48 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-12-17T17:29:41+08:00</lastmod>
+    <lastmod>2019-12-17T17:49:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/2019/12/17/class-%E7%9A%84-getsuperclass-%E4%B8%8E-getgenericsuperclass-%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2019-12-17T17:29:41+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/2019/12/17/field-%E7%9A%84-gettype-%E4%B8%8E-getgenerictype-%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2019-12-17T17:49:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/java/</loc>
-    <lastmod>2019-12-17T17:29:41+08:00</lastmod>
+    <lastmod>2019-12-17T17:49:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-12-17T17:29:41+08:00</lastmod>
+    <lastmod>2019-12-17T17:49:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-12-17T17:29:41+08:00</lastmod>
+    <lastmod>2019-12-17T17:49:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-12-17T17:29:41+08:00</lastmod>
+    <lastmod>2019-12-17T17:49:26+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2019-12-17T17:49:26+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/12/17/class-%E7%9A%84-getsuperclass-%E4%B8%8E-getgenericsuperclass-%E5%8C%BA%E5%88%AB/</loc>
     <lastmod>2019-12-17T17:29:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
