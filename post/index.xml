@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 17 Dec 2019 17:49:26 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 18:03:24 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Method 的 getParameterTypes 与 getGenericParameterTypes 的区别</title>
+      <link>https://zhixiangyuan.github.io/2019/12/17/method-%E7%9A%84-getparametertypes-%E4%B8%8E-getgenericparametertypes-%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Tue, 17 Dec 2019 18:03:24 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/17/method-%E7%9A%84-getparametertypes-%E4%B8%8E-getgenericparametertypes-%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>getParameterTypes 与 getGenericParameterTypes 区别在于，对于没有泛型的方法参数，两者返回的均是相同的 Class，对于带泛型的方法参数 getGenericParameterTypes 返回的是带泛型的类型，getParameter</description>
+    </item>
     
     <item>
       <title>Field 的 getType  与 getGenericType 的区别</title>
