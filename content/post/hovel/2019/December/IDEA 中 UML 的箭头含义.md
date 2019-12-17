@@ -100,8 +100,6 @@ public class A {
 
 ![](/hub/2019/December/18.png)
 
-
-
 ```java
 public class A {
     public A() {
