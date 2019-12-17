@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 17 Dec 2019 16:08:41 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 16:42:34 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>了解 JDK 中的 WildcardType 接口</title>
+      <link>https://zhixiangyuan.github.io/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-wildcardtype-%E6%8E%A5%E5%8F%A3/</link>
+      <pubDate>Tue, 17 Dec 2019 16:42:34 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-wildcardtype-%E6%8E%A5%E5%8F%A3/</guid>
+      <description>1 WildcardType 接口的继承关系 2 WildcardType 中的方法含义 1 2 3 4 5 6 7 public interface WildcardType extends Type { /** 获取泛型变量的上边界 */ Type[] getUpperBounds(); /** 获取泛型变量的下边界 */ Type[] getLowerBounds(); } 3 举个例子 1 2 3 4 5 6</description>
     </item>
     
     <item>
