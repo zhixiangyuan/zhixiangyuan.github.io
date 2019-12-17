@@ -138,19 +138,28 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-typevariable-接口的继承关系">1 TypeVariable 接口的继承关系</a></li>
+<li><a href="#2-typevariable-中的方法含义">2 TypeVariable 中的方法含义</a></li>
+<li><a href="#3-举个例子">3 举个例子</a></li>
+<li><a href="#参考文章">参考文章</a></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      <p>JDK 中的 TypeVariable 翻译过来就是类型变量，其实就是指泛型。</p>
+      
+
+<p>JDK 中的 TypeVariable 翻译过来就是类型变量，其实就是指泛型。</p>
 
 <h1 id="1-typevariable-接口的继承关系">1 TypeVariable 接口的继承关系</h1>
 
-<p><figure><img src="/hub/2019/December/24.png" alt=""></figure></p>
+<p><img src="/hub/2019/December/24.png" alt="" /></p>
 
 <p>GenericDeclaration 这个接口的含义是决定哪些地方可以定义泛型</p>
 
-<p><figure><img src="/hub/2019/December/25.png" alt=""></figure></p>
+<p><img src="/hub/2019/December/25.png" alt="" /></p>
 
 <p>通过上图可以看到 Class、Constructor、Method 三个类实现了 GenericDeclaration，说明这三个类上都可以声明泛型</p>
 
