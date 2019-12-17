@@ -11,8 +11,6 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
-markup: mmark
-mathjax: false
 ---
 
 JDK 中的 TypeVariable 翻译过来就是类型变量，其实就是指泛型。
