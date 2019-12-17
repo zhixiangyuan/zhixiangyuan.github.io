@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 17 Dec 2019 13:08:36 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 14:29:00 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>了解 JDK 中的 TypeVariable 接口</title>
+      <link>https://zhixiangyuan.github.io/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-typevariable-%E6%8E%A5%E5%8F%A3/</link>
+      <pubDate>Tue, 17 Dec 2019 14:29:00 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-typevariable-%E6%8E%A5%E5%8F%A3/</guid>
+      <description>JDK 中的 TypeVariable 翻译过来就是类型变量，其实就是指泛型。 1 TypeVariable 接口的继承关系 GenericDeclaration 这个接口的含义是决定哪些地方可以定义泛型 通过上图可以看到 Class、Con</description>
+    </item>
     
     <item>
       <title>了解 JDK 中的 ParameterizedType 接口</title>
