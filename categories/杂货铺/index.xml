@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 16 Dec 2019 16:55:27 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Dec 2019 13:08:36 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>了解 JDK 中的 ParameterizedType 接口</title>
+      <link>https://zhixiangyuan.github.io/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-parameterizedtype-%E6%8E%A5%E5%8F%A3/</link>
+      <pubDate>Tue, 17 Dec 2019 13:08:36 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-parameterizedtype-%E6%8E%A5%E5%8F%A3/</guid>
+      <description>1 ParameterizedType 接口的继承关系 Type 是 Java 中所有类型的通用超级接口，继承就完事了。 2 ParameterizedType 中的方法含义 1 2 3 4 5 6 7 8 9 10 11 /** 下面将 &amp;lt;&amp;gt; 中存储的内容称为泛型列表 */ public</description>
+    </item>
     
     <item>
       <title>JDK 与 Spring 中的事件模型</title>
