@@ -13,7 +13,7 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-```xml
+```
 <!-- 下面的 "" 均等价于 default -->
 <!-- default-lazy-init：标志是否对所有的 bean 执行懒加载，default 则使用 parentDefaults 如果 parentDefaults 为 ""，则默认为 false -->
 <!-- default-merge：default 则使用 parentDefaults 如果 parentDefaults 为 null，则默认为 false -->
