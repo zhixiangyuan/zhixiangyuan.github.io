@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on Yuanzx Blog</title>
+    <title>java on Yuanzx Blog</title>
     <link>https://zhixiangyuan.github.io/tags/java/</link>
-    <description>Recent content in Java on Yuanzx Blog</description>
+    <description>Recent content in java on Yuanzx Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
@@ -91,24 +91,6 @@
       
       <guid>https://zhixiangyuan.github.io/2019/12/16/jdk-%E4%B8%8E-spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</guid>
       <description>1 事件模型 JDK 中提供了一个接口和一个类给用户实现自己的事件机制，一个是 EventObject 事件，另一个是 EventListener 事件监听器。 一般使用是都是在事件监听器中实现相应的方法</description>
-    </item>
-    
-    <item>
-      <title>spring 中的 Resource 和 ResourceLoader</title>
-      <link>https://zhixiangyuan.github.io/2019/12/16/spring-%E4%B8%AD%E7%9A%84-resource-%E5%92%8C-resourceloader/</link>
-      <pubDate>Mon, 16 Dec 2019 10:00:29 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/2019/12/16/spring-%E4%B8%AD%E7%9A%84-resource-%E5%92%8C-resourceloader/</guid>
-      <description>1 Resource 由于 Java 定义的 java.net.URL（Uniform Resource Locator）统一资源定位器有些狭隘，无法做到统一定位资源的作用（todo 这里有</description>
-    </item>
-    
-    <item>
-      <title>Spring Xml 配置文件格式</title>
-      <link>https://zhixiangyuan.github.io/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</link>
-      <pubDate>Fri, 13 Dec 2019 13:23:09 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/</guid>
-      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70</description>
     </item>
     
     <item>
@@ -352,15 +334,6 @@
       
       <guid>https://zhixiangyuan.github.io/2019/09/22/ant-%E9%A3%8E%E6%A0%BC%E8%B7%AF%E5%BE%84%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
       <description>Ant 风格路径表达式就是一个精简版的正则表达式 通配符 说明 ? 匹配任何单字符 * 匹配 0 或者任意数量的字符 ** 匹配 0 或者更多的目录</description>
-    </item>
-    
-    <item>
-      <title>如何在 Spring 的 Yml 中使用随机数与字符串</title>
-      <link>https://zhixiangyuan.github.io/2019/09/19/%E5%A6%82%E4%BD%95%E5%9C%A8-spring-%E7%9A%84-yml-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
-      <pubDate>Thu, 19 Sep 2019 17:31:13 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/2019/09/19/%E5%A6%82%E4%BD%95%E5%9C%A8-spring-%E7%9A%84-yml-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
-      <description>占位符 描述 ${random.value} 取得随机字符串 ${random.int} 取得随机 int 型数据 ${random.long} 取得随机 long 型数据 ${random.int(10)} 取得 10 以内的随机数 ${random.int[10,20]} 取得 10~20 的随机数 ${自定义占位符 or 环境变量} 自定义占位符 or</description>
     </item>
     
     <item>
