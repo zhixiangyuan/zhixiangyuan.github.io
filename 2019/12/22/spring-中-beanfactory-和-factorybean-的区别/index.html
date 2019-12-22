@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>spring · Yuanzx Blog</title>
+  <title>Spring 中 BeanFactory 和 FactoryBean 的区别 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="BeanFactory 是生产 bean 的工厂 FactoryBean 是工厂的 bean" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/tags/spring/" />
-  <link href="https://zhixiangyuan.github.io/tags/spring/index.xml" rel="alternate" type="application/rss+xml" title="Yuanzx Blog" />
-  <link href="https://zhixiangyuan.github.io/tags/spring/index.xml" rel="feed" type="application/rss+xml" title="Yuanzx Blog" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/12/22/spring-%E4%B8%AD-beanfactory-%E5%92%8C-factorybean-%E7%9A%84%E5%8C%BA%E5%88%AB/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="spring" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/tags/spring/" />
+<meta property="og:title" content="Spring 中 BeanFactory 和 FactoryBean 的区别" />
+<meta property="og:description" content="BeanFactory 是生产 bean 的工厂 FactoryBean 是工厂的 bean" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/12/22/spring-%E4%B8%AD-beanfactory-%E5%92%8C-factorybean-%E7%9A%84%E5%8C%BA%E5%88%AB/" />
+<meta property="article:published_time" content="2019-12-22T16:32:19+08:00" />
+<meta property="article:modified_time" content="2019-12-22T16:32:19+08:00" />
+<meta itemprop="name" content="Spring 中 BeanFactory 和 FactoryBean 的区别">
+<meta itemprop="description" content="BeanFactory 是生产 bean 的工厂 FactoryBean 是工厂的 bean">
 
-<meta property="og:updated_time" content="2019-12-22T16:32:19+08:00" />
-<meta itemprop="name" content="spring">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2019-12-22T16:32:19&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-22T16:32:19&#43;08:00" />
+<meta itemprop="wordCount" content="14">
+
+
+
+<meta itemprop="keywords" content="spring," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="spring"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="Spring 中 BeanFactory 和 FactoryBean 的区别"/>
+<meta name="twitter:description" content="BeanFactory 是生产 bean 的工厂 FactoryBean 是工厂的 bean"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,65 +121,54 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="archive" class="archive">
-  <div class="archive-title tag">
-        <h2 class="archive-name">spring</h2>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spring 中 BeanFactory 和 FactoryBean 的区别</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-22 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
+    </header>
 
-  <div class="archive-post">
-      <span class="archive-post-time">
-        2019-12-22
-      </span>
-      <span class="archive-post-title">
-        <a href="/2019/12/22/spring-%E4%B8%AD-beanfactory-%E5%92%8C-factorybean-%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-post-link">
-          Spring 中 BeanFactory 和 FactoryBean 的区别
-        </a>
-      </span>
-    </div><div class="archive-post">
-      <span class="archive-post-time">
-        2019-12-16
-      </span>
-      <span class="archive-post-title">
-        <a href="/2019/12/16/jdk-%E4%B8%8E-spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/" class="archive-post-link">
-          JDK 与 Spring 中的事件模型
-        </a>
-      </span>
-    </div><div class="archive-post">
-      <span class="archive-post-time">
-        2019-12-16
-      </span>
-      <span class="archive-post-title">
-        <a href="/2019/12/16/spring-%E4%B8%AD%E7%9A%84-resource-%E5%92%8C-resourceloader/" class="archive-post-link">
-          spring 中的 Resource 和 ResourceLoader
-        </a>
-      </span>
-    </div><div class="archive-post">
-      <span class="archive-post-time">
-        2019-12-13
-      </span>
-      <span class="archive-post-title">
-        <a href="/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" class="archive-post-link">
-          Spring Xml 配置文件格式
-        </a>
-      </span>
-    </div><div class="archive-post">
-      <span class="archive-post-time">
-        2019-09-19
-      </span>
-      <span class="archive-post-title">
-        <a href="/2019/09/19/%E5%A6%82%E4%BD%95%E5%9C%A8-spring-%E7%9A%84-yml-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%9A%8F%E6%9C%BA%E6%95%B0%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="archive-post-link">
-          如何在 Spring 的 Yml 中使用随机数与字符串
-        </a>
-      </span>
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>BeanFactory 是生产 bean 的工厂</p>
+
+<p>FactoryBean 是工厂的 bean</p>
+
     </div>
-</section>
 
-<nav class="pagination">
-  
-  
-</nav>
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spring/">spring</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/12/20/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+            <span class="next-text nav-default">动态代理模式</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
@@ -220,6 +215,14 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
 <script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
