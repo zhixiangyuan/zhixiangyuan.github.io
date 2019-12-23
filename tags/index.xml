@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 22 Dec 2019 16:32:19 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2019 16:57:14 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>spring</title>
       <link>https://zhixiangyuan.github.io/tags/spring/</link>
-      <pubDate>Sun, 22 Dec 2019 16:32:19 +0800</pubDate>
+      <pubDate>Mon, 23 Dec 2019 16:57:14 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/spring/</guid>
       <description></description>
@@ -40,7 +40,7 @@
     </item>
     
     <item>
-      <title>Java</title>
+      <title>java</title>
       <link>https://zhixiangyuan.github.io/tags/java/</link>
       <pubDate>Tue, 17 Dec 2019 18:11:08 +0800</pubDate>
       
