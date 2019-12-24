@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>正则表达式必知必会笔记 - Yuanzx Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 第一章 正则表达式入门 正则表达式是一些用来匹配和处理文本的字符串 提示：同样的问题几乎总是有好几种不同的解决办法，这些办法并无优劣之分，你尽可" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2019/12/24/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E7%AC%94%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="正则表达式必知必会笔记" />
+<meta property="og:description" content="1 第一章 正则表达式入门 正则表达式是一些用来匹配和处理文本的字符串 提示：同样的问题几乎总是有好几种不同的解决办法，这些办法并无优劣之分，你尽可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2019/12/24/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E7%AC%94%E8%AE%B0/" />
+<meta property="article:published_time" content="2019-12-24T08:30:48+08:00" />
+<meta property="article:modified_time" content="2019-12-24T08:30:48+08:00" />
+<meta itemprop="name" content="正则表达式必知必会笔记">
+<meta itemprop="description" content="1 第一章 正则表达式入门 正则表达式是一些用来匹配和处理文本的字符串 提示：同样的问题几乎总是有好几种不同的解决办法，这些办法并无优劣之分，你尽可">
+
+
+<meta itemprop="datePublished" content="2019-12-24T08:30:48&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-24T08:30:48&#43;08:00" />
+<meta itemprop="wordCount" content="3559">
+
+
+
+<meta itemprop="keywords" content="M78 星云," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="正则表达式必知必会笔记"/>
+<meta name="twitter:description" content="1 第一章 正则表达式入门 正则表达式是一些用来匹配和处理文本的字符串 提示：同样的问题几乎总是有好几种不同的解决办法，这些办法并无优劣之分，你尽可"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Yuanzx</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Yuanzx</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">正则表达式必知必会笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-24 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-第一章-正则表达式入门">1 第一章 正则表达式入门</a></li>
+<li><a href="#2-第二章-匹配单个字符">2 第二章 匹配单个字符</a></li>
+<li><a href="#3-第三章-匹配一组字符">3 第三章 匹配一组字符</a></li>
+<li><a href="#4-第四章-使用元字符">4 第四章 使用元字符</a>
+<ul>
+<li><a href="#4-1-匹配空白字符">4.1 匹配空白字符</a></li>
+<li><a href="#4-2-匹配数字">4.2 匹配数字</a></li>
+<li><a href="#4-3-匹配字母数字下划线">4.3 匹配字母数字下划线</a></li>
+<li><a href="#4-4-匹配空白字符">4.4 匹配空白字符</a></li>
+<li><a href="#4-5-匹配-ascii-中的字符">4.5 匹配 ASCII 中的字符</a></li>
+<li><a href="#4-6-posix-字符集">4.6 POSIX 字符集</a></li>
+</ul></li>
+<li><a href="#5-第五章-重复匹配">5 第五章 重复匹配</a>
+<ul>
+<li><a href="#5-1-指定重复次数">5.1 指定重复次数</a></li>
+<li><a href="#5-2-防止过度匹配">5.2 防止过度匹配</a></li>
+</ul></li>
+<li><a href="#6-第六章-位置匹配">6 第六章 位置匹配</a>
+<ul>
+<li><a href="#6-1-单词边界">6.1 单词边界</a></li>
+<li><a href="#6-2-字符串边界">6.2 字符串边界</a>
+<ul>
+<li><a href="#6-2-1-分行匹配模式">6.2.1 分行匹配模式</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#7-第七章-使用子表达式">7 第七章 使用子表达式</a></li>
+<li><a href="#8-第八章-回溯引用-前后一致匹配">8 第八章 回溯引用：前后一致匹配</a>
+<ul>
+<li><a href="#8-1-使用正则表达式进行替换">8.1 使用正则表达式进行替换</a></li>
+</ul></li>
+<li><a href="#9-第九章-前后查找">9 第九章 前后查找</a></li>
+<li><a href="#参考书籍">参考书籍</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-第一章-正则表达式入门">1 第一章 正则表达式入门</h1>
+
+<p>正则表达式是一些用来匹配和处理文本的字符串</p>
+
+<p>提示：同样的问题几乎总是有好几种不同的解决办法，这些办法并无优劣之分，你尽可以选择最熟悉的那种语法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 找出其中的 Ben
+text: Hello, Ben, Ben
+
+regex: Ben
+
+# 匹配到两个 Ben，Java 中会以数组返回这两个 Ben
+match: Ben Ben</pre></td></tr></table>
+</div>
+</div>
+<h1 id="2-第二章-匹配单个字符">2 第二章 匹配单个字符</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 找出其中包含 char 再加一个任意字符的字符串
+text: char1 char2 char3 cccc
+
+regex: char.
+
+# . 匹配除换行符 \n 之外的任何单字符，匹配 . 使用 \.
+match: char1 char2 char3</pre></td></tr></table>
+</div>
+</div>
+<p>提示：如果你曾今使用过 DOS 的文件搜索功能，你讲发现正则表达式里 . 字符相当于 DOS 的 ? 字符。SQL 用户将注意到正则表达式里的 . 字符相当于 SQL 中的 _（下划线）字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 找出其中的 file.xls
+text: file.xls file.doc file.txt file1xls
+
+regex: file\.xls
+
+# 使用 \. 匹配 . 本身
+match: file.xls</pre></td></tr></table>
+</div>
+</div>
+<p>提示：如果需要搜索 \ 本身，就必须对 \ 字符进行转义，相应的转义序列是两个连续的反斜杠字符 \。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 找出其中的 file\xls
+text: file\xls filexx
+
+regex: file\\xls
+
+# 使用 \\ 匹配 \
+match: file\xls</pre></td></tr></table>
+</div>
+</div>
+<h1 id="3-第三章-匹配一组字符">3 第三章 匹配一组字符</h1>
+
+<p>使用 [] 来定义一个字符集合</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 找出其中的 file
+text: file fila filp
+
+regex: fil[e]
+
+match: file</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 找出其中的 regex 忽略大小写
+text: RegEx or regex
+
+regex: [Rr]eg[Ee]x
+
+
+match: RegEx regex</pre></td></tr></table>
+</div>
+</div>
+<p>提示：正则表达式中的字符区间（0～9，A～Z）可以使用 -（连字符）来定义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配 text 中的所有字符
+text: na0.xls sa1.xls na2.xls na3.xls na4.xls na5.xls
+
+# [0-5] 等同于 [012345]
+regex: [ns]a[0-5]\.xls
+
+match: na0.xls sa1.xls na2.xls na3.xls na4.xls na5.xls</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>A-Z，匹配从 A 到 Z 的所有大写字母</li>
+<li>a-z，匹配从 a 到 z 的所有小写字母</li>
+<li>A-z，匹配从 ASCII 字符 A 到 ASCII 字符 z 的所有字母。这个模式一般不常用，因为它还包含这 [ 和 ^ 等在 ASCII 字符表里排列在 Z 和 a 之间的字符。</li>
+</ul>
+
+<p>提示：在定义一个字符区间的时候，一定要避免让这个区间的尾字符小于它的首字符（例如 [3-1]）。这种区间是没有意义的，而且往往会让整个模式失效。</p>
+
+<p>注意：-（连字符）是一个特殊的元字符，作为元字符它智能用在 [ 和 ] 之间，在字符集合意外的地方，- 只是一个普通字符，只能与 - 本身相匹配。因此，在正则表达式里，- 字符不需要被转义。</p>
+
+<p>同一个字符集合里面可以有多个字符区间，例如：[A-Za-z0-9]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配出其中的颜色代码
+text: &lt;BODY BGCOLOR=&#34;#33aaff&#34; TEXT=&#34;#00FF99&#34; &gt;
+
+regex: #[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]
+
+match: #33aaff #00FF99</pre></td></tr></table>
+</div>
+</div>
+<p>提示：用元字符 ^ 来表明你想对一个字符集合进行取非匹配</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配出其中的 filex.xls
+text: file1.xls filex.xls
+
+regex: file[^0-9]\.xls
+
+match: filex.xls</pre></td></tr></table>
+</div>
+</div>
+<p>注意：^ 的效果将作用于给定字符集合里的所有字符或字符区间，而不是仅限于紧跟在 ^ 字符后面的那一个字符或字符区间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配出 file2
+text: file0 file1 file2 file3 file4
+
+regex: file[^0-13-4]
+
+match: file2</pre></td></tr></table>
+</div>
+</div>
+<h1 id="4-第四章-使用元字符">4 第四章 使用元字符</h1>
+
+<h2 id="4-1-匹配空白字符">4.1 匹配空白字符</h2>
+
+<p>提示：如果想匹配 [ 和 ] 需要对其进行转义 \[ 于 \]</p>
+
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>[\b]</td>
+<td>回退（并删除）一个字符（Backspace 键）</td>
+</tr>
+
+<tr>
+<td>\f</td>
+<td>换页符</td>
+</tr>
+
+<tr>
+<td>\n</td>
+<td>换行符</td>
+</tr>
+
+<tr>
+<td>\r</td>
+<td>回车符</td>
+</tr>
+
+<tr>
+<td>\t</td>
+<td>制表符（Tab 键）</td>
+</tr>
+
+<tr>
+<td>\v</td>
+<td>垂直制表符</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="4-2-匹配数字">4.2 匹配数字</h2>
+
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>\d</td>
+<td>任何一个数字字符，等价于 [0-9]</td>
+</tr>
+
+<tr>
+<td>\D</td>
+<td>任何一个非数字字符，等价于 [^0-9]</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="4-3-匹配字母数字下划线">4.3 匹配字母数字下划线</h2>
+
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>\w</td>
+<td>等价于 [a-zA-Z0-9_]，也就是字母数字下划线</td>
+</tr>
+
+<tr>
+<td>\W</td>
+<td>等价于 [^a-zA-Z0-9_]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配其中的 asdf1234
+text: asdf1234 sdfffsdf
+
+regex: \w\w\w\w\d\d\d\d
+
+match: asdf1234</pre></td></tr></table>
+</div>
+</div>
+<h2 id="4-4-匹配空白字符">4.4 匹配空白字符</h2>
+
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>\s</td>
+<td>任何一个空白字符，等价于 [\f\n\r\t\v]</td>
+</tr>
+
+<tr>
+<td>\S</td>
+<td>任何一个非空白字符，等价于 [^\f\n\r\t\v]</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="4-5-匹配-ascii-中的字符">4.5 匹配 ASCII 中的字符</h2>
+
+<p>使用十六进制或是八进制就可以匹配到，比如说以十六进制匹配 \x0A 等价于 \n，\x61 等价于 a,以八进制进行匹配 \141 等价于 a</p>
+
+<h2 id="4-6-posix-字符集">4.6 POSIX 字符集</h2>
+
+<p>提示：这种字符集并不是所有语言都支持</p>
+
+<table>
+<thead>
+<tr>
+<th>字符类</th>
+<th>Java 中的形式</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>[:alnum:]</td>
+<td>\p{Alnum}</td>
+<td>等价于 [a-zA-Z0-9]</td>
+</tr>
+
+<tr>
+<td>[:alpha:]</td>
+<td>\p{Alpha}</td>
+<td>等价于 [a-zA-Z]</td>
+</tr>
+
+<tr>
+<td>[:black:]</td>
+<td>\p{Black}</td>
+<td>等价于 [\t ]</td>
+</tr>
+
+<tr>
+<td>[:cntrl:]</td>
+<td>\p{Cntrl}</td>
+<td>ASCII 0-31 加上 ASCII 127</td>
+</tr>
+
+<tr>
+<td>[:digit:]</td>
+<td>\p{Digit}</td>
+<td>等价于 [0-9]</td>
+</tr>
+
+<tr>
+<td>[:graph:]</td>
+<td>\p{Graph}</td>
+<td>和 [:print:] 一样，但不包括空格</td>
+</tr>
+
+<tr>
+<td>[:lower:]</td>
+<td>\p{Lower}</td>
+<td>等价于 [a-z]</td>
+</tr>
+
+<tr>
+<td>[:print:]</td>
+<td>\p{Print}</td>
+<td>任何一个可打印字符</td>
+</tr>
+
+<tr>
+<td>[:punct:]</td>
+<td>\p{Punct}</td>
+<td>既不属于 [:alnum:] 也不属于 [:cntrl:] 的任何一个字符</td>
+</tr>
+
+<tr>
+<td>[:space:]</td>
+<td>\p{Space}</td>
+<td>等价于 [^\f\n\r\t\v ]</td>
+</tr>
+
+<tr>
+<td>[:upper:]</td>
+<td>\p{Upper}</td>
+<td>等价于 [A-Z]</td>
+</tr>
+
+<tr>
+<td>[:xdigit:]</td>
+<td>\p{Xdigit}</td>
+<td>任何一个十六进制数字，等价于 [a-fA-F0-9]</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="5-第五章-重复匹配">5 第五章 重复匹配</h1>
+
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>+</td>
+<td>匹配一个或多个字符</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>匹配零个或多个字符</td>
+</tr>
+
+<tr>
+<td>?</td>
+<td>匹配零个或一个字符</td>
+</tr>
+</tbody>
+</table>
+
+<p>提示：[0-9]+ 表示的是数字的一次或多次重复，[0-9+] 表示的是数字 0-9 和 + 字符，单独匹配 + 时可以使用 \ 转义，对于 + 、*、. 也可以使用 [] 来进行转义，看起来还挺清晰的。点那个再使用 [.] 时，[.] 和 <code>[\.]</code> 这两种形式的效果是一样的</p>
+
+<p>提示：* 可以理解为，在我前面的字符集合是可选的，+ 可以理解为，在我前面的字符集合是必选的</p>
+
+<p>提示：在匹配单个字符的时候也可以使用 [] 来使表达式更加清晰，比如 https?:// 和 http[s]?:// 明显可以看到后者更加清晰</p>
+
+<h2 id="5-1-指定重复次数">5.1 指定重复次数</h2>
+
+<p>使用 {} 来指定重复次数 {8} 表示重复 8 次， {0,1} 表示最少重复 0 次，最多重复八次，相当于数学里面的前后都是闭区间，{3, } 表示重复 3 次或更多次（没上限）</p>
+
+<p>提示：[-\/] 这个表达式表示的是匹配 - 或 / 这两个字符，\ 起到对 / 进行转义的作用</p>
+
+<h2 id="5-2-防止过度匹配">5.2 防止过度匹配</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配出 &lt;B&gt;AK&lt;/B&gt; 和 &lt;B&gt;HI&lt;/B&gt;
+text: &lt;B&gt;AK&lt;/B&gt; and &lt;B&gt;HI&lt;/B&gt;
+
+regex: &lt;[Bb]&gt;.*&lt;[Bb]&gt;
+
+# 可以看到多了一个 and，这便是过度匹配
+match: &lt;B&gt;AK&lt;/B&gt; and &lt;B&gt;HI&lt;/B&gt;
+
+# 这样写便可以起到匹配的作用
+regex: &lt;[Bb]&gt;.*?&lt;[Bb]&gt;
+
+match: &lt;B&gt;AK&lt;/B&gt; &lt;B&gt;HI&lt;/B&gt;</pre></td></tr></table>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>贪婪型元字符</th>
+<th>懒惰型元字符</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>匹配尽可能多的字符</td>
+<td>匹配尽可能少的字符</td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>*?</td>
+</tr>
+
+<tr>
+<td>+</td>
+<td>+?</td>
+</tr>
+
+<tr>
+<td>{n, }</td>
+<td>{n, }?</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="6-第六章-位置匹配">6 第六章 位置匹配</h1>
+
+<h2 id="6-1-单词边界">6.1 单词边界</h2>
+
+<p>\b 匹配单词边界的位置，比如说 b ，可以理解为 空格b空格，空格和 b 之前的位置就是 \b 匹配的位置</p>
+
+<p>注意：\b 到底匹配什么东西呢？正则表达式引擎不懂英语，也不知道什么是单词边界。简单地说，\b 匹配的是一个这样的位置，这个位置位于一个能够用来构成单词的字符（字母、数字和下划线，也就是 \w 相匹配的字符）和一个不能用来构成单词的字符（也就是 \W 相匹配的字符）之间。b 是英文 boundary（边界）的首字母。</p>
+
+<p>注意：\b 匹配只匹配一个位置，不匹配任何字符。比如说 \bcat\b 只匹配到 3 个字符而不是 5 个字符。</p>
+
+<p>\B 将匹配不是单词边界的位置，比如说 - ，可以理解为 空格-空格，由于 - 不属于 \w 的范围，所以 空格 和 - 之间的位置匹配 \B</p>
+
+<p>注意：正则表达式还支持 <code>\&lt;</code> 匹配单词的开头，<code>\&gt;</code> 匹配单词的结束，不过，虽然这两种元字符可以提供粒度更细的控制，但支持它们的正则表达式引擎并不多见。</p>
+
+<h2 id="6-2-字符串边界">6.2 字符串边界</h2>
+
+<p>^ 用来定义字符串的开头，$ 用来定义字符串的结尾</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 检测出下文是否是一个合法的 xml 文件
+text:
+test
+&lt;?xml version=&#34;1.0&#34; ?&gt;
+
+# 如果使用这个正则表达式，那么就会匹配到第二行
+# 但是第一行有东西，说明不是合法的 xml 文件
+regex: &lt;\?xml.*\?&gt;
+
+# 而下面这个正则则能检查出该文件不是 xml 文件
+regex: ^\s*&lt;\?xml.*\?&gt;</pre></td></tr></table>
+</div>
+</div>
+<h3 id="6-2-1-分行匹配模式">6.2.1 分行匹配模式</h3>
+
+<p>在分行匹配模式下 ^ 不仅匹配字符串最开始的位置，还匹配换行符后面的开始位置，类似的， $ 不仅匹配正常的字符串结尾，还将匹配换行符后面的结束位置。使用时将 (?m) 放在整个模式的最前面即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">匹配出其中的所有注释
+text:
+public class Main {
+    // main
+    public static void main(String[] args) {
+        // todo
+    }
+}
+
+regex: (?m)^\s*//.*$
+
+match: // main  // todo</pre></td></tr></table>
+</div>
+</div>
+<p>警告：有许多正则表达式实现不支持 (?m)</p>
+
+<p>注意：有些正则表达式实现还支持使用 \A 来定义一个字符串的开始，以 \Z 来定义一个字符串的结束的做法。此时，\A 和 \B 的作用将基本等价于 ^ 和 $，但请注意，\A 和 \B 不会因为加上了 (?m) 前缀而改变行为。换句话说，在跨行匹配模式下使用 \A 和 \B 的做法不会受到在分行匹配模式下使用 ^ 和 $ 的效果。</p>
+
+<h1 id="7-第七章-使用子表达式">7 第七章 使用子表达式</h1>
+
+<p>看下面这个场景</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配出其中的 windows 2000 windows 2000 windows 2000
+text: windows 2000 windows 2000 windows 2000
+
+# 这样写很啰嗦
+regex: windows 2000 windows 2000 windows 2000
+
+# 可以写成这样
+regex: (windows 2000 ){2, }windows 2000</pre></td></tr></table>
+</div>
+</div>
+<p>提示：( 和 ) 是元字符，匹配本身需要用 <code>\( \)</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配其中的年份
+text: 1920-01-01
+
+# 其中的 | 表示或
+regex: (19|20)\d{2}</pre></td></tr></table>
+</div>
+</div>
+<h1 id="8-第八章-回溯引用-前后一致匹配">8 第八章 回溯引用：前后一致匹配</h1>
+
+<p>提示：回溯引用只能用来引用模式里的子表达式即用 <code>()</code> 括起来的正则表达式片段。</p>
+
+<p>提示：回溯引用通常从 1 开始计数（\1、\2 等），在许多实现中，第 0 个匹配 \0 可以用来代表整个正则表达式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 匹配其中的 html 标签和其中的内容
+text:
+&lt;h1&gt; h1 &lt;/h1&gt;
+&lt;h2&gt; h1 &lt;/h2&gt;
+&lt;h2&gt; h1 &lt;/h3&gt;
+
+# 只匹配第一行第二行，不匹配第三行
+regex: &lt;h([1-3])&gt;.*&lt;/h\1&gt;
+
+match:
+&lt;h1&gt; h1 &lt;/h1&gt;
+&lt;h2&gt; h1 &lt;/h2&gt;</pre></td></tr></table>
+</div>
+</div>
+<h2 id="8-1-使用正则表达式进行替换">8.1 使用正则表达式进行替换</h2>
+
+<p>使用替换操作需要给入两个表达式，一个是搜索的表达式，另一个是替换的表达式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 将 313-555-1234 替换成 (313) 555-1234
+text:
+313-555-1234
+248-555-9999
+
+正则表达式: (\d{3})(-)(\d{3})(-)(\d{4})
+
+替换表达式: ($1) $3-$5
+
+结果：
+(313)555-1234
+(248) 555-9999</pre></td></tr></table>
+</div>
+</div>
+<p>有些正则表达式实现允许我们使用元字符对字母进行大小写转换</p>
+
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>\E</code></td>
+<td>结束符号，于 \L 与 \U 组合使用</td>
+</tr>
+
+<tr>
+<td><code>\l</code></td>
+<td>把下一个字符转换为小写</td>
+</tr>
+
+<tr>
+<td><code>\L</code></td>
+<td>把 \L 到 \E 之间的字符全部转换为小写</td>
+</tr>
+
+<tr>
+<td><code>\u</code></td>
+<td>把下一个字符转换为大写</td>
+</tr>
+
+<tr>
+<td><code>\U</code></td>
+<td>把 \U 到 \E 之间的字符全部转换为大写</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">text:
+&lt;BODY&gt;
+    &lt;H1&gt; Welcome to my Homepage&lt;/H1&gt;
+    Content is divided into two sections &lt;BR&gt; 
+    &lt;H2&gt;Coldfusion&lt;/H2&gt;
+    Information about Macromedia Coldfusion.
+    &lt;H2&gt;Wireless&lt;/H2&gt;
+    Information about Bluetooth, 802.11, and more  
+    &lt;H2&gt; This is not valid HTML&lt;/H3&gt;
+&lt;/BODY&gt;
+
+正则表达式: (&lt;[Hh]1&gt;)(.*?)(&lt;/[Hh]1&gt;)
+
+替换表达式：$1 \U$2\E$3
+&lt;BODY&gt;
+    &lt;H1&gt; Welcome to my Homepage&lt;/H1&gt;
+    Content is divided into two sections &lt;BR&gt; 
+    &lt;H2&gt;COLDFUSION&lt;/H2&gt;
+    Information about Macromedia Coldfusion.
+    &lt;H2&gt;WIRELESS&lt;/H2&gt;
+    Information about Bluetooth, 802.11, and more  
+    &lt;H2&gt; This is not valid HTML&lt;/H3&gt;
+&lt;/BODY&gt;</pre></td></tr></table>
+</div>
+</div>
+<h1 id="9-第九章-前后查找">9 第九章 前后查找</h1>
+
+<p>一个向前查找模式其实就是一个以 ?= 开头的子表达式，需要匹配的文本跟在 = 的后面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 提取出其中的协议
+text:
+http://yuanzx.me/
+https://yuanzx.me/
+
+# 表示查找到 : 的位置为止，但不包含 :
+正则表达式：.+(?=:)
+
+match:
+http
+https</pre></td></tr></table>
+</div>
+</div>
+<p>提示：任何一个子表达式都可以转换为一个向前查找表达式，只要给它加上一个 ?= 前缀即可。</p>
+
+<p><code>?&lt;=</code> 便是向后查找符号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">text:
+apple: $22
+orange: $32
+
+regex: (?&lt;=\$)[0-9]+
+
+match:
+22
+32</pre></td></tr></table>
+</div>
+</div>
+<p>警告：向前查找模式的长度是可变的，它们可以包含 . 和 + 之类的元字符，所以非常灵活。而向后查找模式只能是固定长度，这是一条几乎所有的正则表达式都遵守的限制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma"># 查找出 h1 中间的内容
+text: &lt;h1&gt; h1 &lt;/h1&gt;
+
+regex: (?&lt;=&lt;h1&gt;).*(?=&lt;/h1&gt;)
+
+match:
+ h1 </pre></td></tr></table>
+</div>
+</div>
+<h1 id="参考书籍">参考书籍</h1>
+
+<ol>
+<li>《正则表达式必知必会》</li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/m78-%E6%98%9F%E4%BA%91/">M78 星云</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2019/12/23/spring-aop-%E4%B8%AD-aspectjproxyfactory-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/">
+            <span class="next-text nav-default">Spring Aop 中 AspectJProxyFactory 的使用方式</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

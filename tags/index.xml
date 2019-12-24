@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 23 Dec 2019 16:57:14 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Dec 2019 08:30:48 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>M78 星云</title>
+      <link>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</link>
+      <pubDate>Tue, 24 Dec 2019 08:30:48 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>spring</title>
@@ -40,7 +49,7 @@
     </item>
     
     <item>
-      <title>java</title>
+      <title>Java</title>
       <link>https://zhixiangyuan.github.io/tags/java/</link>
       <pubDate>Tue, 17 Dec 2019 18:11:08 +0800</pubDate>
       
@@ -63,15 +72,6 @@
       <pubDate>Tue, 10 Dec 2019 08:28:37 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/intellij-idea/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>M78 星云</title>
-      <link>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</link>
-      <pubDate>Wed, 04 Dec 2019 14:14:09 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</guid>
       <description></description>
     </item>
     
