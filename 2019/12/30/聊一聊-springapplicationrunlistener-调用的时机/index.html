@@ -181,33 +181,33 @@
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/** 这其中的方法的执行顺序是从上往下执行 */</span>
 <span class="kd">public</span> <span class="nf">interface</span> <span class="n">SpringApplicationRunListener</span> <span class="p">{</span>
 
-	<span class="cm">/** 在 SpringBoot 还没有开始初始化的时候调用，调用时间是所有方法中最早的 */</span>
-	<span class="k">default</span> <span class="kt">void</span> <span class="nf">starting</span><span class="p">()</span> <span class="p">{</span>
-	<span class="p">}</span>
+    <span class="cm">/** 在 SpringBoot 还没有开始初始化的时候调用，调用时间是所有方法中最早的 */</span>
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">starting</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-	<span class="cm">/** 当 SpringBoot 应用环境变量全部初始化好的时候调用该方法 */</span>
-	<span class="k">default</span> <span class="kt">void</span> <span class="nf">environmentPrepared</span><span class="p">(</span><span class="n">ConfigurableEnvironment</span> <span class="nf">environment</span><span class="p">)</span> <span class="p">{</span>
-	<span class="p">}</span>
+    <span class="cm">/** 当 SpringBoot 应用环境变量全部初始化好的时候调用该方法 */</span>
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">environmentPrepared</span><span class="p">(</span><span class="n">ConfigurableEnvironment</span> <span class="nf">environment</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-	<span class="cm">/** 当 spring context 初始化好的时候调用该方法，但是此时还没有加载资源 */</span>
-	<span class="k">default</span> <span class="kt">void</span> <span class="nf">contextPrepared</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
-	<span class="p">}</span>
+    <span class="cm">/** 当 spring context 初始化好的时候调用该方法，但是此时还没有加载资源 */</span>
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">contextPrepared</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-	<span class="cm">/** 当 spring context 在 spring 加载好资源后调用此方法，但此时容器还没有刷新 */</span>
-	<span class="k">default</span> <span class="kt">void</span> <span class="nf">contextLoaded</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
-	<span class="p">}</span>
+    <span class="cm">/** 当 spring context 在 spring 加载好资源后调用此方法，但此时容器还没有刷新 */</span>
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">contextLoaded</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-	<span class="cm">/** 在 spring 容器刷新之后立刻调用这个方法 */</span>
-	<span class="k">default</span> <span class="kt">void</span> <span class="nf">started</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
-	<span class="p">}</span>
+    <span class="cm">/** 在 spring 容器刷新之后立刻调用这个方法 */</span>
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">started</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-	<span class="cm">/** 当 SpringBoot 应用已经处于运行时调用此方法 */</span>
-	<span class="k">default</span> <span class="kt">void</span> <span class="nf">running</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
-	<span class="p">}</span>
+    <span class="cm">/** 当 SpringBoot 应用已经处于运行时调用此方法 */</span>
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">running</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-	<span class="cm">/** 当初始化出现异常时调用此方法 */</span>
-	<span class="k">default</span> <span class="kt">void</span> <span class="nf">failed</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">,</span> <span class="n">Throwable</span> <span class="nf">exception</span><span class="p">)</span> <span class="p">{</span>
-	<span class="p">}</span>
+    <span class="cm">/** 当初始化出现异常时调用此方法 */</span>
+    <span class="k">default</span> <span class="kt">void</span> <span class="nf">failed</span><span class="p">(</span><span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span><span class="p">,</span> <span class="n">Throwable</span> <span class="nf">exception</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -262,52 +262,52 @@
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/** listeners 是监听器数组，已经在前面完成了初始化，这里直接调用即可 */</span>
-<span class="kd">public</span> <span class="nf">ConfigurableApplicationContext</span> <span class="n">run</span><span class="p">(</span><span class="n">String</span><span class="p">...</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
-		<span class="n">StopWatch</span> <span class="nf">stopWatch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StopWatch</span><span class="p">();</span>
-		<span class="n">stopWatch</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
-		<span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-		<span class="n">Collection</span><span class="o">&lt;</span><span class="n">SpringBootExceptionReporter</span><span class="o">&gt;</span> <span class="nf">exceptionReporters</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-		<span class="n">configureHeadlessProperty</span><span class="p">();</span>
-		<span class="n">SpringApplicationRunListeners</span> <span class="nf">listeners</span> <span class="o">=</span> <span class="n">getRunListeners</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="cm">/** listeners 是监听器数组，已经在前面完成了初始化，这里直接调用即可 */</span>
+    <span class="kd">public</span> <span class="nf">ConfigurableApplicationContext</span> <span class="n">run</span><span class="p">(</span><span class="n">String</span><span class="p">...</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">StopWatch</span> <span class="nf">stopWatch</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StopWatch</span><span class="p">();</span>
+        <span class="n">stopWatch</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+        <span class="n">ConfigurableApplicationContext</span> <span class="nf">context</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">Collection</span><span class="o">&lt;</span><span class="n">SpringBootExceptionReporter</span><span class="o">&gt;</span> <span class="nf">exceptionReporters</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">configureHeadlessProperty</span><span class="p">();</span>
+        <span class="n">SpringApplicationRunListeners</span> <span class="nf">listeners</span> <span class="o">=</span> <span class="n">getRunListeners</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
         <span class="c1">// 这里便是调用 starting() 方法的地方
-</span><span class="c1"></span>		<span class="n">listeners</span><span class="p">.</span><span class="na">starting</span><span class="p">();</span>
-		<span class="k">try</span> <span class="p">{</span>
-			<span class="n">ApplicationArguments</span> <span class="nf">applicationArguments</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultApplicationArguments</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</span><span class="c1"></span>        <span class="n">listeners</span><span class="p">.</span><span class="na">starting</span><span class="p">();</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">ApplicationArguments</span> <span class="nf">applicationArguments</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultApplicationArguments</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
             <span class="c1">// prepareEnvironment 方法的内部在环境创建好之后便调用了 environmentPrepared() 方法
-</span><span class="c1"></span>			<span class="n">ConfigurableEnvironment</span> <span class="nf">environment</span> <span class="o">=</span> <span class="n">prepareEnvironment</span><span class="p">(</span><span class="n">listeners</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">);</span>
-			<span class="n">configureIgnoreBeanInfo</span><span class="p">(</span><span class="n">environment</span><span class="p">);</span>
-			<span class="n">Banner</span> <span class="nf">printedBanner</span> <span class="o">=</span> <span class="n">printBanner</span><span class="p">(</span><span class="n">environment</span><span class="p">);</span>
-			<span class="n">context</span> <span class="o">=</span> <span class="n">createApplicationContext</span><span class="p">();</span>
-			<span class="n">exceptionReporters</span> <span class="o">=</span> <span class="n">getSpringFactoriesInstances</span><span class="p">(</span><span class="n">SpringBootExceptionReporter</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
-					<span class="k">new</span> <span class="n">Class</span><span class="p">[]{</span><span class="n">ConfigurableApplicationContext</span><span class="p">.</span><span class="na">class</span><span class="p">},</span> <span class="n">context</span><span class="p">);</span>
+</span><span class="c1"></span>            <span class="n">ConfigurableEnvironment</span> <span class="nf">environment</span> <span class="o">=</span> <span class="n">prepareEnvironment</span><span class="p">(</span><span class="n">listeners</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">);</span>
+            <span class="n">configureIgnoreBeanInfo</span><span class="p">(</span><span class="n">environment</span><span class="p">);</span>
+            <span class="n">Banner</span> <span class="nf">printedBanner</span> <span class="o">=</span> <span class="n">printBanner</span><span class="p">(</span><span class="n">environment</span><span class="p">);</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">createApplicationContext</span><span class="p">();</span>
+            <span class="n">exceptionReporters</span> <span class="o">=</span> <span class="n">getSpringFactoriesInstances</span><span class="p">(</span><span class="n">SpringBootExceptionReporter</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                    <span class="k">new</span> <span class="n">Class</span><span class="p">[]{</span><span class="n">ConfigurableApplicationContext</span><span class="p">.</span><span class="na">class</span><span class="p">},</span> <span class="n">context</span><span class="p">);</span>
             <span class="c1">// prepareContext 方法的内部依次调用了 contextPrepared 和 contextLoaded
-</span><span class="c1"></span>			<span class="n">prepareContext</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">environment</span><span class="p">,</span> <span class="n">listeners</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">,</span> <span class="n">printedBanner</span><span class="p">);</span>
-			<span class="n">refreshContext</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
-			<span class="n">afterRefresh</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">);</span>
-			<span class="n">stopWatch</span><span class="p">.</span><span class="na">stop</span><span class="p">();</span>
-			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">logStartupInfo</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">new</span> <span class="n">StartupInfoLogger</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">mainApplicationClass</span><span class="p">).</span><span class="na">logStarted</span><span class="p">(</span><span class="n">getApplicationLog</span><span class="p">(),</span> <span class="n">stopWatch</span><span class="p">);</span>
-			<span class="p">}</span>
+</span><span class="c1"></span>            <span class="n">prepareContext</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">environment</span><span class="p">,</span> <span class="n">listeners</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">,</span> <span class="n">printedBanner</span><span class="p">);</span>
+            <span class="n">refreshContext</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+            <span class="n">afterRefresh</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">);</span>
+            <span class="n">stopWatch</span><span class="p">.</span><span class="na">stop</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">logStartupInfo</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">new</span> <span class="n">StartupInfoLogger</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">mainApplicationClass</span><span class="p">).</span><span class="na">logStarted</span><span class="p">(</span><span class="n">getApplicationLog</span><span class="p">(),</span> <span class="n">stopWatch</span><span class="p">);</span>
+            <span class="p">}</span>
             <span class="c1">// 这里便是调用 started() 方法的地方
-</span><span class="c1"></span>			<span class="n">listeners</span><span class="p">.</span><span class="na">started</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
-			<span class="n">callRunners</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">);</span>
-		<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Throwable</span> <span class="nf">ex</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>            <span class="n">listeners</span><span class="p">.</span><span class="na">started</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+            <span class="n">callRunners</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">applicationArguments</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Throwable</span> <span class="nf">ex</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// 在处理异常的内部便调用了 failed() 方法
-</span><span class="c1"></span>			<span class="n">handleRunFailure</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">exceptionReporters</span><span class="p">,</span> <span class="n">listeners</span><span class="p">);</span>
-			<span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
-		<span class="p">}</span>
+</span><span class="c1"></span>            <span class="n">handleRunFailure</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">exceptionReporters</span><span class="p">,</span> <span class="n">listeners</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
+        <span class="p">}</span>
 
-		<span class="k">try</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
             <span class="c1">// 这里便是调用 running() 方法的地方
-</span><span class="c1"></span>			<span class="n">listeners</span><span class="p">.</span><span class="na">running</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
-		<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Throwable</span> <span class="nf">ex</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1"></span>            <span class="n">listeners</span><span class="p">.</span><span class="na">running</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Throwable</span> <span class="nf">ex</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// 在处理异常的内部便调用了 failed() 方法
-</span><span class="c1"></span>			<span class="n">handleRunFailure</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">exceptionReporters</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-			<span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">return</span> <span class="n">context</span><span class="p">;</span>
-	<span class="p">}</span></code></pre></td></tr></table>
+</span><span class="c1"></span>            <span class="n">handleRunFailure</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">exceptionReporters</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">context</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>关于调用时机的简单描述到这里便结束了</p>
