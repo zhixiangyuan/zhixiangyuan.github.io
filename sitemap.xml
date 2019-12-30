@@ -10,42 +10,49 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-12-30T08:01:36+08:00</lastmod>
+    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-12-30T08:01:36+08:00</lastmod>
+    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/spring-boot/</loc>
-    <lastmod>2019-12-30T08:01:36+08:00</lastmod>
+    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-12-30T08:01:36+08:00</lastmod>
+    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-12-30T08:01:36+08:00</lastmod>
+    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
-    <lastmod>2019-12-30T08:01:36+08:00</lastmod>
+    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2019/12/30/%E8%81%8A%E4%B8%80%E8%81%8A-springapplicationrunlistener-%E8%B0%83%E7%94%A8%E7%9A%84%E6%97%B6%E6%9C%BA/</loc>
+    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

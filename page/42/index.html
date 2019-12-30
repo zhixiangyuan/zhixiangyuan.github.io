@@ -118,9 +118,9 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/14/tcpdump-%E5%B0%8F%E8%AE%B0/">tcpdump 小记</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/">int 入栈指令 iconst、bipush、sipush、ldc</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-11-14 </span>
+      <span class="post-time"> 2018-08-11 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -129,115 +129,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70
+      1 前言 本文介绍 int 数值入栈指令 iconst、bipush、sipubh、Idc。 根据 int 取值不同分为以下几种可能性： iconst: [-1, 5] bipush: [-128, -2]∪[6, 127] sipush:
     </div>
     <div class="read-more">
-      <a href="/2019/11/14/tcpdump-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/13/%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%E6%9F%A5%E6%89%BE%E8%BF%9B%E7%A8%8B%E7%9B%91%E5%90%AC%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7/">通过文件描述符查找进程监听的端口号</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-13 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 # 首先，我们通过开启监听
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/13/%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%E6%9F%A5%E6%89%BE%E8%BF%9B%E7%A8%8B%E7%9B%91%E5%90%AC%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/13/lsof-%E5%B0%8F%E8%AE%B0/">lsof 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-13 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 2 3 4 5 6 7 # 查看端口被什么进程占用 # -n 表示不将 IP 转换为 hostname # -P 表示不将 port number 转换为 service name $&gt; lsof -n -P -i:&lt;$port&gt; # 查看进程监听了哪些端口号 $&gt; lsof -n -P -p &lt;$pid&gt; | grep TCP
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/13/lsof-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/13/javap-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">javap 命令小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-13 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/13/javap-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/13/netstat-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">netstat 命令小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-13 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 # 只列出 TCP 套接字 # -t 选项可以只列出 TCP 的套接字，也可也用 --tcp $&gt; netstat -at # 只列出 UDP 连接 #
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/13/netstat-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/13/netcat-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">netcat 命令小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-13 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      netcat 因为功能强大，被称为网络工具中的瑞士军刀，nc 是 netcat 的简称。 1 2 3 4 5 6 7 8 9 10 11 12 # -l 参数表示 nc 将监听某个端口 # -p 表示监听的端口号为 $port $&gt; nc
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/13/netcat-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
+      <a href="/2018/08/11/int-%E5%85%A5%E6%A0%88%E6%8C%87%E4%BB%A4-iconstbipushsipushldc/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
@@ -245,14 +140,11 @@
     </section>
   
   <nav class="pagination">
-    <a class="prev" href="/page/8/">
+    <a class="prev" href="/page/41/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text">上一页</span>
       </a>
-    <a class="next" href="/page/10/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
+    
   </nav>
         </div>
         
