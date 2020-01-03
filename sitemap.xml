@@ -10,41 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
+    <lastmod>2020-01-03T11:12:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/java/</loc>
+    <lastmod>2020-01-03T11:12:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/01/03/java-%E7%9A%84-spi-%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2020-01-03T11:12:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/spring-boot/</loc>
-    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
+    <lastmod>2020-01-03T11:12:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
+    <lastmod>2020-01-03T11:12:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2019-12-30T11:09:37+08:00</lastmod>
+    <lastmod>2020-01-03T11:12:16+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-01-03T11:12:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/spring-boot/</loc>
     <lastmod>2019-12-30T11:09:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -129,13 +143,6 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/2019/12/17/constructor-%E7%9A%84-getparametertypes-%E4%B8%8E-getgenericparametertypes-%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2019-12-17T18:11:08+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/java/</loc>
     <lastmod>2019-12-17T18:11:08+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
