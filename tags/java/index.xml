@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 03 Jan 2020 11:12:16 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jan 2020 11:41:22 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>class 文件的字节码结构</title>
+      <link>https://zhixiangyuan.github.io/2020/01/04/class-%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%97%E8%8A%82%E7%A0%81%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Sat, 04 Jan 2020 11:41:22 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/04/class-%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%97%E8%8A%82%E7%A0%81%E7%BB%93%E6%9E%84/</guid>
+      <description>1 结构预览 1.1 数据结构对照表 数据结构含义对照表，该数据结构将在下文中使用 数据结构 含义 u1 1 个字节的无符号数 u2 2 个字节的无符号数 u4 4 个字节的无符号</description>
+    </item>
     
     <item>
       <title>java 的 spi 机制</title>
