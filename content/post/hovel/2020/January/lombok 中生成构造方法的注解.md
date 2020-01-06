@@ -25,28 +25,28 @@ author: "yuanzx"
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
 public @interface NoArgsConstructor {
-	/** 生成一个静态类去创建对象，具体效果看下面的例子 */
-	String staticName() default "";
-	
-	/**
+    /** 生成一个静态类去创建对象，具体效果看下面的例子 */
+    String staticName() default "";
+
+    /**
      * 指定添加到生成的构造函数上的注解，支持两种语法
      * @NoArgsConstructor(onConstructor=@__({@AnnotationsGoHere})) 
      * 或者是 @NoArgsConstructor(onConstructor_={@AnnotationsGoHere})
      * 这里之所以提供新的语法是因为如果不这样，那么这里函数的返回值就要写成 Class<?>
      * 可能 lombok 觉得这样不够优雅 \笑哭
-	 */
-	AnyAnnotation[] onConstructor() default {};
-	
-	/** 设置构造函数的访问权限，默认为 PUBLIC */
-	AccessLevel access() default lombok.AccessLevel.PUBLIC;
-	
-	/** 初始化 final 字段为 0/null/false 防止编译时错误 */
-	boolean force() default false;
-	
-	@Deprecated
-	@Retention(RetentionPolicy.SOURCE)
-	@Target({})
-	@interface AnyAnnotation {}
+     */
+    AnyAnnotation[] onConstructor() default {};
+
+    /** 设置构造函数的访问权限，默认为 PUBLIC */
+    AccessLevel access() default lombok.AccessLevel.PUBLIC;
+
+    /** 初始化 final 字段为 0/null/false 防止编译时错误 */
+    boolean force() default false;
+
+    @Deprecated
+    @Retention(RetentionPolicy.SOURCE)
+    @Target({})
+    @interface AnyAnnotation {}
 }
 ```
 
@@ -138,19 +138,19 @@ public class Message {
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
 public @interface RequiredArgsConstructor {
-	/** 创建一个静态工厂来创建对象，构造参数列表和静态工厂参数列表相同*/
-	String staticName() default "";
-	
-	/** 同 NoArgsConstructor 不再赘述*/
-	AnyAnnotation[] onConstructor() default {};
-	
-	/** 修改构造函数的权限修饰符*/
-	AccessLevel access() default lombok.AccessLevel.PUBLIC;
-	
-	@Deprecated
-	@Retention(RetentionPolicy.SOURCE)
-	@Target({})
-	@interface AnyAnnotation {}
+    /** 创建一个静态工厂来创建对象，构造参数列表和静态工厂参数列表相同*/
+    String staticName() default "";
+
+    /** 同 NoArgsConstructor 不再赘述*/
+    AnyAnnotation[] onConstructor() default {};
+
+    /** 修改构造函数的权限修饰符*/
+    AccessLevel access() default lombok.AccessLevel.PUBLIC;
+
+    @Deprecated
+    @Retention(RetentionPolicy.SOURCE)
+    @Target({})
+    @interface AnyAnnotation {}
 }
 ```
 
@@ -198,16 +198,16 @@ public class Message {
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
 public @interface AllArgsConstructor {
-	String staticName() default "";
-	
-	AnyAnnotation[] onConstructor() default {};
-	
-	AccessLevel access() default lombok.AccessLevel.PUBLIC;
-	
-	@Deprecated
-	@Retention(RetentionPolicy.SOURCE)
-	@Target({})
-	@interface AnyAnnotation {}
+    String staticName() default "";
+
+    AnyAnnotation[] onConstructor() default {};
+
+    AccessLevel access() default lombok.AccessLevel.PUBLIC;
+
+    @Deprecated
+    @Retention(RetentionPolicy.SOURCE)
+    @Target({})
+    @interface AnyAnnotation {}
 }
 ```
 
