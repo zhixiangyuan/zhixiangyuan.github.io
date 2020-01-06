@@ -192,28 +192,28 @@
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Target</span><span class="p">(</span><span class="n">ElementType</span><span class="p">.</span><span class="na">TYPE</span><span class="p">)</span>
 <span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
 <span class="kd">public</span> <span class="nd">@interface</span> <span class="n">NoArgsConstructor</span> <span class="p">{</span>
-	<span class="cm">/** 生成一个静态类去创建对象，具体效果看下面的例子 */</span>
-	<span class="n">String</span> <span class="nf">staticName</span><span class="p">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
-	
-	<span class="cm">/**
+    <span class="cm">/** 生成一个静态类去创建对象，具体效果看下面的例子 */</span>
+    <span class="n">String</span> <span class="nf">staticName</span><span class="p">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+
+    <span class="cm">/**
 </span><span class="cm">     * 指定添加到生成的构造函数上的注解，支持两种语法
 </span><span class="cm">     * @NoArgsConstructor(onConstructor=@__({@AnnotationsGoHere})) 
 </span><span class="cm">     * 或者是 @NoArgsConstructor(onConstructor_={@AnnotationsGoHere})
 </span><span class="cm">     * 这里之所以提供新的语法是因为如果不这样，那么这里函数的返回值就要写成 Class&lt;?&gt;
 </span><span class="cm">     * 可能 lombok 觉得这样不够优雅 \笑哭
-</span><span class="cm">	 */</span>
-	<span class="n">AnyAnnotation</span><span class="p">[]</span> <span class="nf">onConstructor</span><span class="p">()</span> <span class="k">default</span> <span class="p">{};</span>
-	
-	<span class="cm">/** 设置构造函数的访问权限，默认为 PUBLIC */</span>
-	<span class="n">AccessLevel</span> <span class="nf">access</span><span class="p">()</span> <span class="k">default</span> <span class="n">lombok</span><span class="p">.</span><span class="na">AccessLevel</span><span class="p">.</span><span class="na">PUBLIC</span><span class="p">;</span>
-	
-	<span class="cm">/** 初始化 final 字段为 0/null/false 防止编译时错误 */</span>
-	<span class="kt">boolean</span> <span class="nf">force</span><span class="p">()</span> <span class="k">default</span> <span class="kc">false</span><span class="p">;</span>
-	
-	<span class="nd">@Deprecated</span>
-	<span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
-	<span class="nd">@Target</span><span class="p">({})</span>
-	<span class="nd">@interface</span> <span class="n">AnyAnnotation</span> <span class="p">{}</span>
+</span><span class="cm">     */</span>
+    <span class="n">AnyAnnotation</span><span class="p">[]</span> <span class="nf">onConstructor</span><span class="p">()</span> <span class="k">default</span> <span class="p">{};</span>
+
+    <span class="cm">/** 设置构造函数的访问权限，默认为 PUBLIC */</span>
+    <span class="n">AccessLevel</span> <span class="nf">access</span><span class="p">()</span> <span class="k">default</span> <span class="n">lombok</span><span class="p">.</span><span class="na">AccessLevel</span><span class="p">.</span><span class="na">PUBLIC</span><span class="p">;</span>
+
+    <span class="cm">/** 初始化 final 字段为 0/null/false 防止编译时错误 */</span>
+    <span class="kt">boolean</span> <span class="nf">force</span><span class="p">()</span> <span class="k">default</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="nd">@Deprecated</span>
+    <span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
+    <span class="nd">@Target</span><span class="p">({})</span>
+    <span class="nd">@interface</span> <span class="n">AnyAnnotation</span> <span class="p">{}</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -399,19 +399,19 @@
 <span class="nd">@Target</span><span class="p">(</span><span class="n">ElementType</span><span class="p">.</span><span class="na">TYPE</span><span class="p">)</span>
 <span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
 <span class="kd">public</span> <span class="nd">@interface</span> <span class="n">RequiredArgsConstructor</span> <span class="p">{</span>
-	<span class="cm">/** 创建一个静态工厂来创建对象，构造参数列表和静态工厂参数列表相同*/</span>
-	<span class="n">String</span> <span class="nf">staticName</span><span class="p">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
-	
-	<span class="cm">/** 同 NoArgsConstructor 不再赘述*/</span>
-	<span class="n">AnyAnnotation</span><span class="p">[]</span> <span class="nf">onConstructor</span><span class="p">()</span> <span class="k">default</span> <span class="p">{};</span>
-	
-	<span class="cm">/** 修改构造函数的权限修饰符*/</span>
-	<span class="n">AccessLevel</span> <span class="nf">access</span><span class="p">()</span> <span class="k">default</span> <span class="n">lombok</span><span class="p">.</span><span class="na">AccessLevel</span><span class="p">.</span><span class="na">PUBLIC</span><span class="p">;</span>
-	
-	<span class="nd">@Deprecated</span>
-	<span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
-	<span class="nd">@Target</span><span class="p">({})</span>
-	<span class="nd">@interface</span> <span class="n">AnyAnnotation</span> <span class="p">{}</span>
+    <span class="cm">/** 创建一个静态工厂来创建对象，构造参数列表和静态工厂参数列表相同*/</span>
+    <span class="n">String</span> <span class="nf">staticName</span><span class="p">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+
+    <span class="cm">/** 同 NoArgsConstructor 不再赘述*/</span>
+    <span class="n">AnyAnnotation</span><span class="p">[]</span> <span class="nf">onConstructor</span><span class="p">()</span> <span class="k">default</span> <span class="p">{};</span>
+
+    <span class="cm">/** 修改构造函数的权限修饰符*/</span>
+    <span class="n">AccessLevel</span> <span class="nf">access</span><span class="p">()</span> <span class="k">default</span> <span class="n">lombok</span><span class="p">.</span><span class="na">AccessLevel</span><span class="p">.</span><span class="na">PUBLIC</span><span class="p">;</span>
+
+    <span class="nd">@Deprecated</span>
+    <span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
+    <span class="nd">@Target</span><span class="p">({})</span>
+    <span class="nd">@interface</span> <span class="n">AnyAnnotation</span> <span class="p">{}</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -508,16 +508,16 @@
 <span class="nd">@Target</span><span class="p">(</span><span class="n">ElementType</span><span class="p">.</span><span class="na">TYPE</span><span class="p">)</span>
 <span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
 <span class="kd">public</span> <span class="nd">@interface</span> <span class="n">AllArgsConstructor</span> <span class="p">{</span>
-	<span class="n">String</span> <span class="nf">staticName</span><span class="p">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
-	
-	<span class="n">AnyAnnotation</span><span class="p">[]</span> <span class="nf">onConstructor</span><span class="p">()</span> <span class="k">default</span> <span class="p">{};</span>
-	
-	<span class="n">AccessLevel</span> <span class="nf">access</span><span class="p">()</span> <span class="k">default</span> <span class="n">lombok</span><span class="p">.</span><span class="na">AccessLevel</span><span class="p">.</span><span class="na">PUBLIC</span><span class="p">;</span>
-	
-	<span class="nd">@Deprecated</span>
-	<span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
-	<span class="nd">@Target</span><span class="p">({})</span>
-	<span class="nd">@interface</span> <span class="n">AnyAnnotation</span> <span class="p">{}</span>
+    <span class="n">String</span> <span class="nf">staticName</span><span class="p">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+
+    <span class="n">AnyAnnotation</span><span class="p">[]</span> <span class="nf">onConstructor</span><span class="p">()</span> <span class="k">default</span> <span class="p">{};</span>
+
+    <span class="n">AccessLevel</span> <span class="nf">access</span><span class="p">()</span> <span class="k">default</span> <span class="n">lombok</span><span class="p">.</span><span class="na">AccessLevel</span><span class="p">.</span><span class="na">PUBLIC</span><span class="p">;</span>
+
+    <span class="nd">@Deprecated</span>
+    <span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">SOURCE</span><span class="p">)</span>
+    <span class="nd">@Target</span><span class="p">({})</span>
+    <span class="nd">@interface</span> <span class="n">AnyAnnotation</span> <span class="p">{}</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
