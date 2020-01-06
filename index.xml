@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 04 Jan 2020 11:41:22 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jan 2020 19:50:07 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>lombok 中生成构造方法的注解</title>
+      <link>https://zhixiangyuan.github.io/2020/01/06/lombok-%E4%B8%AD%E7%94%9F%E6%88%90%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E6%B3%A8%E8%A7%A3/</link>
+      <pubDate>Mon, 06 Jan 2020 19:50:07 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/06/lombok-%E4%B8%AD%E7%94%9F%E6%88%90%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E6%B3%A8%E8%A7%A3/</guid>
+      <description>本文基于 org.projectlombok.lombok:1.18.10 这样的注解总共有三个，分别是 @NoArgsConstructor、@RequiredArgsConstructor 和 @AllArg</description>
     </item>
     
     <item>
