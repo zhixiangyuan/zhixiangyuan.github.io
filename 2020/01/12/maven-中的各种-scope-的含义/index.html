@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>自旋锁 与 适应性自旋锁 - Yuanzx Blog</title>
+  <title>Maven 中的各种 Scope 的含义 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="阻塞或唤醒一个 Java 线程需要操作系统切换 CPU 状态来完成，这种状态转换需要耗费处理器时间，如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="Scope 总共有六种分别是 compile、provided、runtime、test、system、import，下面便分别来阐述每种 Scope 的作用。 1 compile" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2019/12/09/%E8%87%AA%E6%97%8B%E9%94%81-%E4%B8%8E-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/01/12/maven-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-scope-%E7%9A%84%E5%90%AB%E4%B9%89/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="自旋锁 与 适应性自旋锁" />
-<meta property="og:description" content="阻塞或唤醒一个 Java 线程需要操作系统切换 CPU 状态来完成，这种状态转换需要耗费处理器时间，如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比" />
+<meta property="og:title" content="Maven 中的各种 Scope 的含义" />
+<meta property="og:description" content="Scope 总共有六种分别是 compile、provided、runtime、test、system、import，下面便分别来阐述每种 Scope 的作用。 1 compile" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2019/12/09/%E8%87%AA%E6%97%8B%E9%94%81-%E4%B8%8E-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81/" />
-<meta property="article:published_time" content="2019-12-09T20:30:38+08:00" />
-<meta property="article:modified_time" content="2019-12-09T20:30:38+08:00" />
-<meta itemprop="name" content="自旋锁 与 适应性自旋锁">
-<meta itemprop="description" content="阻塞或唤醒一个 Java 线程需要操作系统切换 CPU 状态来完成，这种状态转换需要耗费处理器时间，如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/12/maven-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-scope-%E7%9A%84%E5%90%AB%E4%B9%89/" />
+<meta property="article:published_time" content="2020-01-12T16:09:56+08:00" />
+<meta property="article:modified_time" content="2020-01-12T16:09:56+08:00" />
+<meta itemprop="name" content="Maven 中的各种 Scope 的含义">
+<meta itemprop="description" content="Scope 总共有六种分别是 compile、provided、runtime、test、system、import，下面便分别来阐述每种 Scope 的作用。 1 compile">
 
 
-<meta itemprop="datePublished" content="2019-12-09T20:30:38&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-09T20:30:38&#43;08:00" />
-<meta itemprop="wordCount" content="751">
+<meta itemprop="datePublished" content="2020-01-12T16:09:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-12T16:09:56&#43;08:00" />
+<meta itemprop="wordCount" content="691">
 
 
 
-<meta itemprop="keywords" content="java," />
+<meta itemprop="keywords" content="maven," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="自旋锁 与 适应性自旋锁"/>
-<meta name="twitter:description" content="阻塞或唤醒一个 Java 线程需要操作系统切换 CPU 状态来完成，这种状态转换需要耗费处理器时间，如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比"/>
+<meta name="twitter:title" content="Maven 中的各种 Scope 的含义"/>
+<meta name="twitter:description" content="Scope 总共有六种分别是 compile、provided、runtime、test、system、import，下面便分别来阐述每种 Scope 的作用。 1 compile"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,10 +124,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">自旋锁 与 适应性自旋锁</h1>
+      <h1 class="post-title">Maven 中的各种 Scope 的含义</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2019-12-09 </span>
+        <span class="post-time"> 2020-01-12 </span>
         <div class="post-category">
             <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
             </div>
@@ -140,40 +140,103 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#参考文章">参考文章</a></li>
+<li><a href="#1-compile">1 compile</a></li>
+<li><a href="#2-provided">2 provided</a></li>
+<li><a href="#3-runtime">3 runtime</a></li>
+<li><a href="#4-test">4 test</a></li>
+<li><a href="#5-system">5 system</a></li>
+<li><a href="#6-import">6 import</a></li>
+<li><a href="#7-参考文章">7 参考文章</a></li>
 </ul>
 </nav>
   </div>
 </div>
-  <div class="post-outdated">
-    <div class="hint">
-      <p>【注意】最后更新于 <span class="timeago" datetime="2019-12-09T20:30:38" title="December 9, 2019">December 9, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
-    </div>
-  </div>
     <div class="post-content">
       
 
-<p>阻塞或唤醒一个 Java 线程需要操作系统切换 CPU 状态来完成，这种状态转换需要耗费处理器时间，如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比用户代码执行的时间还要长。</p>
+<p>Scope 总共有六种分别是 compile、provided、runtime、test、system、import，下面便分别来阐述每种 Scope 的作用。</p>
 
-<p>在许多场景中，同步资源的锁定时间很短，为了这一小段时间去切换线程，线程挂起和恢复现场的话费可能会让系统得不偿失。如果物理机器有多个处理器，能够让两个或以上的线程同时并行执行，我们就可以让后面那个请求锁的线程不放弃 CPU 的执行时间，看看持有锁的线程是否很快就会释放锁。</p>
+<h1 id="1-compile">1 compile</h1>
 
-<p>而为了让当前线程“稍等一下”，我们需让当前线程进行自旋，如果在自旋完成后前面锁定同步资源的线程已经释放了锁，那么当前线程就可以不必阻塞而是直接获取同步资源，从而避免切换线程的开销。这就是自旋锁。</p>
+<blockquote>
+<p>This is the default scope, used if none is specified. Compile dependencies are available in all classpaths of a project. Furthermore, those dependencies are propagated to dependent projects.</p>
+</blockquote>
 
-<p>自旋锁本身是优缺点的，它不能代替阻塞，自旋等待虽然避免了线程切换的开销，但它要占用处理器时间。如果锁被占用的时间很短，自旋等待的效果就会非常好。反之，如果锁被占用的时间很长，那么自旋的线程只会白白浪费处理器资源。所以自旋等待的时间必须要有一定的限度，如果自旋超过了限定次数没有成功获得锁，就应当挂起线程。</p>
+<p>compile 是默认范围，如果不设置，那么默认就是这个范围。该范围参与项目的编译、测试、打包、运行全流程。该范围同时会将依赖像子项目传递。</p>
 
-<p>自旋锁在 JDK 1.4.2 中引入，使用 -XX:+UseSpinning 来开启。JDK 6 中变为默认开启，并且引入了自适应的自旋锁。</p>
+<h1 id="2-provided">2 provided</h1>
 
-<p>自适应意味着自旋的次数不再固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很可能再次成功，进而它将允许自旋等待持续相对更长的时间。如果对于某个锁，自旋很少成功获得过，那在以后尝试获取这个锁时将可能省略掉自旋过程，直接阻塞线程，避免浪费处理器资源。</p>
+<blockquote>
+<p>This is much like compile, but indicates you expect the JDK or a container to provide the dependency at runtime. For example, when building a web application for the Java Enterprise Edition, you would set the dependency on the Servlet API and related Java EE APIs to scope provided because the web container provides those classes. This scope is only available on the compilation and test classpath, and is not transitive.</p>
+</blockquote>
 
-<h1 id="参考文章">参考文章</h1>
+<p>该范围参与项目编译、测试，但是不参与项目的打包，这意味着打出来的包是不包含该依赖的，相当于在打包的时候做了 exclude 动作。但是如果项目没有该依赖怎么运行呢，其实该依赖应该由别的项目来提供，比如在 Web 项目里面，便是 Web 容器来提供相关的依赖，或者是希望 JDK 来提供依赖。这个范围不会将依赖传递个给子项目。</p>
+
+<h1 id="3-runtime">3 runtime</h1>
+
+<blockquote>
+<p>This scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath.</p>
+</blockquote>
+
+<p>这个范围不参与编译，但在运行时和测试时生效。</p>
+
+<h1 id="4-test">4 test</h1>
+
+<blockquote>
+<p>This scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases. This scope is not transitive.</p>
+</blockquote>
+
+<p>该范围只在测试时有效，并且不向子项目传递</p>
+
+<h1 id="5-system">5 system</h1>
+
+<blockquote>
+<p>This scope is similar to provided except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository.</p>
+</blockquote>
+
+<p>该范围的含义基本与 provided 相同，只是查找依赖的位置时不直接从中央仓库查找，而是通过指定 systemPath 的位置去查找依赖</p>
+
+<h1 id="6-import">6 import</h1>
+
+<blockquote>
+<p>This scope is only supported on a dependency of type pom in the &lt;dependencyManagement&gt; section. It indicates the dependency to be replaced with the effective list of dependencies in the specified POM&rsquo;s &lt;dependencyManagement&gt; section. Since they are replaced, dependencies with a scope of import do not actually participate in limiting the transitivity of a dependency.</p>
+</blockquote>
+
+<p>import 只用在 &lt;dependencyManagement&gt; 当中，并且只对 pom 类型的 maven 项目起作用，作用便是导入该项目中的 &lt;dependencyManagement&gt; 列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">   <span class="nt">&lt;dependencyManagement&gt;</span>
+        <span class="nt">&lt;dependencies&gt;</span>
+            <span class="nt">&lt;dependency&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.springframework.cloud<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>spring-cloud-dependencies<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>${spring-cloud.version}<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;type&gt;</span>pom<span class="nt">&lt;/type&gt;</span>
+                <span class="nt">&lt;scope&gt;</span>import<span class="nt">&lt;/scope&gt;</span>
+            <span class="nt">&lt;/dependency&gt;</span>
+            ...
+        <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="nt">&lt;/dependencyManagement&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="7-参考文章">7 参考文章</h1>
 
 <ol>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&amp;mid=2651749434&amp;idx=3&amp;sn=5ffa63ad47fe166f2f1a9f604ed10091&amp;chksm=bd12a5778a652c61509d9e718ab086ff27ad8768586ea9b38c3dcf9e017a8e49bcae3df9bcc8&amp;scene=38#wechat_redirect">【基本功】不可不说的 Java “锁” 事</a></li>
-<li><a href="https://www.zhihu.com/question/31187779">HotSpot VM 参数 - XX:PreBlockSpin=<n> 是怎么回事？</a>
-
-<ul>
-<li>关于 1 中 -XX:PreBlockSpin 的使用问题，目前这个参数已经没用了，设了等于摆设。</li>
-</ul></li>
+<li><a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html">官方文档</a></li>
 </ol>
 
     </div>
@@ -181,16 +244,12 @@
     
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/java/">java</a>
+          <a href="/tags/maven/">maven</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">IDEA 中 UML 的箭头含义</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        <a class="next" href="/2019/12/09/%E8%B0%88%E8%B0%88-cas/">
-            <span class="next-text nav-default">谈谈 CAS</span>
+        
+        <a class="next" href="/2020/01/06/lombok-%E4%B8%AD%E7%94%9F%E6%88%90%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E6%B3%A8%E8%A7%A3/">
+            <span class="next-text nav-default">lombok 中生成构造方法的注解</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

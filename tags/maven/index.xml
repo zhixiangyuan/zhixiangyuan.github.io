@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>maven on Yuanzx Blog</title>
+    <link>https://zhixiangyuan.github.io/tags/maven/</link>
+    <description>Recent content in maven on Yuanzx Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>yuanzx</copyright>
+    <lastBuildDate>Sun, 12 Jan 2020 16:09:56 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhixiangyuan.github.io/tags/maven/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Maven 中的各种 Scope 的含义</title>
+      <link>https://zhixiangyuan.github.io/2020/01/12/maven-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-scope-%E7%9A%84%E5%90%AB%E4%B9%89/</link>
+      <pubDate>Sun, 12 Jan 2020 16:09:56 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/12/maven-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-scope-%E7%9A%84%E5%90%AB%E4%B9%89/</guid>
+      <description>Scope 总共有六种分别是 compile、provided、runtime、test、system、import，下面便分别来阐述每种 Scope 的作用。 1 compile</description>
+    </item>
+    
+  </channel>
+</rss>

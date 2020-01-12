@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 06 Jan 2020 19:50:07 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jan 2020 16:09:56 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Maven 中的各种 Scope 的含义</title>
+      <link>https://zhixiangyuan.github.io/2020/01/12/maven-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-scope-%E7%9A%84%E5%90%AB%E4%B9%89/</link>
+      <pubDate>Sun, 12 Jan 2020 16:09:56 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/12/maven-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-scope-%E7%9A%84%E5%90%AB%E4%B9%89/</guid>
+      <description>Scope 总共有六种分别是 compile、provided、runtime、test、system、import，下面便分别来阐述每种 Scope 的作用。 1 compile</description>
+    </item>
     
     <item>
       <title>lombok 中生成构造方法的注解</title>

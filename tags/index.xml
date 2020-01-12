@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 06 Jan 2020 19:50:07 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jan 2020 16:09:56 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>maven</title>
+      <link>https://zhixiangyuan.github.io/tags/maven/</link>
+      <pubDate>Sun, 12 Jan 2020 16:09:56 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/maven/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>lombok</title>
@@ -22,7 +31,7 @@
     </item>
     
     <item>
-      <title>Java</title>
+      <title>java</title>
       <link>https://zhixiangyuan.github.io/tags/java/</link>
       <pubDate>Sat, 04 Jan 2020 11:41:22 +0800</pubDate>
       
