@@ -128,14 +128,14 @@
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/spring/</loc>
+    <loc>https://zhixiangyuan.github.io/2019/12/23/spring-aop-%E4%B8%AD-aspectjproxyfactory-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/</loc>
     <lastmod>2019-12-23T16:57:14+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/2019/12/23/spring-aop-%E4%B8%AD-aspectjproxyfactory-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/</loc>
+    <loc>https://zhixiangyuan.github.io/tags/spring-framework/</loc>
     <lastmod>2019-12-23T16:57:14+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -234,6 +234,13 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/2019/12/16/jdk-%E4%B8%8E-spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2019-12-16T16:55:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/spring/</loc>
     <lastmod>2019-12-16T16:55:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
