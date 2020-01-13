@@ -165,6 +165,7 @@ public class Message {
     private final long id1;
     @NonNull
     private Long id2;
+    private boolean flag;
 }
 // 以下是生成的代码
 public class Message {
@@ -223,10 +224,6 @@ public class Message {
     @NonNull
     private Long id2;
     private boolean flag;
-
-    public static void main(String[] args) {
-
-    }
 }
 // 以下是生成的代码
 public class Message {
