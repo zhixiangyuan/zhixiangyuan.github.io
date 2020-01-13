@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 13 Jan 2020 08:25:29 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2020 15:30:42 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>查看 mysql 表相关信息</title>
+      <link>https://zhixiangyuan.github.io/2020/01/13/%E6%9F%A5%E7%9C%8B-mysql-%E8%A1%A8%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Mon, 13 Jan 2020 15:30:42 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/13/%E6%9F%A5%E7%9C%8B-mysql-%E8%A1%A8%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 -- \G 表示的意思是数据以列的方式显示 -- 需要注意的是在 navicat 的命令行里面这样用会报错 -- 通过以下语句查看表的相关信息 -- 查看所有表的</description>
+    </item>
     
     <item>
       <title>为 Spring Bean 指定初始化和销毁方法的几种方式</title>

@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-01-13T08:25:29+08:00" />
+<meta property="og:updated_time" content="2020-01-13T15:30:42+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_linger-%E9%80%89%E9%A1%B9/">TCP 中的 SO_LINGER 选项</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-19 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      SO_LINGER 参数的作用就是改变 close 的默认行为，SO_LINGER 参数在 Linux 系统中就是一个 linger 结构体，代码如下 1 2 3 4 struct linger { int l_onoff; /* linger active */ int l_linger; /* how many seconds to linger for */ };
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_linger-%E9%80%89%E9%A1%B9/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/11/19/tcp-%E4%B8%AD%E7%9A%84-so_reuseaddr-%E9%80%89%E9%A1%B9/">TCP 中的 SO_REUSEADDR 选项</a></h1>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/11/17/tcp-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%AF%A6%E8%A7%A3/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/">TCP 四次挥手详解</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-17 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 四次挥手数据包的交互过程 下面用 client 表述客户端，server 表述服务端，这样看起来更清晰。 client 发送 FIN 包给 server，发送后 client 进入 FIN-WAIT-1 状态 server 收到 client
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/17/tcp-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E8%AF%A6%E8%A7%A3/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
