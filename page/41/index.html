@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-01-12T16:09:56+08:00" />
+<meta property="og:updated_time" content="2020-01-13T08:25:29+08:00" />
 <meta itemprop="name" content="Yuanzx Blog">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/01/13/linux-%E4%B8%8B%E8%AF%AF%E5%88%A0-secure-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8D%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97%E9%97%AE%E9%A2%98/">Linux 下误删 Secure 文件，系统不记录日志问题</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-01-13 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      第一步创建文件 touch /var/log/secure 第二步修改权限 chmod 600 /var/log/secure 第三步重启服务 service sshd restart service syslog(rsyslog) restart 注意：如果不重启服务的话，原来的程序依然向被删除的文件中写入数据，那么新建的
+    </div>
+    <div class="read-more">
+      <a href="/2019/01/13/linux-%E4%B8%8B%E8%AF%AF%E5%88%A0-secure-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8D%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/01/12/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Docker 常用命令</a></h1>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2018/10/17/finalfinallyfinalize-%E7%9A%84%E5%BC%82%E5%90%8C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2018/10/16/exception-%E4%B8%8E-error-%E7%9A%84%E5%BC%82%E5%90%8C/">Exception 与 Error 的异同</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-10-16 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Exception 和 Error 都是继承了 Throwable 类，在 Java 中只有继承了 Throwable 的类才可以被 throw 或者 catch，它是异常处理机制的基本组成类型。Exception 是程序正常运行中，可
-    </div>
-    <div class="read-more">
-      <a href="/2018/10/16/exception-%E4%B8%8E-error-%E7%9A%84%E5%BC%82%E5%90%8C/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
