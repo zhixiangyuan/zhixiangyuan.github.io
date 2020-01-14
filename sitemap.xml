@@ -10,41 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2020-01-13T15:30:42+08:00</lastmod>
+    <lastmod>2020-01-14T18:29:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/mysql/</loc>
-    <lastmod>2020-01-13T15:30:42+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
+    <lastmod>2020-01-14T18:29:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2020-01-13T15:30:42+08:00</lastmod>
+    <lastmod>2020-01-14T18:29:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2020-01-13T15:30:42+08:00</lastmod>
+    <lastmod>2020-01-14T18:29:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2020-01-13T15:30:42+08:00</lastmod>
+    <lastmod>2020-01-14T18:29:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-01-14T18:29:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/01/14/%E8%BD%AC%E8%BD%BDhttps-%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2020-01-14T18:29:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/mysql/</loc>
     <lastmod>2020-01-13T15:30:42+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -137,13 +151,6 @@
   <url>
     <loc>https://zhixiangyuan.github.io/2019/12/30/%E8%AE%BE%E7%BD%AE-sprintboot-%E7%9A%84-spring.profiles.active-%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/</loc>
     <lastmod>2019-12-30T08:01:36+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
-    <lastmod>2019-12-24T08:30:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
