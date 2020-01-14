@@ -2196,7 +2196,7 @@
       <pubDate>Sat, 12 Jan 2019 19:56:52 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2019/01/12/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-      <description>保存镜像 docker commit &amp;lt;$container_id&amp;gt; &amp;lt;$image_name&amp;gt; 使用镜像新建容器 1 2 3 4 5 6 7 8 9 10 docker run # 以下是一些可选项 # 这是两个参数，一个是 -i：交互式操作，一个是 -t 终端 # 使用这个选项</description>
+      <description>保存镜像 docker commit &amp;lt;$container_id&amp;gt; &amp;lt;$image_name&amp;gt; 使用镜像新建容器 1 2 3 4 5 6 7 8 9 10 11 docker run # 以下是一些可选项 # 这是两个参数，一个是 -i：交互式操作，一个是 -t 终端 # 使用这个选</description>
     </item>
     
     <item>
