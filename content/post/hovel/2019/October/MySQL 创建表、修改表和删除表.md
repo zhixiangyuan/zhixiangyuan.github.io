@@ -95,7 +95,7 @@ ALTER TABLE <table name> DROP COLUMN <field name>;
 
 ```sql
 -- 删除表
-DROP TABLE <table name>;
+DROP TABLE [IF EXISTS] <table name>;
 ```
 
 # 4 重命名表
