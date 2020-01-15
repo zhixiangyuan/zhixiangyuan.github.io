@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-01-15T20:00:34&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-15T20:00:34&#43;08:00" />
-<meta itemprop="wordCount" content="268">
+<meta itemprop="wordCount" content="316">
 
 
 
@@ -214,7 +214,7 @@
 </div>
 <h1 id="3-如何通过-spi-机制引入驱动">3 如何通过 SPI 机制引入驱动</h1>
 
-<p>需要注意的是，很多老的教程依然会写 <code>Class.forName(com.mysql.jdbc.Driver)</code> 这由于 Java 中 spi 机制，当引入 jar 包后便会自动注册，不再需要手动调用去注册。源码片段见下面部分</p>
+<p>需要注意的是，很多老的教程依然会写 <code>Class.forName(com.mysql.jdbc.Driver)</code>，但是由于 Java 中 spi 机制，当引入 jar 包后便会自动注册，不再需要手动调用去注册，所以这句代码可以省去。源码片段见下面部分</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
