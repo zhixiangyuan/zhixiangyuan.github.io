@@ -49,7 +49,7 @@ public class Main {
 
 # 3 如何通过 SPI 机制引入驱动
 
-需要注意的是，很多老的教程依然会写 `Class.forName(com.mysql.jdbc.Driver)` 这由于 Java 中 spi 机制，当引入 jar 包后便会自动注册，不再需要手动调用去注册。源码片段见下面部分
+需要注意的是，很多老的教程依然会写 `Class.forName(com.mysql.jdbc.Driver)`，但是由于 Java 中 spi 机制，当引入 jar 包后便会自动注册，不再需要手动调用去注册，所以这句代码可以省去。源码片段见下面部分
 
 ```java
 // java.sql.DriverManager
