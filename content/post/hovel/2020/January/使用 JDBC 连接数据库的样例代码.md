@@ -28,7 +28,7 @@ author: "yuanzx"
 ```java
 public class Main {
 
-    static final String DB_URL = "jdbc:mysql://192.168.3.19:3306/test";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/test";
 
     static final String USER = "root";
     static final String PASS = "123456";
