@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 17 Jan 2020 00:58:44 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jan 2020 09:33:42 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>事务的 ACDI 特性</title>
+      <link>https://zhixiangyuan.github.io/2020/01/17/%E4%BA%8B%E5%8A%A1%E7%9A%84-acdi-%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Fri, 17 Jan 2020 09:33:42 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/17/%E4%BA%8B%E5%8A%A1%E7%9A%84-acdi-%E7%89%B9%E6%80%A7/</guid>
+      <description>ACDI 分别是：原子性 (atomicity)，一致性 (consistency)，隔离性 (isolation)，持久性 (durability)。 原子</description>
     </item>
     
     <item>

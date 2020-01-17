@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Yuanzx Blog</title>
+  <title>事务的 ACDI 特性 - Yuanzx Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="ACDI 分别是：原子性 (atomicity)，一致性 (consistency)，隔离性 (isolation)，持久性 (durability)。 原子" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Yuanzx Blog" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="Yuanzx Blog" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/01/17/%E4%BA%8B%E5%8A%A1%E7%9A%84-acdi-%E7%89%B9%E6%80%A7/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="Yuanzx Blog" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="事务的 ACDI 特性" />
+<meta property="og:description" content="ACDI 分别是：原子性 (atomicity)，一致性 (consistency)，隔离性 (isolation)，持久性 (durability)。 原子" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/17/%E4%BA%8B%E5%8A%A1%E7%9A%84-acdi-%E7%89%B9%E6%80%A7/" />
+<meta property="article:published_time" content="2020-01-17T09:33:42+08:00" />
+<meta property="article:modified_time" content="2020-01-17T09:33:42+08:00" />
+<meta itemprop="name" content="事务的 ACDI 特性">
+<meta itemprop="description" content="ACDI 分别是：原子性 (atomicity)，一致性 (consistency)，隔离性 (isolation)，持久性 (durability)。 原子">
 
-<meta property="og:updated_time" content="2020-01-17T09:33:42+08:00" />
-<meta itemprop="name" content="Yuanzx Blog">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2020-01-17T09:33:42&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-17T09:33:42&#43;08:00" />
+<meta itemprop="wordCount" content="323">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Yuanzx Blog"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="事务的 ACDI 特性"/>
+<meta name="twitter:description" content="ACDI 分别是：原子性 (atomicity)，一致性 (consistency)，隔离性 (isolation)，持久性 (durability)。 原子"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,141 +121,61 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/11/leetcode-121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/">Leetcode: 121 买卖股票的最佳时机</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-11 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 买卖股票的最佳时机 2 解 2.1 一遍遍历 时间复杂度: O(n) 空间复杂度: O(1) 碰到最低价格就将价格保存下来，然后将最低价格和后面的最高价格做比较，保存利
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/11/leetcode-121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">事务的 ACDI 特性</h1>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/10/leetcode-70-%E7%88%AC%E6%A5%BC%E6%A2%AF/">Leetcode: 70 爬楼梯</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-10 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 爬楼梯 2 解 2.1 我的解 没解出来 2.2 官方题解 2.2.1 暴力法 通过递归的方式模拟爬楼梯，不过这个方法在 leetcode 上面跑会超时 时间复杂度: O(\(2^n\)) 空间复杂度: O(1) 1 2 3 4
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/10/leetcode-70-%E7%88%AC%E6%A5%BC%E6%A2%AF/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-17 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/10/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">MyBatis Plugin 使用案例</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-10 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>ACDI 分别是：原子性 (atomicity)，一致性 (consistency)，隔离性 (isolation)，持久性 (durability)。</p>
+
+<ul>
+<li>原子性：指的是事务是一个不可分割的操作，要么全部正确执行，要么全部不执行</li>
+<li>一致性：指的是事务把数据库从一种一致性状态转换成另一种一致性状态，事务开始前和事务结束后每数据库的完整性约束没有被破坏</li>
+<li>隔离性：指的是每个事务之前是分开的，在事务提交之前对其他事务不可见</li>
+<li>持久性：指的是事务一旦提交，其结果就是永久性的，即使宕机也能恢复</li>
+</ul>
+
+<p>关于一致性的补充说明，一致性在不同的场景下有不同的含义，这里所提到的仅仅是单机场景下的事务一致性，感觉不好理解只需要记住下面这个财务转账的例子：A 给 B 转账前和转账后 A + B 的金钱总额是不变的。</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">MySQL</a>
           </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      MyBatis 插件，实现功能的插件又可称之为拦截器，主要提供对 org.apache.ibatis.executor.Executor、org.apach
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/10/mybatis-plugin-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/10/mybatis-objectfactory-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">MyBatis ObjectFactory 使用案例</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-10 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      MyBatis 每次创建结果对象的新实例时，它都会使用一个对象工厂来完成。默认的对象工厂仅仅是实例化目标类，要么通过默认构造方法，要么在构造方法上参数映射
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/10/mybatis-objectfactory-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/09/leetcode-53-%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/">Leetcode: 53 最大子序和</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-09 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 最大子序和 2 解 2.1 我的解 双重循环遍历，把所有可能性都算一遍 时间复杂度: O(\(n^2\)) 空间复杂度: O(1) 执行时间: 95ms 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/09/leetcode-53-%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/09/09/mybatis-typehandler-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">MyBatis TypeHandler 使用案例</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-09-09 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      数据库的数据类型与 Java 中的数据类型存在差异，当需要对两者做特定的转换时，MyBatis 提供了 TypeHandler 来实现转换操作，以下是一个实际案例，通过将 Java 中的
-    </div>
-    <div class="read-more">
-      <a href="/2019/09/09/mybatis-typehandler-%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/35/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/37/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/01/17/innodb-%E6%94%AF%E6%8C%81%E7%9A%84%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB/">
+            <span class="next-text nav-default">InnoDB 支持的索引分类</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
