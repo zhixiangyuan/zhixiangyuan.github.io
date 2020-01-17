@@ -31,6 +31,24 @@
     </item>
     
     <item>
+      <title>快速排序</title>
+      <link>https://zhixiangyuan.github.io/2019/10/18/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Fri, 18 Oct 2019 13:56:39 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/18/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</guid>
+      <description>快速排序使用分治思想，实际实现过程和二叉树的前序遍历很像，在第一次碰到节点时进行遍历分区，然后再对子分区进行遍历分区，直到分区中只有一个节点</description>
+    </item>
+    
+    <item>
+      <title>归并排序</title>
+      <link>https://zhixiangyuan.github.io/2019/10/17/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Thu, 17 Oct 2019 00:36:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2019/10/17/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/</guid>
+      <description>归并排序通过对数组进行二叉树式的拆分最后再合并，完成了其排序过程，并将时间复杂度下降到了 O(nlogn) 的程度，下面是一个数组索引 0 - 9 的数组的拆分的过程</description>
+    </item>
+    
+    <item>
       <title>跳表</title>
       <link>https://zhixiangyuan.github.io/2019/10/16/%E8%B7%B3%E8%A1%A8/</link>
       <pubDate>Wed, 16 Oct 2019 10:51:09 +0800</pubDate>
