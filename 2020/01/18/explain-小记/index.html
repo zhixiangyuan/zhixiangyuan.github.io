@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-01-18T16:44:45&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-18T16:44:45&#43;08:00" />
-<meta itemprop="wordCount" content="1909">
+<meta itemprop="wordCount" content="1942">
 
 
 
@@ -539,7 +539,7 @@
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">film_actor</span> <span class="k">where</span> <span class="n">film_id</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">film_actor</span> <span class="k">WHERE</span> <span class="n">film_id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><img src="/hub/2020/January/19.png" alt="" /></p>
@@ -551,18 +551,54 @@
 <h3 id="1-10-3-using-where">1.10.3 Using where</h3>
 
 <p>// todo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">actor</span><span class="o">`</span> <span class="k">WHERE</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/21.png" alt="" /></p>
 
 <h3 id="1-10-4-using-temporary">1.10.4 Using temporary</h3>
 
 <p>// todo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="k">FROM</span> <span class="o">`</span><span class="n">actor</span><span class="o">`</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/22.png" alt="" /></p>
 
 <h3 id="1-10-5-using-filesort">1.10.5 Using filesort</h3>
 
 <p>// todo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">actor</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/23.png" alt="" /></p>
 
 <h3 id="1-10-6-select-tables-optimized-away">1.10.6 Select tables optimized away</h3>
 
 <p>// todo</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="k">min</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">film</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/24.png" alt="" /></p>
 
 <h1 id="参考文章">参考文章</h1>
 
