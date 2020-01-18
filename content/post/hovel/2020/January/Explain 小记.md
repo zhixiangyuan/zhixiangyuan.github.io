@@ -286,7 +286,7 @@ EXPLAIN SELECT * FROM film_actor WHERE actor_id = 1;
 该信息表示此次查询使用了索引
 
 ```sql
-EXPLAIN SELECT * from film_actor where film_id =1;
+EXPLAIN SELECT * FROM film_actor WHERE film_id = 1;
 ```
 
 ![](/hub/2020/January/19.png)
@@ -295,21 +295,46 @@ EXPLAIN SELECT * from film_actor where film_id =1;
 
 // todo
 
+
 ### 1.10.3 Using where
 
 // todo
+
+```sql
+EXPLAIN SELECT * FROM `actor` WHERE `name` = 'a';
+```
+
+![](/hub/2020/January/21.png)
 
 ### 1.10.4 Using temporary
 
 // todo
 
+```sql
+EXPLAIN SELECT DISTINCT `name` FROM `actor`;
+```
+
+![](/hub/2020/January/22.png)
+
 ### 1.10.5 Using filesort
 
 // todo
 
+```sql
+EXPLAIN SELECT * FROM actor ORDER BY `name`;
+```
+
+![](/hub/2020/January/23.png)
+
 ### 1.10.6 Select tables optimized away
 
 // todo
+
+```sql
+EXPLAIN SELECT min(id) FROM film;
+```
+
+![](/hub/2020/January/24.png)
 
 # 参考文章
 
