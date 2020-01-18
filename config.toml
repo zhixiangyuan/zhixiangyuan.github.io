@@ -1,7 +1,7 @@
 baseURL = "https://zhixiangyuan.github.io/"
 languageCode = "en"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
-title = "Yuanzx Blog"
+title = "养猪场"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
@@ -63,7 +63,7 @@ copyright = "yuanzx"            # default: author.name ↓        # 默认为下
   gitRepo = ""
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
-  logoTitle = "Yuanzx"        # default: the title value    # 默认值: 上面设置的title值
+  logoTitle = "养猪场"        # default: the title value    # 默认值: 上面设置的title值
   keywords = ["Hugo", "theme", "even"]
   description = "Yuanzx blog."
 
