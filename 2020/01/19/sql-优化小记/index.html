@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;姓名" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="SQL 优化小记" />
-<meta property="og:description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;姓名" />
+<meta property="og:description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/" />
 <meta property="article:published_time" content="2020-01-19T17:02:13+08:00" />
 <meta property="article:modified_time" content="2020-01-19T17:02:13+08:00" />
 <meta itemprop="name" content="SQL 优化小记">
-<meta itemprop="description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;姓名">
+<meta itemprop="description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39">
 
 
 <meta itemprop="datePublished" content="2020-01-19T17:02:13&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-19T17:02:13&#43;08:00" />
-<meta itemprop="wordCount" content="1897">
+<meta itemprop="wordCount" content="2321">
 
 
 
 <meta itemprop="keywords" content="MySQL," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="SQL 优化小记"/>
-<meta name="twitter:description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;姓名"/>
+<meta name="twitter:description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -148,6 +148,8 @@
 </ul></li>
 <li><a href="#3-尽量使用覆盖索引进行查询">3 尽量使用覆盖索引进行查询</a></li>
 <li><a href="#4-对于-order-by-的优化">4 对于 ORDER BY 的优化</a></li>
+<li><a href="#5-优化分页查询">5 优化分页查询</a></li>
+<li><a href="#6-优化非主键字段排序的分页查询">6 优化非主键字段排序的分页查询</a></li>
 <li><a href="#参考文章">参考文章</a></li>
 </ul>
 </nav>
@@ -174,6 +176,9 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="n">employees</span><span class="p">;</span>
@@ -190,7 +195,10 @@
 
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;LiLei&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s1">&#39;manager&#39;</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HanMeimei&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;dev&#39;</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Lucy&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;dev&#39;</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span></code></pre></td></tr></table>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Lucy&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;dev&#39;</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>
+
+<span class="c1">-- 这个语句用于刷数据，每次数据量翻一倍
+</span><span class="c1"></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="1-最左前缀法则">1 最左前缀法则</h1>
@@ -426,7 +434,7 @@
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">position</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">position</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>可以看到在 Extra 中有 Using filesort，说明做了额外的排序动作，浪费性能</p>
@@ -439,12 +447,82 @@
 <pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">=</span> <span class="s1">&#39;18&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">position</span><span class="p">;</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">=</span> <span class="s1">&#39;18&#39;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">position</span><span class="p">;</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><img src="/hub/2020/January/40.png" alt="" /></p>
 
 <p>可以看到，当利用了索引做排序之后便不再有 Using filesort，不过这里的 age 加上后改变了 sql 的语义，实际场景读者根据场景随机应变。</p>
+
+<h1 id="5-优化分页查询">5 优化分页查询</h1>
+
+<p>对于下面这条 sql，实际执行的时候是不走索引的，执行时会先读取 100000 条数据，然后抛弃后面的 999995 条数据，最后剩下的便是需要查询的那 5 条数据，但是这样效率就很低。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">LIMIT</span> <span class="mi">999995</span><span class="p">,</span> <span class="mi">5</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/41.png" alt="" /></p>
+
+<p>下面是实际的执行效果，耗时 0.702 秒</p>
+
+<p><img src="/hub/2020/January/42.png" alt="" /></p>
+
+<p>对这条 sql 我们可以做如下的优化，让它走索引，提高查询效率</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">&gt;</span> <span class="mi">999995</span> <span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/43.png" alt="" /></p>
+
+<p>下面是实际的执行效果，0.003 秒，比不走索引快得多</p>
+
+<p><img src="/hub/2020/January/44.png" alt="" /></p>
+
+<p>但是这种优化方式不实用，实际场景的时候经常会删数据，导致主键不连续，那么这种方法就不能用了，因为查出来的数据不一样了。</p>
+
+<h1 id="6-优化非主键字段排序的分页查询">6 优化非主键字段排序的分页查询</h1>
+
+<p>可以看到，以 name 排序的分页查询不走索引</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">name</span> <span class="k">LIMIT</span> <span class="mi">999999</span><span class="p">,</span> <span class="mi">5</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/45.png" alt="" /></p>
+
+<p>以下是实际的执行时间，可怕的 59 秒</p>
+
+<p><img src="/hub/2020/January/46.png" alt="" /></p>
+
+<p>这里我们可以优化为先经过条件查询出主键，然后根据主键查询需要的数据，并且这里的排序通过主键排序，没有 Using filesort 了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 优化后的 sql
+</span><span class="c1"></span><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">AS</span> <span class="n">e</span> 
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="n">id</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="k">LIMIT</span> <span class="mi">999999</span><span class="p">,</span> <span class="mi">5</span> <span class="p">)</span> <span class="k">AS</span> <span class="n">ed</span> <span class="k">ON</span> <span class="n">e</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ed</span><span class="p">.</span><span class="n">id</span><span class="p">;</span> </code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/47.png" alt="" /></p>
+
+<p>以下是执行耗时，0.471 秒</p>
+
+<p><img src="/hub/2020/January/48.png" alt="" /></p>
 
 <h1 id="参考文章">参考文章</h1>
 
