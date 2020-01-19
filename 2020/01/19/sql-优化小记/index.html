@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SQL 优化小记 - 养猪场</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;姓名" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.40a1ded2.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="SQL 优化小记" />
+<meta property="og:description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;姓名" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/" />
+<meta property="article:published_time" content="2020-01-19T17:02:13+08:00" />
+<meta property="article:modified_time" content="2020-01-19T17:02:13+08:00" />
+<meta itemprop="name" content="SQL 优化小记">
+<meta itemprop="description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;姓名">
+
+
+<meta itemprop="datePublished" content="2020-01-19T17:02:13&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-19T17:02:13&#43;08:00" />
+<meta itemprop="wordCount" content="1897">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SQL 优化小记"/>
+<meta name="twitter:description" content="本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39;姓名"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">养猪场</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">养猪场</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SQL 优化小记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-19 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-最左前缀法则">1 最左前缀法则</a></li>
+<li><a href="#2-索引失效">2 索引失效</a>
+<ul>
+<li><a href="#2-1-因对列进行计算导">2.1 因对列进行计算导</a></li>
+<li><a href="#2-2-like-使用不当">2.2 LIKE 使用不当</a></li>
+</ul></li>
+<li><a href="#3-尽量使用覆盖索引进行查询">3 尽量使用覆盖索引进行查询</a></li>
+<li><a href="#4-对于-order-by-的优化">4 对于 ORDER BY 的优化</a></li>
+<li><a href="#参考文章">参考文章</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>本篇文章使用的建表语句以及其创建数据的语句</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="n">employees</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">employees</span><span class="o">`</span> <span class="p">(</span>
+	<span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span> <span class="p">(</span> <span class="mi">11</span> <span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+	<span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">VARCHAR</span> <span class="p">(</span> <span class="mi">24</span> <span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;姓名&#39;</span><span class="p">,</span>
+	<span class="o">`</span><span class="n">age</span><span class="o">`</span> <span class="nb">INT</span> <span class="p">(</span> <span class="mi">20</span> <span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;年龄&#39;</span><span class="p">,</span>
+	<span class="o">`</span><span class="k">position</span><span class="o">`</span> <span class="nb">VARCHAR</span> <span class="p">(</span> <span class="mi">20</span> <span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span> <span class="k">COMMENT</span> <span class="s1">&#39;职位&#39;</span><span class="p">,</span>
+	<span class="o">`</span><span class="n">hire_time</span><span class="o">`</span> <span class="k">TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">COMMENT</span> <span class="s1">&#39;入职时间&#39;</span><span class="p">,</span>
+	<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span> <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="p">),</span>
+	<span class="k">KEY</span> <span class="o">`</span><span class="n">idx_name_age_position</span><span class="o">`</span> <span class="p">(</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">age</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="k">position</span><span class="o">`</span> <span class="p">)</span> <span class="k">USING</span> <span class="n">BTREE</span> 
+<span class="p">)</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">INNODB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span> <span class="o">=</span> <span class="n">utf8</span> <span class="k">COMMENT</span> <span class="o">=</span> <span class="s1">&#39;员工表&#39;</span><span class="p">;</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;LiLei&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s1">&#39;manager&#39;</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HanMeimei&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;dev&#39;</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">employees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="k">position</span><span class="p">,</span><span class="n">hire_time</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Lucy&#39;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s1">&#39;dev&#39;</span><span class="p">,</span> <span class="n">NOW</span><span class="p">());</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="1-最左前缀法则">1 最左前缀法则</h1>
+
+<p>对于多列索引，查询时不能跳跃省略左侧索引列的条件，否则不走索引，对于本文中的 <code>idx_name_age_position</code> 索引，我们看下面几个例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到，当左侧查询条件包含 name 和 age 时，实际查询时使用索引。</p>
+
+<p><img src="/hub/2020/January/27.png" alt="" /></p>
+
+<p>在看下面这个例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到，我们跳过了 name，只使用 age 去查询，这个时候组合索引失效了。</p>
+
+<p><img src="/hub/2020/January/26.png" alt="" /></p>
+
+<p>这种类型的查询我们需要考虑为 age 字段单独加上索引，比如我们使用下面的 sql 加上索引。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 加上索引
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">employees</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">INDEX</span> <span class="o">`</span><span class="n">idx_age</span><span class="o">`</span> <span class="p">(</span> <span class="o">`</span><span class="n">age</span><span class="o">`</span> <span class="p">)</span> <span class="k">USING</span> <span class="n">BTREE</span><span class="p">;</span>
+<span class="c1">-- 再次查询
+</span><span class="c1"></span><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到，加上索引之后的查询便通过索引了</p>
+
+<p><img src="/hub/2020/January/25.png" alt="" /></p>
+
+<p>我们用下面的 sql 将新加的索引去掉，还原表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">employees</span><span class="o">`</span> <span class="k">DROP</span> <span class="k">INDEX</span> <span class="o">`</span><span class="n">idx_age</span><span class="o">`</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>下面我们演示另一种组合索引部分失效的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 先用这句 sql 看一下该组合索引的总长度
+</span><span class="c1"></span><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span><span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span> <span class="k">AND</span> <span class="k">position</span> <span class="o">=</span> <span class="s1">&#39;manager&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到，该组合索引的总长度是 140，之前我们有试过只使用 name 和 age 时的索引长度，是 78</p>
+
+<p><img src="/hub/2020/January/33.png" alt="" /></p>
+
+<p>然后如果我们在查询的时候给 age 加上范围，会导致部分索引失效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span><span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="mi">22</span> <span class="k">AND</span> <span class="k">position</span> <span class="o">=</span> <span class="s1">&#39;manager&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到，虽然我们的查询语句中使用到了 position，但其实只使用了索引前两列进行查询。</p>
+
+<p><img src="/hub/2020/January/34.png" alt="" /></p>
+
+<p>这里目前只知道这样写会出现索引部分失效，至于优化方案暂时不清楚。</p>
+
+<h1 id="2-索引失效">2 索引失效</h1>
+
+<p>索引失效的情况很多，这里暂列几种</p>
+
+<h2 id="2-1-因对列进行计算导">2.1 因对列进行计算导</h2>
+
+<p>这里先看一种正常走索引的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/28.png" alt="" /></p>
+
+<p>如果此时我们对 name 列进行计算，那么便不会再走索引</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="k">LEFT</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;LiL&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/29.png" alt="" /></p>
+
+<p>对于这种形式的 sql 我们可以改写成下面这种形式，效果相同，但是会走索引</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;LiL%&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/30.png" alt="" /></p>
+
+<p>下面的 sql 也不会走索引</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这里索引失效同样是对左边的列进行计算导致的，我们只需要将表达式改写成 <code>id = 3</code> 便会走索引</p>
+
+<p><img src="/hub/2020/January/31.png" alt="" /></p>
+
+<p>下面是改写后的效果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/32.png" alt="" /></p>
+
+<h2 id="2-2-like-使用不当">2.2 LIKE 使用不当</h2>
+
+<p>当使用 LIKE 时，如果将 % 放到最左边，那么同样不会走索引而是使用全表扫描</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;%LiLei&#39;</span> <span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/38.png" alt="" /></p>
+
+<p>将 % 放右边就行了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">LIKE</span> <span class="s1">&#39;LiL%&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/30.png" alt="" /></p>
+
+<p>对于这种问题的优化方式，目前的想法是直接和产品说无法开发此功能，路堵死，不给他搞。</p>
+
+<h1 id="3-尽量使用覆盖索引进行查询">3 尽量使用覆盖索引进行查询</h1>
+
+<p>覆盖索引的意思就是 SELECT 出的数据列最好只包含索引列，这里我们举个例子，假设又一个表 t(a,b,c,d,e,f)，其中 a 列是主键索引，b 列是辅助索引，那么此时磁盘上有两棵 b+ 树，即聚集索引和辅助索引，分别保存 (a,b,c,d,e,f) 和 (b,a)，如果查询条件中的 where 条件可以通过 b 列的索引过滤掉一部分记录，查询就会走辅助索引，如果用户只 SELECT a,b 的数据则直接通过辅助索引就可以知道用户查询的数据，如果是 SELECT *，那么当获取的数据不足时，还需要根据 a 去聚集索引上查找数据，那么此时还需要读取磁盘，那么性能会下降非常多。而且多查出来的数据经过网络传输也会消耗更多的时间，影响性能。</p>
+
+<p>对于我们的这个表，下面的第一条查询语句会比第二条快很多</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 第一条查询语句没有 hire_time，hire_time 上没有索引
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="k">position</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span><span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span> <span class="k">AND</span> <span class="k">position</span> <span class="o">=</span> <span class="s1">&#39;manager&#39;</span><span class="p">;</span>
+
+<span class="c1">-- 第二条查询语句包含 hire_time，hire_time 上没有索引
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="k">position</span><span class="p">,</span> <span class="n">hire_time</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span><span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">22</span> <span class="k">AND</span> <span class="k">position</span> <span class="o">=</span> <span class="s1">&#39;manager&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>下面我们实验一下效果，先来看一下 employees 这张表的记录总数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- 先统计一下表中的数据量，需要注意的是，这里使用 COUNT(*)，
+</span><span class="c1">-- 而不要使用 COUNT(1) 或是 COUNT(&lt;$字段&gt;)，mysql 对于 COUNT(*)
+</span><span class="c1">-- 有特殊优化，速度会更快
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到这张表有 100W 的数据量，下面我们通过两个 sql 来查询一下，看看查询时间</p>
+
+<p><img src="/hub/2020/January/35.png" alt="" /></p>
+
+<p>我们下面先测试一下第一条 sql 语句的查询速度</p>
+
+<p><img src="/hub/2020/January/36.png" alt="" /></p>
+
+<p>然后来测试一下第二条 sql 的速度</p>
+
+<p><img src="/hub/2020/January/37.png" alt="" /></p>
+
+<p>从结果来看，第二条比第一条快了接近一倍</p>
+
+<h1 id="4-对于-order-by-的优化">4 对于 ORDER BY 的优化</h1>
+
+<p>下面的语句跳过了 age 字段，造成没有利用索引做排序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">position</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到在 Extra 中有 Using filesort，说明做了额外的排序动作，浪费性能</p>
+
+<p><img src="/hub/2020/January/39.png" alt="" /></p>
+
+<p>下面我们补上 age 字段</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">EXPLAIN</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;LiLei&#39;</span> <span class="k">AND</span> <span class="n">age</span> <span class="o">=</span> <span class="s1">&#39;18&#39;</span> <span class="k">order</span> <span class="k">by</span> <span class="k">position</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/hub/2020/January/40.png" alt="" /></p>
+
+<p>可以看到，当利用了索引做排序之后便不再有 Using filesort，不过这里的 age 加上后改变了 sql 的语义，实际场景读者根据场景随机应变。</p>
+
+<h1 id="参考文章">参考文章</h1>
+
+<ol>
+<li><a href="https://aijishu.com/a/1060000000008206">工作中遇到的 99% SQL 优化，这里都能给你解决方案</a></li>
+<li><a href="https://www.zhihu.com/question/37777220">SQL 语句为什么使用 select * 会降低查询速度？</a></li>
+<li><a href="https://aijishu.com/a/1060000000009624">工作中遇到的 99% SQL 优化，这里都能给你解决方案 (二)</a></li>
+<li><a href="https://aijishu.com/a/1060000000009631">工作中遇到的 99% SQL 优化，这里都能给你解决方案 (三)</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">MySQL</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/01/18/explain-%E5%B0%8F%E8%AE%B0/">
+            <span class="next-text nav-default">Explain 小记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.67e0238c.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

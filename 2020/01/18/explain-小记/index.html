@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-01-18T16:44:45&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-18T16:44:45&#43;08:00" />
-<meta itemprop="wordCount" content="1942">
+<meta itemprop="wordCount" content="2014">
 
 
 
@@ -450,13 +450,13 @@
 </div>
 <p><img src="/hub/2020/January/16.png" alt="" /></p>
 
-<p>如果 possible_keys 有索引，而 key 为 null 的情况，那么这种情况是因为表中数据不多，MySQL 认为索引对此查询帮助不大，于是选择了全表扫描。不过这种情况没有模拟出来，暂时没有案例可看了。</p>
+<p><strong>如果 possible_keys 有索引，而 key 为 null 的情况</strong>，那么这种情况是因为表中数据不多，MySQL 认为索引对此查询帮助不大，于是选择了全表扫描。不过这种情况没有模拟出来，暂时没有案例可看了。</p>
 
 <h2 id="1-7-key-len-列">1.7 key_len 列</h2>
 
 <p>该列显示了 mysql 在索引里使用的字节数，通过这个值可以估算出具体使用了索引的哪些列。</p>
 
-<p>估算时使用根据具体索引列使用的数据字节长度来估算</p>
+<p>估算时使用根据具体索引列使用的数据字节长度来估算，但是实际使用的时候我个人不推荐去估计，直接用只使用某几个索引的 sql 看一下，就知道使用那几个索引时，key_len 的长度了，方便简单，省事不出错。</p>
 
 <p>字符串：</p>
 
@@ -614,7 +614,11 @@
           <a href="/tags/mysql/">MySQL</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">SQL 优化小记</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/2020/01/17/%E4%BA%8B%E5%8A%A1%E7%9A%84-acdi-%E7%89%B9%E6%80%A7/">
             <span class="next-text nav-default">事务的 ACDI 特性</span>
             <span class="next-text nav-mobile">下一篇</span>

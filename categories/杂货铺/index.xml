@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 18 Jan 2020 16:44:45 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jan 2020 17:02:13 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SQL 优化小记</title>
+      <link>https://zhixiangyuan.github.io/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Sun, 19 Jan 2020 17:02:13 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/</guid>
+      <description>本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &amp;#39;&amp;#39; COMMENT &amp;#39;姓名</description>
+    </item>
     
     <item>
       <title>Explain 小记</title>
