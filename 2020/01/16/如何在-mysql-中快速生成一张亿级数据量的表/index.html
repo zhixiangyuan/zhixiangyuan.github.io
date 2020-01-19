@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-01-16T09:08:28&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-16T09:08:28&#43;08:00" />
-<meta itemprop="wordCount" content="358">
+<meta itemprop="wordCount" content="410">
 
 
 
@@ -178,6 +178,8 @@
 </div>
 </div>
 <p>对于生成随机数可以使用 <code>rand()</code> 函数，<code>rand()</code> 函数会生成一个 [0,1) 范围之间的小数，我们可以对它乘以 10 的倍数然后调用 <code>round()</code> 来获取到相应的整数，例如 <code>round(rand() * 10)</code>。<code>round()</code> 是一个四舍五入的函数。如果我们需要获取字符串可以考虑使用 <code>MD5(rand())</code> 来获取一个随机 md5 值。</p>
+
+<p>对于 TIME、DATE、DATETIME、TIMESTAMP、YEAR 这种时间类型，可以通过 now() 生成时间。</p>
 
     </div>
 
