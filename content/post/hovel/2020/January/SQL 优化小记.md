@@ -31,6 +31,9 @@ CREATE TABLE `employees` (
 INSERT INTO employees(name,age,position,hire_time) VALUES('LiLei', 22, 'manager', NOW());
 INSERT INTO employees(name,age,position,hire_time) VALUES('HanMeimei', 23, 'dev', NOW());
 INSERT INTO employees(name,age,position,hire_time) VALUES('Lucy', 23, 'dev', NOW());
+
+-- 这个语句用于刷数据，每次数据量翻一倍
+INSERT INTO employees(name,age,position,hire_time) SELECT name,age,position,hire_time FROM employees;
 ```
 
 # 1 最左前缀法则
@@ -207,7 +210,7 @@ SELECT COUNT(*) FROM employees;
 下面的语句跳过了 age 字段，造成没有利用索引做排序
 
 ```sql
-EXPLAIN select * from employees WHERE name = 'LiLei' order by position;
+EXPLAIN SELECT * FROM employees WHERE name = 'LiLei' ORDER BY position;
 ```
 
 可以看到在 Extra 中有 Using filesort，说明做了额外的排序动作，浪费性能
@@ -217,12 +220,68 @@ EXPLAIN select * from employees WHERE name = 'LiLei' order by position;
 下面我们补上 age 字段
 
 ```sql
-EXPLAIN select * from employees WHERE name = 'LiLei' AND age = '18' order by position;
+EXPLAIN SELECT * FROM employees WHERE name = 'LiLei' AND age = '18' ORDER BY position;
 ```
 
 ![](/hub/2020/January/40.png)
 
 可以看到，当利用了索引做排序之后便不再有 Using filesort，不过这里的 age 加上后改变了 sql 的语义，实际场景读者根据场景随机应变。
+
+# 5 优化分页查询
+
+对于下面这条 sql，实际执行的时候是不走索引的，执行时会先读取 100000 条数据，然后抛弃后面的 999995 条数据，最后剩下的便是需要查询的那 5 条数据，但是这样效率就很低。
+
+```sql
+EXPLAIN SELECT * FROM employees LIMIT 999995, 5;
+```
+
+![](/hub/2020/January/41.png)
+
+下面是实际的执行效果，耗时 0.702 秒
+
+![](/hub/2020/January/42.png)
+
+对这条 sql 我们可以做如下的优化，让它走索引，提高查询效率
+
+```sql
+EXPLAIN SELECT * FROM employees WHERE id > 999995 LIMIT 5;
+```
+
+![](/hub/2020/January/43.png)
+
+下面是实际的执行效果，0.003 秒，比不走索引快得多
+
+![](/hub/2020/January/44.png)
+
+但是这种优化方式不实用，实际场景的时候经常会删数据，导致主键不连续，那么这种方法就不能用了，因为查出来的数据不一样了。
+
+# 6 优化非主键字段排序的分页查询
+
+可以看到，以 name 排序的分页查询不走索引
+
+```sql
+EXPLAIN SELECT * FROM employees ORDER BY name LIMIT 999999, 5;
+```
+
+![](/hub/2020/January/45.png)
+
+以下是实际的执行时间，可怕的 59 秒
+
+![](/hub/2020/January/46.png)
+
+这里我们可以优化为先经过条件查询出主键，然后根据主键查询需要的数据，并且这里的排序通过主键排序，没有 Using filesort 了
+
+```sql
+-- 优化后的 sql
+EXPLAIN SELECT * FROM employees AS e 
+INNER JOIN ( SELECT id FROM employees ORDER BY `name` LIMIT 999999, 5 ) AS ed ON e.id = ed.id; 
+```
+
+![](/hub/2020/January/47.png)
+
+以下是执行耗时，0.471 秒
+
+![](/hub/2020/January/48.png)
 
 # 参考文章
 
