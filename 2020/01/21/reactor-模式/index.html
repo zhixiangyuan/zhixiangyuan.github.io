@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Reactor 模式 - 养猪场</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="网上关于 Reactor 的文章很多，不过全是和 NIO 直接相关，本文只阐述 Reactor 设计的思想，同时给出范例代码实现。 Reactor 的设计思想是通过 Reactor 去感知到不同的事件，然后根据不" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/01/21/reactor-%E6%A8%A1%E5%BC%8F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.40a1ded2.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Reactor 模式" />
+<meta property="og:description" content="网上关于 Reactor 的文章很多，不过全是和 NIO 直接相关，本文只阐述 Reactor 设计的思想，同时给出范例代码实现。 Reactor 的设计思想是通过 Reactor 去感知到不同的事件，然后根据不" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/21/reactor-%E6%A8%A1%E5%BC%8F/" />
+<meta property="article:published_time" content="2020-01-21T21:37:10+08:00" />
+<meta property="article:modified_time" content="2020-01-21T21:37:10+08:00" />
+<meta itemprop="name" content="Reactor 模式">
+<meta itemprop="description" content="网上关于 Reactor 的文章很多，不过全是和 NIO 直接相关，本文只阐述 Reactor 设计的思想，同时给出范例代码实现。 Reactor 的设计思想是通过 Reactor 去感知到不同的事件，然后根据不">
+
+
+<meta itemprop="datePublished" content="2020-01-21T21:37:10&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-21T21:37:10&#43;08:00" />
+<meta itemprop="wordCount" content="591">
+
+
+
+<meta itemprop="keywords" content="设计模式," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Reactor 模式"/>
+<meta name="twitter:description" content="网上关于 Reactor 的文章很多，不过全是和 NIO 直接相关，本文只阐述 Reactor 设计的思想，同时给出范例代码实现。 Reactor 的设计思想是通过 Reactor 去感知到不同的事件，然后根据不"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">养猪场</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">养猪场</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Reactor 模式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>网上关于 Reactor 的文章很多，不过全是和 NIO 直接相关，本文只阐述 Reactor 设计的思想，同时给出范例代码实现。</p>
+
+<p>Reactor 的设计思想是通过 Reactor 去感知到不同的事件，然后根据不同的事件去派发不同的处理器处理事件，下面的代码思路是通过 Reactor 对 Integer 和 String 这两种类型的资源做不同的处理，下面看代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 先看一下最终效果，Reactor 对不同的事件做不同的处理
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Reactor</span><span class="p">.</span><span class="na">dispatch</span><span class="p">(</span>
+            <span class="n">Event</span><span class="p">.</span><span class="na">IntegerResource</span><span class="p">,</span> <span class="n">DefaultResource</span><span class="p">.</span><span class="na">createResource</span><span class="p">(</span><span class="n">1</span><span class="p">)</span>
+        <span class="p">);</span> <span class="c1">// Integer resource: [1]
+</span><span class="c1"></span>        <span class="n">Reactor</span><span class="p">.</span><span class="na">dispatch</span><span class="p">(</span>
+            <span class="n">Event</span><span class="p">.</span><span class="na">StringResource</span><span class="p">,</span> <span class="n">DefaultResource</span><span class="p">.</span><span class="na">createResource</span><span class="p">(</span><span class="s">&#34;String&#34;</span><span class="p">)</span>
+        <span class="p">);</span> <span class="c1">// String resource: [String]
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 定义事件类型
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">enum</span> <span class="n">Event</span> <span class="p">{</span>
+    <span class="cm">/** Integer 类型的资源事件 */</span>
+    <span class="n">IntegerResource</span><span class="p">,</span>
+    <span class="cm">/** String 类型的资源事件 */</span>
+    <span class="n">StringResource</span>
+<span class="p">}</span>
+
+<span class="c1">// 处理器接口
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">interface</span> <span class="n">Handler</span> <span class="p">{</span>
+    <span class="cm">/**
+</span><span class="cm">     * 处理资源
+</span><span class="cm">     * @param resource 需要被处理的资源
+</span><span class="cm">     */</span>
+    <span class="kt">void</span> <span class="nf">handle</span><span class="p">(</span><span class="n">Resource</span> <span class="nf">resource</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Integer 处理器
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">IntegerHandler</span> <span class="nf">implements</span> <span class="n">Handler</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">IntegerHandler</span> <span class="n">self</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntegerHandler</span><span class="p">();</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="n">IntegerHandler</span> <span class="nf">getInstance</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handle</span><span class="p">(</span><span class="n">Resource</span> <span class="nf">resource</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;Integer resource: [%s]&#34;</span><span class="p">,</span> <span class="n">resource</span><span class="p">.</span><span class="na">getResource</span><span class="p">()));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// String 处理器
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">StringHandler</span> <span class="nf">implements</span> <span class="n">Handler</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">StringHandler</span> <span class="n">self</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringHandler</span><span class="p">();</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="n">StringHandler</span> <span class="nf">getInstance</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">handle</span><span class="p">(</span><span class="n">Resource</span> <span class="nf">resource</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;String resource: [%s]&#34;</span><span class="p">,</span> <span class="n">resource</span><span class="p">.</span><span class="na">getResource</span><span class="p">()));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 资源接口
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">interface</span> <span class="n">Resource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+
+    <span class="cm">/** 获取资源 */</span>
+    <span class="n">T</span> <span class="nf">getResource</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 默认资源实现类
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">DefaultResource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">implements</span> <span class="n">Resource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+
+    <span class="kd">private</span> <span class="nf">T</span> <span class="n">resource</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">DefaultResource</span><span class="p">(</span><span class="n">T</span> <span class="nf">resource</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">resource</span> <span class="o">=</span> <span class="n">resource</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">T</span> <span class="n">getResource</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">resource</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">DefaultResource</span> <span class="n">createResource</span><span class="p">(</span><span class="n">T</span> <span class="nf">resource</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">DefaultResource</span><span class="p">(</span><span class="n">resource</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Reactor 类
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">class</span> <span class="n">Reactor</span> <span class="p">{</span>
+    <span class="cm">/** 存放事件和处理器的映射 */</span>
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">Map</span><span class="o">&lt;</span><span class="n">Event</span><span class="p">,</span> <span class="n">Handler</span><span class="o">&gt;</span> <span class="nf">eventToHandlerMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentHashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+    <span class="kd">static</span> <span class="p">{</span>
+        <span class="c1">// 注册事件处理器
+</span><span class="c1"></span>        <span class="n">eventToHandlerMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">IntegerResource</span><span class="p">,</span> <span class="n">IntegerHandler</span><span class="p">.</span><span class="na">getInstance</span><span class="p">());</span>
+        <span class="n">eventToHandlerMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">StringResource</span><span class="p">,</span> <span class="n">StringHandler</span><span class="p">.</span><span class="na">getInstance</span><span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 根据不同的事件将资源分发给不同的处理器处理
+</span><span class="cm">     *
+</span><span class="cm">     * @param event    事件
+</span><span class="cm">     * @param resource 资源
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">void</span> <span class="n">dispatch</span><span class="p">(</span><span class="n">Event</span> <span class="nf">event</span><span class="p">,</span> <span class="n">Resource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">resource</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Handler</span> <span class="nf">handler</span> <span class="o">=</span> <span class="n">eventToHandlerMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+        <span class="n">handler</span><span class="p">.</span><span class="na">handle</span><span class="p">(</span><span class="n">resource</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/01/21/java-nio-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%A0%B7%E4%BE%8B/">
+            <span class="next-text nav-default">Java NIO 的使用样例</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.67e0238c.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
