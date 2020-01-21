@@ -104,7 +104,7 @@ EXPLAIN SELECT * FROM employees WHERE name ='LiLei' AND age > 22 AND position = 
 
 索引失效的情况很多，这里暂列几种
 
-## 2.1 因对列进行计算导
+## 2.1 因对列进行计算
 
 这里先看一种正常走索引的情况
 
