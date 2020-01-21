@@ -56,7 +56,7 @@ public class IOServer {
 }
 ```
 
-# 2 IOClient
+# 2 client
 
 ```java
 import java.io.IOException;
