@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-01-19T17:02:13+08:00" />
+<meta property="og:updated_time" content="2020-01-21T15:57:41+08:00" />
 <meta itemprop="name" content="养猪场">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/13/lsof-%E5%B0%8F%E8%AE%B0/">lsof 小记</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-13 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 2 3 4 5 6 7 # 查看端口被什么进程占用 # -n 表示不将 IP 转换为 hostname # -P 表示不将 port number 转换为 service name $&gt; lsof -n -P -i:&lt;$port&gt; # 查看进程监听了哪些端口号 $&gt; lsof -n -P -p &lt;$pid&gt; | grep TCP
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/13/lsof-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/11/13/javap-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">javap 命令小记</a></h1>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/11/13/wireshark-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/12/%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F/">以太网的帧格式</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-12 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 以太网的帧格式 以太网的帧最小是 64 字节，除去 14 字节的头部（目标地址 + 源地址 + 长度类型）和 4 字节的 CRC 字段，有效荷载最小为 46 字节。最大帧为 1518 字节
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/12/%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E5%B8%A7%E6%A0%BC%E5%BC%8F/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

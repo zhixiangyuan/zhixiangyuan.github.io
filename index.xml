@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 19 Jan 2020 17:02:13 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jan 2020 15:57:41 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>三种一致性模型</title>
+      <link>https://zhixiangyuan.github.io/2020/01/21/%E4%B8%89%E7%A7%8D%E4%B8%80%E8%87%B4%E6%80%A7%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Tue, 21 Jan 2020 15:57:41 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/21/%E4%B8%89%E7%A7%8D%E4%B8%80%E8%87%B4%E6%80%A7%E6%A8%A1%E5%9E%8B/</guid>
+      <description>1 弱一致性 当你写入一个新值后，读操作在数据副本上可能读出来，也可能读不出来。比如：某些 cache 系统，网络游戏其它玩家的数据和你没什么关系，VOIP</description>
     </item>
     
     <item>
