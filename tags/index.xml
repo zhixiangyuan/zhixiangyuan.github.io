@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 23 Jan 2020 21:56:44 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jan 2020 22:53:44 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>netty</title>
       <link>https://zhixiangyuan.github.io/tags/netty/</link>
-      <pubDate>Thu, 23 Jan 2020 21:56:44 +0800</pubDate>
+      <pubDate>Thu, 23 Jan 2020 22:53:44 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/netty/</guid>
       <description></description>
@@ -31,7 +31,7 @@
     </item>
     
     <item>
-      <title>Java</title>
+      <title>java</title>
       <link>https://zhixiangyuan.github.io/tags/java/</link>
       <pubDate>Tue, 21 Jan 2020 19:28:09 +0800</pubDate>
       
