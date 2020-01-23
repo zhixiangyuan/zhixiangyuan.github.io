@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Netty 对于 Selector 的 KeySet 的优化 - 养猪场</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="在使用 Jdk Nio 的时候，一般我们可能就直接使用 SelectorProvider.provider().openSelector() 来获取一个 Selector 便直接开始使用了，但是，netty 对于 Selector 竟然也有优化操作。 Selector 默认的 KeySet 的实现方式是 Has" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/01/23/netty-%E5%AF%B9%E4%BA%8E-selector-%E7%9A%84-keyset-%E7%9A%84%E4%BC%98%E5%8C%96/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.40a1ded2.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Netty 对于 Selector 的 KeySet 的优化" />
+<meta property="og:description" content="在使用 Jdk Nio 的时候，一般我们可能就直接使用 SelectorProvider.provider().openSelector() 来获取一个 Selector 便直接开始使用了，但是，netty 对于 Selector 竟然也有优化操作。 Selector 默认的 KeySet 的实现方式是 Has" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/23/netty-%E5%AF%B9%E4%BA%8E-selector-%E7%9A%84-keyset-%E7%9A%84%E4%BC%98%E5%8C%96/" />
+<meta property="article:published_time" content="2020-01-23T21:56:44+08:00" />
+<meta property="article:modified_time" content="2020-01-23T21:56:44+08:00" />
+<meta itemprop="name" content="Netty 对于 Selector 的 KeySet 的优化">
+<meta itemprop="description" content="在使用 Jdk Nio 的时候，一般我们可能就直接使用 SelectorProvider.provider().openSelector() 来获取一个 Selector 便直接开始使用了，但是，netty 对于 Selector 竟然也有优化操作。 Selector 默认的 KeySet 的实现方式是 Has">
+
+
+<meta itemprop="datePublished" content="2020-01-23T21:56:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-23T21:56:44&#43;08:00" />
+<meta itemprop="wordCount" content="1350">
+
+
+
+<meta itemprop="keywords" content="netty," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Netty 对于 Selector 的 KeySet 的优化"/>
+<meta name="twitter:description" content="在使用 Jdk Nio 的时候，一般我们可能就直接使用 SelectorProvider.provider().openSelector() 来获取一个 Selector 便直接开始使用了，但是，netty 对于 Selector 竟然也有优化操作。 Selector 默认的 KeySet 的实现方式是 Has"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">养猪场</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">养猪场</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Netty 对于 Selector 的 KeySet 的优化</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-23 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>在使用 Jdk Nio 的时候，一般我们可能就直接使用 <code>SelectorProvider.provider().openSelector()</code> 来获取一个 Selector 便直接开始使用了，但是，netty 对于 Selector 竟然也有优化操作。</p>
+
+<p>Selector 默认的 KeySet 的实现方式是 HashSet，HashSet 由于底层使用的是 HashMap，而 HashMap 的底层是数组 + 链表，当出现冲突的时候可能会上升到 O(n) 的复杂度，也就是全部冲突到一条链表上面去了。Netty 这里便对此问题做了优化，通过将 HashSet 替换成自己实现的 Set 来解决这个问题，Netty 为这个问题实现的 Set 是一个基于数组的 Set，其实就是在数组外面套了层壳改名叫 Set 而已，所以它的性能可以做到 O(1)，下面来看看具体代码。</p>
+
+<p>注意：Selector 中的 SelectionKey 在 select 出来之后便是放到该 KeySet 中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 其中的 AccessController.doPrivileged 大家不熟悉没有关系，这里涉及到 Java 中的安全机制
+</span><span class="c1">// 只需要当代码会同步执行到 run 方法内就好了
+</span><span class="c1"></span><span class="kd">public</span> <span class="nf">final</span> <span class="kd">class</span> <span class="nf">NioEventLoop</span> <span class="kd">extends</span> <span class="nf">SingleThreadEventLoop</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kd">private</span> <span class="nf">SelectorTuple</span> <span class="n">openSelector</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="nf">Selector</span> <span class="n">unwrappedSelector</span><span class="p">;</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="c1">// 通过 JDK 的 provider 去获取一个 selector
+</span><span class="c1"></span>            <span class="n">unwrappedSelector</span> <span class="o">=</span> <span class="n">provider</span><span class="p">.</span><span class="na">openSelector</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">ChannelException</span><span class="p">(</span><span class="s">&#34;failed to open a new selector&#34;</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 这里 netty 对 selector 有优化默认 DISABLE_KEY_SET_OPTIMIZATION 为 false
+</span><span class="c1"></span>        <span class="c1">// 即开启优化，那么便不会进入 if
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">DISABLE_KEY_SET_OPTIMIZATION</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">SelectorTuple</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">Object</span> <span class="nf">maybeSelectorImplClass</span> <span class="o">=</span> <span class="n">AccessController</span><span class="p">.</span><span class="na">doPrivileged</span><span class="p">(</span><span class="k">new</span> <span class="n">PrivilegedAction</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nf">Object</span> <span class="n">run</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span>
+                            <span class="s">&#34;sun.nio.ch.SelectorImpl&#34;</span><span class="p">,</span>
+                            <span class="kc">false</span><span class="p">,</span>
+                            <span class="n">PlatformDependent</span><span class="p">.</span><span class="na">getSystemClassLoader</span><span class="p">());</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Throwable</span> <span class="nf">cause</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">cause</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">maybeSelectorImplClass</span> <span class="nf">instanceof</span> <span class="n">Class</span><span class="p">)</span> <span class="o">||</span>
+                <span class="c1">// ensure the current selector implementation is what we can instrument.
+</span><span class="c1"></span>                <span class="o">!</span><span class="p">((</span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="p">)</span> <span class="n">maybeSelectorImplClass</span><span class="p">).</span><span class="na">isAssignableFrom</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">.</span><span class="na">getClass</span><span class="p">()))</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">maybeSelectorImplClass</span> <span class="nf">instanceof</span> <span class="n">Throwable</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Throwable</span> <span class="nf">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">Throwable</span><span class="p">)</span> <span class="n">maybeSelectorImplClass</span><span class="p">;</span>
+                <span class="n">logger</span><span class="p">.</span><span class="na">trace</span><span class="p">(</span><span class="s">&#34;failed to instrument a special java.util.Set into: {}&#34;</span><span class="p">,</span> <span class="n">unwrappedSelector</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">SelectorTuple</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="kd">final</span> <span class="nf">Class</span><span class="o">&lt;?&gt;</span> <span class="n">selectorImplClass</span> <span class="o">=</span> <span class="p">(</span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="p">)</span> <span class="n">maybeSelectorImplClass</span><span class="p">;</span>
+        <span class="c1">// 具体的优化方式在这里，通过自定义的 SelectionKeySet 来替换默认的 SelectionKeySet
+</span><span class="c1"></span>        <span class="c1">// 自定义的实现是使用数组实现的，add 方法的复杂度为 O(1)，而默认的使用 HashSet，add
+</span><span class="c1"></span>        <span class="c1">// 方法的复杂度最高可能为 O(n)
+</span><span class="c1"></span>        <span class="kd">final</span> <span class="nf">SelectedSelectionKeySet</span> <span class="n">selectedKeySet</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SelectedSelectionKeySet</span><span class="p">();</span>
+
+        <span class="n">Object</span> <span class="nf">maybeException</span> <span class="o">=</span> <span class="n">AccessController</span><span class="p">.</span><span class="na">doPrivileged</span><span class="p">(</span><span class="k">new</span> <span class="n">PrivilegedAction</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nf">Object</span> <span class="n">run</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="n">Field</span> <span class="nf">selectedKeysField</span> <span class="o">=</span> <span class="n">selectorImplClass</span><span class="p">.</span><span class="na">getDeclaredField</span><span class="p">(</span><span class="s">&#34;selectedKeys&#34;</span><span class="p">);</span>
+                    <span class="n">Field</span> <span class="nf">publicSelectedKeysField</span> <span class="o">=</span> <span class="n">selectorImplClass</span><span class="p">.</span><span class="na">getDeclaredField</span><span class="p">(</span><span class="s">&#34;publicSelectedKeys&#34;</span><span class="p">);</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="n">PlatformDependent</span><span class="p">.</span><span class="na">javaVersion</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">9</span> <span class="o">&amp;&amp;</span> <span class="n">PlatformDependent</span><span class="p">.</span><span class="na">hasUnsafe</span><span class="p">())</span> <span class="p">{</span>
+                        <span class="c1">// Let us try to use sun.misc.Unsafe to replace the SelectionKeySet.
+</span><span class="c1"></span>                        <span class="c1">// This allows us to also do this in Java9+ without any extra flags.
+</span><span class="c1"></span>                        <span class="kt">long</span> <span class="nf">selectedKeysFieldOffset</span> <span class="o">=</span> <span class="n">PlatformDependent</span><span class="p">.</span><span class="na">objectFieldOffset</span><span class="p">(</span><span class="n">selectedKeysField</span><span class="p">);</span>
+                        <span class="kt">long</span> <span class="nf">publicSelectedKeysFieldOffset</span> <span class="o">=</span>
+                                <span class="n">PlatformDependent</span><span class="p">.</span><span class="na">objectFieldOffset</span><span class="p">(</span><span class="n">publicSelectedKeysField</span><span class="p">);</span>
+
+                        <span class="k">if</span> <span class="p">(</span><span class="n">selectedKeysFieldOffset</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span> <span class="o">&amp;&amp;</span> <span class="n">publicSelectedKeysFieldOffset</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="n">PlatformDependent</span><span class="p">.</span><span class="na">putObject</span><span class="p">(</span>
+                                    <span class="n">unwrappedSelector</span><span class="p">,</span> <span class="n">selectedKeysFieldOffset</span><span class="p">,</span> <span class="n">selectedKeySet</span><span class="p">);</span>
+                            <span class="n">PlatformDependent</span><span class="p">.</span><span class="na">putObject</span><span class="p">(</span>
+                                    <span class="n">unwrappedSelector</span><span class="p">,</span> <span class="n">publicSelectedKeysFieldOffset</span><span class="p">,</span> <span class="n">selectedKeySet</span><span class="p">);</span>
+                            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        <span class="c1">// We could not retrieve the offset, lets try reflection as last-resort.
+</span><span class="c1"></span>                    <span class="p">}</span>
+
+                    <span class="n">Throwable</span> <span class="nf">cause</span> <span class="o">=</span> <span class="n">ReflectionUtil</span><span class="p">.</span><span class="na">trySetAccessible</span><span class="p">(</span><span class="n">selectedKeysField</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">cause</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="n">cause</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="n">cause</span> <span class="o">=</span> <span class="n">ReflectionUtil</span><span class="p">.</span><span class="na">trySetAccessible</span><span class="p">(</span><span class="n">publicSelectedKeysField</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">cause</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="n">cause</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="c1">// 在这里使用自定义的 selectedKeySet 来替换 unwrappedSelector 中
+</span><span class="c1"></span>                    <span class="c1">// 默认的 selectedKeysField 和 publicSelectedKeysField 实现
+</span><span class="c1"></span>                    <span class="n">selectedKeysField</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">,</span> <span class="n">selectedKeySet</span><span class="p">);</span>
+                    <span class="n">publicSelectedKeysField</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">,</span> <span class="n">selectedKeySet</span><span class="p">);</span>
+                    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">NoSuchFieldException</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">e</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">IllegalAccessException</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="n">e</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">maybeException</span> <span class="nf">instanceof</span> <span class="n">Exception</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">selectedKeys</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="n">Exception</span> <span class="nf">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">Exception</span><span class="p">)</span> <span class="n">maybeException</span><span class="p">;</span>
+            <span class="n">logger</span><span class="p">.</span><span class="na">trace</span><span class="p">(</span><span class="s">&#34;failed to instrument a special java.util.Set into: {}&#34;</span><span class="p">,</span> <span class="n">unwrappedSelector</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">SelectorTuple</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">selectedKeys</span> <span class="o">=</span> <span class="n">selectedKeySet</span><span class="p">;</span>
+        <span class="n">logger</span><span class="p">.</span><span class="na">trace</span><span class="p">(</span><span class="s">&#34;instrumented a special java.util.Set into: {}&#34;</span><span class="p">,</span> <span class="n">unwrappedSelector</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">SelectorTuple</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">,</span>
+                <span class="k">new</span> <span class="n">SelectedSelectionKeySetSelector</span><span class="p">(</span><span class="n">unwrappedSelector</span><span class="p">,</span> <span class="n">selectedKeySet</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>下面是优化的 Set 的实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="nf">class</span> <span class="n">SelectedSelectionKeySet</span> <span class="nf">extends</span> <span class="n">AbstractSet</span><span class="o">&lt;</span><span class="n">SelectionKey</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="cm">/** 可以看到其实现为数组 */</span>
+    <span class="n">SelectionKey</span><span class="p">[]</span> <span class="nf">keys</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">size</span><span class="p">;</span>
+
+    <span class="n">SelectedSelectionKeySet</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SelectionKey</span><span class="p">[</span><span class="n">1024</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">boolean</span> <span class="n">add</span><span class="p">(</span><span class="n">SelectionKey</span> <span class="nf">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// add 时按顺序添加即可
+</span><span class="c1"></span>        <span class="n">keys</span><span class="p">[</span><span class="n">size</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">o</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 扩容
+</span><span class="c1"></span>            <span class="n">increaseCapacity</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">boolean</span> <span class="n">remove</span><span class="p">(</span><span class="n">Object</span> <span class="nf">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 用不上这个方法所以直接返回 false
+</span><span class="c1"></span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">boolean</span> <span class="n">contains</span><span class="p">(</span><span class="n">Object</span> <span class="nf">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 用不上这个方法所以直接返回 false
+</span><span class="c1"></span>        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">int</span> <span class="n">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">size</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nf">Iterator</span><span class="o">&lt;</span><span class="n">SelectionKey</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">SelectionKey</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">private</span> <span class="nf">int</span> <span class="n">idx</span><span class="p">;</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nf">boolean</span> <span class="n">hasNext</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nf">SelectionKey</span> <span class="n">next</span><span class="p">()</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hasNext</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">return</span> <span class="n">keys</span><span class="p">[</span><span class="n">idx</span><span class="o">++</span><span class="p">];</span>
+            <span class="p">}</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nf">void</span> <span class="n">remove</span><span class="p">()</span> <span class="p">{</span>
+                <span class="c1">// 用不上这个方法所以直接返回 false
+</span><span class="c1"></span>                <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedOperationException</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">reset</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">reset</span><span class="p">(</span><span class="n">0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">reset</span><span class="p">(</span><span class="kt">int</span> <span class="nf">start</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Arrays</span><span class="p">.</span><span class="na">fill</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="nf">void</span> <span class="n">increaseCapacity</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">SelectionKey</span><span class="p">[]</span> <span class="nf">newKeys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SelectionKey</span><span class="p">[</span><span class="n">keys</span><span class="p">.</span><span class="na">length</span> <span class="o">&lt;&lt;</span> <span class="n">1</span><span class="p">];</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">arraycopy</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">0</span><span class="p">,</span> <span class="n">newKeys</span><span class="p">,</span> <span class="n">0</span><span class="p">,</span> <span class="n">size</span><span class="p">);</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="n">newKeys</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>下面是 Selector 中的默认实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">abstract</span> <span class="kd">class</span> <span class="nf">SelectorImpl</span> <span class="kd">extends</span> <span class="nf">AbstractSelector</span> <span class="p">{</span>
+    <span class="c1">// The set of keys with data ready for an operation
+</span><span class="c1"></span>    <span class="kd">protected</span> <span class="nf">Set</span><span class="o">&lt;</span><span class="n">SelectionKey</span><span class="o">&gt;</span> <span class="nf">selectedKeys</span><span class="p">;</span>
+
+    <span class="c1">// Removal allowed, but not addition
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="nf">Set</span><span class="o">&lt;</span><span class="n">SelectionKey</span><span class="o">&gt;</span> <span class="nf">publicSelectedKeys</span><span class="p">;</span>     
+
+    <span class="kd">protected</span> <span class="nf">SelectorImpl</span><span class="p">(</span><span class="n">SelectorProvider</span> <span class="nf">sp</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">super</span><span class="p">(</span><span class="n">sp</span><span class="p">);</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">SelectionKey</span><span class="o">&gt;</span><span class="p">();</span>
+        <span class="c1">// 可以看到这里 selectedKeys 会被赋值为 HashSet
+</span><span class="c1"></span>        <span class="n">selectedKeys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">SelectionKey</span><span class="o">&gt;</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">Util</span><span class="p">.</span><span class="na">atBugLevel</span><span class="p">(</span><span class="s">&#34;1.4&#34;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">publicKeys</span> <span class="o">=</span> <span class="n">keys</span><span class="p">;</span>
+            <span class="c1">// 可以看到这里 publicSelectedKeys 会被赋值为 selectedKeys
+</span><span class="c1"></span>            <span class="c1">// selectedKeys 便是 HashSet
+</span><span class="c1"></span>            <span class="n">publicSelectedKeys</span> <span class="o">=</span> <span class="n">selectedKeys</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">publicKeys</span> <span class="o">=</span> <span class="n">Collections</span><span class="p">.</span><span class="na">unmodifiableSet</span><span class="p">(</span><span class="n">keys</span><span class="p">);</span>
+            <span class="n">publicSelectedKeys</span> <span class="o">=</span> <span class="n">Util</span><span class="p">.</span><span class="na">ungrowableSet</span><span class="p">(</span><span class="n">selectedKeys</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/netty/">netty</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/01/23/netty-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-jdk-%E7%A9%BA%E8%BD%AE%E8%AE%AD%E7%9A%84-bug/">
+            <span class="next-text nav-default">Netty 如何解决 JDK 空轮训的 BUG</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.67e0238c.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

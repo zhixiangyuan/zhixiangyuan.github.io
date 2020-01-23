@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 23 Jan 2020 21:21:31 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jan 2020 21:56:44 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/netty/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Netty 对于 Selector 的 KeySet 的优化</title>
+      <link>https://zhixiangyuan.github.io/2020/01/23/netty-%E5%AF%B9%E4%BA%8E-selector-%E7%9A%84-keyset-%E7%9A%84%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Thu, 23 Jan 2020 21:56:44 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/23/netty-%E5%AF%B9%E4%BA%8E-selector-%E7%9A%84-keyset-%E7%9A%84%E4%BC%98%E5%8C%96/</guid>
+      <description>在使用 Jdk Nio 的时候，一般我们可能就直接使用 SelectorProvider.provider().openSelector() 来获取一个 Selector 便直接开始使用了，但是，netty 对于 Selector 竟然也有优化操作。 Selector 默认的 KeySet 的实现方式是 Has</description>
+    </item>
     
     <item>
       <title>Netty 如何解决 JDK 空轮训的 BUG</title>
