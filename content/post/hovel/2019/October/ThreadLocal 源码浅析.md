@@ -1,5 +1,5 @@
 ---
-title: "ThreadLocal 源码浅析"
+title: "ThreadLocal 源码浅析与其使用场景"
 date: 2019-10-18T16:36:38+08:00
 keywords: []
 description: ""
@@ -12,6 +12,8 @@ categories: [
 autoCollapseToc: false
 author: "yuanzx"
 ---
+
+# 1 源码浅析
 
 ThreadLocal 用于不同线程存储不同的线程全局变量，在该线程下用 ThreadLocal 取出的值是一致的。这里先简述一下原理，然后再看代码。ThreadLocal 其实是一个 Key，在 Thread 当中有一个 threadLocals 变量，存储着 ThreadLocalMap，ThreadLocal 便是 ThreadLocalMap 当中的键，value 便是我们存储的值，由于每一个 Thread 都有自己的 threadLocals，所以我们在不同的线程中就可以用相同的 ThreadLocal 取出不同的值。
 
@@ -87,3 +89,7 @@ ThreadLocal 用于不同线程存储不同的线程全局变量，在该线程�
         }
     }
 ```
+
+# 2 使用场景
+
+明白了其内部的原理，那么便能够理解 ThreadLocal 其实是一个线程级别的全局变量，那么如果当我们需要一个线程级别的全局变量的时候便可以使用该类。
