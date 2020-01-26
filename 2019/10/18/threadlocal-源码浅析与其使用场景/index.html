@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-18T16:36:38&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-18T16:36:38&#43;08:00" />
-<meta itemprop="wordCount" content="836">
+<meta itemprop="wordCount" content="1324">
 
 
 
@@ -299,6 +299,125 @@
                 <span class="n">rehash</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>上面分析了 set 值的过程，下面我们来看看 get 值的过程，这个过程里面有一个点是需要注意的，在出现 hash 冲突的时候，根据索引找到的位置已经不是那个 ThreadLocal 了，那么它是怎么处理的呢，我们将在下面的代码中看到具体的处理方式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="cm">/** get 部分的源码 */</span>
+    <span class="kd">public</span> <span class="nf">T</span> <span class="n">get</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">Thread</span> <span class="nf">t</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span>
+        <span class="n">ThreadLocalMap</span> <span class="nf">map</span> <span class="o">=</span> <span class="n">getMap</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">map</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 关键在这里，getEntry 的源码在下面
+</span><span class="c1"></span>            <span class="n">ThreadLocalMap</span><span class="p">.</span><span class="na">Entry</span> <span class="nf">e</span> <span class="o">=</span> <span class="n">map</span><span class="p">.</span><span class="na">getEntry</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&#34;unchecked&#34;</span><span class="p">)</span>
+                <span class="n">T</span> <span class="nf">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="n">e</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// 如果没有值的话，则在其中设置初始化值
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">setInitialValue</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="nf">class</span> <span class="n">ThreadLocalMap</span> <span class="p">{</span>
+        <span class="kd">private</span> <span class="nf">Entry</span> <span class="n">getEntry</span><span class="p">(</span><span class="n">ThreadLocal</span><span class="o">&lt;?&gt;</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 计算索引
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="na">threadLocalHashCode</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">table</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="p">);</span>
+            <span class="n">Entry</span> <span class="nf">e</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="p">.</span><span class="na">get</span><span class="p">()</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">e</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="c1">// 可以看到当 e 为 null 或者出现冲突的时候会走下面的函数
+</span><span class="c1"></span>                <span class="k">return</span> <span class="n">getEntryAfterMiss</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="kd">private</span> <span class="nf">Entry</span> <span class="n">getEntryAfterMiss</span><span class="p">(</span><span class="n">ThreadLocal</span><span class="o">&lt;?&gt;</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="nf">i</span><span class="p">,</span> <span class="n">Entry</span> <span class="nf">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Entry</span><span class="p">[]</span> <span class="nf">tab</span> <span class="o">=</span> <span class="n">table</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="nf">len</span> <span class="o">=</span> <span class="n">tab</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+
+            <span class="c1">// 关键便是这个 while 循环的条件
+</span><span class="c1"></span>            <span class="c1">// 当 e != null 的时候会进入循环
+</span><span class="c1"></span>            <span class="c1">// 判断是否是我们需要的那个 ThreadLocal
+</span><span class="c1"></span>            <span class="c1">// 它会一直寻找到 e == null 才会停止循环
+</span><span class="c1"></span>            <span class="c1">// 所以整个逻辑就很清晰了，他的查找逻辑就是
+</span><span class="c1"></span>            <span class="c1">// 从冲突的点开始向后遍历，一直找到一个 null
+</span><span class="c1"></span>            <span class="c1">// 或者是找到那个 ThreadLocal
+</span><span class="c1"></span>            <span class="k">while</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">ThreadLocal</span><span class="o">&lt;?&gt;</span> <span class="n">k</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">e</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+                    <span class="n">expungeStaleEntry</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+                <span class="k">else</span>
+                    <span class="c1">// 如果出现冲突，那么就找下一个索引
+</span><span class="c1"></span>                    <span class="n">i</span> <span class="o">=</span> <span class="n">nextIndex</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+                <span class="n">e</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="2-使用场景">2 使用场景</h1>
