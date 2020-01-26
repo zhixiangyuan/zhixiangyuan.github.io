@@ -90,6 +90,67 @@ ThreadLocal 用于不同线程存储不同的线程全局变量，在该线程�
     }
 ```
 
+上面分析了 set 值的过程，下面我们来看看 get 值的过程，这个过程里面有一个点是需要注意的，在出现 hash 冲突的时候，根据索引找到的位置已经不是那个 ThreadLocal 了，那么它是怎么处理的呢，我们将在下面的代码中看到具体的处理方式。
+
+```java
+public class ThreadLocal<T> {
+    /** get 部分的源码 */
+    public T get() {
+        Thread t = Thread.currentThread();
+        ThreadLocalMap map = getMap(t);
+        if (map != null) {
+            // 关键在这里，getEntry 的源码在下面
+            ThreadLocalMap.Entry e = map.getEntry(this);
+            if (e != null) {
+                @SuppressWarnings("unchecked")
+                T result = (T)e.value;
+                return result;
+            }
+        }
+        // 如果没有值的话，则在其中设置初始化值
+        return setInitialValue();
+    }
+
+    static class ThreadLocalMap {
+        private Entry getEntry(ThreadLocal<?> key) {
+            // 计算索引
+            int i = key.threadLocalHashCode & (table.length - 1);
+            Entry e = table[i];
+            if (e != null && e.get() == key)
+                return e;
+            else
+                // 可以看到当 e 为 null 或者出现冲突的时候会走下面的函数
+                return getEntryAfterMiss(key, i, e);
+        }
+        
+        private Entry getEntryAfterMiss(ThreadLocal<?> key, int i, Entry e) {
+            Entry[] tab = table;
+            int len = tab.length;
+
+            // 关键便是这个 while 循环的条件
+            // 当 e != null 的时候会进入循环
+            // 判断是否是我们需要的那个 ThreadLocal
+            // 它会一直寻找到 e == null 才会停止循环
+            // 所以整个逻辑就很清晰了，他的查找逻辑就是
+            // 从冲突的点开始向后遍历，一直找到一个 null
+            // 或者是找到那个 ThreadLocal
+            while (e != null) {
+                ThreadLocal<?> k = e.get();
+                if (k == key)
+                    return e;
+                if (k == null)
+                    expungeStaleEntry(i);
+                else
+                    // 如果出现冲突，那么就找下一个索引
+                    i = nextIndex(i, len);
+                e = tab[i];
+            }
+            return null;
+        }
+    }
+}
+```
+
 # 2 使用场景
 
 明白了其内部的原理，那么便能够理解 ThreadLocal 其实是一个线程级别的全局变量，那么如果当我们需要一个线程级别的全局变量的时候便可以使用该类。
