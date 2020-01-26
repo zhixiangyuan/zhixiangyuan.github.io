@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>分析 Netty 中基于 ThreadLocal 的对象池 - 养猪场</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 对象池原理简述 Netty 中提供的对象池使用起来非常简单，在使用的时候只需要关注两个点，一是需要实现相应的 newObject 对象的方法，毕竟对象池里面放置什么对象是" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/01/26/%E5%88%86%E6%9E%90-netty-%E4%B8%AD%E5%9F%BA%E4%BA%8E-threadlocal-%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.40a1ded2.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="分析 Netty 中基于 ThreadLocal 的对象池" />
+<meta property="og:description" content="1 对象池原理简述 Netty 中提供的对象池使用起来非常简单，在使用的时候只需要关注两个点，一是需要实现相应的 newObject 对象的方法，毕竟对象池里面放置什么对象是" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/26/%E5%88%86%E6%9E%90-netty-%E4%B8%AD%E5%9F%BA%E4%BA%8E-threadlocal-%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%B1%A0/" />
+<meta property="article:published_time" content="2020-01-26T19:39:28+08:00" />
+<meta property="article:modified_time" content="2020-01-26T19:39:28+08:00" />
+<meta itemprop="name" content="分析 Netty 中基于 ThreadLocal 的对象池">
+<meta itemprop="description" content="1 对象池原理简述 Netty 中提供的对象池使用起来非常简单，在使用的时候只需要关注两个点，一是需要实现相应的 newObject 对象的方法，毕竟对象池里面放置什么对象是">
+
+
+<meta itemprop="datePublished" content="2020-01-26T19:39:28&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-26T19:39:28&#43;08:00" />
+<meta itemprop="wordCount" content="1128">
+
+
+
+<meta itemprop="keywords" content="netty," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="分析 Netty 中基于 ThreadLocal 的对象池"/>
+<meta name="twitter:description" content="1 对象池原理简述 Netty 中提供的对象池使用起来非常简单，在使用的时候只需要关注两个点，一是需要实现相应的 newObject 对象的方法，毕竟对象池里面放置什么对象是"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">养猪场</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">养猪场</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">分析 Netty 中基于 ThreadLocal 的对象池</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-01-26 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-对象池原理简述">1 对象池原理简述</a></li>
+<li><a href="#2-对象池源码分析">2 对象池源码分析</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-对象池原理简述">1 对象池原理简述</h1>
+
+<p>Netty 中提供的对象池使用起来非常简单，在使用的时候只需要关注两个点，一是需要实现相应的 newObject 对象的方法，毕竟对象池里面放置什么对象是由使用者来决定的，二是回收方法，在实现 newObject 方法的时候，该方法有一个入参是 Handle，这个参数的唯一作用便是实现回收的效果。在实现完后，我们便只需要通过该对象池的 get 方法便可以获取对象，获取的时候如果对象池里面有对象便直接获取对象池中的对象，如果没有对象则生成一个对象。</p>
+
+<p>下面我们先看来一个使用对象池的例子。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/** 需要被对象池管理的对象 */</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">OneObject</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="nf">final</span> <span class="n">Recycler</span><span class="p">.</span><span class="na">Handle</span><span class="o">&lt;</span><span class="n">OneObject</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">OneObject</span><span class="p">(</span><span class="n">Recycler</span><span class="p">.</span><span class="na">Handle</span><span class="o">&lt;</span><span class="n">OneObject</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 保存对象池的 handle，该对象需要在回收的时候使用
+</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="na">handle</span> <span class="o">=</span> <span class="n">handle</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** 实现回收方法，只需要调用 handle 的 recycle 方法即可 */</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">recycle</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">handle</span><span class="p">.</span><span class="na">recycle</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/** 继承 Netty 的 {@link Recycler} 实现自定义的对象池 */</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">OneObjectPool</span> <span class="nf">extends</span> <span class="n">Recycler</span><span class="o">&lt;</span><span class="n">OneObject</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nf">OneObject</span> <span class="n">newObject</span><span class="p">(</span><span class="n">Handle</span><span class="o">&lt;</span><span class="n">OneObject</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// new 一个 OneObject 对象
+</span><span class="c1"></span>        <span class="k">return</span> <span class="k">new</span> <span class="n">OneObject</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/** 测试效果 */</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">OneObjectPool</span> <span class="n">ONE_OBJECT_POOL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OneObjectPool</span><span class="p">();</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;OneObject hash: %s&#34;</span><span class="p">,</span> <span class="n">ONE_OBJECT_POOL</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">hashCode</span><span class="p">()));</span>
+        <span class="c1">// OneObject hash: 1401420256
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;OneObject hash: %s&#34;</span><span class="p">,</span> <span class="n">ONE_OBJECT_POOL</span><span class="p">.</span><span class="na">get</span><span class="p">().</span><span class="na">hashCode</span><span class="p">()));</span>
+        <span class="c1">// OneObject hash: 1530388690
+</span><span class="c1"></span>
+        <span class="c1">// 可以看到上面两个结果，我们直接通过 ONE_OBJECT_POOL.get() 来获取两个对象的 hashcode
+</span><span class="c1"></span>        <span class="c1">// 是不同的，下面我们试试获取一个对象，然后将该对象还回去，然后再获取的效果
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/** 测试效果 */</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">Main</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">OneObjectPool</span> <span class="n">ONE_OBJECT_POOL</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OneObjectPool</span><span class="p">();</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 获取对象
+</span><span class="c1"></span>        <span class="n">OneObject</span> <span class="nf">oneObject</span> <span class="o">=</span> <span class="n">ONE_OBJECT_POOL</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;OneObject hash: %s&#34;</span><span class="p">,</span> <span class="n">oneObject</span><span class="p">.</span><span class="na">hashCode</span><span class="p">()));</span>
+        <span class="c1">// OneObject hash: 1401420256
+</span><span class="c1"></span>        <span class="c1">// 将对象还回对象池
+</span><span class="c1"></span>        <span class="n">oneObject</span><span class="p">.</span><span class="na">recycle</span><span class="p">();</span>
+        <span class="c1">// 再次从对象池中获取对象
+</span><span class="c1"></span>        <span class="n">oneObject</span> <span class="o">=</span> <span class="n">ONE_OBJECT_POOL</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;OneObject hash: %s&#34;</span><span class="p">,</span> <span class="n">oneObject</span><span class="p">.</span><span class="na">hashCode</span><span class="p">()));</span>
+        <span class="c1">// OneObject hash: 1401420256
+</span><span class="c1"></span>
+        <span class="c1">// 可以看到两次获取的对象是 hashcode 是相同的
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="2-对象池源码分析">2 对象池源码分析</h1>
+
+<p>通过上面部分的代码可以看到，最核心的方法便是获取对象的 get 方法和回收对象的 recycle 方法。我们先来看看 Recycler 的 get 方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">abstract</span> <span class="kd">class</span> <span class="nf">Recycler</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kd">public</span> <span class="nf">final</span> <span class="n">T</span> <span class="nf">get</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">maxCapacityPerThread</span> <span class="o">==</span> <span class="n">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">newObject</span><span class="p">((</span><span class="n">Handle</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">NOOP_HANDLE</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// 每一个线程都一个自己的 stack
+</span><span class="c1"></span>        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">stack</span> <span class="o">=</span> <span class="n">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+        <span class="c1">// 从栈中获取 handle
+</span><span class="c1"></span>        <span class="n">DefaultHandle</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">handle</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+        <span class="c1">// 如果 handle 为 null 则去创建一个
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">handle</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="n">stack</span><span class="p">.</span><span class="na">newHandle</span><span class="p">();</span>
+            <span class="n">handle</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">newObject</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// 返回 handle 中的值
+</span><span class="c1"></span>        <span class="k">return</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="n">handle</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>看了上面可能会有点疑惑 handle 是什么，下面我们看看 handle 的源码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="cm">/** Handle 本身只提供一个方法，便是 recycle，通过该方法回收对象 */</span>
+    <span class="kd">public</span> <span class="nf">interface</span> <span class="n">Handle</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="cm">/** 回收对象 */</span>
+        <span class="kt">void</span> <span class="nf">recycle</span><span class="p">(</span><span class="n">T</span> <span class="nf">object</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** 该类是 Handle 的默认实现 */</span>
+    <span class="kd">static</span> <span class="nf">final</span> <span class="kd">class</span> <span class="nf">DefaultHandle</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">implements</span> <span class="n">Handle</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">private</span> <span class="nf">int</span> <span class="n">lastRecycledId</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="nf">int</span> <span class="n">recycleId</span><span class="p">;</span>
+
+        <span class="kt">boolean</span> <span class="nf">hasBeenRecycled</span><span class="p">;</span>
+
+        <span class="kd">private</span> <span class="nf">Stack</span><span class="o">&lt;?&gt;</span> <span class="n">stack</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="nf">Object</span> <span class="n">value</span><span class="p">;</span>
+
+        <span class="n">DefaultHandle</span><span class="p">(</span><span class="n">Stack</span><span class="o">&lt;?&gt;</span> <span class="n">stack</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">stack</span> <span class="o">=</span> <span class="n">stack</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="nf">void</span> <span class="n">recycle</span><span class="p">(</span><span class="n">Object</span> <span class="nf">object</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">object</span> <span class="o">!=</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&#34;object does not belong to handle&#34;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">Stack</span><span class="o">&lt;?&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">stack</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">lastRecycledId</span> <span class="o">!=</span> <span class="n">recycleId</span> <span class="o">||</span> <span class="n">stack</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="s">&#34;recycled already&#34;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="c1">// 可以看到该实现的回收方法最核心的便是将该 handle 再次推入到 stack 中
+</span><span class="c1"></span>            <span class="c1">// handle 中持有的 value 需要被缓存的对象，这样下次从对象池中获取出 handle
+</span><span class="c1"></span>            <span class="c1">// 后，便可以直接从 handle 中获取出 value 对象。
+</span><span class="c1"></span>            <span class="n">stack</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>从该源码中，便能够看出这个对象池其实是线程独有的，每个线程独享自己的对象池。这样的设计有一个好处，那便是不会出现多线程竞争的问题，在多线程的环境中是天然线程安全的，不需要在其中增加任何锁。</p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/netty/">netty</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/01/24/netty-%E6%98%AF%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E6%98%AF%E5%90%A6%E6%9C%89%E6%96%B0%E8%BF%9E%E6%8E%A5%E6%8E%A5%E5%85%A5%E5%8F%88%E5%A6%82%E4%BD%95%E5%AF%B9%E6%96%B0%E8%BF%9E%E6%8E%A5%E8%BF%9B%E8%A1%8C%E6%8E%A5%E5%85%A5/">
+            <span class="next-text nav-default">Netty 是如何检测是否有新连接接入？又如何对新连接进行接入？</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.67e0238c.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
