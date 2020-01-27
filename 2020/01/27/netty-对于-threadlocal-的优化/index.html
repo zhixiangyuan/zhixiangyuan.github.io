@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-01-27T12:58:11&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-27T12:58:11&#43;08:00" />
-<meta itemprop="wordCount" content="786">
+<meta itemprop="wordCount" content="939">
 
 
 
@@ -209,6 +209,8 @@
 </div>
 </div>
 <p>但是这里的设计似乎有问题，一般内存泄漏是出现在线程池里面，也就是线程一直在运行的情况，如果线程死亡了，那么资源也就可以被 gc 回收了。而 Netty 所做的优化也是在线程执行完毕之后才去清理掉所有的 <code>FastThreadLocal</code>，这个时候清理看上去也不是很必要了，反正 gc 也能够清理。</p>
+
+<p>对于上面这个问题有一点思考错了，那就是当执行到 <code>FastThreadLocal.removeAll();</code> 的时候线程执行结束了，其实并没有，比如说我们将 <code>FastThreadLocalRunnable</code> 放到线程池中去使用，那么在使用的时候其实是在我们的 <code>Runnable</code> 的外层包了一层这段代码，那么当这段代码运行完之后，后面会继续运行线程池中获取任务的代码，所以这段代码实际起到的效果是在每一个任务执行完毕之后清理掉 <code>FastThreadLocal</code> 中的内容。</p>
 
 <h1 id="2-如何实现对于-hash-冲突的优化">2 如何实现对于 hash 冲突的优化</h1>
 
