@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 26 Jan 2020 23:28:24 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jan 2020 12:58:11 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>Netty 对于 ThreadLocal 的优化</title>
+      <link>https://zhixiangyuan.github.io/2020/01/27/netty-%E5%AF%B9%E4%BA%8E-threadlocal-%E7%9A%84%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Mon, 27 Jan 2020 12:58:11 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/27/netty-%E5%AF%B9%E4%BA%8E-threadlocal-%E7%9A%84%E4%BC%98%E5%8C%96/</guid>
+      <description>对于 ThreadLocal 这个使用起来很方便的线程级别的全局变量，其本身有两点是需要注意的 第一，它在线程池的环境中使用时是可能会导致内存泄漏的，这一点如果大家不</description>
     </item>
     
     <item>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 26 Jan 2020 23:28:24 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jan 2020 12:58:11 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Netty 对于 ThreadLocal 的优化</title>
+      <link>https://zhixiangyuan.github.io/2020/01/27/netty-%E5%AF%B9%E4%BA%8E-threadlocal-%E7%9A%84%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Mon, 27 Jan 2020 12:58:11 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/27/netty-%E5%AF%B9%E4%BA%8E-threadlocal-%E7%9A%84%E4%BC%98%E5%8C%96/</guid>
+      <description>对于 ThreadLocal 这个使用起来很方便的线程级别的全局变量，其本身有两点是需要注意的 第一，它在线程池的环境中使用时是可能会导致内存泄漏的，这一点如果大家不</description>
+    </item>
     
     <item>
       <title>计算距离大于某数的最近的 2 的幂次的数</title>
