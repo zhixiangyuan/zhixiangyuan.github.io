@@ -51,6 +51,8 @@ final class FastThreadLocalRunnable implements Runnable {
 
 但是这里的设计似乎有问题，一般内存泄漏是出现在线程池里面，也就是线程一直在运行的情况，如果线程死亡了，那么资源也就可以被 gc 回收了。而 Netty 所做的优化也是在线程执行完毕之后才去清理掉所有的 `FastThreadLocal`，这个时候清理看上去也不是很必要了，反正 gc 也能够清理。
 
+对于上面这个问题有一点思考错了，那就是当执行到 `FastThreadLocal.removeAll();` 的时候线程执行结束了，其实并没有，比如说我们将 `FastThreadLocalRunnable` 放到线程池中去使用，那么在使用的时候其实是在我们的 `Runnable` 的外层包了一层这段代码，那么当这段代码运行完之后，后面会继续运行线程池中获取任务的代码，所以这段代码实际起到的效果是在每一个任务执行完毕之后清理掉 `FastThreadLocal` 中的内容。
+
 # 2 如何实现对于 hash 冲突的优化
 
 其实 Netty 内部实现看上去是通过空间来换时间，`Thread` 内部通过数组来保存数据。（这里面需要注意的是，它里面写的是 `InternalThreadLocalMap`，虽然命名为 `Map`，但是它里面的实现是通过数组实现的，这里可以理解为 `key` 为数组下标，`value` 为存储的数据）每一个 `FastThreadLocal` 都有一个自己的 `index`，这个 `index` 是在创建 `FastThreadLocal` 时申请到的一个唯一的 `index`，同时这个 `index` 会用于 `InternalThreadLocalMap` 中存取数据。
