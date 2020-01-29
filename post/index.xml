@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 29 Jan 2020 15:06:53 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 19:51:53 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何用与运算实现对 2 的幂次的数的取余</title>
+      <link>https://zhixiangyuan.github.io/2020/01/29/%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%8E%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%AF%B9-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E7%9A%84%E6%95%B0%E7%9A%84%E5%8F%96%E4%BD%99/</link>
+      <pubDate>Wed, 29 Jan 2020 19:51:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/01/29/%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%8E%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%AF%B9-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E7%9A%84%E6%95%B0%E7%9A%84%E5%8F%96%E4%BD%99/</guid>
+      <description>比如说想要对 4 取余，那么下面这段代码便可以做到 1 2 3 public static int mod4(int num) { return num &amp;amp; 0b0000_0011; } 对一个 2 的幂次的数做取余操作可以使用下面的这套公式 1 2 3 public static int mod4(int num)</description>
+    </item>
     
     <item>
       <title>异或运算小技巧</title>
