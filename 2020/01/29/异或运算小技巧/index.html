@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-01-29T15:06:53&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-29T15:06:53&#43;08:00" />
-<meta itemprop="wordCount" content="184">
+<meta itemprop="wordCount" content="351">
 
 
 
@@ -142,6 +142,7 @@
 <ul>
 <li><a href="#1-自己与自己运算得到-0">1 自己与自己运算得到 0</a></li>
 <li><a href="#2-在一定条件下使用异或实现减法效果">2 在一定条件下使用异或实现减法效果</a></li>
+<li><a href="#3-异或同样可以理解为不进位加法">3 异或同样可以理解为不进位加法</a></li>
 </ul>
 </nav>
   </div>
@@ -191,6 +192,35 @@
 </span><span class="c1"></span>    <span class="c1">// 那么条件就是其中一个数 x 为 2 的幂次
 </span><span class="c1"></span>    <span class="c1">// 另一个数的范围在 y = [x, 2 * x - 1] 之间
 </span><span class="c1"></span>    <span class="o">//</span> <span class="n">这样这两个数的异或结果便是减法的效果</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="3-异或同样可以理解为不进位加法">3 异或同样可以理解为不进位加法</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 对于异或的特性
+</span><span class="c1"></span>    <span class="c1">// 0 ^ 0 = 0
+</span><span class="c1"></span>    <span class="c1">// 0 ^ 1 = 1
+</span><span class="c1"></span>    <span class="c1">// 1 ^ 0 = 1
+</span><span class="c1"></span>    <span class="c1">// 1 ^ 1 = 0
+</span><span class="c1"></span>    <span class="c1">// 可以发现，上面的运算规则可以理解为
+</span><span class="c1"></span>    <span class="c1">// 二进制的不进位加法
+</span><span class="c1"></span>    <span class="c1">// 所以对于标题二的一定条件下的减法效果
+</span><span class="c1"></span>    <span class="c1">// 其实就是进位了，但是进位效果失败了
+</span><span class="c1"></span>    <span class="c1">// 对于这种二进制的不进位加法，使用 2 的幂次的数
+</span><span class="c1"></span>    <span class="o">//</span> <span class="n">进行相加比较好理解</span><span class="err">，</span><span class="n">别的数计算不是很直观</span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
