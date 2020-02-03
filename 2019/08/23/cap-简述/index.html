@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-08-23T14:08:22&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-23T14:08:22&#43;08:00" />
-<meta itemprop="wordCount" content="314">
+<meta itemprop="wordCount" content="398">
 
 
 
@@ -144,6 +144,7 @@
 <li><a href="#2-availability-可用性">2 Availability 可用性</a></li>
 <li><a href="#3-partition-tolerance-分区容错性">3 Partition tolerance 分区容错性</a></li>
 <li><a href="#4-consistency-与-availability-存在的矛盾">4 Consistency 与 Availability 存在的矛盾</a></li>
+<li><a href="#5-关于分布式系统">5 关于分布式系统</a></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
@@ -192,6 +193,10 @@
 <h1 id="4-consistency-与-availability-存在的矛盾">4 Consistency 与 Availability 存在的矛盾</h1>
 
 <p>当用户发出修改数据的指令到 A 服务器上，然后又像 B 服务器发出查询指令，那么就可能出现数据不一致的情况，如果要避免这种情况，那么当 A 修改数据的时候需要锁定 B 服务器读写该数据的能力，如果出现锁定那么就无法满足可用性，也就出现了矛盾。</p>
+
+<h1 id="5-关于分布式系统">5 关于分布式系统</h1>
+
+<p>对于分布式系统而言，其本身就是为了获取分区容错性，所以在实现分区容错性后，便只能在一致性和可用性之间做妥协，由此便引出了强一致性，弱一致性和最终一致性。</p>
 
 <h1 id="参考资料">参考资料</h1>
 
