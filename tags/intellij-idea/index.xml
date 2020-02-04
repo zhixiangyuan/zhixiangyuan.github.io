@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>IDEA 中 UML 的箭头含义</title>
-      <link>https://zhixiangyuan.github.io/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/</link>
+      <title>面向对象设计中对象的六种关系</title>
+      <link>https://zhixiangyuan.github.io/2019/12/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E5%85%B3%E7%B3%BB/</link>
       <pubDate>Tue, 10 Dec 2019 08:28:37 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/</guid>
-      <description>本文中所使用的关系名词并不是 UML 中所定义的，因为我觉得他那种方式不够具体，对于 Javer 来说并不好理解，所以这里我直接用易于 javer 理解的名词来解释类之间的</description>
+      <guid>https://zhixiangyuan.github.io/2019/12/10/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E5%85%B3%E7%B3%BB/</guid>
+      <description>组织对象的六种关系为依赖、关联、聚合、组合、实现、泛化，下面一一阐述各种关系 1 依赖关系 1 2 3 4 5 public class A { public A(B b) { B bb = b; } } 这种虚线实心箭头</description>
     </item>
     
     <item>
