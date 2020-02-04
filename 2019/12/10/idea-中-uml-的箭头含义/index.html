@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-12-10T08:28:37&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-10T08:28:37&#43;08:00" />
-<meta itemprop="wordCount" content="773">
+<meta itemprop="wordCount" content="838">
 
 
 
@@ -238,7 +238,7 @@
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>这种虚线非实心箭头，上面还标了 create 的标志就是表示 A 类中某个位置创建了 B</p>
+<p>这种虚线非实心箭头，上面还标了 create 的标志就是表示 A 类中某个位置创建了 B，这种同样可以理解为 A 调用了 B 的构造函数。</p>
 
 <p><img src="/hub/2019/December/12.png" alt="A create B" /></p>
 
@@ -310,6 +310,33 @@
 <p>这种情况便是即有 new，又有调用的情况，不过这里只有一个引用指向 new 出来的 B，没有实际的调用，不过 IDEA 还是会归类于有调用关系。</p>
 
 <p><img src="/hub/2019/December/14.png" alt="" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">B</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">method</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">A</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">method</span><span class="p">(</span><span class="n">B</span> <span class="nf">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">b</span><span class="p">.</span><span class="na">method</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这种同样是 A 调用了 B 的方法</p>
+
+<p><img src="/hub/2019/December/13.png" alt="" /></p>
 
 <h1 id="5-持有关系">5 持有关系</h1>
 <div class="highlight"><div class="chroma">
