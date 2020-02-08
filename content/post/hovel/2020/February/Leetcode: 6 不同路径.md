@@ -50,7 +50,7 @@ class Solution {
 
 ## 2.2 使用递归模拟走路径
 
-这方法跑结果集会超时
+这方法跑数据集会超时
 
 ```java
 class Solution {
