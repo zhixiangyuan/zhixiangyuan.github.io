@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 30 Jan 2020 15:38:21 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Feb 2020 16:14:26 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>如何安装 gitbook 插件</title>
+      <link>https://zhixiangyuan.github.io/2020/02/10/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85-gitbook-%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Mon, 10 Feb 2020 16:14:26 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/10/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85-gitbook-%E6%8F%92%E4%BB%B6/</guid>
+      <description>安装 Gitbook 插件，本来是一件很简单的事情，在 book.json 文件加入插件相关的信息，比如下面的 mathjax 插件，然后运行 gitbook install 即可完成安装。 1 2 3 { &amp;#34;plugins&amp;#34;: [&amp;#34;mathjax&amp;#34;] } 不过由于众所周知的</description>
     </item>
     
     <item>
