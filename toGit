@@ -35,7 +35,7 @@ else
     hugo  >/dev/null 2>&1
     cd ./public
     git add . >/dev/null 2>&1
-    git commit -m "生成博客" >/dev/null 2>&1
+    git commit -m "update blog" >/dev/null 2>&1
     git push github master -v
 fi
 
