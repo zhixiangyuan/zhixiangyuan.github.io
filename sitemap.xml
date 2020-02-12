@@ -10,41 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2020-02-12T16:01:53+08:00</lastmod>
+    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/java/</loc>
-    <lastmod>2020-02-12T16:01:53+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/2020/02/12/idea-%E4%B8%AD%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/</loc>
+    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/intellij-idea/</loc>
+    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2020-02-12T16:01:53+08:00</lastmod>
+    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2020-02-12T16:01:53+08:00</lastmod>
+    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2020-02-12T16:01:53+08:00</lastmod>
+    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/java/</loc>
     <lastmod>2020-02-12T16:01:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -542,13 +556,6 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/</loc>
-    <lastmod>2019-12-10T08:28:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/intellij-idea/</loc>
     <lastmod>2019-12-10T08:28:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 10 Dec 2019 08:28:37 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Feb 2020 21:22:10 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/intellij-idea/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IDEA 中非常好用的插件</title>
+      <link>https://zhixiangyuan.github.io/2020/02/12/idea-%E4%B8%AD%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Wed, 12 Feb 2020 21:22:10 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/12/idea-%E4%B8%AD%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/</guid>
+      <description>1 自动生成时序图插件：SequenceDiagram 在插件库中直接搜索 SequenceDiagram 即可找到该插件 使用时直接在方法上右击即可找到生成时序图选项 然后选择一</description>
+    </item>
     
     <item>
       <title>IDEA 中 UML 的箭头含义</title>
