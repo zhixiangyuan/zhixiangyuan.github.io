@@ -181,7 +181,7 @@ return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;    n = 
 
 ## 4.6 HashMap 的初始化长度为什么为 16
 
-这是为了降低 Hash 冲突，只要是 2 的幂次都能降低 Hash 冲突。
+这应该就是个经验值（Experience Value），因为容量必须是 2 的幂次， 而容量太小容易引起频繁扩容，容量太大又浪费空间。所以 16 作为一个经验值被采用了，jdk 内部将 16 写为 `1 << 4` 便是为了提示开发者，这里是 2 的幂次。
 
 ## 4.7 高并发场景下 HashMap 可能会出现什么问题
 
@@ -198,6 +198,10 @@ return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;    n = 
 ### 4.8.2 为什么要重写 hashCode() 方法和 equals() 方法
 
 // 待完成
+
+## 4.9 为什么 HashMap 中的数组容量始终为 2 的幂次
+
+这是由于 HashMap 中计算数组索引下标的时候，如果数组容量是 2 的幂次的话，那么则可以直接使用容量 -1 与 hash 值做 & 运算，效率高于 % 运算符。
 
 # 参考资料
 
