@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-18T16:36:38&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-18T16:36:38&#43;08:00" />
-<meta itemprop="wordCount" content="1324">
+<meta itemprop="wordCount" content="1500">
 
 
 
@@ -142,6 +142,7 @@
 <ul>
 <li><a href="#1-源码浅析">1 源码浅析</a></li>
 <li><a href="#2-使用场景">2 使用场景</a></li>
+<li><a href="#3-内存泄漏">3 内存泄漏</a></li>
 </ul>
 </nav>
   </div>
@@ -422,7 +423,11 @@
 </div>
 <h1 id="2-使用场景">2 使用场景</h1>
 
-<p>明白了其内部的原理，那么便能够理解 ThreadLocal 其实是一个线程级别的全局变量，那么如果当我们需要一个线程级别的全局变量的时候便可以使用该类。</p>
+<p>明白了其内部的原理，那么便能够理解 ThreadLocal 其实是一个线程级别的全局变量，那么如果当我们需要一个线程级别的全局变量的时候便可以使用该类。换句话说便是线程需要有自己单独的实例，该实例需要在多个方法中共享，但是不希望被多个线程共享。</p>
+
+<h1 id="3-内存泄漏">3 内存泄漏</h1>
+
+<p>ThreadLocalMap 中的 entry 虽然继承了弱引用，但是 threadLocals 持有 entry，thread 持有 threadLocals，所以线程不死对象便不会释放。出现内存泄漏的场景便是在线程池里面，之前的任务设置了 threadLocal，但是在任务执行结束的时候没有清空 threadLocal。</p>
 
     </div>
 
