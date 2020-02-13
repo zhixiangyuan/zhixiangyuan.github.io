@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-18T13:56:39&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-18T13:56:39&#43;08:00" />
-<meta itemprop="wordCount" content="806">
+<meta itemprop="wordCount" content="814">
 
 
 
@@ -218,6 +218,10 @@
 </span><span class="lnt">61
 </span><span class="lnt">62
 </span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">QuickSort</span> <span class="p">{</span>
@@ -256,25 +260,29 @@
         <span class="kt">int</span> <span class="nf">rightIndex</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
         <span class="c1">// 当左指针跑到右指针的右边时停止循环
 </span><span class="c1"></span>        <span class="k">while</span> <span class="p">(</span><span class="n">leftIndex</span> <span class="o">&lt;</span> <span class="n">rightIndex</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">leftIndex</span> <span class="o">&lt;</span> <span class="n">rightIndex</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// 先遍历左边，只要左边的数字比 pivot 小，就不动，指将指针加一就进行
 </span><span class="c1"></span>                <span class="c1">// 下一次循环，如果出现左边的数字比 pivot 大，则停止循环
 </span><span class="c1"></span>                <span class="n">leftIndex</span><span class="o">++</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                 <span class="c1">// 左边的数字比 pivot 大，将左边的数字移动到右边
 </span><span class="c1"></span>                <span class="c1">// 空位跑到 leftIndex 所指的位置
 </span><span class="c1"></span>                <span class="c1">// 接下来从右边开始遍历
 </span><span class="c1"></span>                <span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="p">];</span>
+                <span class="c1">// 停止循环
+</span><span class="c1"></span>                <span class="k">break</span><span class="p">;</span>
             <span class="p">}</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">leftIndex</span> <span class="o">&lt;</span> <span class="n">rightIndex</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">leftIndex</span> <span class="o">&lt;</span> <span class="n">rightIndex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// 然后遍历右边，只要右边的数字比 pivot 大，就不动，将指针减一就进行下一次循环
 </span><span class="c1"></span>                <span class="c1">// 如果出现右边的数字比 pivot 小，则停止循环
 </span><span class="c1"></span>                <span class="n">rightIndex</span><span class="o">--</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                 <span class="c1">// 右边的数字比 pivot 小，那么就将该数字移动到左边
 </span><span class="c1"></span>                <span class="n">array</span><span class="p">[</span><span class="n">leftIndex</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">rightIndex</span><span class="p">];</span>
+                <span class="c1">// 停止循环
+</span><span class="c1"></span>                <span class="k">break</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
         <span class="c1">// 遍历结束后到这里 rightIndex 是等于 leftIndex 的
