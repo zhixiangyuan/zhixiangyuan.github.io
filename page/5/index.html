@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-02-12T21:22:10+08:00" />
+<meta property="og:updated_time" content="2020-02-14T21:43:55+08:00" />
 <meta itemprop="name" content="养猪场">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,48 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/01/21/%E4%B8%89%E7%A7%8D%E4%B8%80%E8%87%B4%E6%80%A7%E6%A8%A1%E5%9E%8B/">三种一致性模型</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-01-21 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 弱一致性 当你写入一个新值后，读操作在数据副本上可能读出来，也可能读不出来。比如：某些 cache 系统，网络游戏其它玩家的数据和你没什么关系，VOIP
+    </div>
+    <div class="read-more">
+      <a href="/2020/01/21/%E4%B8%89%E7%A7%8D%E4%B8%80%E8%87%B4%E6%80%A7%E6%A8%A1%E5%9E%8B/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/">SQL 优化小记</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-01-19 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      本篇文章使用的建表语句以及其创建数据的语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 DROP TABLE IF EXISTS employees; CREATE TABLE `employees` ( `id` INT ( 11 ) NOT NULL AUTO_INCREMENT, `name` VARCHAR ( 24 ) NOT NULL DEFAULT &#39;&#39; COMMENT &#39
+    </div>
+    <div class="read-more">
+      <a href="/2020/01/19/sql-%E4%BC%98%E5%8C%96%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2020/01/18/explain-%E5%B0%8F%E8%AE%B0/">Explain 小记</a></h1>
@@ -196,48 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2020/01/16/%E5%A6%82%E4%BD%95%E5%9C%A8-mysql-%E4%B8%AD%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90%E4%B8%80%E5%BC%A0%E4%BA%BF%E7%BA%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E7%9A%84%E8%A1%A8/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2020/01/15/%E4%BD%BF%E7%94%A8-jdbc-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/">使用 JDBC 连接数据库的样例代码</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-01-15 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 pom 中引入依赖 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;mysql&lt;/groupId&gt; &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;/dependency&gt; 2 样例代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 public class Main { static final String DB_URL = &#34;jdbc:mysql://localhost:3306/test&#34;; static final String USER = &#34;root&#34;; static final String PASS = &#34;123456&#34;; public static void main(String[] args) { try
-    </div>
-    <div class="read-more">
-      <a href="/2020/01/15/%E4%BD%BF%E7%94%A8-jdbc-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%A0%B7%E4%BE%8B%E4%BB%A3%E7%A0%81/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2020/01/15/%E8%81%8A%E4%B8%80%E8%81%8A%E8%8C%83%E5%9E%8B%E6%93%A6%E9%99%A4%E6%9C%BA%E5%88%B6/">聊一聊范型擦除机制</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-01-15 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      注意：本文中使用 ResolvableType 是 Spring framework 中提供的工具类，用于简化获取类的信息，该类位于 spring-core 项目下，想使用的小伙伴引入 spring-core 项目即可使用。 似乎，从学习 java 的范型开始，
-    </div>
-    <div class="read-more">
-      <a href="/2020/01/15/%E8%81%8A%E4%B8%80%E8%81%8A%E8%8C%83%E5%9E%8B%E6%93%A6%E9%99%A4%E6%9C%BA%E5%88%B6/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

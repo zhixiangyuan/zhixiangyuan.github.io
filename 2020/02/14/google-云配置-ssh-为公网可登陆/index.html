@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>养猪场</title>
+  <title>Google 云配置 SSH 为公网可登陆 - 养猪场</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 使用浏览器 SSH 登陆服务器 使用 sudo -i 切换到 root 用户 vi /etc/ssh/sshd_config 修改配置文件 修改以下两项配置为 yes PermitRootLogin yes // 默认为 no，需要开启 root 用户访问改为 yes PasswordAuthentication yes // 默认为 no，" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="养猪场" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="养猪场" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/02/14/google-%E4%BA%91%E9%85%8D%E7%BD%AE-ssh-%E4%B8%BA%E5%85%AC%E7%BD%91%E5%8F%AF%E7%99%BB%E9%99%86/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="养猪场" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="Google 云配置 SSH 为公网可登陆" />
+<meta property="og:description" content="1 使用浏览器 SSH 登陆服务器 使用 sudo -i 切换到 root 用户 vi /etc/ssh/sshd_config 修改配置文件 修改以下两项配置为 yes PermitRootLogin yes // 默认为 no，需要开启 root 用户访问改为 yes PasswordAuthentication yes // 默认为 no，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/02/14/google-%E4%BA%91%E9%85%8D%E7%BD%AE-ssh-%E4%B8%BA%E5%85%AC%E7%BD%91%E5%8F%AF%E7%99%BB%E9%99%86/" />
+<meta property="article:published_time" content="2020-02-14T21:43:55+08:00" />
+<meta property="article:modified_time" content="2020-02-14T21:43:55+08:00" />
+<meta itemprop="name" content="Google 云配置 SSH 为公网可登陆">
+<meta itemprop="description" content="1 使用浏览器 SSH 登陆服务器 使用 sudo -i 切换到 root 用户 vi /etc/ssh/sshd_config 修改配置文件 修改以下两项配置为 yes PermitRootLogin yes // 默认为 no，需要开启 root 用户访问改为 yes PasswordAuthentication yes // 默认为 no，">
 
-<meta property="og:updated_time" content="2020-02-14T21:43:55+08:00" />
-<meta itemprop="name" content="养猪场">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2020-02-14T21:43:55&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-14T21:43:55&#43;08:00" />
+<meta itemprop="wordCount" content="101">
+
+
+
+<meta itemprop="keywords" content="M78 星云," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="养猪场"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="Google 云配置 SSH 为公网可登陆"/>
+<meta name="twitter:description" content="1 使用浏览器 SSH 登陆服务器 使用 sudo -i 切换到 root 用户 vi /etc/ssh/sshd_config 修改配置文件 修改以下两项配置为 yes PermitRootLogin yes // 默认为 no，需要开启 root 用户访问改为 yes PasswordAuthentication yes // 默认为 no，"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,147 +121,71 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/mysql-%E4%B8%89%E5%A4%A7%E5%BC%95%E6%93%8E/">MySQL 三大引擎</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      MySQL 常用的引擎有 InnoDB、MyISAM、Memory，默认是 InnoDB 1 InnoDB 这种引擎序列化在磁盘中，支持事务，支持行级锁，B+Tree 索引。拥有良好
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/mysql-%E4%B8%89%E5%A4%A7%E5%BC%95%E6%93%8E/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Google 云配置 SSH 为公网可登陆</h1>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/ssl-%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/">SSL 加密流程简述</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      SSL 加密的思想运用到了对称加密和非对称加密，非堆成加密的优势在于没有私钥则无法解密，所以想要传输信息的一端只需要拿到公钥就可以完成加密传输，但
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/ssl-%E5%8A%A0%E5%AF%86%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-14 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/27/http-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F/">Http 协议格式</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-27 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 HTTP 请求报文 HTTP 请求报文由请求行、请求头部、空行和请求包体 4 个部分组成，如下图所示： 1.1 请求行 请求行由方法字段、URL 字段和 HTTP 协议版本字段 3 个部
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/27/http-%E5%8D%8F%E8%AE%AE%E6%A0%BC%E5%BC%8F/" class="read-more-link">阅读更多</a>
-    </div>
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-使用浏览器-ssh-登陆服务器">1 使用浏览器 SSH 登陆服务器</a></li>
+</ul>
+</nav>
   </div>
-</article>
+</div>
+    <div class="post-content">
+      
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/26/java-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">Java 中的类加载器</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-26 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+<h1 id="1-使用浏览器-ssh-登陆服务器">1 使用浏览器 SSH 登陆服务器</h1>
+
+<ol>
+<li>使用 <code>sudo -i</code> 切换到 root 用户</li>
+<li><code>vi /etc/ssh/sshd_config</code> 修改配置文件
+
+<ul>
+<li>修改以下两项配置为 yes</li>
+<li><code>PermitRootLogin yes // 默认为 no，需要开启 root 用户访问改为 yes</code></li>
+<li><code>PasswordAuthentication yes // 默认为 no，改为 yes 开启密码登陆</code></li>
+</ul></li>
+<li>给 root 用户设置密码 <code>passwd root</code></li>
+<li>重启 SSH 服务使修改生效 <code>/etc/init.d/ssh restart</code></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/m78-%E6%98%9F%E4%BA%91/">M78 星云</a>
           </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Java 中的类加载器分为三种： 启动类加载器 扩展类加载器 应用程序类加载器 1 启动类加载器 Bootstrap ClassLoader，C 语言实现，用于加载 JDK\jre\lib\rt.jar 2 扩展类加载器
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/26/java-%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/26/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">类的加载过程</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-26 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      类的加载分为以下五个步骤： 加载 连接 初始化 使用 卸载 1 加载 加载操作会去加载类的二进制数据到内存中，然后在堆中开辟出一个 java.lang.Class 对象 2 连接 连接又包含三个
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/26/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/10/26/jvm-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">JVM 内存模型</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-10-26 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      JVM 的内存模型分为主内存和线程的工作内存两大块，这属于一个抽象的内存模型，用于解决并发问题，与 JVM 中的内存结构如堆、栈没什么关系，不要弄混。 参考
-    </div>
-    <div class="read-more">
-      <a href="/2019/10/26/jvm-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/23/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/25/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/02/12/idea-%E4%B8%AD%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/">
+            <span class="next-text nav-default">IDEA 中非常好用的插件</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>

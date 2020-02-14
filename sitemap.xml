@@ -10,7 +10,49 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
+    <lastmod>2020-02-14T21:43:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/02/14/google-%E4%BA%91%E9%85%8D%E7%BD%AE-ssh-%E4%B8%BA%E5%85%AC%E7%BD%91%E5%8F%AF%E7%99%BB%E9%99%86/</loc>
+    <lastmod>2020-02-14T21:43:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
+    <lastmod>2020-02-14T21:43:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/post/</loc>
+    <lastmod>2020-02-14T21:43:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/</loc>
+    <lastmod>2020-02-14T21:43:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/</loc>
+    <lastmod>2020-02-14T21:43:55+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-02-14T21:43:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,34 +66,6 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/intellij-idea/</loc>
-    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2020-02-12T21:22:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
     <lastmod>2020-02-12T21:22:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -72,8 +86,8 @@
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/tags/m78-%E6%98%9F%E4%BA%91/</loc>
-    <lastmod>2020-02-10T16:14:26+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/2020/02/11/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-qq-%E8%AF%AD%E9%9F%B3%E5%AE%9A%E4%BD%8D%E5%A5%BD%E5%8F%8B%E7%9A%84%E4%BD%8D%E7%BD%AE/</loc>
+    <lastmod>2020-02-11T22:50:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

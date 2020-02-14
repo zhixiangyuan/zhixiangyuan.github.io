@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-02-12T21:22:10+08:00" />
+<meta property="og:updated_time" content="2020-02-14T21:43:55+08:00" />
 <meta itemprop="name" content="养猪场">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,48 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/16/%E8%A7%A3%E5%86%B3-obs-%E6%97%A0%E6%B3%95%E5%BD%95%E5%88%B6-soundflower-%E7%9A%84%E9%97%AE%E9%A2%98/">解决 OBS 无法录制 Soundflower 的问题</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-16 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      本文中使用的 OBS 为 24.0.2 版本，这个版本在最新的 catalina 有 bug，它不会自动申请麦克风权限，我又没办法把权限给他，就造成了没法录声音的问题，解决办法是通过
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/16/%E8%A7%A3%E5%86%B3-obs-%E6%97%A0%E6%B3%95%E5%BD%95%E5%88%B6-soundflower-%E7%9A%84%E9%97%AE%E9%A2%98/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/11/16/%E5%9C%A8-mac-%E4%B8%8A%E8%8E%B7%E5%8F%96-gopro-udp-%E8%A7%86%E9%A2%91%E6%B5%81/">在 Mac 上获取 Gopro Udp 视频流</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-11-16 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      gopro 可以直接通过 wifi 传送 udp 视频流，本文讲解如何从其中获取 udp 视频流并在 mac 上播放。 本文使用 gopro 4 black 进行测试，如果使用其他型号的 gopro，触发 url 参考 https://github.com/KonradIT/goprowifihack
+    </div>
+    <div class="read-more">
+      <a href="/2019/11/16/%E5%9C%A8-mac-%E4%B8%8A%E8%8E%B7%E5%8F%96-gopro-udp-%E8%A7%86%E9%A2%91%E6%B5%81/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2019/11/15/google-%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%AD%89%E7%BA%A7%E7%B2%BE%E7%AE%80%E8%AF%B4%E6%98%8E/">Google 的程序员等级精简说明</a></h1>
@@ -196,48 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2019/11/13/%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%E6%9F%A5%E6%89%BE%E8%BF%9B%E7%A8%8B%E7%9B%91%E5%90%AC%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/13/lsof-%E5%B0%8F%E8%AE%B0/">lsof 小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-13 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 2 3 4 5 6 7 # 查看端口被什么进程占用 # -n 表示不将 IP 转换为 hostname # -P 表示不将 port number 转换为 service name $&gt; lsof -n -P -i:&lt;$port&gt; # 查看进程监听了哪些端口号 $&gt; lsof -n -P -p &lt;$pid&gt; | grep TCP
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/13/lsof-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/11/13/javap-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">javap 命令小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-11-13 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      通过 javap 命令可以反编译 .class 文件，实际使用的时候 javap 后面的类名加与不加 .class 都可以。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 -help --help -? 打印使用信息（也就是打印图中所示
-    </div>
-    <div class="read-more">
-      <a href="/2019/11/13/javap-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
