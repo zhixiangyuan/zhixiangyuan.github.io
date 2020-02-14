@@ -11,9 +11,6 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
-markup: mmark
-mathjax: false
-draft: true
 ---
 
 首先，这里的原理是和好友语音，那么会首先从腾讯服务器获取到对方的 IP 地址，然后再本地连线对方，那么我们在这里进行抓包便可以知道对方的 IP 地址。抓包时使用 wireshark 进行抓包，抓包条件为 `udp.length==80` 过滤出所有的包，之后会有大量的 udp 包，当出现有来有回的 udp 包，记下该地址，该地址就是对方的 IP 地址。
@@ -35,4 +32,8 @@ draft: true
     - 高德地图的官网查询接口，会返回经纬度
     - 请求的时候加上 cookie 就行，至于 cookie 是怎么放进去的等等问题还需要研究
     - 官网地址：https://www.amap.com/
+5. https://www.ipip.net/ip/
+    - 这个关于 ip 的服务商给出来的经纬度也不准
+
+备注：测试了很多家， 根据 ip 查找经纬度都不准确，这里可以关注一下高德的实现
 ```
