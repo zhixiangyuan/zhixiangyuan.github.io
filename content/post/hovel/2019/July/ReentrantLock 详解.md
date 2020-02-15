@@ -449,7 +449,9 @@ public class ReentrantLock implements Lock, java.io.Serializable {
 }
 ```
 
+# 5 对于 AQS 的简单描述
 
+AQS 实现的是对与线程的管理，当尝试获取资源失败的时候，会将当前线程加入到等待队列里面去，当有任务释放资源时会从等待队列里面激活一个线程继续向下执行。
 
 # 参考资料  
 
