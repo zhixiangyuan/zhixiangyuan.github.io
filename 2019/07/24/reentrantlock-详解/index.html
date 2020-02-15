@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-07-24T21:31:26&#43;08:00" />
 <meta itemprop="dateModified" content="2019-07-24T21:31:26&#43;08:00" />
-<meta itemprop="wordCount" content="3133">
+<meta itemprop="wordCount" content="3215">
 
 
 
@@ -153,6 +153,7 @@
 <li><a href="#4-2-lock-的实现方式">4.2 lock() 的实现方式</a></li>
 <li><a href="#4-3-unlock-的实现方式">4.3 unlock() 的实现方式</a></li>
 </ul></li>
+<li><a href="#5-对于-aqs-的简单描述">5 对于 AQS 的简单描述</a></li>
 <li><a href="#参考资料">参考资料</a></li>
 </ul>
 </nav>
@@ -997,6 +998,10 @@
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
+<h1 id="5-对于-aqs-的简单描述">5 对于 AQS 的简单描述</h1>
+
+<p>AQS 实现的是对与线程的管理，当尝试获取资源失败的时候，会将当前线程加入到等待队列里面去，当有任务释放资源时会从等待队列里面激活一个线程继续向下执行。</p>
+
 <h1 id="参考资料">参考资料</h1>
 
 <ol>
