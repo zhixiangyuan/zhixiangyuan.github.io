@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 14 Feb 2020 21:43:55 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 22:40:50 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>并发工具类小记</title>
+      <link>https://zhixiangyuan.github.io/2020/02/15/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Sat, 15 Feb 2020 22:40:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/15/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%8F%E8%AE%B0/</guid>
+      <description>1 Semaphore Semaphore 的作用是限制获取锁的线程数量，常用的 synchronized、ReentrantLock 均只能让一个线程进入代码块，而 Semaphore 可以允许同时有</description>
+    </item>
     
     <item>
       <title>Google 云配置 SSH 为公网可登陆</title>

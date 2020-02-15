@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on 养猪场</title>
+    <title>java on 养猪场</title>
     <link>https://zhixiangyuan.github.io/tags/java/</link>
-    <description>Recent content in Java on 养猪场</description>
+    <description>Recent content in java on 养猪场</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Wed, 12 Feb 2020 16:01:53 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 15 Feb 2020 22:40:50 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>并发工具类小记</title>
+      <link>https://zhixiangyuan.github.io/2020/02/15/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%8F%E8%AE%B0/</link>
+      <pubDate>Sat, 15 Feb 2020 22:40:50 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/15/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%8F%E8%AE%B0/</guid>
+      <description>1 Semaphore Semaphore 的作用是限制获取锁的线程数量，常用的 synchronized、ReentrantLock 均只能让一个线程进入代码块，而 Semaphore 可以允许同时有</description>
+    </item>
     
     <item>
       <title>类初始化的加载顺序</title>
