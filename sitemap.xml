@@ -10,7 +10,49 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2020-02-15T22:40:50+08:00</lastmod>
+    <lastmod>2020-02-16T18:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/post/</loc>
+    <lastmod>2020-02-16T18:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/</loc>
+    <lastmod>2020-02-16T18:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/02/16/%E4%BF%AE%E5%A4%8D-google-guava-%E6%A1%86%E6%9E%B6%E7%9A%84-caseformat-%E7%B1%BB%E4%B8%AD%E7%9A%84-bug/</loc>
+    <lastmod>2020-02-16T18:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/</loc>
+    <lastmod>2020-02-16T18:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/tags/%E5%BC%80%E6%BA%90%E8%B4%A1%E7%8C%AE/</loc>
+    <lastmod>2020-02-16T18:50:21+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-02-16T18:50:21+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -23,35 +65,7 @@
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2020-02-15T22:40:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2020-02-15T22:40:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2020-02-15T22:40:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://zhixiangyuan.github.io/2020/02/15/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%8F%E8%AE%B0/</loc>
-    <lastmod>2020-02-15T22:40:50+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
     <lastmod>2020-02-15T22:40:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

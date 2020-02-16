@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sat, 15 Feb 2020 22:40:50 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 16 Feb 2020 18:50:21 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>开源贡献</title>
+      <link>https://zhixiangyuan.github.io/tags/%E5%BC%80%E6%BA%90%E8%B4%A1%E7%8C%AE/</link>
+      <pubDate>Sun, 16 Feb 2020 18:50:21 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/tags/%E5%BC%80%E6%BA%90%E8%B4%A1%E7%8C%AE/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>java</title>

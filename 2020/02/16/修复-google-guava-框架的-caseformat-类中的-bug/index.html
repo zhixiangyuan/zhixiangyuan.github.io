@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>养猪场</title>
+  <title>修复 Google Guava 框架的 CaseFormat 类中的 Bug - 养猪场</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="Yuanzx blog." /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="CaseFormat 可以很方便地实现字符串驼峰转下划线的功能，内部的实现原理是寻找需要做转换的字母处，然后将其字母前方的单词做截取，再根据转换后的字符串需求做" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,9 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="养猪场" />
-  <link href="https://zhixiangyuan.github.io/index.xml" rel="feed" type="application/rss+xml" title="养猪场" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/02/16/%E4%BF%AE%E5%A4%8D-google-guava-%E6%A1%86%E6%9E%B6%E7%9A%84-caseformat-%E7%B1%BB%E4%B8%AD%E7%9A%84-bug/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -40,18 +38,26 @@
 
 
 
-<meta property="og:title" content="养猪场" />
-<meta property="og:description" content="Yuanzx blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/" />
+<meta property="og:title" content="修复 Google Guava 框架的 CaseFormat 类中的 Bug" />
+<meta property="og:description" content="CaseFormat 可以很方便地实现字符串驼峰转下划线的功能，内部的实现原理是寻找需要做转换的字母处，然后将其字母前方的单词做截取，再根据转换后的字符串需求做" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/02/16/%E4%BF%AE%E5%A4%8D-google-guava-%E6%A1%86%E6%9E%B6%E7%9A%84-caseformat-%E7%B1%BB%E4%B8%AD%E7%9A%84-bug/" />
+<meta property="article:published_time" content="2020-02-16T18:50:21+08:00" />
+<meta property="article:modified_time" content="2020-02-16T18:50:21+08:00" />
+<meta itemprop="name" content="修复 Google Guava 框架的 CaseFormat 类中的 Bug">
+<meta itemprop="description" content="CaseFormat 可以很方便地实现字符串驼峰转下划线的功能，内部的实现原理是寻找需要做转换的字母处，然后将其字母前方的单词做截取，再根据转换后的字符串需求做">
 
-<meta property="og:updated_time" content="2020-02-16T18:50:21+08:00" />
-<meta itemprop="name" content="养猪场">
-<meta itemprop="description" content="Yuanzx blog.">
 
+<meta itemprop="datePublished" content="2020-02-16T18:50:21&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-16T18:50:21&#43;08:00" />
+<meta itemprop="wordCount" content="306">
+
+
+
+<meta itemprop="keywords" content="开源贡献," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="养猪场"/>
-<meta name="twitter:description" content="Yuanzx blog."/>
+<meta name="twitter:title" content="修复 Google Guava 框架的 CaseFormat 类中的 Bug"/>
+<meta name="twitter:description" content="CaseFormat 可以很方便地实现字符串驼峰转下划线的功能，内部的实现原理是寻找需要做转换的字母处，然后将其字母前方的单词做截取，再根据转换后的字符串需求做"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -115,145 +121,69 @@
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">
-          <section id="posts" class="posts">
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/02/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">Leetcode: 1 两数之和</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-02 </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 题目 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应
-    </div>
-    <div class="read-more">
-      <a href="/2019/07/02/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">修复 Google Guava 框架的 CaseFormat 类中的 Bug</h1>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/02/java-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">Java 性能优化</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-02 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>CaseFormat 可以很方便地实现字符串驼峰转下划线的功能，内部的实现原理是寻找需要做转换的字母处，然后将其字母前方的单词做截取，再根据转换后的字符串需求做拼接。</p>
+
+<p>而我发现发现的 Bug 便于拼接有关，它内部使用 StringBuilder 来实现拼接字符串，在 <code>new StringBuilder</code> 时会申请一块 <code>char[]</code> 的连续空间，这个地方它做了一个小优化，由于驼峰转下划线，那么必然字符串会变长，所以它在申请的时候额外申请 <code>4 * 下划线长度</code> 空间用于存放下划线，但是它在编写代码的时候使用错了字段，本来应该用转换之后的分隔符，结果用成了转换之前的分隔符，我对这里做了一下修改然后提交到官方仓库，最终被官方接受并合并。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 原来的代码片段
+</span><span class="c1"></span>    <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">+</span> <span class="n">4</span> <span class="o">*</span> <span class="n">wordSeparator</span><span class="p">.</span><span class="na">length</span><span class="p">());</span>
+    <span class="c1">// 修改后的代码片段
+</span><span class="c1"></span>    <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">+</span> <span class="n">4</span> <span class="o">*</span> <span class="n">format</span><span class="p">.</span><span class="na">wordSeparator</span><span class="p">.</span><span class="na">length</span><span class="p">());</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><a href="https://github.com/google/guava/commit/b4a573fae2a1b4c78652dba3a59da72ff6b80a13#diff-a14d49e99a35efab903b85d6ea070834">此处是合并记录的链接</a></p>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%BC%80%E6%BA%90%E8%B4%A1%E7%8C%AE/">开源贡献</a>
           </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 明确是否需要优化以及要优化到什么程度 首先需要在实践中检测代码是否需要优化，如果不需要优化，那么优化可能占用大量时间，而且优化完了也不会有任
-    </div>
-    <div class="read-more">
-      <a href="/2019/07/02/java-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/">一次内存泄漏排查的经历</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-01 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      开发环境: JDK: 1.8 Netty: 4.1.21.Final 1 起因 由于我之前写过一个接收医疗设备数据的项目，于是为了压力测试，就又按照该协议实现了一个发送设备数据的项目。这个项目在使
-    </div>
-    <div class="read-more">
-      <a href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/">Centos 配置无密登录</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-17 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &gt;&gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys
-    </div>
-    <div class="read-more">
-      <a href="/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/">关于 sshd 的坑</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-16 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 sshd 死都打不开 试试先用 /usr/sbin/sshd stop 关掉再 start 看看行不行 莫名其妙，直接运行 /usr/sbin/sshd 就好了 1.1 开启 sshd /usr/sbin/sshd start 1.2 sshd 的配置文件权限必须在 root 下为 600 才行 配置文件在 /etc/ssh 目录下，目
-    </div>
-    <div class="read-more">
-      <a href="/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/01/14/sftp-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">Sftp 命令小记</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-14 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      sftp 命令会先连接到服务器，然后再下载文件 登陆命令 sftp &lt;username&gt;@&lt;ip&gt; 下载命令 递归下载 `get -r &lt;$文件&gt; &lt;$本地路径&gt;
-    </div>
-    <div class="read-more">
-      <a href="/2019/01/14/sftp-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    </section>
-  
-  <nav class="pagination">
-    <a class="prev" href="/page/45/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
-    <a class="next" href="/page/47/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-  </nav>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/02/15/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%8F%E8%AE%B0/">
+            <span class="next-text nav-default">并发工具类小记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
