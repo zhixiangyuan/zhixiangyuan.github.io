@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>开源 BoostPOI 框架</title>
+      <link>https://zhixiangyuan.github.io/2020/02/16/%E5%BC%80%E6%BA%90-boostpoi-%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Sun, 16 Feb 2020 18:13:21 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/16/%E5%BC%80%E6%BA%90-boostpoi-%E6%A1%86%E6%9E%B6/</guid>
+      <description>这个框架的诞生是由于当时接收到公司的一个任务，需要去使用 poi 做关于统计的表格，在接到任务之后我便研究了一下 poi 的用法，发现在直接使用的时候会暴露</description>
+    </item>
+    
+    <item>
       <title>并发工具类小记</title>
       <link>https://zhixiangyuan.github.io/2020/02/15/%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%B0%8F%E8%AE%B0/</link>
       <pubDate>Sat, 15 Feb 2020 22:40:50 +0800</pubDate>
