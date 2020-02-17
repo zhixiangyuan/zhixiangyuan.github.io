@@ -51,7 +51,9 @@ $> bin/kafka-console-producer.sh --broker-list <$ip>:<$port> --topic <$topicName
 $> bin/kafka-console-producer.sh --broker-list localhost:9092 --topic Hello-Kafka
 
 # 启动命令行消费者
-$> $> bin/kafka-console-consumer.sh --zookeeper <$ip>:<$port> --bootstrap-server <$ip>:<$port> --topic <$topicName> --from-beginning
+$> bin/kafka-console-consumer.sh --zookeeper <$ip>:<$port> --bootstrap-server <$ip>:<$port> --topic <$topicName> --from-beginning
+# 注意：新版本无需增加 --zookeeper <$ip>:<$port>，增加后会爆 zookeeper is not a recognized option
+$> bin/kafka-console-consumer.sh --bootstrap-server <$ip>:<$port> --topic <$topicName> --from-beginning
 ## demo: 消费消息
 $> bin/kafka-console-consumer.sh --zookeeper localhost:2181 --bootstrap-server localhost:9092 --topic Hello-Kafka --from-beginning
 ```
