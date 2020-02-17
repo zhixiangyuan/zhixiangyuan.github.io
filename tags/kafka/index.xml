@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 16 Feb 2020 22:25:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 09:38:22 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>kafka-client 使用示例</title>
+      <link>https://zhixiangyuan.github.io/2020/02/17/kafka-client-%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/</link>
+      <pubDate>Mon, 17 Feb 2020 09:38:22 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/17/kafka-client-%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/</guid>
+      <description>1 生产者示例 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 import org.apache.kafka.clients.producer.KafkaProducer; import org.apache.kafka.clients.producer.Producer; import org.apache.kafka.clients.producer.ProducerRecord; import org.apache.kafka.clients.producer.RecordMetadata; import org.apache.kafka.common.serialization.StringSerializer; import java.util.Properties;</description>
+    </item>
     
     <item>
       <title>使用命令行脚本操作 kafka 小记</title>

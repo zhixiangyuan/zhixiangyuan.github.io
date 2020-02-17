@@ -10,48 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2020-02-16T22:25:01+08:00</lastmod>
+    <lastmod>2020-02-17T09:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/kafka/</loc>
-    <lastmod>2020-02-16T22:25:01+08:00</lastmod>
+    <lastmod>2020-02-17T09:38:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/02/17/kafka-client-%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B/</loc>
+    <lastmod>2020-02-17T09:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2020-02-16T22:25:01+08:00</lastmod>
+    <lastmod>2020-02-17T09:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2020-02-16T22:25:01+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhixiangyuan.github.io/2020/02/16/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%93%8D%E4%BD%9C-kafka-%E5%B0%8F%E8%AE%B0/</loc>
-    <lastmod>2020-02-16T22:25:01+08:00</lastmod>
+    <lastmod>2020-02-17T09:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2020-02-16T22:25:01+08:00</lastmod>
+    <lastmod>2020-02-17T09:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-02-17T09:38:22+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/02/16/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%93%8D%E4%BD%9C-kafka-%E5%B0%8F%E8%AE%B0/</loc>
     <lastmod>2020-02-16T22:25:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

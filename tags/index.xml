@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Sun, 16 Feb 2020 22:25:01 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Feb 2020 09:38:22 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>kafka</title>
       <link>https://zhixiangyuan.github.io/tags/kafka/</link>
-      <pubDate>Sun, 16 Feb 2020 22:25:01 +0800</pubDate>
+      <pubDate>Mon, 17 Feb 2020 09:38:22 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/tags/kafka/</guid>
       <description></description>
@@ -31,7 +31,7 @@
     </item>
     
     <item>
-      <title>Java</title>
+      <title>java</title>
       <link>https://zhixiangyuan.github.io/tags/java/</link>
       <pubDate>Sat, 15 Feb 2020 22:40:50 +0800</pubDate>
       
