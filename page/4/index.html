@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-02-17T09:38:22+08:00" />
+<meta property="og:updated_time" content="2020-02-18T13:51:46+08:00" />
 <meta itemprop="name" content="养猪场">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/01/27/netty-%E5%AF%B9%E4%BA%8E-threadlocal-%E7%9A%84%E4%BC%98%E5%8C%96/">Netty 对于 ThreadLocal 的优化</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-01-27 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      对于 ThreadLocal 这个使用起来很方便的线程级别的全局变量，其本身有两点是需要注意的 第一，它在线程池的环境中使用时是可能会导致内存泄漏的，这一点如果大家不
+    </div>
+    <div class="read-more">
+      <a href="/2020/01/27/netty-%E5%AF%B9%E4%BA%8E-threadlocal-%E7%9A%84%E4%BC%98%E5%8C%96/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2020/01/26/%E8%AE%A1%E7%AE%97%E8%B7%9D%E7%A6%BB%E5%A4%A7%E4%BA%8E%E6%9F%90%E6%95%B0%E7%9A%84%E6%9C%80%E8%BF%91%E7%9A%84-2-%E7%9A%84%E5%B9%82%E6%AC%A1%E7%9A%84%E6%95%B0/">计算距离大于某数的最近的 2 的幂次的数</a></h1>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2020/01/23/netty-%E5%AF%B9%E4%BA%8E-selector-%E7%9A%84-keyset-%E7%9A%84%E4%BC%98%E5%8C%96/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2020/01/23/netty-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-jdk-%E7%A9%BA%E8%BD%AE%E8%AE%AD%E7%9A%84-bug/">Netty 如何解决 JDK 空轮训的 BUG</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-01-23 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      Netty 解决空轮训的 bug 的方式很简单，通过执行阻塞 select 的方式阻塞一段时间，如果在执行完毕之后阻塞的时间小于设定的阻塞的时间，那么 selectCnt 便 +1，当达到一定次
-    </div>
-    <div class="read-more">
-      <a href="/2020/01/23/netty-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-jdk-%E7%A9%BA%E8%BD%AE%E8%AE%AD%E7%9A%84-bug/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
