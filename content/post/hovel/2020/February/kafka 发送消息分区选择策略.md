@@ -44,7 +44,7 @@ partition 的分区选择发生在发送数据的生产者上面，在选择分�
     }
 
 // 下面接着看 DefaultPartitioner 内部的实现
-public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
+    public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
         List<PartitionInfo> partitions = cluster.partitionsForTopic(topic);
         int numPartitions = partitions.size();
         // 判断是否有 key
