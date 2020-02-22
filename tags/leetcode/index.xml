@@ -157,15 +157,6 @@
     </item>
     
     <item>
-      <title>Leetcode: 7 整数反转</title>
-      <link>https://zhixiangyuan.github.io/2019/09/17/leetcode-7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</link>
-      <pubDate>Tue, 17 Sep 2019 16:46:17 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/2019/09/17/leetcode-7-%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</guid>
-      <description>1 题目 整数反转 2 解 2.1 我的解 时间复杂度: O(n) 空间复杂度: O(1) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 class Solution { public int reverse(int num) { try { if (num &amp;gt;= 0) { String strNum = reverseInt(num);</description>
-    </item>
-    
-    <item>
       <title>Leetcode: 101 对称二叉树</title>
       <link>https://zhixiangyuan.github.io/2019/09/17/leetcode-101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
       <pubDate>Tue, 17 Sep 2019 07:47:27 +0800</pubDate>
