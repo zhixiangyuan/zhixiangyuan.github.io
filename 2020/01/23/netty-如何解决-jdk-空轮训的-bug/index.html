@@ -141,6 +141,11 @@
     
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2020-01-23T21:21:31" title="January 23, 2020">January 23, 2020</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>Netty 解决空轮训的 bug 的方式很简单，通过执行阻塞 select 的方式阻塞一段时间，如果在执行完毕之后阻塞的时间小于设定的阻塞的时间，那么 selectCnt 便 +1，当达到一定次数的时候 netty 便认为出现了空轮训的 bug，然后触发重建 selector 的操作，将老得的 SelectionKey 上面的 channel 注册到新的 Selector 上面，这便是 netty 的解决方法，下面看一下具体的源码。</p>
 <div class="highlight"><div class="chroma">
