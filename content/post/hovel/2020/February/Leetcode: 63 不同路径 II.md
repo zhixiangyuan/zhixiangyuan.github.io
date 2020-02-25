@@ -13,7 +13,6 @@ autoCollapseToc: false
 author: "yuanzx"
 markup: mmark
 mathjax: false
-draft: true
 ---
 
 # 1 题目
