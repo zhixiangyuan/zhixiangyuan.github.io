@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-02-06T15:19:38&#43;08:00" />
 <meta itemprop="dateModified" content="2020-02-06T15:19:38&#43;08:00" />
-<meta itemprop="wordCount" content="170">
+<meta itemprop="wordCount" content="249">
 
 
 
@@ -194,6 +194,29 @@ start       index             end
 len = 6
 end = 6 + 6/2 = 9
 start = 6 - (6 - 1)/2 = 4</pre></td></tr></table>
+</div>
+</div>
+<p>以下是长度为偶数时 index 的中心点在右边的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">start             index       end
+|                 |           |
+4     5     6     7     8     9
+len = 6
+end = 7 + 6/2 = 10
+start = 7 - (6 - 1)/2 = 5
+
+可以看到计算结果和实际的数组下标并不符合</pre></td></tr></table>
 </div>
 </div>
     </div>
