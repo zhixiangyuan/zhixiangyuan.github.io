@@ -13,7 +13,6 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-
 # 1 大体逻辑
 
 partition 的分区选择发生在发送数据的生产者上面，在选择分区时分为两种情况
