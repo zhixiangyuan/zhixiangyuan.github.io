@@ -118,9 +118,9 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/10/java-%E7%9A%84%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%85%A5%E5%A4%9A%E5%B0%91%E6%AC%A1/">Java 的可重入锁可以重入多少次</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-parameterizedtype-%E6%8E%A5%E5%8F%A3/">了解 JDK 中的 ParameterizedType 接口</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-10 </span>
+      <span class="post-time"> 2019-12-17 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -129,19 +129,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      Java 中有两个常用的可重入锁，一个是 synchronized，另一个是 ReentrantLock，我们先测试 ReentrantLock 的可重入次数 1 ReentrantLock 的可重入次数上限 1
+      1 ParameterizedType 接口的继承关系 Type 是 Java 中所有类型的通用超级接口，继承就完事了。 2 ParameterizedType 中的方法含义 1 2 3 4 5 6 7 8 9 10 11 /** 下面将 &lt;&gt; 中存储的内容称为泛型列表 */ public
     </div>
     <div class="read-more">
-      <a href="/2019/12/10/java-%E7%9A%84%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%85%A5%E5%A4%9A%E5%B0%91%E6%AC%A1/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-parameterizedtype-%E6%8E%A5%E5%8F%A3/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/">IDEA 中 UML 的箭头含义</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/16/jdk-%E4%B8%8E-spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/">JDK 与 Spring 中的事件模型</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-10 </span>
+      <span class="post-time"> 2019-12-16 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -150,19 +150,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      本文中所使用的关系名词并不是 UML 中所定义的，因为我觉得他那种方式不够具体，对于 Javer 来说并不好理解，所以这里我直接用易于 javer 理解的名词来解释类之间的
+      1 事件模型 JDK 中提供了一个接口和一个类给用户实现自己的事件机制，一个是 EventObject 事件，另一个是 EventListener 事件监听器。 一般使用是都是在事件监听器中实现相应的方法
     </div>
     <div class="read-more">
-      <a href="/2019/12/10/idea-%E4%B8%AD-uml-%E7%9A%84%E7%AE%AD%E5%A4%B4%E5%90%AB%E4%B9%89/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/16/jdk-%E4%B8%8E-spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/09/%E8%87%AA%E6%97%8B%E9%94%81-%E4%B8%8E-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81/">自旋锁 与 适应性自旋锁</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/16/spring-%E4%B8%AD%E7%9A%84-resource-%E5%92%8C-resourceloader/">spring 中的 Resource 和 ResourceLoader</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-09 </span>
+      <span class="post-time"> 2019-12-16 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -171,19 +171,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      阻塞或唤醒一个 Java 线程需要操作系统切换 CPU 状态来完成，这种状态转换需要耗费处理器时间，如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比
+      1 Resource 由于 Java 定义的 java.net.URL（Uniform Resource Locator）统一资源定位器有些狭隘，无法做到统一定位资源的作用（todo 这里有
     </div>
     <div class="read-more">
-      <a href="/2019/12/09/%E8%87%AA%E6%97%8B%E9%94%81-%E4%B8%8E-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/16/spring-%E4%B8%AD%E7%9A%84-resource-%E5%92%8C-resourceloader/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/09/%E8%B0%88%E8%B0%88-cas/">谈谈 CAS</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/">Spring Xml 配置文件格式</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-09 </span>
+      <span class="post-time"> 2019-12-13 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -192,19 +192,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      CAS 其实指的就是 sun.misc.Unsafe 类中的一系列 compareAndSwap 方法 例如 compareAndSwapInt 方法 1 2 3 public final native boolean compareAndSwapInt( Object o, long offset, int expected, int x ); 这种方法提供四个参数，分别是需要修改值的对象 o，需要改的值在对
+      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70
     </div>
     <div class="read-more">
-      <a href="/2019/12/09/%E8%B0%88%E8%B0%88-cas/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-%E4%B8%8E-%E6%82%B2%E8%A7%82%E9%94%81/">乐观锁 与 悲观锁</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/13/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">语义化版本控制</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-09 </span>
+      <span class="post-time"> 2019-12-13 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -213,19 +213,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度，在 Java 和数据库中都有此概念对应的实际应用。 1 概念 悲观锁的概念：悲观锁认为自己在
+      语义化的版本号遵循这个格式：MAJOR.MINOR.PATCH。其中 MAJOR 的改变意味着其中包含向后不兼容的修改，MINOR 的改变意味着有新功能的
     </div>
     <div class="read-more">
-      <a href="/2019/12/09/%E4%B9%90%E8%A7%82%E9%94%81-%E4%B8%8E-%E6%82%B2%E8%A7%82%E9%94%81/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/13/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/07/%E6%B7%B1%E5%BA%A6%E8%B7%9F%E8%B8%AA-class-%E7%9A%84-public-inputstream-getresourceasstreamstring-name-%E6%96%B9%E6%B3%95/">深度跟踪 Class 的 public InputStream getResourceAsStream(String name) 方法</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/12/jdk8-%E4%B8%AD%E6%96%B0%E5%A2%9E%E7%9A%84-type_use-%E5%92%8C-type_parameter-%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%9C%A8%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF/">JDK8 中新增的 TYPE_USE 和 TYPE_PARAMETER 可以用在什么场景</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-07 </span>
+      <span class="post-time"> 2019-12-12 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -234,10 +234,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      本日志基于 openjdk8 1 public final class Class 我们从这个方法开始 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public InputStream getResourceAsStream(String name) { // 这个方法见 1.1 解析 // 这里假如传入的 name 为 /Web.xml
+      本篇直接用示例代码展示该注解可以用在什么场景 1 TYPE_USE 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 // 先定义一个测试注解
     </div>
     <div class="read-more">
-      <a href="/2019/12/07/%E6%B7%B1%E5%BA%A6%E8%B7%9F%E8%B8%AA-class-%E7%9A%84-public-inputstream-getresourceasstreamstring-name-%E6%96%B9%E6%B3%95/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/12/jdk8-%E4%B8%AD%E6%96%B0%E5%A2%9E%E7%9A%84-type_use-%E5%92%8C-type_parameter-%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%9C%A8%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

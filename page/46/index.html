@@ -118,49 +118,47 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/04/java-gzip-%E7%9A%84%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85/">Java Gzip 的简单封装</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/07/11/%E6%9C%80%E5%A5%BD%E6%9C%80%E5%9D%8F%E5%B9%B3%E5%9D%87%E5%9D%87%E6%91%8A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">最好、最坏、平均、均摊时间复杂度</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-07-04 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      本文基于 Jdk 1.8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 import java.io.ByteArrayInputStream; import java.io.ByteArrayOutputStream; import java.io.IOException; import java.util.zip.GZIPInputStream; import java.util.zip.GZIPOutputStream; public class GzipUtil { /** *
-    </div>
-    <div class="read-more">
-      <a href="/2019/07/04/java-gzip-%E7%9A%84%E7%AE%80%E5%8D%95%E5%B0%81%E8%A3%85/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/02/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">Leetcode: 1 两数之和</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-07-02 </span>
+      <span class="post-time"> 2019-07-11 </span>
       
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      1 题目 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。 你可以假设每种输入只会对应
+      1 最好、最坏时间复杂度 先看下述代码 1 2 3 4 5 6 7 8 9 10 11 int find(int[] array, int x) { int pos = -1; int n = array.length; for (int i = 0; i &lt; n; i++) { if (array[i] == x) { pos = i; break; } } return pos; } 该代码用
     </div>
     <div class="read-more">
-      <a href="/2019/07/02/leetcode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="read-more-link">阅读更多</a>
+      <a href="/2019/07/11/%E6%9C%80%E5%A5%BD%E6%9C%80%E5%9D%8F%E5%B9%B3%E5%9D%87%E5%9D%87%E6%91%8A%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/02/java-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">Java 性能优化</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/07/10/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">时间复杂度与空间复杂度</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-07-02 </span>
+      <span class="post-time"> 2019-07-10 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 时间复杂度 分析程序时间复杂度的时候只需要关注循环中的代码即可 1.1 常见的时间复杂度 常见的时间复杂度有 O(1), O(n), O(logn), O(nlogn), O(\(n^2\)).. O(\(n^k\)), O(\(2^n\)), O(n!) 其中 O(\(2^n\)) 和 O(n!) 在数据规模增大时
+    </div>
+    <div class="read-more">
+      <a href="/2019/07/10/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2019/07/10/double-%E8%BD%AC-bigdecimal-%E9%80%A0%E6%88%90%E7%9A%84%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/">double 转 BigDecimal 造成的精度丢失</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-10 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -169,19 +167,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 明确是否需要优化以及要优化到什么程度 首先需要在实践中检测代码是否需要优化，如果不需要优化，那么优化可能占用大量时间，而且优化完了也不会有任
+      1 2 3 4 5 6 public static void main(String[] args) { double d1 = 36.8d; double d2 = 36.5d; BigDecimal subtract = new BigDecimal(d1).subtract(new BigDecimal(d2)); System.out.println(subtract); } 对于上述类型的计算会得到结果 0.29999999999999715782905695
     </div>
     <div class="read-more">
-      <a href="/2019/07/02/java-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="read-more-link">阅读更多</a>
+      <a href="/2019/07/10/double-%E8%BD%AC-bigdecimal-%E9%80%A0%E6%88%90%E7%9A%84%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/">一次内存泄漏排查的经历</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/07/09/ip-%E5%8D%8F%E8%AE%AE/">IP 协议</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-07-01 </span>
+      <span class="post-time"> 2019-07-09 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -190,19 +188,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      开发环境: JDK: 1.8 Netty: 4.1.21.Final 1 起因 由于我之前写过一个接收医疗设备数据的项目，于是为了压力测试，就又按照该协议实现了一个发送设备数据的项目。这个项目在使
+      1 网际协议 IP 简介 IP 协议提供不可靠的、无连接的数据包传输 不可靠指的是从客户端发到目标端的数据包对方可能会收不到 无连接指的是发送的每个数据包都是
     </div>
     <div class="read-more">
-      <a href="/2019/07/01/%E4%B8%80%E6%AC%A1%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E7%BB%8F%E5%8E%86/" class="read-more-link">阅读更多</a>
+      <a href="/2019/07/09/ip-%E5%8D%8F%E8%AE%AE/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/">Centos 配置无密登录</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/07/09/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AEudp/">用户数据报协议：UDP</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-01-17 </span>
+      <span class="post-time"> 2019-07-09 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -211,19 +209,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      生成密钥方法 ssh-keygen -t rsa // 一路回车 cat id_rsa.pub &gt;&gt; authorized_keys 配置权限 chmod 700 /home/hadoop chmod 700 -R ~/.ssh chmod 600 authorized_keys
+      1 UDP 协议简介 UDP 是一种面向数据包协议，应用层向下传递的每一次操作都会产生一个 UDP 数据包，这一个 UDP 数据包会组装成一份 IP 数据包，这里是一一对应的关系
     </div>
     <div class="read-more">
-      <a href="/2019/01/17/centos-%E9%85%8D%E7%BD%AE%E6%97%A0%E5%AF%86%E7%99%BB%E5%BD%95/" class="read-more-link">阅读更多</a>
+      <a href="/2019/07/09/%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E6%8A%A5%E5%8D%8F%E8%AE%AEudp/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/">关于 sshd 的坑</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/07/09/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">学习路径</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-01-16 </span>
+      <span class="post-time"> 2019-07-09 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -232,10 +230,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 sshd 死都打不开 试试先用 /usr/sbin/sshd stop 关掉再 start 看看行不行 莫名其妙，直接运行 /usr/sbin/sshd 就好了 1.1 开启 sshd /usr/sbin/sshd start 1.2 sshd 的配置文件权限必须在 root 下为 600 才行 配置文件在 /etc/ssh 目录下，目
+      1 学习路径 今天，了解到一个很有意思的词，学习路径。 学习路径在我的理解当中，便是沿着若干个学习目标，通过不断达成学习目标最终完成学习的过程。 光
     </div>
     <div class="read-more">
-      <a href="/2019/01/16/%E5%85%B3%E4%BA%8E-sshd-%E7%9A%84%E5%9D%91/" class="read-more-link">阅读更多</a>
+      <a href="/2019/07/09/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

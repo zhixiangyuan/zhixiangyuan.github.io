@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>排列组合公式 - 养猪场</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="1 对于排列公式的理解 第一步，从 n 个元素中选取 1 个，有 n 种选择方式 第二步，从剩下的 n - 1 个元素中选取 1 个，有 n - 1 种选择方式 第三步，从剩下的 n" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/02/07/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E5%85%AC%E5%BC%8F/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.40a1ded2.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="排列组合公式" />
+<meta property="og:description" content="1 对于排列公式的理解 第一步，从 n 个元素中选取 1 个，有 n 种选择方式 第二步，从剩下的 n - 1 个元素中选取 1 个，有 n - 1 种选择方式 第三步，从剩下的 n" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/02/07/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88%E5%85%AC%E5%BC%8F/" />
+<meta property="article:published_time" content="2020-02-07T11:45:46+08:00" />
+<meta property="article:modified_time" content="2020-02-07T11:45:46+08:00" />
+<meta itemprop="name" content="排列组合公式">
+<meta itemprop="description" content="1 对于排列公式的理解 第一步，从 n 个元素中选取 1 个，有 n 种选择方式 第二步，从剩下的 n - 1 个元素中选取 1 个，有 n - 1 种选择方式 第三步，从剩下的 n">
+
+
+<meta itemprop="datePublished" content="2020-02-07T11:45:46&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-07T11:45:46&#43;08:00" />
+<meta itemprop="wordCount" content="824">
+
+
+
+<meta itemprop="keywords" content="数学," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="排列组合公式"/>
+<meta name="twitter:description" content="1 对于排列公式的理解 第一步，从 n 个元素中选取 1 个，有 n 种选择方式 第二步，从剩下的 n - 1 个元素中选取 1 个，有 n - 1 种选择方式 第三步，从剩下的 n"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">养猪场</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">养猪场</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">排列组合公式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-02-07 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-对于排列公式的理解">1 对于排列公式的理解</a></li>
+<li><a href="#2-对于组合公式的理解">2 对于组合公式的理解</a></li>
+<li><a href="#3-简单的排列组合问题">3 简单的排列组合问题</a>
+<ul>
+<li><a href="#3-1-排列问题">3.1 排列问题</a></li>
+</ul></li>
+<li><a href="#3-2-组合问题">3.2 组合问题</a></li>
+<li><a href="#参考文章">参考文章</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-对于排列公式的理解">1 对于排列公式的理解</h1>
+
+<ol>
+<li>第<code>一</code>步，从 <code>n</code> 个元素中选取 <code>1</code> 个，有 <code>n</code> 种选择方式</li>
+<li>第<code>二</code>步，从剩下的 <code>n - 1</code> 个元素中选取 <code>1</code> 个，有 <code>n - 1</code> 种选择方式</li>
+<li>第<code>三</code>步，从剩下的 <code>n - 2</code> 个元素中选取 <code>1</code> 个，有 <code>n - 2</code> 种选择方式</li>
+<li>第 <code>k</code> 步，从剩下的 <code>n - (k - 1)</code> 个元素中选取 <code>1</code> 个，有 <code>n - (k - 1)</code> 种选择方式</li>
+</ol>
+
+<p>那么将这 <code>k</code> 个步骤结合到一起，就有 <code>n(n - 1)(n - 2)···(n - k + 1)</code> 种选择，写成公式也就是 <code>A(n, k) = n!/(n - k)!</code></p>
+
+<p>表示的含义就是对于 <code>A(n, k)</code> 会产生 <code>n!/(n - k)!</code> 个排列</p>
+
+<h1 id="2-对于组合公式的理解">2 对于组合公式的理解</h1>
+
+<p>对于组合数，我们只需要去除所有排列中元素相同的排列，使每种元素相同的排列组只剩下一个排列即可，所以最关键的问题也就在于确定其中每种元素相同的排列组包含的排列个数。 <code>A(n, k)</code> 会产生 <code>n!/(n - k)!</code> 个排列，对于其中挑选出来的 k 个元素，可以构成 <code>A(k, k)</code> 个排列，其中每个排列的构成元素都是相同的，所以组合公式 <code>C(n, k) = A(n, k) / A(k, k) = n! / (k!(n-k)!)</code></p>
+
+<h1 id="3-简单的排列组合问题">3 简单的排列组合问题</h1>
+
+<p>下面的问题抽象出来就是有一个被挑选的集合为 n，需要挑出来 k 个元素，如果挑选元素的顺序对结果有影响，那么就是 <code>A(n, k)</code>，如果挑选元素的顺序对结果没有影响，那么就是 <code>C(n, k)</code></p>
+
+<h2 id="3-1-排列问题">3.1 排列问题</h2>
+
+<p>给 8 个人颁奖，总共 3 个奖，金牌、银牌和铜牌，那么这里颁奖的顺序很重要，意味着拿到的奖的类型不同，所以是 <code>A(8, 3)</code></p>
+
+<p>有 5 个固定的不同的球放在不同的位置，现在有另外三个不同的球需要插入到其中，那么此时有多少种插法。答案是 <code>A(8, 3)</code>，因为这个问题可以看作是有 8 个位置来放球，现在需要挑出 8 个位置中的 3 个位置然后按照不同的顺序将球放进去，然后另外五个球按照依次的顺序填入进去。</p>
+
+<h1 id="3-2-组合问题">3.2 组合问题</h1>
+
+<p>给 8 个人颁奖，总共 3 个奖，这三个奖是一模一样的奖状，那么这里便不用在意颁奖的顺序，所以 <code>C(8, 3)</code></p>
+
+<p>有 5 个固定的不同的球放在不同的位置，现在有另外三个相同的球需要插入到其中，那么此时有多少种插法。答案是 <code>C(8, 3)</code>，因为这个问题可以看作是有 8 个位置来放球，现在需要挑出 8 个位置中的 3 个位置然后将球放进去，<strong>由于球是相同的，没有顺序关系</strong>，然后另外五个球按照依次的顺序填入进去。</p>
+
+<h1 id="参考文章">参考文章</h1>
+
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/41855459">5 分钟彻底了解排列组合</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/02/07/leetcode-6-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Leetcode: 6 不同路径</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/02/06/leetcode-5-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/">
+            <span class="next-text nav-default">Leetcode: 5 最长回文子串</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.67e0238c.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

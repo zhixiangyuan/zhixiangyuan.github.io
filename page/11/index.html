@@ -118,7 +118,7 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-parameterizedtype-%E6%8E%A5%E5%8F%A3/">了解 JDK 中的 ParameterizedType 接口</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/17/method-%E7%9A%84-getparametertypes-%E4%B8%8E-getgenericparametertypes-%E7%9A%84%E5%8C%BA%E5%88%AB/">Method 的 getParameterTypes 与 getGenericParameterTypes 的区别</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2019-12-17 </span>
       <div class="post-category">
@@ -129,19 +129,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 ParameterizedType 接口的继承关系 Type 是 Java 中所有类型的通用超级接口，继承就完事了。 2 ParameterizedType 中的方法含义 1 2 3 4 5 6 7 8 9 10 11 /** 下面将 &lt;&gt; 中存储的内容称为泛型列表 */ public
+      getParameterTypes 与 getGenericParameterTypes 区别在于，对于没有泛型的方法参数，两者返回的均是相同的 Class，对于带泛型的方法参数 getGenericParameterTypes 返回的是带泛型的类型，getParameter
     </div>
     <div class="read-more">
-      <a href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-parameterizedtype-%E6%8E%A5%E5%8F%A3/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/17/method-%E7%9A%84-getparametertypes-%E4%B8%8E-getgenericparametertypes-%E7%9A%84%E5%8C%BA%E5%88%AB/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/16/jdk-%E4%B8%8E-spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/">JDK 与 Spring 中的事件模型</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/17/field-%E7%9A%84-gettype-%E4%B8%8E-getgenerictype-%E7%9A%84%E5%8C%BA%E5%88%AB/">Field 的 getType  与 getGenericType 的区别</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-16 </span>
+      <span class="post-time"> 2019-12-17 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -150,19 +150,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 事件模型 JDK 中提供了一个接口和一个类给用户实现自己的事件机制，一个是 EventObject 事件，另一个是 EventListener 事件监听器。 一般使用是都是在事件监听器中实现相应的方法
+      getType 与 getGenericType 区别在于，对于没有泛型的字段类型，两者返回的均是相同的 Class，对于带泛型的字段 getGenericType 返回的是带泛型的类型，getType 返回的是不带泛
     </div>
     <div class="read-more">
-      <a href="/2019/12/16/jdk-%E4%B8%8E-spring-%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/17/field-%E7%9A%84-gettype-%E4%B8%8E-getgenerictype-%E7%9A%84%E5%8C%BA%E5%88%AB/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/16/spring-%E4%B8%AD%E7%9A%84-resource-%E5%92%8C-resourceloader/">spring 中的 Resource 和 ResourceLoader</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/17/class-%E7%9A%84-getsuperclass-%E4%B8%8E-getgenericsuperclass-%E5%8C%BA%E5%88%AB/">Class 的 getSuperclass 与 getGenericSuperclass 区别</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-16 </span>
+      <span class="post-time"> 2019-12-17 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -171,19 +171,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 Resource 由于 Java 定义的 java.net.URL（Uniform Resource Locator）统一资源定位器有些狭隘，无法做到统一定位资源的作用（todo 这里有
+      getSuperclass 与 getGenericSuperclass 如果继承的父类没有泛型，那么返回的结果是相同的，如果继承的父类包含泛型，则会返回带泛型的父类类型（sun.reflect.generi
     </div>
     <div class="read-more">
-      <a href="/2019/12/16/spring-%E4%B8%AD%E7%9A%84-resource-%E5%92%8C-resourceloader/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/17/class-%E7%9A%84-getsuperclass-%E4%B8%8E-getgenericsuperclass-%E5%8C%BA%E5%88%AB/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/">Spring Xml 配置文件格式</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-wildcardtype-%E6%8E%A5%E5%8F%A3/">了解 JDK 中的 WildcardType 接口</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-13 </span>
+      <span class="post-time"> 2019-12-17 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -192,19 +192,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70
+      1 WildcardType 接口的继承关系 2 WildcardType 中的方法含义 1 2 3 4 5 6 7 public interface WildcardType extends Type { /** 获取泛型变量的上边界 */ Type[] getUpperBounds(); /** 获取泛型变量的下边界 */ Type[] getLowerBounds(); } 3 举个例子 1 2 3 4 5 6
     </div>
     <div class="read-more">
-      <a href="/2019/12/13/spring-xml-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-wildcardtype-%E6%8E%A5%E5%8F%A3/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/13/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">语义化版本控制</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-genericarraytype-%E6%8E%A5%E5%8F%A3/">了解 JDK 中的 GenericArrayType 接口</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-13 </span>
+      <span class="post-time"> 2019-12-17 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -213,19 +213,19 @@
   
   <div class="post-content">
     <div class="post-summary">
-      语义化的版本号遵循这个格式：MAJOR.MINOR.PATCH。其中 MAJOR 的改变意味着其中包含向后不兼容的修改，MINOR 的改变意味着有新功能的
+      1 GenericArrayType 接口的继承关系 这个接口表示泛型类型的数组，直接这样说可能不是很清晰，看下面的讲解 2 GenericArrayType 中的方法含义 1 2 3 4 public interface GenericArrayType extends Type { /** 获得数组元素类型，
     </div>
     <div class="read-more">
-      <a href="/2019/12/13/%E8%AF%AD%E4%B9%89%E5%8C%96%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-genericarraytype-%E6%8E%A5%E5%8F%A3/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2019/12/12/jdk8-%E4%B8%AD%E6%96%B0%E5%A2%9E%E7%9A%84-type_use-%E5%92%8C-type_parameter-%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%9C%A8%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF/">JDK8 中新增的 TYPE_USE 和 TYPE_PARAMETER 可以用在什么场景</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-typevariable-%E6%8E%A5%E5%8F%A3/">了解 JDK 中的 TypeVariable 接口</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-12-12 </span>
+      <span class="post-time"> 2019-12-17 </span>
       <div class="post-category">
           <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
           </div>
@@ -234,10 +234,10 @@
   
   <div class="post-content">
     <div class="post-summary">
-      本篇直接用示例代码展示该注解可以用在什么场景 1 TYPE_USE 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 // 先定义一个测试注解
+      JDK 中的 TypeVariable 翻译过来就是类型变量，其实就是指泛型。 1 TypeVariable 接口的继承关系 GenericDeclaration 这个接口的含义是决定哪些地方可以定义泛型 通过上图可以看到 Class、Con
     </div>
     <div class="read-more">
-      <a href="/2019/12/12/jdk8-%E4%B8%AD%E6%96%B0%E5%A2%9E%E7%9A%84-type_use-%E5%92%8C-type_parameter-%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%9C%A8%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF/" class="read-more-link">阅读更多</a>
+      <a href="/2019/12/17/%E4%BA%86%E8%A7%A3-jdk-%E4%B8%AD%E7%9A%84-typevariable-%E6%8E%A5%E5%8F%A3/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
