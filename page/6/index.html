@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-02-27T10:51:01+08:00" />
+<meta property="og:updated_time" content="2020-02-27T14:39:57+08:00" />
 <meta itemprop="name" content="养猪场">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,27 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/01/23/netty-%E5%AF%B9%E4%BA%8E-selector-%E7%9A%84-keyset-%E7%9A%84%E4%BC%98%E5%8C%96/">Netty 对于 Selector 的 KeySet 的优化</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-01-23 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      在使用 Jdk Nio 的时候，一般我们可能就直接使用 SelectorProvider.provider().openSelector() 来获取一个 Selector 便直接开始使用了，但是，netty 对于 Selector 竟然也有优化操作。 Selector 默认的 KeySet 的实现方式是 Has
+    </div>
+    <div class="read-more">
+      <a href="/2020/01/23/netty-%E5%AF%B9%E4%BA%8E-selector-%E7%9A%84-keyset-%E7%9A%84%E4%BC%98%E5%8C%96/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2020/01/23/netty-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-jdk-%E7%A9%BA%E8%BD%AE%E8%AE%AD%E7%9A%84-bug/">Netty 如何解决 JDK 空轮训的 BUG</a></h1>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2020/01/21/java-nio-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%A0%B7%E4%BE%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2020/01/21/java-%E9%98%BB%E5%A1%9E-io-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%A0%B7%E4%BE%8B/">Java 阻塞 IO 的使用样例</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-01-21 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      样例代码分为两个部分，一个是 server，另一个是 client 这种模式的 IO 编程模型在客户端较少的情况下运行良好，但是对于客户端比较多的业务来说，单机服
-    </div>
-    <div class="read-more">
-      <a href="/2020/01/21/java-%E9%98%BB%E5%A1%9E-io-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%A0%B7%E4%BE%8B/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>

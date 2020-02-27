@@ -9,49 +9,56 @@
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/2020/02/27/etc/passwd/</loc>
-    <lastmod>2020-02-27T10:51:01+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2020-02-27T10:51:01+08:00</lastmod>
+    <lastmod>2020-02-27T14:39:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/linux/</loc>
-    <lastmod>2020-02-27T10:51:01+08:00</lastmod>
+    <lastmod>2020-02-27T14:39:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2020-02-27T10:51:01+08:00</lastmod>
+    <lastmod>2020-02-27T14:39:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2020-02-27T10:51:01+08:00</lastmod>
+    <lastmod>2020-02-27T14:39:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2020-02-27T10:51:01+08:00</lastmod>
+    <lastmod>2020-02-27T14:39:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-02-27T14:39:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/02/27/%E6%9F%A5%E7%9C%8B%E6%9C%80%E5%B8%B8%E4%BD%BF%E7%94%A8%E7%9A%84-10-%E6%9D%A1-linux-%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2020-02-27T14:39:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/02/27/etc/passwd/</loc>
     <lastmod>2020-02-27T10:51:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
