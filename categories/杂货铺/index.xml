@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Tue, 18 Feb 2020 13:51:46 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Feb 2020 10:51:01 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>/etc/passwd</title>
+      <link>https://zhixiangyuan.github.io/2020/02/27/etc/passwd/</link>
+      <pubDate>Thu, 27 Feb 2020 10:51:01 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/27/etc/passwd/</guid>
+      <description>该文件用于存放用户的一些信息，文件中的每一行便是一个用户的信息，每种信息之间用 : 进行分隔。总共有七种信息，下面的例子是我系统中 root 的信息，每种</description>
+    </item>
     
     <item>
       <title>kafka 发送消息分区选择策略</title>
