@@ -1,5 +1,5 @@
 ---
-title: "etcpasswd"
+title: "/etc/passwd"
 date: 2020-02-27T10:51:01+08:00
 keywords: []
 description: ""
@@ -11,8 +11,16 @@ categories: [
 ]
 autoCollapseToc: false
 author: "yuanzx"
-markup: mmark
-mathjax: false
-draft: true
 ---
 
+该文件用于存放用户的一些信息，文件中的每一行便是一个用户的信息，每种信息之间用 `:` 进行分隔。总共有七种信息，下面的例子是我系统中 root 的信息，每种信息的数据格式参考该记录。
+
+| 登录名 | 加密口令 | 数字用户 ID | 数字组 ID | 注释字段 | 起始目录 | shell 程序 |
+| ------ | -------- | ----------- | --------- | -------- | -------- | ---------- |
+| root   | x        | 0           | 0         | root     | /root    | /bin/bash  |
+
+目前所有的系统已将加密口令移到另一个文件中（todo 这里有待补充）
+
+# 参考文章
+
+1. 《UNIX 环境高级编程》
