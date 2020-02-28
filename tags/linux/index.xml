@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>单台服务器可以支撑多少的 tcp 连接</title>
+      <link>https://zhixiangyuan.github.io/2020/02/01/%E5%8D%95%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E6%94%AF%E6%92%91%E5%A4%9A%E5%B0%91%E7%9A%84-tcp-%E8%BF%9E%E6%8E%A5/</link>
+      <pubDate>Sat, 01 Feb 2020 14:28:22 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/01/%E5%8D%95%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E6%94%AF%E6%92%91%E5%A4%9A%E5%B0%91%E7%9A%84-tcp-%E8%BF%9E%E6%8E%A5/</guid>
+      <description>一般我们都是在 Linux 系统下使用服务端，那么这个问题主要和 linux 系统挂钩。 从理论上 tcp 连接与四元组有关，那么只有四元组当中的一项发生改变，那么便可以建立</description>
+    </item>
+    
+    <item>
       <title>Shell 中的 ``、$()、${} 和 $(())</title>
       <link>https://zhixiangyuan.github.io/2019/11/17/shell-%E4%B8%AD%E7%9A%84-%E5%92%8C/</link>
       <pubDate>Sun, 17 Nov 2019 21:30:01 +0800</pubDate>
