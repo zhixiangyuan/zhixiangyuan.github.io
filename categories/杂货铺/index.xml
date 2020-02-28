@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Thu, 27 Feb 2020 17:37:45 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2020 10:31:53 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git 提交如何关联到 Issue</title>
+      <link>https://zhixiangyuan.github.io/2020/02/28/git-%E6%8F%90%E4%BA%A4%E5%A6%82%E4%BD%95%E5%85%B3%E8%81%94%E5%88%B0-issue/</link>
+      <pubDate>Fri, 28 Feb 2020 10:31:53 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/28/git-%E6%8F%90%E4%BA%A4%E5%A6%82%E4%BD%95%E5%85%B3%E8%81%94%E5%88%B0-issue/</guid>
+      <description>github 会做自动关联，需要在 commit 中提及 issue，建议使用下面的语法 1 $&amp;gt; git commit -m &amp;#34;Fix: #&amp;lt;$issue_id&amp;gt; &amp;lt;$commemt_content&amp;gt;&amp;#34;</description>
+    </item>
     
     <item>
       <title>include 中使用 &lt;&gt; 和 &#34;&#34; 的区别</title>
