@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Netty 中从 PooledByteBufAllocator 分配直接内存的逻辑 - 养猪场</title>
+  <title>分布式事务小记 - 养猪场</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="从 PooledByteBufAllocator 中分配直接内存会调用 newDirectBuffer 方法，该方法会先从 ThreadLocal 中取出 PoolThreadCache，如果取得时候没有则创建一个新的 PoolThreadCac" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="分布式事务解决的核心问题是数据一致性的问题，根据 cap 理论可知一致性、可用性、分区容错性三者只能选其二，所以在实践中需要对此做出权衡。目前解决分" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.58.3 with theme even" />
 
 
-<link rel="canonical" href="https://zhixiangyuan.github.io/2020/01/30/netty-%E4%B8%AD%E4%BB%8E-pooledbytebufallocator-%E5%88%86%E9%85%8D%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E7%9A%84%E9%80%BB%E8%BE%91/" />
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/02/01/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%B0%8F%E8%AE%B0/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,26 +38,26 @@
 
 
 
-<meta property="og:title" content="Netty 中从 PooledByteBufAllocator 分配直接内存的逻辑" />
-<meta property="og:description" content="从 PooledByteBufAllocator 中分配直接内存会调用 newDirectBuffer 方法，该方法会先从 ThreadLocal 中取出 PoolThreadCache，如果取得时候没有则创建一个新的 PoolThreadCac" />
+<meta property="og:title" content="分布式事务小记" />
+<meta property="og:description" content="分布式事务解决的核心问题是数据一致性的问题，根据 cap 理论可知一致性、可用性、分区容错性三者只能选其二，所以在实践中需要对此做出权衡。目前解决分" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zhixiangyuan.github.io/2020/01/30/netty-%E4%B8%AD%E4%BB%8E-pooledbytebufallocator-%E5%88%86%E9%85%8D%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E7%9A%84%E9%80%BB%E8%BE%91/" />
-<meta property="article:published_time" content="2020-01-30T15:38:21+08:00" />
-<meta property="article:modified_time" content="2020-01-30T15:38:21+08:00" />
-<meta itemprop="name" content="Netty 中从 PooledByteBufAllocator 分配直接内存的逻辑">
-<meta itemprop="description" content="从 PooledByteBufAllocator 中分配直接内存会调用 newDirectBuffer 方法，该方法会先从 ThreadLocal 中取出 PoolThreadCache，如果取得时候没有则创建一个新的 PoolThreadCac">
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/02/01/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%B0%8F%E8%AE%B0/" />
+<meta property="article:published_time" content="2020-02-01T11:08:42+08:00" />
+<meta property="article:modified_time" content="2020-02-01T11:08:42+08:00" />
+<meta itemprop="name" content="分布式事务小记">
+<meta itemprop="description" content="分布式事务解决的核心问题是数据一致性的问题，根据 cap 理论可知一致性、可用性、分区容错性三者只能选其二，所以在实践中需要对此做出权衡。目前解决分">
 
 
-<meta itemprop="datePublished" content="2020-01-30T15:38:21&#43;08:00" />
-<meta itemprop="dateModified" content="2020-01-30T15:38:21&#43;08:00" />
-<meta itemprop="wordCount" content="890">
+<meta itemprop="datePublished" content="2020-02-01T11:08:42&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-01T11:08:42&#43;08:00" />
+<meta itemprop="wordCount" content="943">
 
 
 
-<meta itemprop="keywords" content="netty," />
+<meta itemprop="keywords" content="分布式事务," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Netty 中从 PooledByteBufAllocator 分配直接内存的逻辑"/>
-<meta name="twitter:description" content="从 PooledByteBufAllocator 中分配直接内存会调用 newDirectBuffer 方法，该方法会先从 ThreadLocal 中取出 PoolThreadCache，如果取得时候没有则创建一个新的 PoolThreadCac"/>
+<meta name="twitter:title" content="分布式事务小记"/>
+<meta name="twitter:description" content="分布式事务解决的核心问题是数据一致性的问题，根据 cap 理论可知一致性、可用性、分区容错性三者只能选其二，所以在实践中需要对此做出权衡。目前解决分"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -124,10 +124,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Netty 中从 PooledByteBufAllocator 分配直接内存的逻辑</h1>
+      <h1 class="post-title">分布式事务小记</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2020-01-30 </span>
+        <span class="post-time"> 2020-02-01 </span>
         <div class="post-category">
             <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
             </div>
@@ -138,39 +138,55 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
-    
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#参考文章">参考文章</a></li>
+</ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      <p>从 <code>PooledByteBufAllocator</code> 中分配直接内存会调用 <code>newDirectBuffer</code> 方法，该方法会先从 <code>ThreadLocal</code> 中取出 <code>PoolThreadCache</code>，如果取得时候没有则创建一个新的 <code>PoolThreadCache</code>，创建的时候会在其中设置各种参数，其中有两个很重要的参数，分别是 <code>heapArena</code> 和 <code>directArena</code>，这两个参数是从 <code>PooledByteBufAllocator</code> 中维护的 <code>heapArenas</code> 和 <code>directArenas</code> 中取出的，取出的是其中被线程最少使用的 <code>arena</code>，这里判断被线程最少使用是通过 <code>arena</code> 中的 <code>numThreadCaches</code> 字段判断的，该字段在每次被一个新的线程使用的时候会加一，被释放时减一。</p>
+      
 
-<p>取出线程自己的 <code>PoolThreadCache</code> 后然后从 <code>PoolThreadCache</code> 取出 <code>directArena</code>，接着通过 <code>directArena</code> 开始分配内存，分配内存的过程首先从对象池中取出一个 <code>PooledUnsafeDirectByteBuf</code>，然后去申请一块内存，接着将该内存对应的 <code>chunk</code>、偏移量、申请容量、最大容量等参数放到 <code>PooledUnsafeDirectByteBuf</code> 中，接下来 <code>PooledUnsafeDirectByteBuf</code> 便可以使用了。</p>
+<p>分布式事务解决的核心问题是数据一致性的问题，根据 cap 理论可知一致性、可用性、分区容错性三者只能选其二，所以在实践中需要对此做出权衡。目前解决分布式事务的模型有 M/s、MM、2PC/3PC、paxos。</p>
 
-<p>接下来来聊申请内存的过程，申请内存时需要判断内存大小是 <code>tiny</code>、<code>small</code>、<code>小于 chunkSize</code> 和 <code>大于 chunkSize</code>，这里先聊内存是 <code>小于 chunkSize</code> 的部分。对于该部分的处理，进入申请内存的过程首先其内部有几个 <code>PoolChunkList</code>，这个 <code>PoolChunkList</code> 有两个作用一个是内部以链表的形式保存了存放在里面的 <code>chunk</code>，第二个是存放了当前 <code>chunk</code> 的使用百分比。这里的的队列分别是 <code>qInit</code>、<code>q000</code>、<code>q025</code>、<code>q050</code>、<code>q075</code>、<code>q100</code>，队列的使用率如下图所示。</p>
+<p>M/s 指的是 master/slave，master 作为可读写的节点，slave 作为只读节点，slave 定时去 master 上拉取最新数据，当 master 挂掉的时候集群便不能写，必须要等 master 恢复过来，否则便可能出现数据丢失。</p>
 
-<p><img src="/hub/2020/January/50.png" alt="" /></p>
+<p>MM 指的是 master/master，有两个以及两个以上的节点作为写节点，写节点之间相互拉取最新的数据，这种模式在极端情况下同样可能出现数据丢失的问题。</p>
 
-<p>首先在分配内存的时候会从 <code>PoolThreadCache</code> 中缓存的 <code>MemoryRegionCache</code> 数组去寻找是否有被缓存的可以分配的内存块，如果有则直接分配，如果没有则去上述的队列中找是否有可以使用的 <code>chunk</code>，如果有 <code>chunk</code> 则直接分配内存，如果没有则申请一个 <code>chunk</code> 然后进行分配，最后加入到队列中。这里面 <code>chunk</code> 管理自己的内存是使用完全二叉树来管理，不过完全二叉树只管理大于 <code>8K</code> 大小的内存，它的 <code>page</code> 最大是 <code>8K</code>，再小便要由 <code>subpage</code> 来管理，每一个 <code>page</code> 对应着一个 <code>subpage</code>，<code>subpage</code> 内部使用 <code>long[]</code> 来管理自己的内存。</p>
+<p>2PC 指的是两阶段提交，该模型有两个角色，分别是事务管理器和资源管理器，事务管理器首先向所有的资源管理器发出预提交命令，此时资源管理器需要写 redo log、undo log，当执行成功后向事务管理器回复确认，当事务管理器收到所有的资源管理器的确认后，然后向所有的资源管理器发出提交事务命令。这个方式有一些缺陷，其中一个很严重的问题是当整个流程执行到向资源管理器发送提交事务命令时，如果事务管理器挂掉了，那么资源管理器便不知道该怎么办了，同时还锁死了资源。</p>
 
-<p>对于 <code>tiny</code>、<code>small</code> 类型的内存块其实也是一样的，只不过稍有不同的是它内部管理内存的类是 <code>subpage</code> 而不是 <code>page</code>。</p>
+<p>3PC 是对 2PC 的改进，总共分为三个阶段，第一阶段先询问一下，但是不锁资源，后面两个阶段和 2PC 的阶段相同，这种改进的好处是如果第一阶段所有节点返回成功，那么有理由相信成功提交的概率很大。如果有节点返回失败，那么也不会锁资源，能提高吞吐量。</p>
 
-<p>如果申请的是 <code>大于 chunkSize</code> 的内存，那么就直接没有上面那些麻烦的逻辑了，他就是直接申请一块足够大的 <code>chunk</code> 然后初始化到 <code>ByteBuf</code> 中返回给使用者使用。</p>
+<p>paxos 算法也分为两个阶段，在第一阶段提案者向所有的节点发出 prepare request，关于所修改的数据有一个提案号，节点在接收到提案后会比较提案号，如果该提案号是最新的，那么便接受该请求，并向提案者回复确认，在第二阶段当提案者收到超过半数节点的确认后，便会向所有的节点发布 accept request，同样需要带上提案号，当节点收到 accept request 后，如果提案号是最大的，那么节点便会修改这个值，如果发现自己有一个更大的提案号那么，节点便会拒绝修改。</p>
+
+<p>paxos 的这种方式要求节点数目必须是奇数才能满足超过半数节点的确认这样的要求，这里的确认是包含发出请求的节点的，这样才能满足奇数的要求。</p>
+
+<p>下图是对于这几种方式的一个汇总，分别比较了一致性、事务、延迟、吞吐量、是否有数据丢失、失败时是否可读写。</p>
+
+<p><img src="/hub/2020/March/1.jpg" alt="" /></p>
+
+<h1 id="参考文章">参考文章</h1>
+
+<ol>
+<li><a href="https://coolshell.cn/articles/10910.html">分布式系统的事务处理</a></li>
+</ol>
 
     </div>
 
     
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/netty/">netty</a>
+          <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">分布式事务</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/2020/02/01/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%B0%8F%E8%AE%B0/">
+        <a class="prev" href="/2020/02/01/%E5%8D%95%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E6%94%AF%E6%92%91%E5%A4%9A%E5%B0%91%E7%9A%84-tcp-%E8%BF%9E%E6%8E%A5/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">分布式事务小记</span>
+            <span class="prev-text nav-default">单台服务器可以支撑多少的 tcp 连接</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
-        <a class="next" href="/2020/01/30/%E5%A6%82%E4%BD%95%E8%BF%90%E7%94%A8%E4%BD%8D%E8%BF%90%E7%AE%97%E5%88%A4%E6%96%AD%E6%9F%90%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E6%98%AF%E4%BA%8C%E7%9A%84%E5%B9%82%E6%AC%A1/">
-            <span class="next-text nav-default">如何运用位运算判断某个数是否是二的幂次</span>
+        <a class="next" href="/2020/01/30/netty-%E4%B8%AD%E4%BB%8E-pooledbytebufallocator-%E5%88%86%E9%85%8D%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E7%9A%84%E9%80%BB%E8%BE%91/">
+            <span class="next-text nav-default">Netty 中从 PooledByteBufAllocator 分配直接内存的逻辑</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
