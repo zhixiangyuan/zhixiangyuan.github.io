@@ -141,6 +141,11 @@
     
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2020-01-30T15:38:21" title="January 30, 2020">January 30, 2020</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>从 <code>PooledByteBufAllocator</code> 中分配直接内存会调用 <code>newDirectBuffer</code> 方法，该方法会先从 <code>ThreadLocal</code> 中取出 <code>PoolThreadCache</code>，如果取得时候没有则创建一个新的 <code>PoolThreadCache</code>，创建的时候会在其中设置各种参数，其中有两个很重要的参数，分别是 <code>heapArena</code> 和 <code>directArena</code>，这两个参数是从 <code>PooledByteBufAllocator</code> 中维护的 <code>heapArenas</code> 和 <code>directArenas</code> 中取出的，取出的是其中被线程最少使用的 <code>arena</code>，这里判断被线程最少使用是通过 <code>arena</code> 中的 <code>numThreadCaches</code> 字段判断的，该字段在每次被一个新的线程使用的时候会加一，被释放时减一。</p>
 
