@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Fri, 28 Feb 2020 10:31:53 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 09:57:46 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CopyOnWriteArrayList 如何解决并发问题</title>
+      <link>https://zhixiangyuan.github.io/2020/03/02/copyonwritearraylist-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 02 Mar 2020 09:57:46 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/03/02/copyonwritearraylist-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/</guid>
+      <description>CopyOnWriteArrayList 解决并发问题的关键在于其 add 的方法，解决方式便是写时复制，直接看源码。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 public boolean add(E e) { final ReentrantLock lock = this.lock; // 上锁 lock.lock(); try</description>
+    </item>
     
     <item>
       <title>Git 提交如何关联到 Issue</title>
