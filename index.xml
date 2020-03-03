@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 02 Mar 2020 09:57:46 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2020 11:28:54 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>https://zhixiangyuan.github.io/about/</guid>
       <description>本博客仅用作学习记录，如果您想通过本博客来学习，但是发现晦涩难懂，这是由于本博客的主要目的不是作为初学者的参考资料，而是用来作为博主的知识库</description>
+    </item>
+    
+    <item>
+      <title>一致性哈希算法</title>
+      <link>https://zhixiangyuan.github.io/2020/03/03/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 03 Mar 2020 11:28:54 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/03/03/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95/</guid>
+      <description>本文转载自：五分钟看懂一致性哈希算法 1 一致性 Hash 性质 考虑到分布式系统每个节点都有可能失效，并且新的节点很可能动态的增加进来，如何保证当系统的节</description>
     </item>
     
     <item>
