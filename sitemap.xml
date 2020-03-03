@@ -10,48 +10,55 @@
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/</loc>
-    <lastmod>2020-03-03T17:08:23+08:00</lastmod>
+    <lastmod>2020-03-03T17:13:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/post/</loc>
-    <lastmod>2020-03-03T17:08:23+08:00</lastmod>
+    <lastmod>2020-03-03T17:13:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/redis/</loc>
-    <lastmod>2020-03-03T17:08:23+08:00</lastmod>
+    <lastmod>2020-03-03T17:13:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://zhixiangyuan.github.io/2020/03/03/redis-%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/</loc>
-    <lastmod>2020-03-03T17:08:23+08:00</lastmod>
+    <loc>https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8/</loc>
+    <lastmod>2020-03-03T17:13:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/tags/</loc>
-    <lastmod>2020-03-03T17:08:23+08:00</lastmod>
+    <lastmod>2020-03-03T17:13:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/</loc>
-    <lastmod>2020-03-03T17:08:23+08:00</lastmod>
+    <lastmod>2020-03-03T17:13:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/</loc>
+    <lastmod>2020-03-03T17:13:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhixiangyuan.github.io/2020/03/03/redis-%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/</loc>
     <lastmod>2020-03-03T17:08:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
