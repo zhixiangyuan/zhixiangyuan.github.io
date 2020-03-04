@@ -41,6 +41,13 @@ $> usermod -g <$group_name> <$user_name>
 $> usermod -g root peter
 ```
 
+# chown
+
+```shell
+# 修改某个文件夹以及其下的所有文件的拥有者为 new_user
+$> chown -R <$new_user> <$directory>
+```
+
 # 用户信息存放的位置及存储的内容
 
 ```shell
