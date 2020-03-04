@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-10-12T13:04:55&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-12T13:04:55&#43;08:00" />
-<meta itemprop="wordCount" content="906">
+<meta itemprop="wordCount" content="941">
 
 
 
@@ -142,6 +142,7 @@
 <ul>
 <li><a href="#useradd">useradd</a></li>
 <li><a href="#passwd">passwd</a></li>
+<li><a href="#usermod">usermod</a></li>
 <li><a href="#用户信息存放的位置及存储的内容">用户信息存放的位置及存储的内容</a></li>
 <li><a href="#文件信息">文件信息</a></li>
 <li><a href="#管理软件">管理软件</a></li>
@@ -191,6 +192,21 @@ $&gt; useradd &lt;username&gt; -g &lt;groupname&gt;</code></pre></td></tr></tabl
 $&gt; passwd 
 <span class="c1"># 更改指定用户的密码</span>
 $&gt; passwd &lt;username&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="usermod">usermod</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 将用户 user_name 加入到 group_name 组</span>
+$&gt; usermod -g &lt;<span class="nv">$group_name</span>&gt; &lt;<span class="nv">$user_name</span>&gt;
+<span class="c1"># 比如说将 peter 加入 root 组</span>
+$&gt; usermod -g root peter</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="用户信息存放的位置及存储的内容">用户信息存放的位置及存储的内容</h1>
