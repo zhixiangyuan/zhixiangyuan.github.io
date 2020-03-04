@@ -26,7 +26,7 @@ author: "yuanzx"
 
 厉害了，对 LinkedhashMap 稍加改造就完成了这个效果，强
 
-LRU = Last recent used，最近被使用的缓存不要被覆盖掉。
+LRU = Least Recently Used，最近最少使用的缓存会被覆盖掉。
 
 ```java
 class LRUCache extends LinkedHashMap<Integer, Integer> {
