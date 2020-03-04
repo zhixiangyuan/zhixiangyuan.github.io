@@ -32,6 +32,15 @@ $> passwd
 $> passwd <username>
 ```
 
+# usermod
+
+```shell
+# 将用户 user_name 加入到 group_name 组
+$> usermod -g <$group_name> <$user_name>
+# 比如说将 peter 加入 root 组
+$> usermod -g root peter
+```
+
 # 用户信息存放的位置及存储的内容
 
 ```shell
