@@ -27,7 +27,7 @@
       <pubDate>Wed, 04 Mar 2020 11:24:50 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2020/03/04/%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AF%E5%85%B3%E9%97%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%90%8E%E4%BE%9D%E7%84%B6%E8%BF%90%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F/</guid>
-      <description></description>
+      <description>一般我们登陆到服务器之后比如说运行一个 Django web 程序： 1 2 $&amp;gt; python manager.py runserver 0.0.0.0 Listening on 0.0.0.0:8080... 如果我们退出命令行，那么便关闭了该程序，如果我们希望他后台运行的话，那么</description>
     </item>
     
     <item>
