@@ -45,7 +45,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/" />
 
-<meta property="og:updated_time" content="2020-03-03T17:13:38+08:00" />
+<meta property="og:updated_time" content="2020-03-04T11:24:50+08:00" />
 <meta itemprop="name" content="养猪场">
 <meta itemprop="description" content="Yuanzx blog.">
 
@@ -116,6 +116,48 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/02/16/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%93%8D%E4%BD%9C-kafka-%E5%B0%8F%E8%AE%B0/">使用命令行脚本操作 kafka 小记</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-02-16 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 # 启动命令 $&gt; bin/kafka-server-start.sh &lt;$config_file_path&gt; ## demo: 启动命令 $&gt; bin/kafka-server-start.sh config/server.properties # 终止命令 $&gt; bin/kafka-server-stop.sh &lt;$config_file_path&gt; ## demo: 终
+    </div>
+    <div class="read-more">
+      <a href="/2020/02/16/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%84%9A%E6%9C%AC%E6%93%8D%E4%BD%9C-kafka-%E5%B0%8F%E8%AE%B0/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/02/16/%E4%BF%AE%E5%A4%8D-google-guava-%E6%A1%86%E6%9E%B6%E7%9A%84-caseformat-%E7%B1%BB%E4%B8%AD%E7%9A%84-bug/">修复 Google Guava 框架的 CaseFormat 类中的 Bug</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-02-16 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      CaseFormat 可以很方便地实现字符串驼峰转下划线的功能，内部的实现原理是寻找需要做转换的字母处，然后将其字母前方的单词做截取，再根据转换后的字符串需求做
+    </div>
+    <div class="read-more">
+      <a href="/2020/02/16/%E4%BF%AE%E5%A4%8D-google-guava-%E6%A1%86%E6%9E%B6%E7%9A%84-caseformat-%E7%B1%BB%E4%B8%AD%E7%9A%84-bug/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2020/02/16/%E5%BC%80%E6%BA%90-boostpoi-%E6%A1%86%E6%9E%B6/">开源 BoostPOI 框架</a></h1>
@@ -196,48 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2020/02/12/idea-%E4%B8%AD%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2020/02/12/%E7%B1%BB%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/">类初始化的加载顺序</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-02-12 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      类初始化时候的加载顺序是首先加载父类的静态代码，静态代码的加载顺序从上向下执行，然后加载子类的静态代码，同样从上向下执行。 在初始化实例的时候
-    </div>
-    <div class="read-more">
-      <a href="/2020/02/12/%E7%B1%BB%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2020/02/11/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-qq-%E8%AF%AD%E9%9F%B3%E5%AE%9A%E4%BD%8D%E5%A5%BD%E5%8F%8B%E7%9A%84%E4%BD%8D%E7%BD%AE/">如何使用 qq 语音定位好友的位置</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-02-11 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      首先，这里的原理是和好友语音，那么会首先从腾讯服务器获取到对方的 IP 地址，然后再本地连线对方，那么我们在这里进行抓包便可以知道对方的 IP 地址。抓
-    </div>
-    <div class="read-more">
-      <a href="/2020/02/11/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-qq-%E8%AF%AD%E9%9F%B3%E5%AE%9A%E4%BD%8D%E5%A5%BD%E5%8F%8B%E7%9A%84%E4%BD%8D%E7%BD%AE/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
