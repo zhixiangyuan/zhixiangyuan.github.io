@@ -4,7 +4,7 @@ date: 2019-01-17T20:34:37+08:00
 keywords: []
 description: ""
 tags: [
-    "Linux"
+    "linux"
 ]
 categories: [
     "杂货铺"
