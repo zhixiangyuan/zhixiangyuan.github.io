@@ -118,6 +118,27 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/2020/01/23/netty-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-jdk-%E7%A9%BA%E8%BD%AE%E8%AE%AD%E7%9A%84-bug/">Netty 如何解决 JDK 空轮训的 BUG</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-01-23 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      Netty 解决空轮训的 bug 的方式很简单，通过执行阻塞 select 的方式阻塞一段时间，如果在执行完毕之后阻塞的时间小于设定的阻塞的时间，那么 selectCnt 便 +1，当达到一定次
+    </div>
+    <div class="read-more">
+      <a href="/2020/01/23/netty-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-jdk-%E7%A9%BA%E8%BD%AE%E8%AE%AD%E7%9A%84-bug/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/2020/01/23/poweroftwoeventexecutorchooser-%E7%9A%84%E4%BC%98%E5%8C%96/">PowerOfTwoEventExecutorChooser 的优化</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2020-01-23 </span>
@@ -217,27 +238,6 @@
     </div>
     <div class="read-more">
       <a href="/2020/01/21/java-%E9%98%BB%E5%A1%9E-io-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%A0%B7%E4%BE%8B/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/2020/01/21/%E4%B8%89%E7%A7%8D%E4%B8%80%E8%87%B4%E6%80%A7%E6%A8%A1%E5%9E%8B/">三种一致性模型</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-01-21 </span>
-      <div class="post-category">
-          <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      1 弱一致性 当你写入一个新值后，读操作在数据副本上可能读出来，也可能读不出来。比如：某些 cache 系统，网络游戏其它玩家的数据和你没什么关系，VOIP
-    </div>
-    <div class="read-more">
-      <a href="/2020/01/21/%E4%B8%89%E7%A7%8D%E4%B8%80%E8%87%B4%E6%80%A7%E6%A8%A1%E5%9E%8B/" class="read-more-link">阅读更多</a>
     </div>
   </div>
 </article>
