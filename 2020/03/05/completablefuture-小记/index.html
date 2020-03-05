@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>CompletableFuture 小记 - 养猪场</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="前言 本文主要讲解使用，同时使用了 junit 框架 1 2 3 4 5 6 7 &amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt; &amp;lt;!-- &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;--&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; 1 completedFuture 1 2 3 4 5 6 7 8 static void completedFutureExample() { // 生成一个返回结果为 message 的 CompletableFuture CompletableFuture&amp;lt;String&amp;gt; cf = CompletableFuture.completedFuture(&amp;#34;message&amp;#34;); // 方法已经" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/03/05/completablefuture-%E5%B0%8F%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.40a1ded2.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="CompletableFuture 小记" />
+<meta property="og:description" content="前言 本文主要讲解使用，同时使用了 junit 框架 1 2 3 4 5 6 7 &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;!-- &lt;scope&gt;test&lt;/scope&gt;--&gt; &lt;/dependency&gt; &lt;/dependencies&gt; 1 completedFuture 1 2 3 4 5 6 7 8 static void completedFutureExample() { // 生成一个返回结果为 message 的 CompletableFuture CompletableFuture&lt;String&gt; cf = CompletableFuture.completedFuture(&#34;message&#34;); // 方法已经" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/03/05/completablefuture-%E5%B0%8F%E8%AE%B0/" />
+<meta property="article:published_time" content="2020-03-05T15:54:03+08:00" />
+<meta property="article:modified_time" content="2020-03-05T15:54:03+08:00" />
+<meta itemprop="name" content="CompletableFuture 小记">
+<meta itemprop="description" content="前言 本文主要讲解使用，同时使用了 junit 框架 1 2 3 4 5 6 7 &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;!-- &lt;scope&gt;test&lt;/scope&gt;--&gt; &lt;/dependency&gt; &lt;/dependencies&gt; 1 completedFuture 1 2 3 4 5 6 7 8 static void completedFutureExample() { // 生成一个返回结果为 message 的 CompletableFuture CompletableFuture&lt;String&gt; cf = CompletableFuture.completedFuture(&#34;message&#34;); // 方法已经">
+
+
+<meta itemprop="datePublished" content="2020-03-05T15:54:03&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-05T15:54:03&#43;08:00" />
+<meta itemprop="wordCount" content="640">
+
+
+
+<meta itemprop="keywords" content="java," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CompletableFuture 小记"/>
+<meta name="twitter:description" content="前言 本文主要讲解使用，同时使用了 junit 框架 1 2 3 4 5 6 7 &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;junit&lt;/groupId&gt; &lt;artifactId&gt;junit&lt;/artifactId&gt; &lt;!-- &lt;scope&gt;test&lt;/scope&gt;--&gt; &lt;/dependency&gt; &lt;/dependencies&gt; 1 completedFuture 1 2 3 4 5 6 7 8 static void completedFutureExample() { // 生成一个返回结果为 message 的 CompletableFuture CompletableFuture&lt;String&gt; cf = CompletableFuture.completedFuture(&#34;message&#34;); // 方法已经"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">养猪场</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">养猪场</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">CompletableFuture 小记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-05 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#1-completedfuture">1 completedFuture</a></li>
+<li><a href="#2-runasync">2 runAsync</a></li>
+<li><a href="#3-thenapply">3 thenApply</a></li>
+<li><a href="#4-thenapplyasync">4 thenApplyAsync</a></li>
+<li><a href="#5-thenaccept">5 thenAccept</a></li>
+<li><a href="#5-thenacceptasync">5 thenAcceptAsync</a></li>
+<li><a href="#6-thencombine">6 thenCombine</a></li>
+<li><a href="#参考文章">参考文章</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="前言">前言</h1>
+
+<p>本文主要讲解使用，同时使用了 junit 框架</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml">    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+<span class="c">&lt;!--            &lt;scope&gt;test&lt;/scope&gt;--&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="1-completedfuture">1 completedFuture</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">void</span> <span class="n">completedFutureExample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 生成一个返回结果为 message 的 CompletableFuture
+</span><span class="c1"></span>        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cf</span> <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">);</span>
+        <span class="c1">// 方法已经执行完了
+</span><span class="c1"></span>        <span class="n">assertTrue</span><span class="p">(</span><span class="n">cf</span><span class="p">.</span><span class="na">isDone</span><span class="p">());</span>
+        <span class="c1">// 返回值为 message
+</span><span class="c1"></span>        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">,</span> <span class="n">cf</span><span class="p">.</span><span class="na">getNow</span><span class="p">(</span><span class="kc">null</span><span class="p">));</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="2-runasync">2 runAsync</h1>
+
+<p>这里面需要注意，以 <code>Async</code> 结尾的方法在没有指定 <code>executor</code> 的情况下，会使用 ForkJoinPool来执行任务，使用的是守护线程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">void</span> <span class="n">runAsyncExample</span><span class="p">()</span> <span class="kd">throws</span> <span class="nf">ExecutionException</span><span class="p">,</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+        <span class="c1">// 异步执行一个任务
+</span><span class="c1"></span>        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="nf">cf</span> <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">runAsync</span><span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">assertTrue</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">isDaemon</span><span class="p">());</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">);</span>
+        <span class="p">});</span>
+        <span class="c1">// 阻塞等待结果完成
+</span><span class="c1"></span>        <span class="n">cf</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+        <span class="c1">// 判断是否真的已经执行完成
+</span><span class="c1"></span>        <span class="n">assertTrue</span><span class="p">(</span><span class="n">cf</span><span class="p">.</span><span class="na">isDone</span><span class="p">());</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="3-thenapply">3 thenApply</h1>
+
+<p>这个方法需要注意的是由于它没有加 <code>Async</code> 作为结尾，所以其实它是一个同步的方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">void</span> <span class="n">thenApplyExample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cf</span> <span class="o">=</span> <span class="n">CompletableFuture</span>
+                <span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">)</span>
+                <span class="c1">// 在上一个任务执行完之后将结果作为 s 交给下一个任务去执行
+</span><span class="c1"></span>                <span class="p">.</span><span class="na">thenApply</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="n">assertFalse</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">isDaemon</span><span class="p">());</span>
+                    <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">();</span>
+                <span class="p">});</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&#34;MESSAGE&#34;</span><span class="p">,</span> <span class="n">cf</span><span class="p">.</span><span class="na">getNow</span><span class="p">(</span><span class="kc">null</span><span class="p">));</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="4-thenapplyasync">4 thenApplyAsync</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">void</span> <span class="n">thenApplyAsyncExample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cf</span> <span class="o">=</span> <span class="n">CompletableFuture</span>
+                <span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">)</span>
+                <span class="c1">// 方法上标注了 Async，所以是异步方法
+</span><span class="c1"></span>                <span class="p">.</span><span class="na">thenApplyAsync</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="n">assertTrue</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">isDaemon</span><span class="p">());</span>
+                    <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">();</span>
+                <span class="p">});</span>
+        <span class="n">assertNull</span><span class="p">(</span><span class="n">cf</span><span class="p">.</span><span class="na">getNow</span><span class="p">(</span><span class="kc">null</span><span class="p">));</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&#34;MESSAGE&#34;</span><span class="p">,</span> <span class="n">cf</span><span class="p">.</span><span class="na">join</span><span class="p">());</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>下面是以自定义的线程池来执行任务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">ExecutorService</span> <span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="p">.</span><span class="na">newFixedThreadPool</span><span class="p">(</span><span class="n">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">ThreadFactory</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="nf">count</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="nf">Thread</span> <span class="n">newThread</span><span class="p">(</span><span class="n">Runnable</span> <span class="nf">runnable</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">runnable</span><span class="p">,</span> <span class="s">&#34;custom-executor-&#34;</span> <span class="o">+</span> <span class="n">count</span><span class="o">++</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="kd">static</span> <span class="nf">void</span> <span class="n">thenApplyAsyncWithExecutorExample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cf</span> <span class="o">=</span> <span class="n">CompletableFuture</span>
+                <span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">thenApplyAsync</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="p">{</span>
+            <span class="n">assertTrue</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">().</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&#34;custom-executor-&#34;</span><span class="p">));</span>
+            <span class="n">assertFalse</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">isDaemon</span><span class="p">());</span>
+            <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">();</span>
+        <span class="p">},</span> <span class="n">executor</span><span class="p">);</span>
+
+        <span class="n">assertNull</span><span class="p">(</span><span class="n">cf</span><span class="p">.</span><span class="na">getNow</span><span class="p">(</span><span class="kc">null</span><span class="p">));</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&#34;MESSAGE&#34;</span><span class="p">,</span> <span class="n">cf</span><span class="p">.</span><span class="na">join</span><span class="p">());</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="5-thenaccept">5 thenAccept</h1>
+
+<p><code>thenAccept</code> 与 <code>thenApply</code> 的区别在于 <code>thenAccept</code> 没有返回值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">void</span> <span class="n">thenAcceptExample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">StringBuilder</span> <span class="nf">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="n">CompletableFuture</span>
+                <span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;thenAccept message&#34;</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">thenAccept</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="n">result</span>
+                            <span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&#34;result: &#34;</span><span class="p">)</span>
+                            <span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+                <span class="p">});</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&#34;result: thenAccept message&#34;</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="5-thenacceptasync">5 thenAcceptAsync</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">void</span> <span class="n">thenAcceptExample</span><span class="p">()</span> <span class="kd">throws</span> <span class="nf">ExecutionException</span><span class="p">,</span> <span class="n">InterruptedException</span> <span class="p">{</span>
+        <span class="n">StringBuilder</span> <span class="nf">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="nf">future</span> <span class="o">=</span> <span class="n">CompletableFuture</span>
+                <span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;thenAccept message&#34;</span><span class="p">)</span>
+                <span class="c1">// 异步执行
+</span><span class="c1"></span>                <span class="p">.</span><span class="na">thenAcceptAsync</span><span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="n">result</span>
+                            <span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&#34;result: &#34;</span><span class="p">)</span>
+                            <span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+                <span class="p">});</span>
+        <span class="c1">// 等待运行结束
+</span><span class="c1"></span>        <span class="n">future</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&#34;result: thenAccept message&#34;</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="6-thencombine">6 thenCombine</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">static</span> <span class="nf">void</span> <span class="n">thenCombineAsyncExample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">cf</span> <span class="o">=</span> <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;Result1&#34;</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">thenCombine</span><span class="p">(</span>
+                        <span class="n">CompletableFuture</span><span class="p">.</span><span class="na">completedFuture</span><span class="p">(</span><span class="s">&#34;Result2&#34;</span><span class="p">),</span>
+                        <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">s1</span> <span class="o">+</span> <span class="s">&#34; : &#34;</span> <span class="o">+</span> <span class="n">s2</span>
+                <span class="p">);</span>
+        <span class="c1">// 可以看到 thenCombine 便是将两次的 future 的返回值作为 s1 和 s2 这样的入参
+</span><span class="c1"></span>        <span class="c1">// 然后再执行后续的处理
+</span><span class="c1"></span>        <span class="n">assertEquals</span><span class="p">(</span><span class="s">&#34;Result1 : Result2&#34;</span><span class="p">,</span> <span class="n">cf</span><span class="p">.</span><span class="na">join</span><span class="p">());</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="参考文章">参考文章</h1>
+
+<ol>
+<li><a href="https://mahmoudanouti.wordpress.com/2018/01/26/20-examples-of-using-javas-completablefuture/">20 Examples of Using Java’s CompletableFuture</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/2020/03/04/git-%E5%91%BD%E4%BB%A4%E5%B0%8F%E8%AE%B0/">
+            <span class="next-text nav-default">git 命令小记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.67e0238c.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
