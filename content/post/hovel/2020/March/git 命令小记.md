@@ -63,10 +63,10 @@ $> git branch -f <$branch_name> <{$hash_record|$branch_name}>
 
 # 下面是一个例子
 # 移动之前的分支情况
-*
+*   c1_hash_record
 |\
-| * branch: bugFix*
-* | branch: master
+| * c2_hash_record branch: bugFix*
+* | c3_hash_record branch: master
 
 $> git branch -f master c1_hash_record
 # 运行后 git 分支情况
