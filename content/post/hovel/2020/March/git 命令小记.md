@@ -13,7 +13,7 @@ autoCollapseToc: false
 author: "yuanzx"
 ---
 
-下面的记录中 `branch` 表示分支，`branch: <$分支名>`，`branch: <$分支名>*` 七种的 `*` 表示所处的分支。
+下面的记录中 `branch` 表示分支，`branch: <$分支名>`，`branch: <$分支名>*` 其中的 `*` 表示所处的分支。
 
 ```shell
 
