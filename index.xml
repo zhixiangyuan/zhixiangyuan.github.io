@@ -283,6 +283,15 @@
     </item>
     
     <item>
+      <title>01背包问题</title>
+      <link>https://zhixiangyuan.github.io/2020/02/01/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sat, 01 Feb 2020 21:33:13 +0800</pubDate>
+      
+      <guid>https://zhixiangyuan.github.io/2020/02/01/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 public static void main(String[] args) { // 重量 int[] weight = new int[]{4, 6, 2, 2, 5, 1}; // 价值 int[] value = new int[]{8, 10, 6, 3, 7,</description>
+    </item>
+    
+    <item>
       <title>单台服务器可以支撑多少的 tcp 连接</title>
       <link>https://zhixiangyuan.github.io/2020/02/01/%E5%8D%95%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E6%94%AF%E6%92%91%E5%A4%9A%E5%B0%91%E7%9A%84-tcp-%E8%BF%9E%E6%8E%A5/</link>
       <pubDate>Sat, 01 Feb 2020 14:28:22 +0800</pubDate>
