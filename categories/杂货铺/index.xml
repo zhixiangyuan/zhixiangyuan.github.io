@@ -54,7 +54,7 @@
       <pubDate>Tue, 03 Mar 2020 17:08:23 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2020/03/03/redis-%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/</guid>
-      <description>1 2 3 4 5 6 1. volatile-lru ：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰 2. volatile-ttl ：从已设置过期时间的数据集中挑选将要过期的数据淘汰 3. volatil</description>
+      <description>1 2 3 4 5 6 1. volatile-lru ：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 key 2. volatile-ttl ：当内存不足以容纳新写入数据时，在设置了</description>
     </item>
     
     <item>

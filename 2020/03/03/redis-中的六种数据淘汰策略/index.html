@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="1 2 3 4 5 6 1. volatile-lru ：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰 2. volatile-ttl ：从已设置过期时间的数据集中挑选将要过期的数据淘汰 3. volatil" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="1 2 3 4 5 6 1. volatile-lru ：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 key 2. volatile-ttl ：当内存不足以容纳新写入数据时，在设置了" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,25 +39,25 @@
 
 
 <meta property="og:title" content="redis 中的六种数据淘汰策略" />
-<meta property="og:description" content="1 2 3 4 5 6 1. volatile-lru ：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰 2. volatile-ttl ：从已设置过期时间的数据集中挑选将要过期的数据淘汰 3. volatil" />
+<meta property="og:description" content="1 2 3 4 5 6 1. volatile-lru ：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 key 2. volatile-ttl ：当内存不足以容纳新写入数据时，在设置了" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/2020/03/03/redis-%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/" />
 <meta property="article:published_time" content="2020-03-03T17:08:23+08:00" />
 <meta property="article:modified_time" content="2020-03-03T17:08:23+08:00" />
 <meta itemprop="name" content="redis 中的六种数据淘汰策略">
-<meta itemprop="description" content="1 2 3 4 5 6 1. volatile-lru ：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰 2. volatile-ttl ：从已设置过期时间的数据集中挑选将要过期的数据淘汰 3. volatil">
+<meta itemprop="description" content="1 2 3 4 5 6 1. volatile-lru ：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 key 2. volatile-ttl ：当内存不足以容纳新写入数据时，在设置了">
 
 
 <meta itemprop="datePublished" content="2020-03-03T17:08:23&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-03T17:08:23&#43;08:00" />
-<meta itemprop="wordCount" content="151">
+<meta itemprop="wordCount" content="242">
 
 
 
 <meta itemprop="keywords" content="redis," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="redis 中的六种数据淘汰策略"/>
-<meta name="twitter:description" content="1 2 3 4 5 6 1. volatile-lru ：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰 2. volatile-ttl ：从已设置过期时间的数据集中挑选将要过期的数据淘汰 3. volatil"/>
+<meta name="twitter:description" content="1 2 3 4 5 6 1. volatile-lru ：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 key 2. volatile-ttl ：当内存不足以容纳新写入数据时，在设置了"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -158,12 +158,12 @@
 </span><span class="lnt">6
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">1. volatile-lru   ：从已设置过期时间的数据集中挑选最近最少使用的数据淘汰
-2. volatile-ttl   ：从已设置过期时间的数据集中挑选将要过期的数据淘汰
-3. volatile-random：从已设置过期时间的数据集中任意选择数据淘汰
-4. allkeys-lru    ：从数据集中挑选最近最少使用的数据淘汰
-5. allkeys-random ：从数据集中任意选择数据淘汰
-6. no-enviction   ：禁止驱逐数据</pre></td></tr></table>
+<pre class="chroma">1. volatile-lru   ：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的 key
+2. volatile-ttl   ：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的 key 优先移除
+3. volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个 key
+4. allkeys-lru    ：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的 key
+5. allkeys-random ：当内存不足以容纳新写入数据时，在键空间中，随机移除某个 key
+6. no-enviction   ：当内存不足以容纳新写入数据时，新写入操作会报错</pre></td></tr></table>
 </div>
 </div>
 <h1 id="参考文章">参考文章</h1>
