@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="yuanzx" /><meta name="description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将著节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="yuanzx" /><meta name="description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,13 +39,13 @@
 
 
 <meta property="og:title" content="redis 哨兵模式的作用" />
-<meta property="og:description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将著节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升" />
+<meta property="og:description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8/" />
 <meta property="article:published_time" content="2020-03-03T17:13:38+08:00" />
 <meta property="article:modified_time" content="2020-03-03T17:13:38+08:00" />
 <meta itemprop="name" content="redis 哨兵模式的作用">
-<meta itemprop="description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将著节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升">
+<meta itemprop="description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升">
 
 
 <meta itemprop="datePublished" content="2020-03-03T17:13:38&#43;08:00" />
@@ -57,7 +57,7 @@
 <meta itemprop="keywords" content="redis," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="redis 哨兵模式的作用"/>
-<meta name="twitter:description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将著节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升"/>
+<meta name="twitter:description" content="redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -142,7 +142,7 @@
   </div>
 </div>
     <div class="post-content">
-      <p>redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将著节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升为主节点，二是从节点是只读节点，可以分担主节点的读压力。</p>
+      <p>redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升为主节点，二是从节点是只读节点，可以分担主节点的读压力。</p>
 
 <p>但是这里面有个缺点，如果主节点挂掉，从节点晋升主节点需要人工干预，通过引入哨兵来从节点的自动晋升，哨兵需要在主节点挂掉之后晋升一个从节点，并将别的从节点中主节点的地址修改为新晋升的主节点。同时还要修改客户端访问的主节点的地址。</p>
 
