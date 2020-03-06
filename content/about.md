@@ -23,4 +23,4 @@ mathjax: false
 
 # 友情链接
 
-[汪明鑫的个人博客](http://xinyeshuaiqi.cn/)
+[汪明鑫的个人博客（腾讯大佬在线博客）](http://xinyeshuaiqi.cn/)
