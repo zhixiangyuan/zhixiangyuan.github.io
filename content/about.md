@@ -23,4 +23,11 @@ mathjax: false
 
 # 友情链接
 
-[汪明鑫的个人博客（腾讯大佬在线博客）](http://xinyeshuaiqi.cn/)
+- [汪明鑫的个人博客](http://xinyeshuaiqi.cn/)
+  - 腾讯大佬在线博客
+- [Eman Lee's Blog](https://www.cnblogs.com/emanlee/)
+  - 写的很多
+- [杀手自留地](https://iwww.me/archive)
+  - 2014 年便开始写博客的大佬
+- [鬼手 56](https://blog.csdn.net/qq_38474570)
+  - 逆向过微信的大佬
