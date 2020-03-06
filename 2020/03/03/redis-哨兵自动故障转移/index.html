@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-03-03T17:13:38&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-03T17:13:38&#43;08:00" />
-<meta itemprop="wordCount" content="2504">
+<meta itemprop="wordCount" content="2543">
 
 
 
@@ -286,7 +286,7 @@
 
 <p>主观下线是当前哨兵节点的一家之言，可能存在误判。从节点、哨兵节点在主观下线后，没有后续的故障转移操作。</p>
 
-<p>当哨兵主观下线的节点是主节点时，该哨兵节点会通过 <code>sentinel is-master-down-by-addr</code> 命令向其他哨兵节点询问对主节点的判断，当超过 个数，哨兵节点认为主节点确实有问题，这时该哨兵节点会做出客观下线的决定，这样客观下线的含义是比较明显了，也就是大部分哨兵节点都对主节点的下线做了同意的判定。</p>
+<p>当哨兵主观下线的节点是主节点时，该哨兵节点会通过 <code>sentinel is-master-down-by-addr</code> 命令向其他哨兵节点询问对主节点的判断，当超过半数哨兵节点认为主节点确实有问题，这时该哨兵节点会做出客观下线的决定，这样客观下线的含义是比较明显了，也就是大部分哨兵节点都对主节点的下线做了同意的判定。<strong>这里的超过多少节点认为主节点客观下线的这个数字是可以设置的，一般设置为超过半数。</strong></p>
 
 <p><code>sentinel is-master-down-by-addr</code> 命令的格式为:</p>
 <div class="highlight"><div class="chroma">
