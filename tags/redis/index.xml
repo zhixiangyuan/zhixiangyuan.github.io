@@ -18,7 +18,7 @@
       <pubDate>Tue, 03 Mar 2020 17:13:38 +0800</pubDate>
       
       <guid>https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8/</guid>
-      <description>redis 引入哨兵主要是用来解决主从复制的缺点，Redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升</description>
+      <description>redis 引入哨兵主要是用来解决主从复制的缺点，redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升</description>
     </item>
     
     <item>
