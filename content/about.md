@@ -23,6 +23,8 @@ mathjax: false
 
 # 友情链接
 
+以下排名无关先后，完全是随机的。
+
 - [汪明鑫的个人博客](http://xinyeshuaiqi.cn/)
   - 腾讯大佬在线博客
 - [Eman Lee's Blog](https://www.cnblogs.com/emanlee/)
@@ -31,3 +33,14 @@ mathjax: false
   - 2014 年便开始写博客的大佬
 - [鬼手 56](https://blog.csdn.net/qq_38474570)
   - 逆向过微信的大佬
+- [阿里中间件团队博客](http://jm.taobao.org/)
+- [战隼的学习探索](http://www.read.org.cn/)
+- [Hux Blog](https://huangxuan.me/)
+- [SSR 作者](https://github.com/breakwa11)
+  - 现在该仓库已经删了
+- [浅墨散人](https://fangzheng.xyz/About/)
+  - 写的博客成体系
+- [狂飙](https://networm.me/)
+  - 一位游戏开发者的博客
+- [朱双印的个人日志](https://www.zsythink.net/)
+  - 博主的似乎是一位 DBA
