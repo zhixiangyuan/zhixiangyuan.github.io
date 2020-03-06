@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Redis 哨兵：自动故障转移 - 养猪场</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="yuanzx" /><meta name="description" content="Redis 哨兵是 Redis 的高可用实现方案。本节首先会回顾主从复制模式下故障处理可能产生的问题，而后引出高可用的概念，最后重点分析 Redis 哨兵的基本架构、优势，以" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.3 with theme even" />
+
+
+<link rel="canonical" href="https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E8%87%AA%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<link href="/dist/even.40a1ded2.min.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Redis 哨兵：自动故障转移" />
+<meta property="og:description" content="Redis 哨兵是 Redis 的高可用实现方案。本节首先会回顾主从复制模式下故障处理可能产生的问题，而后引出高可用的概念，最后重点分析 Redis 哨兵的基本架构、优势，以" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E8%87%AA%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB/" />
+<meta property="article:published_time" content="2020-03-03T17:13:38+08:00" />
+<meta property="article:modified_time" content="2020-03-03T17:13:38+08:00" />
+<meta itemprop="name" content="Redis 哨兵：自动故障转移">
+<meta itemprop="description" content="Redis 哨兵是 Redis 的高可用实现方案。本节首先会回顾主从复制模式下故障处理可能产生的问题，而后引出高可用的概念，最后重点分析 Redis 哨兵的基本架构、优势，以">
+
+
+<meta itemprop="datePublished" content="2020-03-03T17:13:38&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-03T17:13:38&#43;08:00" />
+<meta itemprop="wordCount" content="2504">
+
+
+
+<meta itemprop="keywords" content="redis," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Redis 哨兵：自动故障转移"/>
+<meta name="twitter:description" content="Redis 哨兵是 Redis 的高可用实现方案。本节首先会回顾主从复制模式下故障处理可能产生的问题，而后引出高可用的概念，最后重点分析 Redis 哨兵的基本架构、优势，以"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">养猪场</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">养猪场</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Redis 哨兵：自动故障转移</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-03 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/"> 杂货铺 </a>
+            </div>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-主从复制的问题">1 主从复制的问题</a></li>
+<li><a href="#2-故障转移">2 故障转移</a></li>
+<li><a href="#3-哨兵的自动故障转移">3 哨兵的自动故障转移</a></li>
+<li><a href="#4-主观下线和客观下线">4 主观下线和客观下线</a></li>
+<li><a href="#5-领导哨兵节点选举">5 领导哨兵节点选举</a></li>
+<li><a href="#参考文章">参考文章</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>Redis 哨兵是 Redis 的高可用实现方案。本节首先会回顾主从复制模式下故障处理可能产生的问题，而后引出高可用的概念，最后重点分析 Redis 哨兵的基本架构、优势，以及是如何实现高可用的。</p>
+
+<blockquote>
+<p>本文大部分摘录自：<a href="https://book.douban.com/subject/26971561/">Redis 开发与运维</a></p>
+</blockquote>
+
+<h1 id="1-主从复制的问题">1 主从复制的问题</h1>
+
+<p>Redis 的主从复制模式可以将主节点的数据改变同步给从节点，这样从节点就可以起到两个作用：</p>
+
+<ol>
+<li>作为主节点的一个备份，一旦主节点出了故障不可达的情况，从节点可以作为后备 “顶” 上来，并且保证数据尽量不丢失（主从复制是最终一致性）。</li>
+<li>从节点可以扩展主节点的读能力，一旦主节点不能支撑住大并发量的读操作，从节点可以在一定程度上帮助主节点分担读压力。</li>
+</ol>
+
+<p>但是主从复制也带来了以下问题：</p>
+
+<ol>
+<li>一旦主节点出现故障，需要手动将一个从节点晋升为主节点，同时需要修改应用方的主节点地址，还需要命令其他从节点去复制新的主节点，整个过程都需要人工干预。</li>
+<li>主节点的写能力受到单机的限制。</li>
+<li>主节点的存储能力受到单机的限制。</li>
+</ol>
+
+<p>其中第一个问题就是 Redis 的高可用问题，也是 Redis 引入哨兵机制的原因。</p>
+
+<h1 id="2-故障转移">2 故障转移</h1>
+
+<p>在没有哨兵的情况下，Redis 的主节点发生故障后：</p>
+
+<ul>
+<li>客户端连接主节点失败，两个从节点与主节点连接失败造成复制中断。</li>
+</ul>
+
+<p><img src="/hub/2020/March/9.png" alt="" /></p>
+
+<ul>
+<li>如果主节点无法启动，则要选出一个从节点（slave-1），对其执行 slaveof no one 命令使其成为新的主节点。</li>
+</ul>
+
+<p><img src="/hub/2020/March/10.png" alt="" /></p>
+
+<ul>
+<li>原来的从节点（slave-1）成为新的主节点后，更新应用方的主节点信息，重新启动应用方。</li>
+</ul>
+
+<p><img src="/hub/2020/March/11.png" alt="" /></p>
+
+<ul>
+<li>客户端命令另一个从节点（slave-2）去复制新的主节点（new-master）。</li>
+</ul>
+
+<p><img src="/hub/2020/March/12.png" alt="" /></p>
+
+<ul>
+<li>待原来的主节点恢复后，让它去复制新的主节点。</li>
+</ul>
+
+<p><img src="/hub/2020/March/13.png" alt="" /></p>
+
+<p>整个过程需要人工介入，且仍然存在以下问题：</p>
+
+<ol>
+<li>判断节点不可达的机制是否健全和标准。</li>
+<li>如果有多个从节点，怎样保证只有一个被晋升为主节点。</li>
+<li>通知客户端新的主节点机制是否足够健壮。</li>
+</ol>
+
+<h1 id="3-哨兵的自动故障转移">3 哨兵的自动故障转移</h1>
+
+<p>当主节点出现故障时，Redis 哨兵能自动完成故障发现和故障转移，并通知应用方，从而实现真正的高可用。</p>
+
+<p>Redis 哨兵是一个分布式架构，其中包含若干个哨兵节点和 Redis 数据节点，每个哨兵节点会对数据节点和其余哨兵节点进行监控，当它发现节点不可达时，会对节点做下线标识。如果被标识的是主节点，它还会和其他哨兵节点进行 “协商”，当大多数哨兵节点都认为主节点不可达时，它们会选举出一个哨兵节点来完成自动故障转移的工作，同时会将这个变化实时通知给 Redis 应用方。整个过程完全是自动的，不需要人工来介入，所以这套方案很有效地解决了 Redis 的高可用问题。</p>
+
+<p><img src="/hub/2020/March/14.png" alt="" /></p>
+
+<p>有了哨兵之后，整个故障转移的逻辑就变成：</p>
+
+<ul>
+<li>主节点出现故障，此时两个从节点与主节点失去连接，主从复制失败。</li>
+</ul>
+
+<p><img src="/hub/2020/March/15.png" alt="" /></p>
+
+<ul>
+<li>每个哨兵节点通过定期监控发现主节点出现了故障。</li>
+</ul>
+
+<p><img src="/hub/2020/March/16.png" alt="" /></p>
+
+<ul>
+<li>多个哨兵节点对主节点的故障达成一致，选举出 sentinel-3 节点作为领导者负责故障转移。</li>
+</ul>
+
+<p><img src="/hub/2020/March/17.png" alt="" /></p>
+
+<ul>
+<li>哨兵领导者节点执行了故障转移，整个过程和上节完全一致，只不过是自动完成的。</li>
+</ul>
+
+<p><img src="/hub/2020/March/18.png" alt="" /></p>
+
+<ul>
+<li>故障转移后整个 Redis 哨兵的拓扑结构如下图所示：</li>
+</ul>
+
+<p><img src="/hub/2020/March/19.png" alt="" /></p>
+
+<p>通过上面介绍的 Redis 哨兵逻辑架构以及故障转移的处理，可以看出：</p>
+
+<ol>
+<li>监控：哨兵节点会定期检测 Redis 数据节点、其余哨兵是否可达。</li>
+<li>通知：哨兵节点会将故障转移的结果通知给应用方。</li>
+<li>主节点故障转移：实现从节点晋升为主节点并维护后续正确的主从关系。</li>
+<li>配置提供者：在 Redis 哨兵结构中，客户端在初始化的时候连接的是哨兵节点集合，从中获取主节点信息。</li>
+</ol>
+
+<p>同时看到，Redis 哨兵包含了若个节点，这样做也带来了两个好处：</p>
+
+<ol>
+<li>对于节点的故障判断是由多个哨兵节点共同完成，这样可以有效地防止误判。</li>
+<li>哨兵节点集合是由若干个哨兵节点组成的，这样即使个别哨兵节点不可用，整个哨兵节点集合依然是健壮的。</li>
+</ol>
+
+<p>哨兵本身就是独立的 Redis 节点，只不过它们有一些特殊，它们不存储数据 (这里指接收用户的写命令，毕竟哨兵节点必须存储 +switch-master 信息)，只支持部分命令。</p>
+
+<p>那么，哨兵是如何判断节点故障的呢，这里就涉及到主观下线和客观下线的区别了。</p>
+
+<h1 id="4-主观下线和客观下线">4 主观下线和客观下线</h1>
+
+<p>每个哨兵节点会每隔 1 秒对主节点、从节点、其他哨兵节点发送 <code>ping</code> 命令做心跳检测，当这些节点超过 <code>down-after-milliseconds</code> 没有进行有效回复，哨兵节点就会对该节点做失败判定，这个行为叫做主观下线。</p>
+
+<p>主观下线是当前哨兵节点的一家之言，可能存在误判。从节点、哨兵节点在主观下线后，没有后续的故障转移操作。</p>
+
+<p>当哨兵主观下线的节点是主节点时，该哨兵节点会通过 <code>sentinel is-master-down-by-addr</code> 命令向其他哨兵节点询问对主节点的判断，当超过 个数，哨兵节点认为主节点确实有问题，这时该哨兵节点会做出客观下线的决定，这样客观下线的含义是比较明显了，也就是大部分哨兵节点都对主节点的下线做了同意的判定。</p>
+
+<p><code>sentinel is-master-down-by-addr</code> 命令的格式为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">sentinel is-master-down-by-addr &lt;ip&gt; &lt;port&gt; &lt;current_epoch&gt; &lt;runid&gt;</pre></td></tr></table>
+</div>
+</div>
+<p>其中，</p>
+
+<ul>
+<li><code>current_epoch</code>：当前配置纪元。</li>
+<li><code>runid</code>：此参数有两种类型，不同类型决定了此 API 作用的不同。
+
+<ol>
+<li>当 <code>runid</code> 等于 “*” 时，作用是哨兵节点直接交换对主节点下线的判定。</li>
+<li>当 <code>runid</code> 等于当前哨兵节点的 <code>runid</code> 时，作用是当前哨兵节点希望目标哨兵节点同意自己成为领导者的请求。</li>
+</ol></li>
+</ul>
+
+<p><code>sentinel is-master-down-by-addr</code> 的返回结果包含三个参数：</p>
+
+<ol>
+<li><code>down_state</code>：目标哨兵节点对于主节点的下线判断，1 是下线，0 是在线。</li>
+<li><code>leader_runid</code>：当 <code>leader_runid</code> 等于 “*” 时，代表返回结果是用来做主节点是否不可达，当 <code>leader_runid</code> 等于具体的 <code>runid</code>，代表目标节点同意 <code>runid</code> 成为领导者。</li>
+<li><code>leader_epoch</code>：领导者纪元。</li>
+</ol>
+
+<h1 id="5-领导哨兵节点选举">5 领导哨兵节点选举</h1>
+
+<p>主节点的故障转移只需要一个哨兵节点来完成，在此之前，哨兵节点之间会进行领导者选举。Redis 使用 Raft 算法实现领导者选举：</p>
+
+<ol>
+<li>每个在线的哨兵节点都有资格成为领导者，当它确认主节点主观下线时候，会向其他哨兵节点发送 <code>sentinel is-master-down-by-addr</code> 命令，要求将自己设置为领导者。</li>
+<li>收到命令的哨兵节点，如果没有同意过其他哨兵节点的 <code>sentinel is-master-down-by-addr</code> 命令，将同意该请求，否则拒绝。</li>
+<li>如果该哨兵节点发现自己的票数已经大于等于 <code>max(quorum, num(sentinels)/2+1)</code>，那么它将成为领导者。</li>
+<li>如果此过程没有选举出领导者，将进入下一次选举。</li>
+</ol>
+
+<p>最后，哪些节点会入哨兵领导者的法眼，成为新的主节点呢：</p>
+
+<ol>
+<li>过滤：“不健康”（主观下线、断线）、5 秒内没有回复过哨兵节点 ping 响应、与主节点失联超过 <code>down-after-milliseconds*10</code> 秒。</li>
+<li>选择 <code>slave-priority</code>（从节点优先级）最高的从节点列表，如果存在则返回，不存在则继续。</li>
+<li>选择复制偏移量最大的从节点（复制的最完整），如果存在则返回，不存在则继续。</li>
+<li>选择 <code>runid</code> 最小的从节点。</li>
+</ol>
+
+<h1 id="参考文章">参考文章</h1>
+
+<ol>
+<li><a href="https://hellokangning.github.io/zh/post/redis-sentinel-automatic-failover/">Redis 哨兵：自动故障转移</a></li>
+</ol>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/2020/03/04/%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E5%92%8C%E5%8F%82%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">标准输入和参数的区别</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/2020/03/03/redis-%E4%B8%AD%E7%9A%84%E5%85%AD%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5/">
+            <span class="next-text nav-default">redis 中的六种数据淘汰策略</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:im.yuanzx@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="https://zhixiangyuan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">yuanzx</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "en".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script><script></script><script src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js" integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/snapsvg@0.5.1/dist/snap.svg-min.js" integrity="sha256-oI+elz+sIm+jpn8F/qEspKoKveTc5uKeFHNNVexe6d8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/underscore@1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.js" integrity="sha384-8748Vn52gHJYJI0XEuPB2QlPVNUkJlJn9tHqKec6J3q2r9l8fvRxrgn/E5ZHV0sP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bramp/js-sequence-diagrams@2.0.1/dist/sequence-diagram-min.css" integrity="sha384-6QbLKJMz5dS3adWSeINZe74uSydBGFbnzaAYmp+tKyq60S7H2p6V7g1TysM5lAaF" crossorigin="anonymous">
+<script type="text/javascript" src="/dist/even.67e0238c.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

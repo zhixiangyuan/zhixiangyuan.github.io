@@ -58,12 +58,12 @@
     </item>
     
     <item>
-      <title>redis 哨兵模式的作用</title>
-      <link>https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8/</link>
+      <title>Redis 哨兵：自动故障转移</title>
+      <link>https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E8%87%AA%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB/</link>
       <pubDate>Tue, 03 Mar 2020 17:13:38 +0800</pubDate>
       
-      <guid>https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%9C%E7%94%A8/</guid>
-      <description>redis 引入哨兵主要是用来解决主从复制的缺点，redis 主从复制可将主节点数据同步到从节点，从节点主要有两个作用，一是当主节点挂了，从节点可以晋升</description>
+      <guid>https://zhixiangyuan.github.io/2020/03/03/redis-%E5%93%A8%E5%85%B5%E8%87%AA%E5%8A%A8%E6%95%85%E9%9A%9C%E8%BD%AC%E7%A7%BB/</guid>
+      <description>Redis 哨兵是 Redis 的高可用实现方案。本节首先会回顾主从复制模式下故障处理可能产生的问题，而后引出高可用的概念，最后重点分析 Redis 哨兵的基本架构、优势，以</description>
     </item>
     
     <item>
