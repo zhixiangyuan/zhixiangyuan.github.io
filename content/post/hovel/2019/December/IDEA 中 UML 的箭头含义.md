@@ -21,7 +21,7 @@ author: "yuanzx"
 public interface B {
 }
 
-public class A implements B{
+public class A implements B {
 }
 ```
 
@@ -150,17 +150,6 @@ public class A {
 
 ![](/hub/2019/December/16.png)
 
-```java
-public class A {
-    public class B {
-    }
-}
-```
-
-如果是内部类的形式，IDEA 的表示形式是下面这种形式
-
-![](/hub/2019/December/17.png)
-
 # 6 注解相关
 
 ```java
@@ -190,3 +179,16 @@ public @interface A {
 注解 B 标 A 同样用黄色虚线表示
 
 ![](/hub/2019/December/20.png)
+
+# 7 内部类相关
+
+```java
+public class A {
+    public class B {
+    }
+}
+```
+
+如果是内部类的形式，IDEA 的表示形式是下面这种形式
+
+![](/hub/2019/December/17.png)
