@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2019-12-10T08:28:37&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-10T08:28:37&#43;08:00" />
-<meta itemprop="wordCount" content="838">
+<meta itemprop="wordCount" content="845">
 
 
 
@@ -146,6 +146,7 @@
 <li><a href="#4-调用关系">4 调用关系</a></li>
 <li><a href="#5-持有关系">5 持有关系</a></li>
 <li><a href="#6-注解相关">6 注解相关</a></li>
+<li><a href="#7-内部类相关">7 内部类相关</a></li>
 </ul>
 </nav>
   </div>
@@ -173,7 +174,7 @@
 <pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">interface</span> <span class="n">B</span> <span class="p">{</span>
 <span class="p">}</span>
 
-<span class="kd">public</span> <span class="nf">class</span> <span class="n">A</span> <span class="nf">implements</span> <span class="n">B</span><span class="p">{</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">A</span> <span class="nf">implements</span> <span class="n">B</span> <span class="p">{</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -369,23 +370,6 @@
 <p>这是一种一对多的关系，图中 master 标着 1，slave 标着 *</p>
 
 <p><img src="/hub/2019/December/16.png" alt="" /></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">A</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="nf">class</span> <span class="n">B</span> <span class="p">{</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>如果是内部类的形式，IDEA 的表示形式是下面这种形式</p>
-
-<p><img src="/hub/2019/December/17.png" alt="" /></p>
 
 <h1 id="6-注解相关">6 注解相关</h1>
 <div class="highlight"><div class="chroma">
@@ -434,6 +418,25 @@
 <p>注解 B 标 A 同样用黄色虚线表示</p>
 
 <p><img src="/hub/2019/December/20.png" alt="" /></p>
+
+<h1 id="7-内部类相关">7 内部类相关</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">A</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">class</span> <span class="n">B</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果是内部类的形式，IDEA 的表示形式是下面这种形式</p>
+
+<p><img src="/hub/2019/December/17.png" alt="" /></p>
 
     </div>
 
