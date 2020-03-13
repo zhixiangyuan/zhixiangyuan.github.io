@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>yuanzx</copyright>
-    <lastBuildDate>Mon, 09 Mar 2020 15:16:04 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 05 Mar 2020 15:54:03 +0800</lastBuildDate>
     
 	<atom:link href="https://zhixiangyuan.github.io/categories/%E6%9D%82%E8%B4%A7%E9%93%BA/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>对象的六种关系</title>
-      <link>https://zhixiangyuan.github.io/2020/03/09/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E5%85%B3%E7%B3%BB/</link>
-      <pubDate>Mon, 09 Mar 2020 15:16:04 +0800</pubDate>
-      
-      <guid>https://zhixiangyuan.github.io/2020/03/09/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%AD%E7%A7%8D%E5%85%B3%E7%B3%BB/</guid>
-      <description>对象间的六种关系：依赖、关联、聚合、组合、实现、泛化 1 依赖 我对依赖的理解是 A 依赖了 B，那么如果没有 B，A 无法正常工作。比如说 A 的方法参数里面</description>
-    </item>
     
     <item>
       <title>CompletableFuture 小记</title>
