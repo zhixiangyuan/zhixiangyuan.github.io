@@ -141,6 +141,11 @@
     
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2020-02-11T22:50:10" title="February 11, 2020">February 11, 2020</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>首先，这里的原理是和好友语音，那么会首先从腾讯服务器获取到对方的 IP 地址，然后再本地连线对方，那么我们在这里进行抓包便可以知道对方的 IP 地址。抓包时使用 wireshark 进行抓包，抓包条件为 <code>udp.length==80</code> 过滤出所有的包，之后会有大量的 udp 包，当出现有来有回的 udp 包，记下该地址，该地址就是对方的 IP 地址。</p>
 
