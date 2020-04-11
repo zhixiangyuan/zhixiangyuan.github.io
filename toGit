@@ -15,6 +15,7 @@ else
     comment="更新日志"
 fi
 
+
 git commit -m "$comment" >/dev/null 2>&1
 git push github dev:dev -v
 
