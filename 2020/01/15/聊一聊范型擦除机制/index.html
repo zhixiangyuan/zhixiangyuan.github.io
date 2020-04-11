@@ -50,7 +50,7 @@
 
 <meta itemprop="datePublished" content="2020-01-15T17:47:36&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-15T17:47:36&#43;08:00" />
-<meta itemprop="wordCount" content="485">
+<meta itemprop="wordCount" content="605">
 
 
 
@@ -191,6 +191,8 @@
 </div>
 </div>
 <p>从上面的例子可以看到，我们在代码中直接声明的 <code>List&lt;String&gt;</code> 确实获取不到范型，但是，我们声明的 A 这个类，却获取到了他父类的范型，这便能说明某些场景下的范型是被存起来的。至于原因目前我也不太说得上来，只是通过本文记录这样一个想法。</p>
+
+<p>关于这个原因我有以下想法，这只是一个猜测不一定正确，这里面的关键在于用 class 关键字定义的类会在编译的时候将泛型信息保存到 class 文件中，所以能找到，而直接在 new 的时候写的泛型，java 很可能只是执行泛型检查，然后便将泛型擦除掉，所以在使用的时候找不到。</p>
 
 <p>对于哪些场景的范型会被记录下来，看我下面这个例子就好了，如果读者在别的场景想要获取范型，测试一下就知道能否获取到了。</p>
 <div class="highlight"><div class="chroma">
